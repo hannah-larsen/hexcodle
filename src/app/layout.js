@@ -5,7 +5,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Hexcodle",
-  description: "Created by Hansies and Ekimmies"}
+  description: "A fun daily guessing game for hex codes!",
+};
 
 export default function RootLayout({ children }) {
   return (
