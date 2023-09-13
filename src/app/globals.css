@@ -172,7 +172,7 @@ input:focus {
 }
 
 .frosted-glass {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.8);
   padding-left: 30px;
   padding-right: 30px;
   text-align: center;
@@ -234,7 +234,6 @@ input:focus {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
 

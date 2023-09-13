@@ -13,7 +13,9 @@ export default function Home() {
 
   const [userInput, setUserInput] = useState("#");
   const [randColor, setRandColor] = useState("bisque");
-  const [statusText, setStatusText] = useState("");
+  const [statusText, setStatusText] = useState(
+    "Start by typing your guess above!"
+  );
   const [guesses, setGuesses] = useState([]);
   const [counter, setCounter] = useState(4);
   const [gameOver, setGameOver] = useState(false);
@@ -143,7 +145,7 @@ export default function Home() {
               WTF IS HEX?
             </button>
           </section>
-          <section className="frosted-glass">
+          <section className="frosted-glass" style={{ position: "relative" }}>
             <div
               style={{
                 display: "flex",
@@ -190,11 +192,9 @@ export default function Home() {
                   ➜
                 </button>
               </div>
-              {statusText.length > 0 && (
-                <p className="guess-text" style={{ margin: 0 }}>
-                  {statusText}
-                </p>
-              )}
+              <p className="guess-text" style={{ margin: 0, lineHeight: 2 }}>
+                {statusText}
+              </p>
             </div>
 
             {gameOver && (
