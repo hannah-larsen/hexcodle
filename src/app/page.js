@@ -9,6 +9,9 @@ import EndModal from "./components/EndModal.js";
 import HexInfoModal from "./components/HexInfoModal.js";
 
 export default function Home() {
+
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  
   const [userInput, setUserInput] = useState("#");
   const [randColor, setRandColor] = useState("bisque");
   const [statusText, setStatusText] = useState(" ");
@@ -195,7 +198,7 @@ export default function Home() {
                   <ShareAltOutlined />
                 </button>
               )}
-              
+
           </section>
 
           <section className="frosted-glass guess-section">
