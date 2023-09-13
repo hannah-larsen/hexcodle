@@ -13,7 +13,7 @@ export default function Home() {
 
   const [userInput, setUserInput] = useState("#");
   const [randColor, setRandColor] = useState("bisque");
-  const [statusText, setStatusText] = useState(" ");
+  const [statusText, setStatusText] = useState("");
   const [guesses, setGuesses] = useState([]);
   const [counter, setCounter] = useState(4);
   const [gameOver, setGameOver] = useState(false);
@@ -123,7 +123,7 @@ export default function Home() {
         />
 
         <HexInfoModal
-          okButtonProps={{ style: { backgroundColor: "#3a743a"} }}
+          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
           isOpen={isModalVisible}
           setIsOpen={setIsModalVisible}
         />
@@ -149,51 +149,57 @@ export default function Home() {
                 display: "flex",
                 justifyContent: "start",
                 alignItems: "end",
+                width: "100%",
                 marginBottom: 8,
               }}
             >
-              <div style={{ marginRight: 32 }}>
-                <h3>Target</h3>
+              <div style={{ marginRight: 32, flex: 1 }}>
+                <h2 style={{ marginBottom: 8 }}>Target</h2>
                 <div
                   className="square"
                   style={{ backgroundColor: randColor }}
                 ></div>
               </div>
-              <div>
-                <h3>Your Guess</h3>
+              <div style={{ flex: 1 }}>
+                <h2 style={{ marginBottom: 8 }}>Your Guess</h2>
                 <div
                   className="square"
                   style={{ backgroundColor: guesses[0] }}
                 ></div>
               </div>
             </div>
+            <div className="input-section">
+              <div id="input-and-button">
+                <input
+                  type="text"
+                  className="input input-bordered input-sm w-full max-w-xs"
+                  maxLength="7"
+                  onKeyPress={handleKeypress}
+                  value={userInput}
+                  onChange={handleChange}
+                  disabled={gameOver}
+                />
 
-            <div id="input-and-button">
-              <input
-                type="text"
-                className="input input-bordered input-sm w-full max-w-xs"
-                maxLength="7"
-                onKeyPress={handleKeypress}
-                value={userInput}
-                onChange={handleChange}
-                disabled={gameOver}
-              />
-
-              <button
-                className="square-button"
-                onClick={() => {
-                  enterClick();
-                }}
-                disabled={gameOver}
-              >
-                ➜
-              </button>
+                <button
+                  className="square-button"
+                  onClick={() => {
+                    enterClick();
+                  }}
+                  disabled={gameOver}
+                >
+                  ➜
+                </button>
+              </div>
+              {statusText.length > 0 && (
+                <p className="guess-text" style={{ margin: 0 }}>
+                  {statusText}
+                </p>
+              )}
             </div>
-            <p className="guess-text">{statusText}</p>
 
             {gameOver && (
               <button
-                className="modal-button"
+                className="modal-button square-button"
                 id="shareScore"
                 onClick={() => {
                   setEndModalVisible(true);

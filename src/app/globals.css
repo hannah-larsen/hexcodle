@@ -89,9 +89,7 @@ body {
   /* This helps create the illusion of movement */
   font-family: Arial, Helvetica, sans-serif;
   margin: 0px;
-  background: #94a986;
-  background-size: 600% 600%;
-  animation: rainbowAnimation 28s ease infinite;
+  background: #C8E1B7 ;
 }
 
 @keyframes rainbowAnimation {
@@ -126,11 +124,12 @@ section {
   margin-bottom: 16px;
   padding: 8px;
   border-radius: 16px;
+  background-color: #f3f3f3;
 }
 
 .modal-button {
-  height: 30px;
   background-color: #3a743a;
+  padding: 6px;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -138,8 +137,7 @@ section {
   font-size: 16px;
   outline: none;
   transition: background-color 0.3s ease;
-  margin-bottom: 16px;
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
 .modal-button:hover {
@@ -148,13 +146,13 @@ section {
 
 input {
   width: 150px;
-  height: 32px;
+  height: 36px;
   background-color: #ffffff;
   color: #333333;
   border: 1px solid #bdc3c7;
   border-radius: 5px;
   margin-right: 10px;
-  font-size: 16px;
+  font-size: 24px;
   outline: none;
   padding-left: 10px;
   transition: border-color 0.3s ease;
@@ -174,9 +172,7 @@ input:focus {
 }
 
 .frosted-glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background: rgba(255, 255, 255, 1);
   padding-left: 30px;
   padding-right: 30px;
   text-align: center;
@@ -207,23 +203,16 @@ input:focus {
 }
 
 .square {
-  height: 200px;
-  width: 200px;
+  flex: 1;
+  aspect-ratio: 1/1;
   background-color: #333333;
   margin-bottom: 6px;
   border-radius: 2px;
 }
 
-@media screen and (max-width: 768px) {
-  .square {
-    width: 150px;
-    height: 150px
-  }
-}
-
 .square-button {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   background-color: #3a743a;
   color: #ffffff;
   border: none;
@@ -240,6 +229,14 @@ input:focus {
   background-color: #43a043;
 }
 
+.input-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
 
 .guess-section {
   min-height: 400px;
@@ -253,8 +250,8 @@ input:focus {
 
 #shareScore {
   position: absolute;
-  bottom: 6px;
-  right: 25px;
+  bottom: 20px;
+  right: 20px;
 }
 
 #guess {
@@ -276,6 +273,7 @@ input:focus {
   align-items: center;
   flex-direction: row;
   font-size: 1.5rem;
+  margin-bottom: 0;
 }
 
 #guess-heading {
