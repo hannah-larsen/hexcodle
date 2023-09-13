@@ -288,6 +288,10 @@ input:focus {
   padding-bottom: 0;
 }
 
+.first-square {
+  margin-right: 32px;
+}
+
 @media screen and (max-width: 600px) {
   .everything {
     padding: 8px 16px;
@@ -299,5 +303,9 @@ input:focus {
 
   .frosted-glass {
     padding: 16px;
+  }
+
+  .first-square {
+    margin-right: 16px;
   }
 }

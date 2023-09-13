@@ -154,7 +154,7 @@ export default function Home() {
               marginBottom: 8,
             }}
           >
-            <div style={{ marginRight: 32, flex: 1 }}>
+            <div className="first-square" style={{ flex: 1 }}>
               <h2 className="guess-title" style={{ marginBottom: 8 }}>
                 Target
               </h2>
