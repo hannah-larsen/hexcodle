@@ -9,9 +9,8 @@ import EndModal from "./components/EndModal.js";
 import HexInfoModal from "./components/HexInfoModal.js";
 
 export default function Home() {
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />;
 
-  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  
   const [userInput, setUserInput] = useState("#");
   const [randColor, setRandColor] = useState("bisque");
   const [statusText, setStatusText] = useState(" ");
@@ -114,6 +113,7 @@ export default function Home() {
     <>
       <div className="everything" /*style={{ backgroundColor: guesses[0] }}*/>
         <EndModal
+          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
           open={endModalVisible}
           setOpen={setEndModalVisible}
           color={randColor}
@@ -122,7 +122,11 @@ export default function Home() {
           win={statusText === "You guessed it!"}
         />
 
-        <HexInfoModal isOpen={isModalVisible} setIsOpen={setIsModalVisible} />
+        <HexInfoModal
+          okButtonProps={{ style: { backgroundColor: "#3a743a"} }}
+          isOpen={isModalVisible}
+          setIsOpen={setIsModalVisible}
+        />
 
         <div>
           <section className="frosted-glass">
@@ -188,17 +192,16 @@ export default function Home() {
             <p className="guess-text">{statusText}</p>
 
             {gameOver && (
-                <button
-                  className="modal-button"
-                  id="shareScore"
-                  onClick={() => {
-                    setEndModalVisible(true);
-                  }}
-                >
-                  <ShareAltOutlined />
-                </button>
-              )}
-
+              <button
+                className="modal-button"
+                id="shareScore"
+                onClick={() => {
+                  setEndModalVisible(true);
+                }}
+              >
+                <ShareAltOutlined />
+              </button>
+            )}
           </section>
 
           <section className="frosted-glass guess-section">

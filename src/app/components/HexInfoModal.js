@@ -3,6 +3,7 @@ import { Modal } from "antd";
 export default function HexInfoModal({ isOpen, setIsOpen }) {
   return (
     <Modal
+      okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
       title="How the HEX do hex codes work?"
       open={isOpen}
       onOk={() => {

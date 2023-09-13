@@ -45,6 +45,7 @@ export default function EndModal({
 
   return (
     <Modal
+      okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
       title={win ? "Congrats!" : "Better luck next time"}
       open={open}
       onOk={() => {
