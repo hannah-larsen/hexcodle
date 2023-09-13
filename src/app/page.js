@@ -130,99 +130,101 @@ export default function Home() {
           setIsOpen={setIsModalVisible}
         />
 
-        <div>
-          <section className="frosted-glass">
-            <h1 className="title">Hexcodle</h1>
+        <section className="frosted-glass">
+          <h1 className="title">Hexcodle</h1>
 
-            <p>
-              You will have 5 tries to correctly guess the hex code of the
-              colour displayed on screen. After each guess, you will see if your
-              guess was too low, too high, or spot on! Use these as guides to
-              decipher how close your guess is.
+          <p>
+            You will have 5 tries to correctly guess the hex code of the colour
+            displayed on screen. After each guess, you will see if your guess
+            was too low, too high, or spot on! Use these as guides to decipher
+            how close your guess is.
+          </p>
+
+          <button className="modal-button" onClick={showModal}>
+            WTF IS HEX?
+          </button>
+        </section>
+        <section className="frosted-glass" style={{ position: "relative" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "start",
+              alignItems: "end",
+              width: "100%",
+              marginBottom: 8,
+            }}
+          >
+            <div style={{ marginRight: 32, flex: 1 }}>
+              <h2 className="guess-title" style={{ marginBottom: 8 }}>
+                Target
+              </h2>
+              <div
+                className="square"
+                style={{ backgroundColor: randColor }}
+              ></div>
+            </div>
+            <div style={{ flex: 1 }}>
+              <h2 className="guess-title" style={{ marginBottom: 8 }}>
+                Your Guess
+              </h2>
+              <div
+                className="square"
+                style={{ backgroundColor: guesses[0] }}
+              ></div>
+            </div>
+          </div>
+          <div className="input-section">
+            <div id="input-and-button">
+              <input
+                type="text"
+                className="input input-bordered input-sm w-full max-w-xs"
+                maxLength="7"
+                onKeyPress={handleKeypress}
+                value={userInput}
+                onChange={handleChange}
+                disabled={gameOver}
+              />
+
+              <button
+                className="square-button"
+                onClick={() => {
+                  enterClick();
+                }}
+                disabled={gameOver}
+              >
+                ➜
+              </button>
+            </div>
+            <p className="status-text" style={{ margin: 0 }}>
+              {statusText}
             </p>
+          </div>
 
-            <button className="modal-button" onClick={showModal}>
-              WTF IS HEX?
-            </button>
-          </section>
-          <section className="frosted-glass" style={{ position: "relative" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "start",
-                alignItems: "end",
-                width: "100%",
-                marginBottom: 8,
+          {gameOver && (
+            <button
+              className="modal-button square-button"
+              id="shareScore"
+              onClick={() => {
+                setEndModalVisible(true);
               }}
             >
-              <div style={{ marginRight: 32, flex: 1 }}>
-                <h2 style={{ marginBottom: 8 }}>Target</h2>
-                <div
-                  className="square"
-                  style={{ backgroundColor: randColor }}
-                ></div>
-              </div>
-              <div style={{ flex: 1 }}>
-                <h2 style={{ marginBottom: 8 }}>Your Guess</h2>
-                <div
-                  className="square"
-                  style={{ backgroundColor: guesses[0] }}
-                ></div>
-              </div>
-            </div>
-            <div className="input-section">
-              <div id="input-and-button">
-                <input
-                  type="text"
-                  className="input input-bordered input-sm w-full max-w-xs"
-                  maxLength="7"
-                  onKeyPress={handleKeypress}
-                  value={userInput}
-                  onChange={handleChange}
-                  disabled={gameOver}
-                />
+              <ShareAltOutlined />
+            </button>
+          )}
+        </section>
 
-                <button
-                  className="square-button"
-                  onClick={() => {
-                    enterClick();
-                  }}
-                  disabled={gameOver}
-                >
-                  ➜
-                </button>
-              </div>
-              <p className="guess-text" style={{ margin: 0, lineHeight: 2 }}>
-                {statusText}
-              </p>
-            </div>
+        <section className="frosted-glass guess-section">
+          <h2 id="guess-heading">Guesses</h2>
 
-            {gameOver && (
-              <button
-                className="modal-button square-button"
-                id="shareScore"
-                onClick={() => {
-                  setEndModalVisible(true);
-                }}
-              >
-                <ShareAltOutlined />
-              </button>
-            )}
-          </section>
-
-          <section className="frosted-glass guess-section">
-            <h2 id="guess-heading">Guesses</h2>
-
-            {guesses.map((guess, index) => (
-              <Guess
-                key={index}
-                guess={guess}
-                target={randColor}
-                hashtag={index === 0}
-              />
-            ))}
-          </section>
-        </div>
+          {guesses.map((guess, index) => (
+            <Guess
+              key={index}
+              guess={guess}
+              target={randColor}
+              hashtag={index === 0}
+            />
+          ))}
+        </section>
       </div>
     </>
   );

@@ -120,8 +120,8 @@ section {
   align-items: center;
   width: 100%;
   max-width: 600px;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   padding: 8px;
   border-radius: 16px;
   background-color: #f3f3f3;
@@ -167,6 +167,7 @@ input:focus {
 
 .everything {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -283,9 +284,20 @@ input:focus {
   padding-bottom: 6px;
 }
 
+.status-text {
+  padding-bottom: 0;
+}
+
 @media screen and (max-width: 600px) {
-  section {
-    margin-left: 16px;
-    margin-right: 16px;
+  .everything {
+    padding: 8px 16px;
+  }
+  
+  .guess-title {
+    font-size: 1.25rem;
+  }
+
+  .frosted-glass {
+    padding: 16px;
   }
 }
