@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Divider } from "antd";
+import { ShareAltOutlined } from "@ant-design/icons";
 import { decimalToHex, hexToDecimal, generateUniqueNumber } from "./utils.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
@@ -182,6 +183,19 @@ export default function Home() {
               </button>
             </div>
             <p className="guess-text">{statusText}</p>
+
+            {gameOver && (
+                <button
+                  className="modal-button"
+                  id="shareScore"
+                  onClick={() => {
+                    setEndModalVisible(true);
+                  }}
+                >
+                  <ShareAltOutlined />
+                </button>
+              )}
+              
           </section>
 
           <section className="frosted-glass guess-section">

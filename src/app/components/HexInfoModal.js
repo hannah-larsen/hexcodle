@@ -27,7 +27,7 @@ export default function HexInfoModal({ isOpen, setIsOpen }) {
       <p>
         Some common hex codes are as follows:
         <ul id="hexList">
-          <li style={{ color: "#CBCBC9" }}>
+          <li style={{ color: "#B5B5B1" }}>
             #FFFFFF: White (full intensity for all RGB components)
           </li>
           <li>#000000: Black (no intensity for all RGB components)</li>
