@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Modal, Button, Divider } from "antd";
 import { ShareAltOutlined } from "@ant-design/icons";
-import { decimalToHex, hexToDecimal, generateUniqueNumber } from "./utils.js";
+import { generateUniqueNumber, useTemporaryStorage } from "./utils.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
 import HexInfoModal from "./components/HexInfoModal.js";
@@ -11,16 +10,20 @@ import HexInfoModal from "./components/HexInfoModal.js";
 export default function Home() {
   <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />;
 
-  const [userInput, setUserInput] = useState("#");
-  const [randColor, setRandColor] = useState("bisque");
-  const [statusText, setStatusText] = useState(
+  const [guesses, setGuesses] = useTemporaryStorage("hexcodle-guesses", []);
+  const [counter, setCounter] = useTemporaryStorage("hexcodle-counter", 4);
+  const [statusText, setStatusText] = useTemporaryStorage(
+    "hexcodle-status-text",
     "Start by typing your guess above!"
   );
-  const [guesses, setGuesses] = useState([]);
-  const [counter, setCounter] = useState(4);
-  const [gameOver, setGameOver] = useState(false);
+
+  const [userInput, setUserInput] = useState("#");
+  const [randColor, setRandColor] = useState("bisque");
+  const [gameOver, setGameOver] = useState(guesses.length > 0 || false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [endModalVisible, setEndModalVisible] = useState(false);
+
+  const hasWon = guesses.includes(randColor);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -111,6 +114,10 @@ export default function Home() {
     setUserInput("#");
   };
 
+  if (randColor === "bisque") {
+    return <p>Loading</p>;
+  }
+
   return (
     <>
       <div className="everything" /*style={{ backgroundColor: guesses[0] }}*/>
@@ -121,7 +128,7 @@ export default function Home() {
           color={randColor}
           counter={counter}
           guesses={guesses}
-          win={statusText === "You guessed it!"}
+          win={hasWon}
         />
 
         <HexInfoModal
@@ -132,7 +139,6 @@ export default function Home() {
 
         <section className="frosted-glass">
           <h1 className="title">Hexcodle</h1>
-
           <p>
             You will have 5 tries to correctly guess the hex code of the colour
             displayed on screen. After each guess, you will see if your guess

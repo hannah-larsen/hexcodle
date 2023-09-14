@@ -208,7 +208,7 @@ input:focus {
   aspect-ratio: 1/1;
   background-color: #333333;
   margin-bottom: 6px;
-  border-radius: 2px;
+  border-radius: 8px;
 }
 
 .square-button {

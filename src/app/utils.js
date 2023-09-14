@@ -31,7 +31,7 @@ export function generateUniqueNumber(n, offset = 0) {
     Like normal useState it takes an initial value as one of the params (2nd param),
     and the first param is a key which creates a store for it in the browser storage.
 */
-export default function useLocalStorage(key, initialValue) {
+export function useLocalStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key);
@@ -48,6 +48,52 @@ export default function useLocalStorage(key, initialValue) {
         value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return [storedValue, setValue];
+}
+
+export function useTemporaryStorage(key, initialValue) {
+  const now = moment().tz("America/New_York");
+  const seed = now.format("DD-MM-YYYY");
+
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      if (item) {
+        const parsedItem = JSON.parse(item);
+
+        // Check if the seed is from today
+        if (parsedItem.seed === seed) {
+          return parsedItem.value;
+        } else {
+          // If not, remove the item and return the initial value
+          window.localStorage.removeItem(key);
+          return initialValue;
+        }
+      } else {
+        return initialValue;
+      }
+    } catch (error) {
+      console.log(error);
+      return initialValue;
+    }
+  });
+
+  const setValue = (value) => {
+    try {
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+
+      // Save the value along with today's seed
+      window.localStorage.setItem(
+        key,
+        JSON.stringify({ value: valueToStore, seed })
+      );
     } catch (error) {
       console.log(error);
     }
