@@ -14,11 +14,11 @@ export default function EndModal({
   const getSharableString = () => {
     let shareableString = "";
     if (win) {
-      shareableString = `I got today's hexcodle in ${guesses.length} ${
+      shareableString = `I got today's Hexcodle in ${guesses.length} ${
         guesses.length > 1 ? "guesses" : "guess"
       }!\nhttps://hexcodle.vercel.app \n\n`;
     } else {
-      shareableString = `I did not solve today's hexcodle.
+      shareableString = `I did not solve today's Hexcodle.
       \nhttps://hexcodle.vercel.app \n\n`;
     }
 
@@ -61,7 +61,7 @@ export default function EndModal({
           <Confetti />
           <p>
             You solved the Hexcodle in {4 - counter} guess
-            {4 - counter == 1 ? "" : "es"}.<br></br>
+            {4 - counter == 1 ? "" : "es"}.
             <br />
             Come back tomorrow for a new colour!
           </p>
@@ -72,14 +72,14 @@ export default function EndModal({
           Come back tomorrow for a new colour!
         </p>
       )}
+      <Timer isModalActive={true} />
       <a
         onClick={() => {
           navigator.clipboard.writeText(getSharableString());
         }}
       >
-        Click here to copy your results
+        Share your results
       </a>
-      <Timer isModalActive={true} />
     </Modal>
   );
 }

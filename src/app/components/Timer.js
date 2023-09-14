@@ -27,7 +27,7 @@ const Timer = ({ isModalActive }) => {
     return () => clearInterval(timer);
   }, [isModalActive]);
 
-  return isModalActive && <p>Next hexcodle in: {remainingTime} </p>;
+  return isModalActive && <p>Next Hexcodle in: {remainingTime} </p>;
 };
 
 export default Timer;
