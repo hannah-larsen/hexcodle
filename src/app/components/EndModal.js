@@ -16,10 +16,10 @@ export default function EndModal({
     if (win) {
       shareableString = `I got today's Hexcodle in ${guesses.length} ${
         guesses.length > 1 ? "guesses" : "guess"
-      }!\nhttps://hexcodle.vercel.app \n\n`;
+      }!\nhttps://hexcodle.com \n\n`;
     } else {
       shareableString = `I did not solve today's Hexcodle.
-      \nhttps://hexcodle.vercel.app \n\n`;
+      \nhttps://hexcodle.com \n\n`;
     }
 
     const reversed = [...guesses].reverse();
