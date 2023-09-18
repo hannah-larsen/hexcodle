@@ -1,5 +1,5 @@
 import Confetti from "./Confetti";
-import { Modal } from "antd";
+import { Modal, Popover} from "antd";
 import { compareCharacters } from "../utils";
 import Timer from "./Timer";
 
@@ -73,13 +73,15 @@ export default function EndModal({
         </p>
       )}
       <Timer isModalActive={true} />
-      <a
-        onClick={() => {
-          navigator.clipboard.writeText(getSharableString());
-        }}
-      >
-        Share your results
-      </a>
+      <Popover content="Copied to clipboard!" trigger="click">
+        <a
+          onClick={() => {
+            navigator.clipboard.writeText(getSharableString());
+          }}
+        >
+          Share your results
+        </a>
+      </Popover>
     </Modal>
   );
 }
