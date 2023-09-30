@@ -120,6 +120,13 @@ export default function Home() {
 
   return (
     <>
+      <head>
+        <title>Hexcodle | The daily hex code guessing game!</title>
+        <meta
+          name="description"
+          content="Hexcodle | The daily hex code guessing game!"
+        />
+      </head>
       <div className="everything" /*style={{ backgroundColor: guesses[0] }}*/>
         <EndModal
           okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
