@@ -1,9 +1,9 @@
 import React from "react";
 import "./Guess.css";
-import { hexToDecimal, compareCharacters } from "../utils";
+import { compareCharacters } from "../utils";
 
 export default function Guess(props) {
-  const { guess, target, hashtag } = props;
+  const { guess, target } = props;
 
   return (
     <>
