@@ -16,7 +16,7 @@ export default function HexcodleGame({ targetColor }) {
   );
 
   const [userInput, setUserInput] = useState("#");
-  const [gameOver, setGameOver] = useState(guesses.length > 0 || false);
+  const [gameOver, setGameOver] = useState(!(counter > 0));
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [endModalVisible, setEndModalVisible] = useState(false);
 
