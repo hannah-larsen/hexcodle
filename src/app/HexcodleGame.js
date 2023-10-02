@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ShareAltOutlined } from "@ant-design/icons";
+import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
 import useTemporaryStorage from "./hooks/useTemporaryStorage.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
