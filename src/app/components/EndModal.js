@@ -1,5 +1,6 @@
 import Confetti from "./Confetti";
-import { Modal, Popover } from "antd";
+import Modal from "antd/lib/modal";
+import Popover from "antd/lib/popover";
 import { compareCharacters } from "../utils";
 import Timer from "./Timer";
 

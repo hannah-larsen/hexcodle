@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import Modal from "antd/lib/modal";
 
 export default function HexInfoModal({ isOpen, setIsOpen }) {
   return (
