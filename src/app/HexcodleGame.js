@@ -125,7 +125,7 @@ export default function HexcodleGame({ targetColor }) {
               <h2 className="guess-title" style={{ marginBottom: 8 }}>
                 Target
               </h2>
-              <canvas
+              <div
                 className="square"
                 style={{ backgroundColor: targetColor }}
               />
@@ -134,10 +134,7 @@ export default function HexcodleGame({ targetColor }) {
               <h2 className="guess-title" style={{ marginBottom: 8 }}>
                 Your Guess
               </h2>
-              <canvas
-                className="square"
-                style={{ backgroundColor: guesses[0] }}
-              />
+              <div className="square" style={{ backgroundColor: guesses[0] }} />
             </div>
           </div>
           <div className="input-section">
