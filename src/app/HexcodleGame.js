@@ -96,30 +96,7 @@ export default function HexcodleGame({ targetColor }) {
 
   return (
     <>
-      <head>
-        <title>Hexcodle | The daily hex code guessing game!</title>
-        <meta
-          name="description"
-          content="Hexcodle | The daily hex code guessing game!"
-        />
-      </head>
       <div className="everything">
-        <EndModal
-          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-          open={endModalVisible}
-          setOpen={setEndModalVisible}
-          color={targetColor}
-          counter={counter}
-          guesses={guesses}
-          win={hasWon}
-        />
-
-        <HexInfoModal
-          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-          isOpen={isModalVisible}
-          setIsOpen={setIsModalVisible}
-        />
-
         <section className="frosted-glass">
           <h1 className="title">Hexcodle</h1>
           <p>
@@ -148,19 +125,19 @@ export default function HexcodleGame({ targetColor }) {
               <h2 className="guess-title" style={{ marginBottom: 8 }}>
                 Target
               </h2>
-              <div
+              <canvas
                 className="square"
                 style={{ backgroundColor: targetColor }}
-              ></div>
+              />
             </div>
             <div style={{ flex: 1 }}>
               <h2 className="guess-title" style={{ marginBottom: 8 }}>
                 Your Guess
               </h2>
-              <div
+              <canvas
                 className="square"
                 style={{ backgroundColor: guesses[0] }}
-              ></div>
+              />
             </div>
           </div>
           <div className="input-section">
@@ -210,6 +187,22 @@ export default function HexcodleGame({ targetColor }) {
             <Guess key={index} guess={guess} target={targetColor} />
           ))}
         </section>
+
+        <EndModal
+          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
+          open={endModalVisible}
+          setOpen={setEndModalVisible}
+          color={targetColor}
+          counter={counter}
+          guesses={guesses}
+          win={hasWon}
+        />
+
+        <HexInfoModal
+          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
+          isOpen={isModalVisible}
+          setIsOpen={setIsModalVisible}
+        />
       </div>
     </>
   );

@@ -6,8 +6,14 @@ const GTM_ID = "G-1J0E738QRV";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Hexcodle",
-  description: "A fun daily guessing game for hex codes!",
+  title: "Hexcodle: Daily Hex Code Challenge",
+  description:
+    "Can you guess today's hex color? Challenge your color instincts and decode the hex with Hexcodle! Inspired by Wordle, but for color enthusiasts.",
+  keywords:
+    "hex, hexcode, color, guessing game, daily challenge, wordle, puzzle, code",
+  //og_image: "/path_to_your_og_image.png",
+  //twitter_card: "summary_large_image",
+  //twitter_image: "/path_to_your_twitter_image.png"
 };
 
 export default function RootLayout({ children }) {
