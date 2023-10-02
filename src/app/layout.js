@@ -6,7 +6,7 @@ const GTM_ID = "G-1J0E738QRV";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Hexcodle: Daily Hex Code Challenge",
+  title: "Hexcodle | The Daily Hexcode Guessing Game!",
   description:
     "Can you guess today's hex color? Challenge your color instincts and decode the hex with Hexcodle! Inspired by Wordle, but for color enthusiasts.",
   keywords:
