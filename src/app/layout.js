@@ -11,7 +11,7 @@ export const metadata = {
     "Can you guess today's hex color? Challenge your color instincts and decode the hex with Hexcodle! Inspired by Wordle, but for color enthusiasts.",
   keywords:
     "hex, hexcode, color, guessing game, daily challenge, wordle, puzzle, code",
-  //og_image: "/path_to_your_og_image.png",
+  og_image: "https://www.hexcodle.com/og_image.png",
   //twitter_card: "summary_large_image",
   //twitter_image: "/path_to_your_twitter_image.png"
 };
