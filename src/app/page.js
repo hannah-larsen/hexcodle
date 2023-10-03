@@ -1,5 +1,5 @@
 import HexcodleGame from "./HexcodleGame";
-import { cookies } from "next-headers";
+import { cookies } from "next/headers";
 import { generateRandomHexcode } from "./utils";
 
 // Fix static generation
