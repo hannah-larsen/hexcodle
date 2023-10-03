@@ -1,0 +1,32 @@
+{
+    "theme_color": "#C8E1B7",
+    "background_color": "#C8E1B7",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "Hexcodle | The Daily Hexcode Guessing Game!",
+    "short_name": "Hexcodle",
+    "description": "Can you guess today's hex color? Challenge your color instincts and decode the hex with Hexcodle! Inspired by Wordle, but for color enthusiasts.",
+    "icons": [
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

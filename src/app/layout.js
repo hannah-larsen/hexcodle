@@ -14,6 +14,8 @@ export const metadata = {
   og_image: "https://www.hexcodle.com/og_image.png",
   //twitter_card: "summary_large_image",
   //twitter_image: "/path_to_your_twitter_image.png"
+  manifest: "/manifest.json",
+  themeColor: "#C8E1B7",
 };
 
 export default function RootLayout({ children }) {
