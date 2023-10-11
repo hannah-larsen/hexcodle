@@ -12,7 +12,7 @@ export default function Guess(props) {
           <div
             key={index}
             className="guess-character"
-            style={{ borderColor: guess }}
+            style={{ borderColor: guess, animationDelay: `${index * 0.1}s` }}
           >
             <p className="guess-p">{character}</p>
             <p className="guess-p">

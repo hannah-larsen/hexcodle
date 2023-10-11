@@ -23,7 +23,6 @@ export default function useTemporaryStorage(key, initialValue) {
         return initialValue;
       }
     } catch (error) {
-      console.log(error);
       return initialValue;
     }
   });
@@ -39,9 +38,7 @@ export default function useTemporaryStorage(key, initialValue) {
         key,
         JSON.stringify({ value: valueToStore, seed })
       );
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return [storedValue, setValue];

@@ -85,11 +85,17 @@ h6 {
   isolation: isolate;
 }
 
+* {
+  --background: hsl(20, 67%, 75%);
+  --primary: hsl(240, 74%, 65%);
+  --primary-hover: hsl(240, 74%, 75%);
+}
+
 body {
   /* This helps create the illusion of movement */
   font-family: Arial, Helvetica, sans-serif;
   margin: 0px;
-  background: #C8E1B7 ;
+  background: var(--background) ;
 }
 
 @keyframes rainbowAnimation {
@@ -128,7 +134,7 @@ section {
 }
 
 .modal-button {
-  background-color: #3a743a;
+  background-color: var(--primary);
   padding: 6px;
   color: #ffffff;
   border: none;
@@ -141,7 +147,7 @@ section {
 }
 
 .modal-button:hover {
-  background-color: #43a043;
+  background-color: var(--primary-hover);
 }
 
 input {
@@ -159,7 +165,7 @@ input {
 }
 
 input:focus {
-  border-color: #3a743a;
+  border-color: var(--primary);
 }
 
 
@@ -214,7 +220,7 @@ input:focus {
 .square-button {
   width: 36px;
   height: 36px;
-  background-color: #3a743a;
+  background-color: var(--primary);
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -227,7 +233,7 @@ input:focus {
 }
 
 .square-button:hover {
-  background-color: #43a043;
+  background-color: var(--primary-hover);
 }
 
 .input-section {
