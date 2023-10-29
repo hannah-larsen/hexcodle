@@ -15,13 +15,13 @@ export default function HexInfoModal({ isOpen, setIsOpen }) {
       cancelButtonProps={{ style: { display: "none" } }}
     >
       <p>
-        First, we will break down each of the 6 hex digits. A hex code can be
+        A hex code can be
         represented as RRGGBB where R represents red, G represents green and B
-        represents blue values. The digits/letters in these locations denote the
+        represents the blue values. The digits/letters in these locations denote the
         intensity of that colour; 0 being the lowest, and F being the highest.
       </p>
       <p>
-        We use 0-9 are the first 10 values and A-F can be represented as digits
+        0-9 are the first 10 values and A-F can be represented as digits
         11-16, where 0 is the lowest intensity, and 16, or F, is the hightest
         intensity.
       </p>
@@ -47,7 +47,7 @@ export default function HexInfoModal({ isOpen, setIsOpen }) {
         </ul>
       </p>
       <p>
-        Still a little confused? Try the{" "}
+        Still a little confused? No stress! Try the{" "}
         <a href="https://htmlcolorcodes.com/">hex colour codes</a> website.
       </p>
     </Modal>

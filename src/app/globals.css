@@ -134,7 +134,7 @@ section {
   background-color: #f3f3f3;
 }
 
-.modal-button {
+.modal-info-button {
   background-color: var(--primary);
   padding: 6px;
   color: #ffffff;
@@ -145,6 +145,20 @@ section {
   outline: none;
   transition: background-color 0.3s ease;
   margin-top: 8px;
+}
+
+.modal-rule-button {
+  background-color: var(--primary);
+  padding: 6px;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+  transition: background-color 0.3s ease;
+  margin-top: 8px;
+  margin-right: 8px;
 }
 
 .modal-button:hover {
@@ -210,6 +224,11 @@ input:focus {
   font-weight: bolder;
 }
 
+.info-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 .square {
   flex: 1;
   aspect-ratio: 1/1;
@@ -243,7 +262,6 @@ input:focus {
   justify-content: center;
   align-items: center;
 }
-
 
 .guess-section {
   min-height: 400px;

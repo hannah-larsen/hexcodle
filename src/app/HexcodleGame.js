@@ -1,11 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { notification } from 'antd';
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
 import useTemporaryStorage from "./hooks/useTemporaryStorage.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
 import HexInfoModal from "./components/HexInfoModal.js";
+import RulesModal from "./components/RulesModal.js";
+import {updateDate} from "./utils";
 
 export default function HexcodleGame({ targetColor }) {
   const [guesses, setGuesses] = useTemporaryStorage("hexcodle-guesses", []);
@@ -15,15 +18,38 @@ export default function HexcodleGame({ targetColor }) {
     "Start by typing your guess above!"
   );
 
-  const [userInput, setUserInput] = useState("#");
-  const [gameOver, setGameOver] = useState(!(counter >= 0));
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [endModalVisible, setEndModalVisible] = useState(false);
-
   const hasWon = guesses.includes(targetColor);
 
-  const showModal = () => {
-    setIsModalVisible(true);
+  const [userInput, setUserInput] = useState("#");
+  const [gameOver, setGameOver] = useState(!(counter >= 0) || hasWon);
+  const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
+  const [isRuleModalVisible, setIsRuleModalVisible] = useState(false);
+  const [endModalVisible, setEndModalVisible] = useState(false);
+  const [hasSeenNotif, setHasSeenNotif] = useState(false)
+
+  useEffect(() => {
+    // Open a notification when the component mounts
+    if (!hasSeenNotif && !gameOver){
+      notification.open({
+        message: 'Hexcodle Updates',
+        description: 'Howdy, thanks for enjoying Hexcodle! As you might have noticed, we have added some little updates since the last time you may have played. Click on the rules button to see the new guess guide and we hope you enjoy! -H&E',
+        duration: 20
+      });
+      setHasSeenNotif(true);
+    }
+  }, [hasSeenNotif, gameOver]); 
+
+  // Updating today's date and Hexcodle # here when page loads
+  useEffect(() => {
+    updateDate();
+  }, []);
+
+  const showInfoModal = () => {
+    setIsInfoModalVisible(true);
+  };
+
+  const showRuleModal = () => {
+    setIsRuleModalVisible(true);
   };
 
   const handleKeypress = (event) => {
@@ -94,21 +120,26 @@ export default function HexcodleGame({ targetColor }) {
     setUserInput("#");
   };
 
+
   return (
     <>
       <div className="everything">
         <section className="frosted-glass">
-          <h1 className="title">Hexcodle</h1>
+
+          <h1 className="title">Hexcodle #<span id="numberDisplay"></span></h1>
           <p>
-            You will have 5 tries to correctly guess the hex code of the colour
-            displayed on screen. After each guess, you will see if your guess
-            was too low, too high, or spot on! Use these as guides to decipher
-            how close your guess is.
+            A daily colour-guessing game for hex code fanatics.
           </p>
 
-          <button className="modal-button" onClick={showModal}>
-            WTF IS HEX?
-          </button>
+          <div class="info-buttons">
+            <button className="modal-rule-button" onClick={showRuleModal}>
+              RULES
+            </button>
+
+            <button className="modal-info-button" onClick={showInfoModal}>
+              WTF IS HEX?
+            </button>
+          </div>
         </section>
 
         <section className="frosted-glass" style={{ position: "relative" }}>
@@ -197,8 +228,14 @@ export default function HexcodleGame({ targetColor }) {
 
         <HexInfoModal
           okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-          isOpen={isModalVisible}
-          setIsOpen={setIsModalVisible}
+          isOpen={isInfoModalVisible}
+          setIsOpen={setIsInfoModalVisible}
+        />
+
+        <RulesModal
+          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
+          isOpen={isRuleModalVisible}
+          setIsOpen={setIsRuleModalVisible}
         />
       </div>
     </>
