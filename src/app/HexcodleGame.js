@@ -25,7 +25,7 @@ export default function HexcodleGame({ targetColor }) {
   const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
   const [isRuleModalVisible, setIsRuleModalVisible] = useState(false);
   const [endModalVisible, setEndModalVisible] = useState(false);
-  const [hasSeenNotif, setHasSeenNotif] = useState(false)
+  const [hasSeenNotif, setHasSeenNotif] = useState(false);
 
   useEffect(() => {
     // Open a notification when the component mounts
@@ -215,6 +215,8 @@ export default function HexcodleGame({ targetColor }) {
             <Guess key={index} guess={guess} target={targetColor} />
           ))}
         </section>
+
+        <p><a href="https://forms.gle/EEX8iJKkr5ATjk6L8">Give us feedback!</a></p>
 
         <EndModal
           okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
