@@ -1,16 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { notification } from 'antd';
+import { notification } from "antd";
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
 import useTemporaryStorage from "./hooks/useTemporaryStorage.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
 import HexInfoModal from "./components/HexInfoModal.js";
 import RulesModal from "./components/RulesModal.js";
-import {updateDate} from "./utils";
 
-export default function HexcodleGame({ targetColor }) {
+export default function HexcodleGame({ targetColor, hexcodleNumber }) {
   const [guesses, setGuesses] = useTemporaryStorage("hexcodle-guesses", []);
   const [counter, setCounter] = useTemporaryStorage("hexcodle-counter", 4);
   const [statusText, setStatusText] = useTemporaryStorage(
@@ -29,20 +28,16 @@ export default function HexcodleGame({ targetColor }) {
 
   useEffect(() => {
     // Open a notification when the component mounts
-    if (!hasSeenNotif && !gameOver){
+    if (!hasSeenNotif && !gameOver) {
       notification.open({
-        message: 'Hexcodle Updates',
-        description: 'Howdy, thanks for enjoying Hexcodle! As you might have noticed, we have added some little updates since the last time you may have played. Click on the rules button to see the new guess guide and we hope you enjoy! -H&E',
-        duration: 20
+        message: "Hexcodle Updates",
+        description:
+          "Howdy, thanks for enjoying Hexcodle! As you might have noticed, we have added some little updates since the last time you may have played. Click on the rules button to see the new guess guide and we hope you enjoy! -H&E",
+        duration: 20,
       });
       setHasSeenNotif(true);
     }
-  }, [hasSeenNotif, gameOver]); 
-
-  // Updating today's date and Hexcodle # here when page loads
-  useEffect(() => {
-    updateDate();
-  }, []);
+  }, [hasSeenNotif, gameOver]);
 
   const showInfoModal = () => {
     setIsInfoModalVisible(true);
@@ -120,16 +115,14 @@ export default function HexcodleGame({ targetColor }) {
     setUserInput("#");
   };
 
-
   return (
     <>
       <div className="everything">
         <section className="frosted-glass">
-
-          <h1 className="title">Hexcodle #<span id="numberDisplay"></span></h1>
-          <p>
-            A daily colour-guessing game for hex code fanatics.
-          </p>
+          <h1 className="title">
+            Hexcodle #<span id="numberDisplay">{hexcodleNumber}</span>
+          </h1>
+          <p>A daily colour-guessing game for hex code fanatics.</p>
 
           <div class="info-buttons">
             <button className="modal-rule-button" onClick={showRuleModal}>
@@ -216,7 +209,9 @@ export default function HexcodleGame({ targetColor }) {
           ))}
         </section>
 
-        <p><a href="https://forms.gle/EEX8iJKkr5ATjk6L8">Give us feedback!</a></p>
+        <p>
+          <a href="https://forms.gle/EEX8iJKkr5ATjk6L8">Give us feedback!</a>
+        </p>
 
         <EndModal
           okButtonProps={{ style: { backgroundColor: "#3a743a" } }}

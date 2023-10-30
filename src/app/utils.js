@@ -17,7 +17,6 @@ export function generateUniqueNumber(n, offset = 0) {
   return uniqueNumber;
 }
 
-
 // Function for converting 0-15 to a character
 export function decimalToHex(n) {
   if (n < 0 || n > 15) {
@@ -44,9 +43,15 @@ export function hexToDecimal(hexChar) {
 export function compareCharacters(guess, target) {
   if (guess === target) {
     return "✅";
-  } else if (hexToDecimal(guess) < hexToDecimal(target) && hexToDecimal(target) - hexToDecimal(guess) >= 3){
+  } else if (
+    hexToDecimal(guess) < hexToDecimal(target) &&
+    hexToDecimal(target) - hexToDecimal(guess) >= 3
+  ) {
     return "⏫";
-  } else if (hexToDecimal(guess) > hexToDecimal(target) && hexToDecimal(guess) - hexToDecimal(target) >= 3){
+  } else if (
+    hexToDecimal(guess) > hexToDecimal(target) &&
+    hexToDecimal(guess) - hexToDecimal(target) >= 3
+  ) {
     return "⏬";
   } else if (hexToDecimal(guess) < hexToDecimal(target)) {
     return "🔼";
@@ -70,25 +75,10 @@ export function generateRandomHexcode() {
   )}`.toUpperCase();
 }
 
-export function formatDate(date) {
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  return `${month}-${day}-${year}`;
-}
-
-export function updateDate() {
+export function getHexcodleNumber() {
   // August 10th, 2023 - start day of deployment
-  const startDate = new Date('2023-08-10'); 
-  const currentDate = new Date();
-
-  // Calculate the difference in days between the current date and the start date
-  const timeDiff = currentDate.getTime() - startDate.getTime();
-  const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-
-  // Updating the Hexcodle # and today's date
-  document.getElementById('numberDisplay').textContent = daysPassed;
+  const startDate = moment("2023-08-10").tz("America/New_York");
+  const currentDate = moment().tz("America/New_York");
+  const daysPassed = currentDate.diff(startDate, "days");
+  return daysPassed;
 }
-
-// Update the date every day (24 hours)
-setInterval(updateDate, 24 * 60 * 60 * 1000);

@@ -1,7 +1,7 @@
 import Confetti from "./Confetti";
 import Modal from "antd/lib/modal";
 import Popover from "antd/lib/popover";
-import { compareCharacters } from "../utils";
+import { compareCharacters, getHexcodleNumber } from "../utils";
 import Timer from "./Timer";
 
 export default function EndModal({
@@ -14,12 +14,15 @@ export default function EndModal({
 }) {
   const getSharableString = () => {
     let shareableString = "";
+    const hexcodleNumber = getHexcodleNumber();
     if (win) {
-      shareableString = `I got today's Hexcodle in ${guesses.length} ${
+      shareableString = `I got Hexcodle #${hexcodleNumber} in ${
+        guesses.length
+      } ${
         guesses.length > 1 ? "guesses" : "guess"
       }!\nhttps://hexcodle.com \n\n`;
     } else {
-      shareableString = `I did not solve today's Hexcodle.
+      shareableString = `I did not solve Hexcodle #${hexcodleNumber}
       \nhttps://hexcodle.com \n\n`;
     }
 
