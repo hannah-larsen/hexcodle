@@ -77,7 +77,7 @@ export function generateRandomHexcode() {
 
 export function getHexcodleNumber() {
   // August 10th, 2023 - start day of deployment
-  const startDate = moment("2023-08-10").tz("America/New_York");
+  const startDate = moment.tz("2023-08-10", "America/New_York").startOf("day");
   const currentDate = moment().tz("America/New_York");
   const daysPassed = currentDate.diff(startDate, "days");
   return daysPassed;
