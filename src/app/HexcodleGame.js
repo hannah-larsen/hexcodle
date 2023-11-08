@@ -32,8 +32,8 @@ export default function HexcodleGame({ targetColor, hexcodleNumber }) {
       notification.open({
         message: "Hexcodle Updates",
         description:
-          "Howdy, thanks for enjoying Hexcodle! As you might have noticed, we have added some little updates since the last time you may have played. Click on the rules button to see the new guess guide and we hope you enjoy! -H&E",
-        duration: 20,
+          "We hear your feedback, switching between easy/hard mode will be available soon. Thanks for playing Hexcodle! -H&E",
+        duration: 8,
       });
       setHasSeenNotif(true);
     }

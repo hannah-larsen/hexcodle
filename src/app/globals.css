@@ -87,9 +87,9 @@ h6 {
 
 /* Change theme color in layout.js as well!*/
 * {
-  --background: hsl(20, 67%, 75%);
-  --primary: hsl(240, 74%, 65%);
-  --primary-hover: hsl(240, 74%, 75%);
+  --background: hsl(130, 38%, 33%);
+  --primary: hsl(0, 52%, 34%);
+  --primary-hover: hsl(0, 52%, 34%);
 }
 
 body {
