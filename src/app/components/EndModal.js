@@ -17,14 +17,14 @@ export default function EndModal({
     let shareableString = "";
     const hexcodleNumber = getHexcodleNumber();
     if (win) {
-      shareableString = `I got Hexcodle #${hexcodleNumber} in ${
-        guesses.length
-      }${hardMode && "*"} ${
+      shareableString = `I got Hexcodle #${hexcodleNumber}${
+        hardMode ? "*" : ""
+      } in ${guesses.length} ${
         guesses.length > 1 ? "guesses" : "guess"
       }!\nhttps://hexcodle.com \n\n`;
     } else {
       shareableString = `I did not solve Hexcodle #${hexcodleNumber}${
-        hardMode && "*"
+        hardMode ? "*" : ""
       }
       \nhttps://hexcodle.com \n\n`;
     }
