@@ -6,7 +6,7 @@ import Dropdown from "antd/lib/dropdown/dropdown";
 import Switch from "antd/lib/switch";
 import MenuOutlined from "@ant-design/icons/es/icons/MenuOutlined";
 
-export default function ({
+export default function Navbar({
   openInfoModal,
   openRuleModal,
   hardMode,
