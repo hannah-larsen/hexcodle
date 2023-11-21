@@ -1,6 +1,8 @@
 import "./globals.css";
 import Script from "next/script";
 import { Inter } from "next/font/google";
+import StyledComponentsRegistry from "./lib/registry";
+import AntRegistry from "./lib/AntRegistry";
 
 const GTM_ID = "G-1J0E738QRV";
 const inter = Inter({ subsets: ["latin"] });
@@ -38,7 +40,11 @@ export default function RootLayout({ children }) {
         />
       </head>
 
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <StyledComponentsRegistry>
+          <AntRegistry>{children}</AntRegistry>
+        </StyledComponentsRegistry>
+      </body>
     </html>
   );
 }

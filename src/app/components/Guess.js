@@ -3,7 +3,7 @@ import "./Guess.css";
 import { compareCharacters } from "../utils";
 
 export default function Guess(props) {
-  const { guess, target } = props;
+  const { guess, target, hardMode = false } = props;
 
   return (
     <>
@@ -16,7 +16,11 @@ export default function Guess(props) {
           >
             <p className="guess-p">{character}</p>
             <p className="guess-p">
-              {compareCharacters(character, target.substring(1).charAt(index))}
+              {compareCharacters(
+                character,
+                target.substring(1).charAt(index),
+                hardMode
+              )}
             </p>
           </div>
         ))}

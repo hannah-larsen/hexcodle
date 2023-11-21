@@ -40,17 +40,19 @@ export function hexToDecimal(hexChar) {
 // single arrows denote CLOSE PROXIMITY (within 2 numbers)
 // double arrows denote FURTHER PROXIMITY (within 3 numbers)
 // checkmark denotes correct guess
-export function compareCharacters(guess, target) {
+export function compareCharacters(guess, target, hardMode = false) {
   if (guess === target) {
     return "✅";
   } else if (
     hexToDecimal(guess) < hexToDecimal(target) &&
-    hexToDecimal(target) - hexToDecimal(guess) >= 3
+    hexToDecimal(target) - hexToDecimal(guess) >= 3 &&
+    !hardMode
   ) {
     return "⏫";
   } else if (
     hexToDecimal(guess) > hexToDecimal(target) &&
-    hexToDecimal(guess) - hexToDecimal(target) >= 3
+    hexToDecimal(guess) - hexToDecimal(target) >= 3 &&
+    !hardMode
   ) {
     return "⏬";
   } else if (hexToDecimal(guess) < hexToDecimal(target)) {

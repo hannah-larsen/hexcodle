@@ -96,7 +96,7 @@ body {
   /* This helps create the illusion of movement */
   font-family: Arial, Helvetica, sans-serif;
   margin: 0px;
-  background: var(--background) ;
+  background: #f3f3f3;
 }
 
 @keyframes rainbowAnimation {
@@ -113,6 +113,10 @@ body {
   }
 }
 
+h2 {
+  font-family: "Roboto Mono", monospace;
+}
+
 p {
   font-size: 1rem;
   color: rgb(4, 4, 19);
@@ -127,42 +131,39 @@ section {
   align-items: center;
   width: 100%;
   max-width: 600px;
-  margin-top: 8px;
-  margin-bottom: 8px;
   padding: 8px;
   border-radius: 16px;
   background-color: #f3f3f3;
+  --shadow-color: 122deg 100% 5%;
+  box-shadow:
+    0.4px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
+    1.5px 1.7px 2.6px -0.8px hsl(var(--shadow-color) / 0.36),
+    3.7px 4.2px 6.3px -1.7px hsl(var(--shadow-color) / 0.36),
+    8.9px 10.3px 15.3px -2.5px hsl(var(--shadow-color) / 0.36);
 }
 
-.modal-info-button {
-  background-color: var(--primary);
-  padding: 6px;
-  color: #ffffff;
+.modal-button {
+  /*background-color: var(--primary);*/
+  padding: 8px 16px;
+  color: #333333;
+  background-color: #f3f3f3;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 16px;
   outline: none;
-  transition: background-color 0.3s ease;
-  margin-top: 8px;
-}
-
-.modal-rule-button {
-  background-color: var(--primary);
-  padding: 6px;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  outline: none;
-  transition: background-color 0.3s ease;
-  margin-top: 8px;
-  margin-right: 8px;
+  transition: background-color 0.5s ease;
+  text-decoration: none;
 }
 
 .modal-button:hover {
   background-color: var(--primary-hover);
+  color: #f3f3f3;
+}
+
+.modal-button:active {
+  background-color: var(--primary-hover);
+  color: #f3f3f3;
 }
 
 input {
@@ -183,60 +184,6 @@ input:focus {
   border-color: var(--primary);
 }
 
-
-/* Section styles */
-
-.everything {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.frosted-glass {
-  background: rgba(255, 255, 255, 0.8);
-  padding-left: 30px;
-  padding-right: 30px;
-  text-align: center;
-  align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  box-shadow: 1px 1px 2px rgb(90, 94, 95);
-}
-
-.container {
-  width: 100%;
-  max-width: 800px;
-  min-height: 100;
-  padding: 40px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.title {
-  color: rgb(4, 4, 19);
-  font-family: 'Roboto Mono', monospace;
-  font-size: 2.5rem;
-  font-weight: bolder;
-}
-
-.info-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.square {
-  flex: 1;
-  aspect-ratio: 1/1;
-  background-color: #333333;
-  margin-bottom: 6px;
-  border-radius: 8px;
-}
-
 .square-button {
   width: 36px;
   height: 36px;
@@ -254,6 +201,64 @@ input:focus {
 
 .square-button:hover {
   background-color: var(--primary-hover);
+}
+
+.button-patch {
+  cursor: pointer;
+  color: rgb(151, 151, 151);
+  font-size: small;
+  background-color: rgb(255, 255, 255, 0);
+  border: none;
+  text-decoration: underline;
+}
+
+.button-patch:hover {
+  color: rgb(188, 188, 188);
+  transition: color 0.5 ease;
+}
+
+/* Section styles */
+
+.everything {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 0px;
+  background: var(--background);
+  min-height: 100vh;
+}
+
+.frosted-glass {
+  background: #f9f9f9;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  min-height: 100;
+  padding: 40px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.square {
+  flex: 1;
+  aspect-ratio: 1/1;
+  background-color: #333333;
+  margin-bottom: 6px;
+  border-radius: 8px;
 }
 
 .input-section {
@@ -303,7 +308,7 @@ input:focus {
 
 #guess-heading {
   color: rgb(4, 4, 19);
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   size: 1.2rem;
   font-weight: bold;
   padding-bottom: 6px;
@@ -317,11 +322,15 @@ input:focus {
   margin-right: 32px;
 }
 
-@media screen and (max-width: 600px) {
+.ant-switch-checked {
+  background: var(--primary) !important;
+}
+
+@media screen and (max-width: 650px) {
   .everything {
-    padding: 8px 16px;
+    padding: 32px 16px;
   }
-  
+
   .guess-title {
     font-size: 1.25rem;
   }

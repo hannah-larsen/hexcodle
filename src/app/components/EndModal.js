@@ -11,6 +11,7 @@ export default function EndModal({
   color,
   counter,
   win = false,
+  hardMode = false,
 }) {
   const getSharableString = () => {
     let shareableString = "";
@@ -18,11 +19,13 @@ export default function EndModal({
     if (win) {
       shareableString = `I got Hexcodle #${hexcodleNumber} in ${
         guesses.length
-      } ${
+      }${hardMode && "*"} ${
         guesses.length > 1 ? "guesses" : "guess"
       }!\nhttps://hexcodle.com \n\n`;
     } else {
-      shareableString = `I did not solve Hexcodle #${hexcodleNumber}
+      shareableString = `I did not solve Hexcodle #${hexcodleNumber}${
+        hardMode && "*"
+      }
       \nhttps://hexcodle.com \n\n`;
     }
 
@@ -38,7 +41,7 @@ export default function EndModal({
         if (!guessChar) {
           continue;
         }
-        const emoji = compareCharacters(guessChar, targetChar);
+        const emoji = compareCharacters(guessChar, targetChar, hardMode);
         line += emoji;
       }
 

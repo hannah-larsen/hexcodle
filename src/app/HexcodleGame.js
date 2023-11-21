@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { notification } from "antd";
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
 import useTemporaryStorage from "./hooks/useTemporaryStorage.js";
+import useLocalStorage from "./hooks/useLocalStorage.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
 import HexInfoModal from "./components/HexInfoModal.js";
 import RulesModal from "./components/RulesModal.js";
+import PatchNotesModal from "./components/PatchNotesModal.js";
+import Navbar from "./components/Navbar.js";
 
 export default function HexcodleGame({ targetColor, hexcodleNumber }) {
   const [guesses, setGuesses] = useTemporaryStorage("hexcodle-guesses", []);
@@ -16,16 +18,19 @@ export default function HexcodleGame({ targetColor, hexcodleNumber }) {
     "hexcodle-status-text",
     "Start by typing your guess above!"
   );
+  const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
 
   const hasWon = guesses.includes(targetColor);
 
   const [userInput, setUserInput] = useState("#");
   const [gameOver, setGameOver] = useState(!(counter >= 0) || hasWon);
+  const [endModalVisible, setEndModalVisible] = useState(false);
   const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
   const [isRuleModalVisible, setIsRuleModalVisible] = useState(false);
-  const [endModalVisible, setEndModalVisible] = useState(false);
-  const [hasSeenNotif, setHasSeenNotif] = useState(false);
+  const [isPatchNotesModalVisible, setIsPatchNotesModalVisible] =
+    useState(false);
 
+  /* THE FOLLOWING CODE IS USED FOR DISPLAYING A POPUP MESSAGE WHEN USER OPENS HEXCODLE
   useEffect(() => {
     // Open a notification when the component mounts
     if (!hasSeenNotif && !gameOver) {
@@ -37,7 +42,7 @@ export default function HexcodleGame({ targetColor, hexcodleNumber }) {
       });
       setHasSeenNotif(true);
     }
-  }, [hasSeenNotif, gameOver]);
+  }, [hasSeenNotif, gameOver]); */
 
   const showInfoModal = () => {
     setIsInfoModalVisible(true);
@@ -45,6 +50,10 @@ export default function HexcodleGame({ targetColor, hexcodleNumber }) {
 
   const showRuleModal = () => {
     setIsRuleModalVisible(true);
+  };
+
+  const showPatchNotesModal = () => {
+    setIsPatchNotesModalVisible(true);
   };
 
   const handleKeypress = (event) => {
@@ -117,24 +126,15 @@ export default function HexcodleGame({ targetColor, hexcodleNumber }) {
 
   return (
     <>
-      <div className="everything">
-        <section className="frosted-glass">
-          <h1 className="title">
-            Hexcodle #<span id="numberDisplay">{hexcodleNumber}</span>
-          </h1>
-          <p>A daily colour-guessing game for hex code fanatics.</p>
-
-          <div class="info-buttons">
-            <button className="modal-rule-button" onClick={showRuleModal}>
-              RULES
-            </button>
-
-            <button className="modal-info-button" onClick={showInfoModal}>
-              WTF IS HEX?
-            </button>
-          </div>
-        </section>
-
+      <Navbar
+        gameStarted={guesses.length > 0}
+        gameOver={gameOver}
+        openInfoModal={showInfoModal}
+        openRuleModal={showRuleModal}
+        hardMode={hardMode}
+        setHardMode={setHardMode}
+      />
+      <main className="everything">
         <section className="frosted-glass" style={{ position: "relative" }}>
           <div
             style={{
@@ -205,13 +205,23 @@ export default function HexcodleGame({ targetColor, hexcodleNumber }) {
           <h2 id="guess-heading">Guesses</h2>
 
           {guesses.map((guess, index) => (
-            <Guess key={index} guess={guess} target={targetColor} />
+            <Guess
+              key={index}
+              guess={guess}
+              target={targetColor}
+              hardMode={hardMode}
+            />
           ))}
         </section>
 
-        <p>
-          <a href="https://forms.gle/EEX8iJKkr5ATjk6L8">Give us feedback!</a>
-        </p>
+        <button
+          className="button-patch"
+          onClick={() => {
+            setIsPatchNotesModalVisible(true);
+          }}
+        >
+          Patch Notes
+        </button>
 
         <EndModal
           okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
@@ -221,6 +231,7 @@ export default function HexcodleGame({ targetColor, hexcodleNumber }) {
           counter={counter}
           guesses={guesses}
           win={hasWon}
+          hardMode={hardMode}
         />
 
         <HexInfoModal
@@ -234,7 +245,13 @@ export default function HexcodleGame({ targetColor, hexcodleNumber }) {
           isOpen={isRuleModalVisible}
           setIsOpen={setIsRuleModalVisible}
         />
-      </div>
+
+        <PatchNotesModal
+          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
+          isOpen={isPatchNotesModalVisible}
+          setIsOpen={setIsPatchNotesModalVisible}
+        />
+      </main>
     </>
   );
 }

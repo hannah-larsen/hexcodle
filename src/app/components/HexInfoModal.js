@@ -22,7 +22,7 @@ export default function HexInfoModal({ isOpen, setIsOpen }) {
       </p>
       <p>
         0-9 are the first 10 values and A-F can be represented as digits
-        11-16, where 0 is the lowest intensity, and 16, or F, is the hightest
+        10-15, where 0 is the lowest intensity, and 15, or F, is the hightest
         intensity.
       </p>
       <p>

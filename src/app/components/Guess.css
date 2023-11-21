@@ -1,46 +1,55 @@
 .guess-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    max-width: 600px;
-    margin-left: 16px;
-    margin-right: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin-left: 16px;
+  margin-right: 16px;
+  gap: 6px;
+  margin-bottom: 4px;
+  margin-top: 4px;
 }
 
 .guess-character {
-    font-family: 'Roboto Mono', monospace;
-    text-align: center;
-    font-weight: bold;
-    flex: 1;
-    border-radius: 8px;
-    border-width: 4px;
-    border-color: black;
-    border-style: solid;
-    margin: 4px;
-    padding: 6px;
-    background-color: #ffffff;
-    aspect-ratio: 2/1;
+  font-family: 'Roboto Mono', monospace;
+  text-align: center;
+  font-weight: bold;
+  flex: 1;
+  border-radius: 8px;
+  border-width: 4px;
+  border-color: black;
+  border-style: solid;
+  padding: 6px;
+  background-color: #ffffff;
+  aspect-ratio: 2/1;
 }
 
 @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-16px);
-    }
-    to {
-      opacity: 1;
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
   }
+
+  to {
+    opacity: 1;
+  }
+}
 
 
 .guess-text {
-    margin: 8px;
-    font-weight: bold;
+  margin: 8px;
+  font-weight: bold;
 }
 
 .guess-p {
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    margin: 0px;
-    padding: 0px;
+  font-size: 1.5rem;
+  margin: 0px;
+  padding: 0px;
+}
+
+@media screen and (max-width: 650px) {
+  .guess-p {
+    font-size: 4vw;
+  }
 }
