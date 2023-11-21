@@ -33,7 +33,7 @@ export default function RulesModal({ isOpen, setIsOpen }) {
       </p>
       <p>
         *Note: If <i>hard</i> mode is enabled, you will not be able to tell how close
-        your guess is off by, you will only see if it's higher or lower.
+        your guess is off by, you will only see if it is higher or lower.
       </p>
     </Modal>
   );
