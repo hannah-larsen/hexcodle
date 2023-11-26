@@ -214,44 +214,46 @@ export default function HexcodleGame({ targetColor, hexcodleNumber }) {
           ))}
         </section>
 
-        <button
-          className="button-patch"
-          onClick={() => {
-            setIsPatchNotesModalVisible(true);
-          }}
-        >
-          Patch Notes
-        </button>
-
-        <EndModal
-          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-          open={endModalVisible}
-          setOpen={setEndModalVisible}
-          color={targetColor}
-          counter={counter}
-          guesses={guesses}
-          win={hasWon}
-          hardMode={hardMode}
-        />
-
-        <HexInfoModal
-          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-          isOpen={isInfoModalVisible}
-          setIsOpen={setIsInfoModalVisible}
-        />
-
-        <RulesModal
-          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-          isOpen={isRuleModalVisible}
-          setIsOpen={setIsRuleModalVisible}
-        />
-
-        <PatchNotesModal
-          okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-          isOpen={isPatchNotesModalVisible}
-          setIsOpen={setIsPatchNotesModalVisible}
-        />
+        <footer>
+          <button
+            className="button-patch"
+            onClick={() => {
+              setIsPatchNotesModalVisible(true);
+            }}
+          >
+            Patch Notes
+          </button>
+        </footer>
       </main>
+
+      <EndModal
+        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
+        open={endModalVisible}
+        setOpen={setEndModalVisible}
+        color={targetColor}
+        counter={counter}
+        guesses={guesses}
+        win={hasWon}
+        hardMode={hardMode}
+      />
+
+      <HexInfoModal
+        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
+        isOpen={isInfoModalVisible}
+        setIsOpen={setIsInfoModalVisible}
+      />
+
+      <RulesModal
+        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
+        isOpen={isRuleModalVisible}
+        setIsOpen={setIsRuleModalVisible}
+      />
+
+      <PatchNotesModal
+        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
+        isOpen={isPatchNotesModalVisible}
+        setIsOpen={setIsPatchNotesModalVisible}
+      />
     </>
   );
 }

@@ -15,7 +15,7 @@ export default function Navbar({
   gameOver,
 }) {
   /* STYLES FOR NAVBAR COMPONENT */
-  const NavWrapper = styled.nav`
+  const NavWrapper = styled.header`
     position: sticky;
     top: 0;
     width: 100%;
@@ -52,6 +52,7 @@ export default function Navbar({
 
   const NavbarIcons = styled.div`
     text-align: right;
+    margin-top: -2 px;
   `;
 
   const Description = styled.p`
@@ -59,7 +60,7 @@ export default function Navbar({
     padding-bottom: -10px;
   `;
 
-  const InfoButtons = styled.div`
+  const InfoButtons = styled.nav`
     display: flex;
     flex-direction: row;
     justify-self: flex-end;
@@ -89,15 +90,7 @@ export default function Navbar({
       key: "1",
     },
     {
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://forms.gle/EEX8iJKkr5ATjk6L8"
-        >
-          Feedback
-        </a>
-      ),
+      label: <a href="https://forms.gle/EEX8iJKkr5ATjk6L8">Feedback</a>,
       key: "2",
     },
   ];
