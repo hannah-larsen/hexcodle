@@ -87,7 +87,7 @@ h6 {
 
 /* Change theme color in layout.js as well!*/
 * {
-  --background: hsl(130, 38%, 33%);
+  --background: hsl(129, 11%, 54%);
   --primary: hsl(0, 52%, 34%);
   --primary-hover: hsl(0, 52%, 34%);
 }
@@ -205,7 +205,7 @@ input:focus {
 
 .button-patch {
   cursor: pointer;
-  color: rgb(151, 151, 151);
+  color: rgb(195, 195, 195);
   font-size: small;
   background-color: rgb(255, 255, 255, 0);
   border: none;
@@ -213,7 +213,7 @@ input:focus {
 }
 
 .button-patch:hover {
-  color: rgb(188, 188, 188);
+  color: hsl(0, 52%, 34%);
   transition: color 0.5 ease;
 }
 

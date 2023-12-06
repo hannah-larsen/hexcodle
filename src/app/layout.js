@@ -18,7 +18,7 @@ export const metadata = {
   //twitter_image: "/path_to_your_twitter_image.png"
   manifest: "/manifest.json",
   // UPDATE THIS LINE W/ BACKGROUND COLOUR WHEN CHANGING THEME COLOURS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  themeColor: "#f3f3f3",
+  themeColor: "hsl(129, 11%, 54%)",
 };
 
 export default function RootLayout({ children }) {
