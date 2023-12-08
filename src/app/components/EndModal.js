@@ -9,6 +9,7 @@ export default function EndModal({
   setOpen,
   guesses,
   color,
+  colorName,
   counter,
   win = false,
   hardMode = false,
@@ -66,17 +67,17 @@ export default function EndModal({
       {win ? (
         <>
           <Confetti />
+          <img src="/hexparrot.png" alt="Hex Parrot" />
           <p>
             You solved the Hexcodle in {4 - counter} guess
-            {4 - counter == 1 ? "" : "es"}.
-            <br />
-            Come back tomorrow for a new colour!
+            {4 - counter == 1 ? "" : "es"}. Today{"'"}s color was{" "}
+            <strong>{colorName}</strong> ({color}).
           </p>
         </>
       ) : (
         <p>
-          Bummer! The Hexcodle for today was {color}.<br></br>
-          Come back tomorrow for a new colour!
+          Bummer! Today{"'"}s color was {colorName} ({color}). Better luck next
+          time!<br></br>
         </p>
       )}
       <Timer isModalActive={true} />

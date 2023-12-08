@@ -11,7 +11,7 @@ import RulesModal from "./components/RulesModal.js";
 import PatchNotesModal from "./components/PatchNotesModal.js";
 import Navbar from "./components/Navbar.js";
 
-export default function HexcodleGame({ targetColor, hexcodleNumber }) {
+export default function HexcodleGame({ targetColor, colorName }) {
   const [guesses, setGuesses] = useTemporaryStorage("hexcodle-guesses", []);
   const [counter, setCounter] = useTemporaryStorage("hexcodle-counter", 4);
   const [statusText, setStatusText] = useTemporaryStorage(
@@ -231,6 +231,7 @@ export default function HexcodleGame({ targetColor, hexcodleNumber }) {
         open={endModalVisible}
         setOpen={setEndModalVisible}
         color={targetColor}
+        colorName={colorName}
         counter={counter}
         guesses={guesses}
         win={hasWon}
