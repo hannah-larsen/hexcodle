@@ -67,7 +67,7 @@ export default function EndModal({
       {win ? (
         <>
           <Confetti />
-          <img src="/hexparrot.png" alt="Hex Parrot" />
+          <img src="/hexparrot-animated.gif" alt="Hex Parrot" />
           <p>
             You solved the Hexcodle in {4 - counter} guess
             {4 - counter == 1 ? "" : "es"}. Today{"'"}s color was{" "}
