@@ -4,7 +4,7 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title="Patch Notes 11.20.23"
+      title={<center>❄️Patch Notes 12.12.23❄️</center>}
       open={isOpen}
       onOk={() => {
         setIsOpen(false);
@@ -16,16 +16,16 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
     >
         <ul>
         <li>
-            Introducing...Hexcodle, remastered! The old site layout needed to go, so we added a responsive navbar to easily 
-            view everything on both mobile and web!
+            We see your feedback and we love to improve Hexcodle wherever we can! Thank you for playing
+            and taking the time to give us insightful ideas. If you left us feedback in our feedback form and we 
+            have not addressed it, we will get to it soon!
         </li>
         <li>
-            Easy/hard mode toggle. We heard your feedback and understand that not everyone has the same knowledge of
-            hex codes, set your difficulty using the toggle switch beside the Hexcodle title.
+            <strong>General updates:</strong> Updated our backrgound/theme colour to be a bit more calm on the eyes.
         </li>
         <li>
-            We removed the Hexcodle {"#"} from the main page, but fear not! You can still see the puzzle
-            number on the share text.
+            <strong>Share button updates:</strong> When you complete the game, you can now view the name of the daily colour! 
+            We have a mascot now! When you complete the game, you will see the Hexcodle parrot based on your results. What should we name it?
         </li>
       </ul>
     </Modal>

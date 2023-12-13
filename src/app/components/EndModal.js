@@ -54,7 +54,7 @@ export default function EndModal({
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title={win ? "Congrats!" : "Better luck next time"}
+      title={win ? <center>Congrats!</center> : <center>Better luck next time</center>}
       open={open}
       onOk={() => {
         setOpen(false);
@@ -67,7 +67,9 @@ export default function EndModal({
       {win ? (
         <>
           <Confetti />
-          <img src="/hexparrot-animated.gif" alt="Hex Parrot" />
+          <center>
+          <img src="/hexparrot-animated.gif" alt="Hex Parrot Win" />
+          </center>
           <p>
             You solved the Hexcodle in {4 - counter} guess
             {4 - counter == 1 ? "" : "es"}. Today{"'"}s color was{" "}
@@ -75,10 +77,15 @@ export default function EndModal({
           </p>
         </>
       ) : (
-        <p>
-          Bummer! Today{"'"}s color was {colorName} ({color}). Better luck next
-          time!<br></br>
-        </p>
+        <>
+          <center>
+          <img src="/hexparrot-sad-animation.gif" alt="Hex Parrot Loss" />
+          </center>
+          <p>
+            Bummer! Today{"'"}s color was <strong>{colorName}</strong> ({color}
+            ).<br></br>
+          </p>
+        </>
       )}
       <Timer isModalActive={true} />
       <Popover content="Copied to clipboard!" trigger="click">
@@ -87,9 +94,10 @@ export default function EndModal({
             navigator.clipboard.writeText(getSharableString());
           }}
         >
-          Share your results
+          Share your results 
         </a>
       </Popover>
+      <a href="https://forms.gle/b2WviRZEiSVrXifb9"> | Name the Hexcodle Parrot!</a>
     </Modal>
   );
 }
