@@ -97,7 +97,7 @@ export default function EndModal({
           Share your results 
         </a>
       </Popover>
-      <a href="https://forms.gle/b2WviRZEiSVrXifb9"> | Name the Hexcodle Parrot!</a>
+      <a target="_blank" href="https://forms.gle/b2WviRZEiSVrXifb9"> | Name the Hexcodle Parrot!</a>
     </Modal>
   );
 }

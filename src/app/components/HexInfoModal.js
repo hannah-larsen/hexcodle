@@ -48,7 +48,7 @@ export default function HexInfoModal({ isOpen, setIsOpen }) {
       </p>
       <p>
         Still a little confused? No stress! Try the{" "}
-        <a href="https://htmlcolorcodes.com/">hex colour codes</a> website.
+        <a target="_blank" href="https://htmlcolorcodes.com/">hex colour codes</a> website.
       </p>
     </Modal>
   );

@@ -126,7 +126,7 @@ export default function Navbar({
           WTF is hex?
         </button>
 
-        <a className="modal-button" href="https://forms.gle/EEX8iJKkr5ATjk6L8">
+        <a className="modal-button" target="_blank" href="https://forms.gle/EEX8iJKkr5ATjk6L8">
           Feedback
         </a>
       </InfoButtons>
