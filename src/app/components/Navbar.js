@@ -93,6 +93,10 @@ export default function Navbar({
       label: <a href="https://forms.gle/EEX8iJKkr5ATjk6L8">Feedback</a>,
       key: "2",
     },
+    {
+      label: <a href="https://www.buymeacoffee.com/hexcodle">☕</a>,
+      key: "3",
+    },
   ];
 
   return (
@@ -126,8 +130,24 @@ export default function Navbar({
           WTF is hex?
         </button>
 
-        <a className="modal-button" target="_blank" href="https://forms.gle/EEX8iJKkr5ATjk6L8">
+        <a
+          className="modal-button"
+          target="_blank"
+          href="https://forms.gle/EEX8iJKkr5ATjk6L8"
+        >
           Feedback
+        </a>
+
+        <a
+          className="modal-button"
+          target="_blank"
+          href="https://www.buymeacoffee.com/hexcodle"
+          src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+          data-name="bmc-button"
+          data-slug="hexcodle"
+          data-text="Buy me a coffee"
+        >
+          ☕
         </a>
       </InfoButtons>
 
