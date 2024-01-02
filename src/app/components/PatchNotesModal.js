@@ -27,6 +27,9 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
             <strong>Share button updates:</strong> When you complete the game, you can now view the name of the daily colour! 
             We have a mascot now! When you complete the game, you will see the Hexcodle parrot based on your results. What should we name it?
         </li>
+        <li>
+          <strong>Upcoming updates:</strong> Archive, stats, and much more! Stay tuned...
+        </li>
       </ul>
     </Modal>
   );

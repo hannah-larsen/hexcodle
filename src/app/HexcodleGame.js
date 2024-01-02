@@ -9,7 +9,9 @@ import EndModal from "./components/EndModal.js";
 import HexInfoModal from "./components/HexInfoModal.js";
 import RulesModal from "./components/RulesModal.js";
 import PatchNotesModal from "./components/PatchNotesModal.js";
+import LaunchModal from "./components/LaunchModal.js";
 import Navbar from "./components/Navbar.js";
+import { notification } from "antd";
 
 export default function HexcodleGame({ targetColor, colorName }) {
   const [guesses, setGuesses] = useTemporaryStorage("hexcodle-guesses", []);
@@ -25,24 +27,17 @@ export default function HexcodleGame({ targetColor, colorName }) {
   const [userInput, setUserInput] = useState("#");
   const [gameOver, setGameOver] = useState(!(counter >= 0) || hasWon);
   const [endModalVisible, setEndModalVisible] = useState(false);
+  const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
   const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
   const [isRuleModalVisible, setIsRuleModalVisible] = useState(false);
   const [isPatchNotesModalVisible, setIsPatchNotesModalVisible] =
     useState(false);
+  const [hasSeenNotif, setHasSeenNotif] = useState(false);
 
-  /* THE FOLLOWING CODE IS USED FOR DISPLAYING A POPUP MESSAGE WHEN USER OPENS HEXCODLE
-  useEffect(() => {
-    // Open a notification when the component mounts
-    if (!hasSeenNotif && !gameOver) {
-      notification.open({
-        message: "Hexcodle Updates",
-        description:
-          "We hear your feedback, switching between easy/hard mode will be available soon. Thanks for playing Hexcodle! -H&E",
-        duration: 8,
-      });
-      setHasSeenNotif(true);
-    }
-  }, [hasSeenNotif, gameOver]); */
+  if (!hasSeenNotif && !gameOver) {
+    setIsLaunchModalVisible(true);
+    setHasSeenNotif(true);
+  }
 
   const showInfoModal = () => {
     setIsInfoModalVisible(true);
@@ -236,6 +231,12 @@ export default function HexcodleGame({ targetColor, colorName }) {
         guesses={guesses}
         win={hasWon}
         hardMode={hardMode}
+      />
+
+      <LaunchModal
+        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
+        isOpen={isLaunchModalVisible}
+        setIsOpen={setIsLaunchModalVisible}
       />
 
       <HexInfoModal

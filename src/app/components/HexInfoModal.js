@@ -16,14 +16,12 @@ export default function HexInfoModal({ isOpen, setIsOpen }) {
     >
       <p>
         A hex code can be
-        represented as RRGGBB where R represents red, G represents green and B
-        represents the blue values. The digits/letters in these locations denote the
+        represented as <span style={{color: "red"}}>RR</span><span style={{color: "green"}}>GG</span><span style={{color: "blue"}}>BB</span> where R represents red, G represents green and B
+        represents the blue. The digits/letters in these locations denote the
         intensity of that colour; 0 being the lowest, and F being the highest.
       </p>
       <p>
-        0-9 are the first 10 values and A-F can be represented as digits
-        10-15, where 0 is the lowest intensity, and 15, or F, is the hightest
-        intensity.
+        These are the different hex digits (in order from lowest intensity to highest): 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
       </p>
       <p>
         Some common hex codes are as follows:
