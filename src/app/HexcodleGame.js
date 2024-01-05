@@ -6,12 +6,9 @@ import useTemporaryStorage from "./hooks/useTemporaryStorage.js";
 import useLocalStorage from "./hooks/useLocalStorage.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
-import HexInfoModal from "./components/HexInfoModal.js";
-import RulesModal from "./components/RulesModal.js";
 import PatchNotesModal from "./components/PatchNotesModal.js";
 import LaunchModal from "./components/LaunchModal.js";
 import Navbar from "./components/Navbar.js";
-import { notification } from "antd";
 
 export default function HexcodleGame({ targetColor, colorName }) {
   const [guesses, setGuesses] = useTemporaryStorage("hexcodle-guesses", []);
@@ -28,8 +25,7 @@ export default function HexcodleGame({ targetColor, colorName }) {
   const [gameOver, setGameOver] = useState(!(counter >= 0) || hasWon);
   const [endModalVisible, setEndModalVisible] = useState(false);
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
-  const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
-  const [isRuleModalVisible, setIsRuleModalVisible] = useState(false);
+
   const [isPatchNotesModalVisible, setIsPatchNotesModalVisible] =
     useState(false);
   const [hasSeenNotif, setHasSeenNotif] = useState(false);
@@ -237,18 +233,6 @@ export default function HexcodleGame({ targetColor, colorName }) {
         okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
         isOpen={isLaunchModalVisible}
         setIsOpen={setIsLaunchModalVisible}
-      />
-
-      <HexInfoModal
-        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-        isOpen={isInfoModalVisible}
-        setIsOpen={setIsInfoModalVisible}
-      />
-
-      <RulesModal
-        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-        isOpen={isRuleModalVisible}
-        setIsOpen={setIsRuleModalVisible}
       />
 
       <PatchNotesModal

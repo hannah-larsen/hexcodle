@@ -54,7 +54,13 @@ export default function EndModal({
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title={win ? <center>Congrats!</center> : <center>Better luck next time</center>}
+      title={
+        win ? (
+          <center>Congrats!</center>
+        ) : (
+          <center>Better luck next time</center>
+        )
+      }
       open={open}
       onOk={() => {
         setOpen(false);
@@ -68,7 +74,10 @@ export default function EndModal({
         <>
           <Confetti />
           <center>
-          <img src="/hexparrot-animated.gif" alt="Hex Parrot Win" />
+            <img
+              src="/hexparrot-animated.gif"
+              alt="Hexavier the Parrot - Win Animation"
+            />
           </center>
           <p>
             You solved the Hexcodle in {4 - counter} guess
@@ -79,7 +88,10 @@ export default function EndModal({
       ) : (
         <>
           <center>
-          <img src="/hexparrot-sad-animation.gif" alt="Hex Parrot Loss" />
+            <img
+              src="/hexparrot-sad-animation.gif"
+              alt="Hexavier the Parrot - Loss Animation"
+            />
           </center>
           <p>
             Bummer! Today{"'"}s color was <strong>{colorName}</strong> ({color}
@@ -94,7 +106,7 @@ export default function EndModal({
             navigator.clipboard.writeText(getSharableString());
           }}
         >
-          Share your results 
+          Share your results
         </a>
       </Popover>
     </Modal>

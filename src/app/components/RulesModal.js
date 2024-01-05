@@ -27,13 +27,15 @@ export default function RulesModal({ isOpen, setIsOpen }) {
       </p>
       <p>
         ✅ You got it! <br></br>
-        🔼 Guess higher (only off by 1 or 2)* <br></br>
-        🔽 Guess lower (only off by 1 or 2)* <br></br>⏫ Guess way higher! (off
-        by 3 or more) <br></br>⏬ Guess way lower! (off by 3 or more) <br></br>
+        🔼 You need to guess higher (only off by 1 or 2)* <br></br>
+        🔽 You need to guess lower (only off by 1 or 2)* <br></br>⏫ You need to
+        guess way higher! (off by 3 or more) <br></br>⏬ You need to guess way
+        lower! (off by 3 or more) <br></br>
       </p>
       <p>
-        *Note: If <i>hard</i> mode is enabled, you will not be able to tell how close
-        your guess is off by, you will only see if it is higher or lower.
+        *Note: If <i>hard</i> mode is enabled, you will only see if your current
+        guess needs to be higher or lower, the closeness of your guess will not
+        be revealed.
       </p>
     </Modal>
   );
