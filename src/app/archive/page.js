@@ -30,7 +30,11 @@ export default function Archive() {
                 passHref
                 style={{ textDecoration: "none" }}
               >
-                <ArchivePanel hidden={true} hexcodleNumber={number} />
+                <ArchivePanel
+                  key={number}
+                  hidden={true}
+                  hexcodleNumber={number}
+                />
               </Link>
             ))}
         </Wrapper>

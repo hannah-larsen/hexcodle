@@ -10,22 +10,24 @@ import PatchNotesModal from "./components/PatchNotesModal.js";
 import LaunchModal from "./components/LaunchModal.js";
 import Navbar from "./components/Navbar.js";
 
+const MAX_GUESSES = 5;
+
 export default function HexcodleGame({ targetColor, colorName }) {
   const [guesses, setGuesses] = useTemporaryStorage("hexcodle-guesses", []);
-  const [counter, setCounter] = useTemporaryStorage("hexcodle-counter", 4);
-  const [statusText, setStatusText] = useTemporaryStorage(
-    "hexcodle-status-text",
-    "Start by typing your guess above!"
-  );
   const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
 
-  const hasWon = guesses.includes(targetColor);
-
   const [userInput, setUserInput] = useState("#");
-  const [gameOver, setGameOver] = useState(!(counter >= 0) || hasWon);
+  const [statusText, setStatusText] = useState(
+    "Start by typing your guess above!"
+  );
+
+  const hasWon = guesses.includes(targetColor);
+  const [gameOver, setGameOver] = useState(
+    guesses.length >= MAX_GUESSES || hasWon
+  );
+
   const [endModalVisible, setEndModalVisible] = useState(false);
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
-
   const [isPatchNotesModalVisible, setIsPatchNotesModalVisible] =
     useState(false);
   const [hasSeenNotif, setHasSeenNotif] = useState(false);
@@ -35,23 +37,29 @@ export default function HexcodleGame({ targetColor, colorName }) {
     setHasSeenNotif(true);
   }
 
-  const showInfoModal = () => {
-    setIsInfoModalVisible(true);
-  };
-
-  const showRuleModal = () => {
-    setIsRuleModalVisible(true);
-  };
-
-  const showPatchNotesModal = () => {
-    setIsPatchNotesModalVisible(true);
-  };
-
   const handleKeypress = (event) => {
     if (event.key === "Enter") {
       enterClick();
     }
   };
+
+  useEffect(() => {
+    if (guesses.includes(targetColor)) {
+      setStatusText("You guessed it!");
+      setGameOver(true);
+    } else if (guesses.length == 0) {
+      setStatusText("Start by typing your guess above!");
+    } else if (guesses.length >= MAX_GUESSES) {
+      setStatusText("Out of guesses.");
+      setGameOver(true);
+    } else {
+      setStatusText(
+        `Not quite! ${MAX_GUESSES - guesses.length} guess${
+          MAX_GUESSES - guesses.length === 1 ? "" : "es"
+        } left.`
+      );
+    }
+  }, [guesses, targetColor]);
 
   useEffect(() => {
     if (gameOver) {
@@ -71,7 +79,7 @@ export default function HexcodleGame({ targetColor, colorName }) {
   };
 
   const enterClick = () => {
-    if (counter < 0) {
+    if (guesses.length >= MAX_GUESSES) {
       return;
     }
 
@@ -94,24 +102,9 @@ export default function HexcodleGame({ targetColor, colorName }) {
       return;
     }
 
-    if (userInput === targetColor) {
-      setStatusText("You guessed it!");
-      setGameOver(true);
-    } else {
-      if (counter === 0) {
-        setStatusText(`Out of guesses.`);
-        setGameOver(true);
-      } else {
-        setStatusText(
-          `Not quite! ${counter} guess${counter == 1 ? "" : "es"} left.`
-        );
-      }
-    }
-
     const newGuesses = [...guesses];
     newGuesses.unshift(userInput);
     setGuesses(newGuesses);
-    setCounter(counter - 1);
     setUserInput("#");
   };
 
@@ -120,8 +113,6 @@ export default function HexcodleGame({ targetColor, colorName }) {
       <Navbar
         gameStarted={guesses.length > 0}
         gameOver={gameOver}
-        openInfoModal={showInfoModal}
-        openRuleModal={showRuleModal}
         hardMode={hardMode}
         setHardMode={setHardMode}
       />
@@ -223,7 +214,7 @@ export default function HexcodleGame({ targetColor, colorName }) {
         setOpen={setEndModalVisible}
         color={targetColor}
         colorName={colorName}
-        counter={counter}
+        counter={guesses.length}
         guesses={guesses}
         win={hasWon}
         hardMode={hardMode}

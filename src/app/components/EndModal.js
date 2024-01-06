@@ -80,8 +80,8 @@ export default function EndModal({
             />
           </center>
           <p>
-            You solved the Hexcodle in {4 - counter} guess
-            {4 - counter == 1 ? "" : "es"}. Today{"'"}s color was{" "}
+            You solved the Hexcodle in {counter} guess
+            {counter == 1 ? "" : "es"}. Today{"'"}s color was{" "}
             <strong>{colorName}</strong> ({color}).
           </p>
         </>

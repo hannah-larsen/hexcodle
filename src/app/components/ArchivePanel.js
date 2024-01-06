@@ -52,7 +52,7 @@ const BottomTextWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export default async function ArchivePanel({ hidden, hexcodleNumber }) {
+export default async function ArchivePanel({ hidden = true, hexcodleNumber }) {
   const date = getDateFromHexcodleNumber(hexcodleNumber);
   const hexcode = generateHexcode(hexcodleNumber);
   const colorName = await getColorName(hexcode);

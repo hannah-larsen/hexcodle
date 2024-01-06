@@ -39,7 +39,7 @@ export default function HexInfoModal({ isOpen, setIsOpen }) {
         <b>Example</b>
       </p>
       <p>
-        Let's take the hex code #<span style={{ color: "red" }}>4A</span>
+        Let&apos;s take the hex code #<span style={{ color: "red" }}>4A</span>
         <span style={{ color: "green" }}>7B</span>
         <span style={{ color: "blue" }}>9F</span> as an example.{" "}
         <span style={{ color: "red" }}>4A represents the intensity of red</span>

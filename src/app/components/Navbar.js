@@ -84,7 +84,15 @@ export default function Navbar({
 
   const items = [
     {
-      label: <a onClick={() => setIsRuleModalVisible(true)}>Rules</a>,
+      label: (
+        <a
+          onClick={() => {
+            setIsRuleModalVisible(true);
+          }}
+        >
+          Rules
+        </a>
+      ),
       key: "0",
     },
     {
@@ -137,7 +145,9 @@ export default function Navbar({
         <InfoButtons>
           <button
             className="modal-button"
-            onClick={() => setIsRuleModalVisible(true)}
+            onClick={() => {
+              setIsRuleModalVisible(true);
+            }}
           >
             Rules
           </button>
