@@ -3,6 +3,7 @@ import Modal from "antd/lib/modal";
 import Popover from "antd/lib/popover";
 import { compareCharacters, getHexcodleNumber } from "../utils";
 import Timer from "./Timer";
+import Image from "next/image";
 
 export default function EndModal({
   open,
@@ -74,7 +75,9 @@ export default function EndModal({
         <>
           <Confetti />
           <center>
-            <img
+            <Image
+              width={100}
+              height={100}
               src="/hexparrot-animated.gif"
               alt="Hexavier the Parrot - Win Animation"
             />
@@ -88,7 +91,9 @@ export default function EndModal({
       ) : (
         <>
           <center>
-            <img
+            <Image
+              width={100}
+              height={100}
               src="/hexparrot-sad-animation.gif"
               alt="Hexavier the Parrot - Loss Animation"
             />
