@@ -1,9 +1,4 @@
 import styled from "styled-components";
-import {
-  getColorName,
-  getDateFromHexcodleNumber,
-  generateHexcode,
-} from "../utils";
 
 const BackgroundPanel = styled.div`
   width: 250px;
@@ -52,11 +47,7 @@ const BottomTextWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export default async function ArchivePanel({ hidden = true, hexcodleNumber }) {
-  const date = getDateFromHexcodleNumber(hexcodleNumber);
-  const hexcode = generateHexcode(hexcodleNumber);
-  const colorName = await getColorName(hexcode);
-
+const ArchivePanel = ({ hidden, hexcodleNumber, colorName, hexcode, date }) => {
   return (
     <BackgroundPanel>
       <ColourPanel hexcode={hexcode} hiddenColor={hidden}></ColourPanel>
@@ -69,4 +60,6 @@ export default async function ArchivePanel({ hidden = true, hexcodleNumber }) {
       </BottomTextWrapper>
     </BackgroundPanel>
   );
-}
+};
+
+export default ArchivePanel;

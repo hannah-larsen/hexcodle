@@ -12,5 +12,7 @@ export default async function Page({ params }) {
     redirect("/404");
   }
 
-  return <HexcodleGame targetColor={target} colorName={colorName} />;
+  return (
+    <HexcodleGame targetColor={target} colorName={colorName} number={id} />
+  );
 }

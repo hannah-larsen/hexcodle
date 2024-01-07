@@ -1,44 +1,33 @@
-"use client";
+// app/archive/page.js
+import ArchivePage from "./ArchivePage";
+import {
+  getColorName,
+  getDateFromHexcodleNumber,
+  generateHexcode,
+  getHexcodleNumber,
+} from "../utils";
 
-import Navbar from "../components/Navbar";
-import ArchivePanel from "../components/ArchivePanel";
-import Link from "next/link";
-import styled from "styled-components";
-import { getHexcodleNumber } from "../utils";
+export async function load() {
+  const totalHexcodleItems = getHexcodleNumber();
+  const panelsData = [];
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: "100vw";
-  gap: 32px;
-`;
+  for (let i = 1; i <= totalHexcodleItems; i++) {
+    const hexcode = generateHexcode(i);
+    const colorName = await getColorName(hexcode);
+    const date = getDateFromHexcodleNumber(i);
 
-export default function Archive() {
-  return (
-    <>
-      <Navbar />
-      <main className="everything">
-        <Wrapper>
-          {Array.from({ length: getHexcodleNumber() }, (_, i) => i + 1)
-            .reverse()
-            .map((number) => (
-              <Link
-                key={number}
-                href={`/archive/${number}`}
-                passHref
-                style={{ textDecoration: "none" }}
-              >
-                <ArchivePanel
-                  key={number}
-                  hidden={true}
-                  hexcodleNumber={number}
-                />
-              </Link>
-            ))}
-        </Wrapper>
-      </main>
-    </>
-  );
+    panelsData.push({
+      hexcodleNumber: i,
+      colorName,
+      hexcode,
+      date,
+    });
+  }
+
+  return panelsData.reverse();
+}
+
+export default async function Archive() {
+  const panelsData = await load();
+  return <ArchivePage panelsData={panelsData} />;
 }
