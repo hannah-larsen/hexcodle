@@ -9,12 +9,15 @@ import seedrandom from "seedrandom";
     but this makes it so everyone has the same random target every day,
     while needing no server :>
 */
-export function generateUniqueNumber(n, offset = 0) {
+
+function getCurrentDateFormatted() {
   const now = moment().tz("America/New_York");
-  const seed = now.format("DD-MM-YYYY");
-  const rng = seedrandom(seed + offset);
-  const uniqueNumber = Math.floor(rng() * (Number(n) + 1));
-  return uniqueNumber;
+  return now.format("DD-MM-YYYY");
+}
+
+export function generateUniqueNumber(n, offset = 0, customDate = null) {
+  const rng = seedrandom(customDate + offset);
+  return Math.floor(rng() * (Number(n) + 1));
 }
 
 // Function for converting 0-15 to a character
@@ -29,7 +32,6 @@ export function decimalToHex(n) {
 // Function for converting a character to 0-15
 export function hexToDecimal(hexChar) {
   if (typeof hexChar !== "string" || !hexChar.match(/^[0-9a-fA-F]$/)) {
-    console.log(hexChar);
     throw new Error("Input must be a char between 0 and f.");
   }
 
@@ -62,10 +64,12 @@ export function compareCharacters(guess, target, hardMode = false) {
   }
 }
 
-export function generateRandomHexcode() {
-  const r = generateUniqueNumber(256, 0);
-  const g = generateUniqueNumber(256, 1);
-  const b = generateUniqueNumber(256, 2);
+export function generateHexcode(num = getHexcodleNumber()) {
+  const date = getDateFromHexcodleNumber(num);
+
+  const r = generateUniqueNumber(256, 0, date);
+  const g = generateUniqueNumber(256, 1, date);
+  const b = generateUniqueNumber(256, 2, date);
 
   const componentToHex = (c) => {
     const hex = c.toString(16);
@@ -83,4 +87,29 @@ export function getHexcodleNumber() {
   const currentDate = moment().tz("America/New_York");
   const daysPassed = currentDate.diff(startDate, "days");
   return daysPassed;
+}
+
+export function getDateFromHexcodleNumber(hexcodleNumber) {
+  const startDate = moment.tz("2023-08-10", "America/New_York").startOf("day");
+  const targetDate = startDate.add(hexcodleNumber, "days");
+  return targetDate.format("DD-MM-YYYY");
+}
+
+export async function getColorName(hex) {
+  try {
+    const response = await fetch(
+      `https://api.color.pizza/v1/${hex.replace("#", "")}`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    if (data && data.colors && data.colors.length > 0) {
+      return data.colors[0].name;
+    }
+    return "Unknown Color";
+  } catch (error) {
+    console.error("Error fetching color name:", error);
+    return "Error";
+  }
 }

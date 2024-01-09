@@ -4,52 +4,39 @@ import React, { useState, useEffect } from "react";
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
 import useTemporaryStorage from "./hooks/useTemporaryStorage.js";
 import useLocalStorage from "./hooks/useLocalStorage.js";
+import useSavestate from "./hooks/useSavestate.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
-import HexInfoModal from "./components/HexInfoModal.js";
-import RulesModal from "./components/RulesModal.js";
 import PatchNotesModal from "./components/PatchNotesModal.js";
 import LaunchModal from "./components/LaunchModal.js";
 import Navbar from "./components/Navbar.js";
-import { notification } from "antd";
 
-export default function HexcodleGame({ targetColor, colorName }) {
-  const [guesses, setGuesses] = useTemporaryStorage("hexcodle-guesses", []);
-  const [counter, setCounter] = useTemporaryStorage("hexcodle-counter", 4);
-  const [statusText, setStatusText] = useTemporaryStorage(
-    "hexcodle-status-text",
+const MAX_GUESSES = 5;
+
+export default function HexcodleGame({ targetColor, colorName, number }) {
+  // Inside HexcodleGame component
+  const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
+  const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
+
+  const [userInput, setUserInput] = useState("#");
+  const [statusText, setStatusText] = useState(
     "Start by typing your guess above!"
   );
-  const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
 
   const hasWon = guesses.includes(targetColor);
 
-  const [userInput, setUserInput] = useState("#");
-  const [gameOver, setGameOver] = useState(!(counter >= 0) || hasWon);
   const [endModalVisible, setEndModalVisible] = useState(false);
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
-  const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
-  const [isRuleModalVisible, setIsRuleModalVisible] = useState(false);
   const [isPatchNotesModalVisible, setIsPatchNotesModalVisible] =
     useState(false);
   const [hasSeenNotif, setHasSeenNotif] = useState(false);
 
-  if (!hasSeenNotif && !gameOver) {
+  /*
+  if (!hasSeenNotif && !isComplete) {
     setIsLaunchModalVisible(true);
     setHasSeenNotif(true);
   }
-
-  const showInfoModal = () => {
-    setIsInfoModalVisible(true);
-  };
-
-  const showRuleModal = () => {
-    setIsRuleModalVisible(true);
-  };
-
-  const showPatchNotesModal = () => {
-    setIsPatchNotesModalVisible(true);
-  };
+  */
 
   const handleKeypress = (event) => {
     if (event.key === "Enter") {
@@ -58,10 +45,28 @@ export default function HexcodleGame({ targetColor, colorName }) {
   };
 
   useEffect(() => {
-    if (gameOver) {
+    if (guesses.includes(targetColor)) {
+      setStatusText("You guessed it!");
+      setIsComplete(true);
+    } else if (guesses.length == 0) {
+      setStatusText("Start by typing your guess above!");
+    } else if (guesses.length >= MAX_GUESSES) {
+      setStatusText("Out of guesses.");
+      setIsComplete(true);
+    } else {
+      setStatusText(
+        `Not quite! ${MAX_GUESSES - guesses.length} guess${
+          MAX_GUESSES - guesses.length === 1 ? "" : "es"
+        } left.`
+      );
+    }
+  }, [guesses, setIsComplete, targetColor]);
+
+  useEffect(() => {
+    if (isComplete) {
       setEndModalVisible(true);
     }
-  }, [gameOver]);
+  }, [isComplete]);
 
   const handleChange = (event) => {
     const text = event.target.value;
@@ -75,7 +80,7 @@ export default function HexcodleGame({ targetColor, colorName }) {
   };
 
   const enterClick = () => {
-    if (counter < 0) {
+    if (guesses.length >= MAX_GUESSES) {
       return;
     }
 
@@ -98,24 +103,9 @@ export default function HexcodleGame({ targetColor, colorName }) {
       return;
     }
 
-    if (userInput === targetColor) {
-      setStatusText("You guessed it!");
-      setGameOver(true);
-    } else {
-      if (counter === 0) {
-        setStatusText(`Out of guesses.`);
-        setGameOver(true);
-      } else {
-        setStatusText(
-          `Not quite! ${counter} guess${counter == 1 ? "" : "es"} left.`
-        );
-      }
-    }
-
     const newGuesses = [...guesses];
     newGuesses.unshift(userInput);
     setGuesses(newGuesses);
-    setCounter(counter - 1);
     setUserInput("#");
   };
 
@@ -123,9 +113,7 @@ export default function HexcodleGame({ targetColor, colorName }) {
     <>
       <Navbar
         gameStarted={guesses.length > 0}
-        gameOver={gameOver}
-        openInfoModal={showInfoModal}
-        openRuleModal={showRuleModal}
+        gameOver={isComplete}
         hardMode={hardMode}
         setHardMode={setHardMode}
       />
@@ -165,7 +153,7 @@ export default function HexcodleGame({ targetColor, colorName }) {
                 onKeyPress={handleKeypress}
                 value={userInput}
                 onChange={handleChange}
-                disabled={gameOver}
+                disabled={isComplete}
               />
 
               <button
@@ -173,7 +161,7 @@ export default function HexcodleGame({ targetColor, colorName }) {
                 onClick={() => {
                   enterClick();
                 }}
-                disabled={gameOver}
+                disabled={isComplete}
               >
                 ➜
               </button>
@@ -183,7 +171,7 @@ export default function HexcodleGame({ targetColor, colorName }) {
             </p>
           </div>
 
-          {gameOver && (
+          {isComplete && (
             <button
               className="modal-button square-button"
               id="shareScore"
@@ -227,7 +215,7 @@ export default function HexcodleGame({ targetColor, colorName }) {
         setOpen={setEndModalVisible}
         color={targetColor}
         colorName={colorName}
-        counter={counter}
+        counter={guesses.length}
         guesses={guesses}
         win={hasWon}
         hardMode={hardMode}
@@ -237,18 +225,6 @@ export default function HexcodleGame({ targetColor, colorName }) {
         okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
         isOpen={isLaunchModalVisible}
         setIsOpen={setIsLaunchModalVisible}
-      />
-
-      <HexInfoModal
-        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-        isOpen={isInfoModalVisible}
-        setIsOpen={setIsInfoModalVisible}
-      />
-
-      <RulesModal
-        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-        isOpen={isRuleModalVisible}
-        setIsOpen={setIsRuleModalVisible}
       />
 
       <PatchNotesModal
