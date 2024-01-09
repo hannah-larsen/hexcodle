@@ -39,8 +39,8 @@ const ArchivePage = ({ panelsData }) => {
     <>
       <Navbar />
       <main className="everything" style={{ paddingLeft: 0, paddingRight: 0 }}>
-        <h1>
-          Archive ({completedGames.length} / {panelsData.length})
+        <h1 className="archive-header">
+          Completed ({completedGames.length} / {panelsData.length})
         </h1>
         <Wrapper>
           {panelsData.map(({ hexcodleNumber, colorName, hexcode, date }) => {
