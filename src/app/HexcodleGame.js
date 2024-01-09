@@ -31,10 +31,12 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
     useState(false);
   const [hasSeenNotif, setHasSeenNotif] = useState(false);
 
+  /*
   if (!hasSeenNotif && !isComplete) {
     setIsLaunchModalVisible(true);
     setHasSeenNotif(true);
   }
+  */
 
   const handleKeypress = (event) => {
     if (event.key === "Enter") {
