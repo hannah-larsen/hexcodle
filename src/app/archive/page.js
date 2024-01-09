@@ -6,12 +6,10 @@ import {
   generateHexcode,
   getHexcodleNumber,
 } from "../utils";
-import { cookies } from "next/headers";
 
 export async function load() {
   const totalHexcodleItems = getHexcodleNumber();
   const panelsData = [];
-  const cookieStore = cookies();
 
   for (let i = 1; i <= totalHexcodleItems; i++) {
     const hexcode = generateHexcode(i);
