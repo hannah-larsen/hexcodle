@@ -6,6 +6,7 @@ import {
   generateHexcode,
   getHexcodleNumber,
 } from "../utils";
+import { headers } from "next/headers";
 
 export async function load() {
   const totalHexcodleItems = getHexcodleNumber();
@@ -28,6 +29,7 @@ export async function load() {
 }
 
 export default async function Archive() {
+  const headersList = headers();
   const panelsData = await load();
   return <ArchivePage panelsData={panelsData} />;
 }
