@@ -58,7 +58,7 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
         } left.`
       );
     }
-  }, [guesses, targetColor]);
+  }, [guesses, setIsComplete, targetColor]);
 
   useEffect(() => {
     if (isComplete) {

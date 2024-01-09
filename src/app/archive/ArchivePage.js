@@ -8,12 +8,11 @@ import ArchivePanel from "../components/ArchivePanel";
 import Navbar from "../components/Navbar";
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100vw;
-  gap: 32px;
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 `;
 
 const ArchivePage = ({ panelsData }) => {
@@ -39,9 +38,9 @@ const ArchivePage = ({ panelsData }) => {
   return (
     <>
       <Navbar />
-      <main className="everything">
+      <main className="everything" style={{ paddingLeft: 0, paddingRight: 0 }}>
         <h1>
-          Completed: {completedGames.length} / {panelsData.length}
+          Archive ({completedGames.length} / {panelsData.length})
         </h1>
         <Wrapper>
           {panelsData.map(({ hexcodleNumber, colorName, hexcode, date }) => {

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import styled from "styled-components";
 import Dropdown from "antd/lib/dropdown/dropdown";
 import Switch from "antd/lib/switch";
@@ -59,7 +60,7 @@ const InfoButtons = styled.nav`
   justify-self: flex-end;
   gap: 4px;
 
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 750px) {
     display: none;
   }
 `;
@@ -67,7 +68,7 @@ const InfoButtons = styled.nav`
 const MobileButtons = styled.div`
   display: none;
 
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 750px) {
     display: flex;
     margin-top: 3.5px;
   }
@@ -107,21 +108,27 @@ export default function Navbar({
       label: <a href="https://www.buymeacoffee.com/hexcodle">☕</a>,
       key: "3",
     },
+    {
+      label: <Link href={"/archive"}>🗄️</Link>,
+      key: "4",
+    },
   ];
 
   return (
     <>
       <NavWrapper>
         <NavLeft>
-          <HexcodleTitle>
-            Hexcodle
-            {!setHardMode && (
-              <span style={{ fontSize: "1.5rem", fontWeight: "lighter" }}>
-                {" "}
-                Archive
-              </span>
-            )}
-          </HexcodleTitle>
+          <Link style={{ textDecoration: "none" }} href={"/"}>
+            <HexcodleTitle>
+              Hexcodle
+              {!setHardMode && (
+                <span style={{ fontSize: "1.5rem", fontWeight: "lighter" }}>
+                  {" "}
+                  Archive
+                </span>
+              )}
+            </HexcodleTitle>
+          </Link>
 
           <Description>
             {/*A daily colour-guessing game for hex code fanatics.*/}
@@ -178,6 +185,10 @@ export default function Navbar({
           >
             ☕
           </a>
+
+          <Link className="modal-button" href={"/archive"}>
+            🗄️
+          </Link>
         </InfoButtons>
 
         <MobileButtons>

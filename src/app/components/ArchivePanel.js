@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const BackgroundPanel = styled.div`
-  width: 250px;
+  width: 100%;
   background-color: #f3f3f3;
   padding: 8px;
 `;
