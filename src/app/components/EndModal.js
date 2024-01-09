@@ -14,10 +14,10 @@ export default function EndModal({
   counter,
   win = false,
   hardMode = false,
+  hexcodleNumber,
 }) {
   const getSharableString = () => {
     let shareableString = "";
-    const hexcodleNumber = getHexcodleNumber();
     if (win) {
       shareableString = `I got Hexcodle #${hexcodleNumber}${
         hardMode ? "*" : ""

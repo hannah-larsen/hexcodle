@@ -219,6 +219,7 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
         guesses={guesses}
         win={hasWon}
         hardMode={hardMode}
+        hexcodleNumber={number}
       />
 
       <LaunchModal
