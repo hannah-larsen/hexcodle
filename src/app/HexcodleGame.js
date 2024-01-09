@@ -60,7 +60,7 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
         } left.`
       );
     }
-  }, [guesses, setIsComplete, targetColor]);
+  }, [guesses, targetColor]);
 
   useEffect(() => {
     if (isComplete) {
