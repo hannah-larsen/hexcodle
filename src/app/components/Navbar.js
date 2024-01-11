@@ -5,6 +5,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import RulesModal from "./RulesModal";
 import HexInfoModal from "./HexInfoModal";
+import SettingsModal from "./SettingsModal";
 import {
   HistoryOutlined,
   CoffeeOutlined,
@@ -96,6 +97,7 @@ const HexcodleTitle = styled.h1`
 export default function Navbar({ hexcodleNumber, maxDay }) {
   const [isRuleModalVisible, setIsRuleModalVisible] = useState(false);
   const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
+  const [isSettingModalVisible, setIsSettingModalVisible] = useState(false);
 
   return (
     <>
@@ -150,7 +152,7 @@ export default function Navbar({ hexcodleNumber, maxDay }) {
             >
               <CoffeeOutlined />
             </Link>
-            <SettingOutlined />
+            <SettingOutlined onClick={() => setIsSettingModalVisible(true)} />
           </NavRight>
         </TopWrapper>
       </NavWrapper>
@@ -165,6 +167,11 @@ export default function Navbar({ hexcodleNumber, maxDay }) {
         okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
         isOpen={isInfoModalVisible}
         setIsOpen={setIsInfoModalVisible}
+      />
+
+      <SettingsModal
+        isOpen={isSettingModalVisible}
+        setIsOpen={setIsSettingModalVisible}
       />
     </>
   );

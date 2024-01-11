@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
-import useTemporaryStorage from "./hooks/useTemporaryStorage.js";
 import useLocalStorage from "./hooks/useLocalStorage.js";
 import useSavestate from "./hooks/useSavestate.js";
 import Guess from "./components/Guess.js";
@@ -67,12 +66,6 @@ export default function HexcodleGame({
     }
   }, [guesses, targetColor]);
 
-  useEffect(() => {
-    if (isComplete) {
-      setEndModalVisible(true);
-    }
-  }, [isComplete]);
-
   const handleChange = (event) => {
     const text = event.target.value;
     if (text[0] !== "#") {
@@ -110,6 +103,10 @@ export default function HexcodleGame({
 
     const newGuesses = [...guesses];
     newGuesses.unshift(userInput);
+
+    if (newGuesses.includes(targetColor) || newGuesses.length >= MAX_GUESSES) {
+      setEndModalVisible(true);
+    }
     setGuesses(newGuesses);
     setUserInput("#");
   };
