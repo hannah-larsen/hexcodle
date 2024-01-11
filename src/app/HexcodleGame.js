@@ -9,6 +9,7 @@ import EndModal from "./components/EndModal.js";
 import PatchNotesModal from "./components/PatchNotesModal.js";
 import LaunchModal from "./components/LaunchModal.js";
 import Navbar from "./components/Navbar.js";
+import Footer from "./components/Footer.js";
 
 const MAX_GUESSES = 5;
 
@@ -31,8 +32,7 @@ export default function HexcodleGame({
 
   const [endModalVisible, setEndModalVisible] = useState(false);
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
-  const [isPatchNotesModalVisible, setIsPatchNotesModalVisible] =
-    useState(false);
+
   const [hasSeenNotif, setHasSeenNotif] = useState(false);
 
   /*
@@ -193,18 +193,8 @@ export default function HexcodleGame({
             />
           ))}
         </section>
-
-        <footer>
-          <button
-            className="button-patch"
-            onClick={() => {
-              setIsPatchNotesModalVisible(true);
-            }}
-          >
-            Patch Notes
-          </button>
-        </footer>
       </main>
+      <Footer />
 
       <EndModal
         okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
@@ -223,12 +213,6 @@ export default function HexcodleGame({
         okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
         isOpen={isLaunchModalVisible}
         setIsOpen={setIsLaunchModalVisible}
-      />
-
-      <PatchNotesModal
-        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-        isOpen={isPatchNotesModalVisible}
-        setIsOpen={setIsPatchNotesModalVisible}
       />
     </>
   );
