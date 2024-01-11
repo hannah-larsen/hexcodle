@@ -93,7 +93,7 @@ const HexcodleTitle = styled.h1`
   }
 `;
 
-export default function Navbar({ hexcodleNumber }) {
+export default function Navbar({ hexcodleNumber, maxDay }) {
   const [isRuleModalVisible, setIsRuleModalVisible] = useState(false);
   const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
 
@@ -114,13 +114,17 @@ export default function Navbar({ hexcodleNumber }) {
           <NavCenter>
             {hexcodleNumber ? (
               <>
-                <Link
-                  style={{ textDecoration: "none" }}
-                  href={`/archive/${parseInt(hexcodleNumber, 10) + 1}`}
-                  prefetch={false}
-                >
-                  <CaretLeftOutlined />
-                </Link>
+                {parseInt(hexcodleNumber, 10) + 1 > maxDay ? (
+                  <CaretLeftOutlined style={{ color: "var(--gray-300)" }} />
+                ) : (
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    href={`/archive/${parseInt(hexcodleNumber, 10) + 1}`}
+                  >
+                    <CaretLeftOutlined />
+                  </Link>
+                )}
+
                 <Link style={{ textDecoration: "none" }} href={"/"}>
                   <HexcodleTitle>Hexcodle #{hexcodleNumber}</HexcodleTitle>
                 </Link>

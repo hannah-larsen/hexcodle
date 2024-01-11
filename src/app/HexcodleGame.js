@@ -13,7 +13,12 @@ import Navbar from "./components/Navbar.js";
 
 const MAX_GUESSES = 5;
 
-export default function HexcodleGame({ targetColor, colorName, number }) {
+export default function HexcodleGame({
+  targetColor,
+  colorName,
+  number,
+  maxDay,
+}) {
   // Inside HexcodleGame component
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
   const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
@@ -111,7 +116,7 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
 
   return (
     <>
-      <Navbar hexcodleNumber={number} />
+      <Navbar hexcodleNumber={number} maxDay={maxDay} />
       <main className="everything">
         <section className="frosted-glass" style={{ position: "relative" }}>
           <div
