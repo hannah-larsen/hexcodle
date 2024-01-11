@@ -3,7 +3,7 @@ import moment from "moment-timezone";
 
 const Timer = ({ isModalActive }) => {
   const [remainingTime, setRemainingTime] = useState("");
-
+  // TODO, add different styles
   useEffect(() => {
     let timer = null;
 
