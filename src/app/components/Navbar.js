@@ -85,12 +85,12 @@ const NavCenter = styled.div`
 const HexcodleTitle = styled.h1`
   color: var(--gray-900);
   font-family: "Roboto Mono", monospace;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-top: -2px;
   font-weight: bolder;
 
   @media screen and (max-width: 450px) {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 `;
 
