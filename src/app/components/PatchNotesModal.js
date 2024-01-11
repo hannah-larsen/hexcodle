@@ -27,7 +27,8 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
         <li>
           <strong>Bugs:</strong> Please note that our easy/hard toggle is a bit
           buggy if you try to switch it mid-game, we are aware and working on
-          fixing it!
+          fixing it! We are also aware of the issue of an infinite archive by pressing
+          the left-side arrow - consider this Hexcodle unlimited (until we get this fixed)😅
         </li>
         <li>
           We see your feedback and we love to improve Hexcodle wherever we can!
