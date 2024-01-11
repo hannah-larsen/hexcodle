@@ -242,7 +242,7 @@ input:focus {
   background: var(--gray-200);
   background-image: url('ooorganize.svg');
   background-size: 250px;
-  background-position: center;
+  background-position-x: center;
   min-height: 100vh;
 }
 

@@ -80,7 +80,7 @@ const NavCenter = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  gap: 8px;
+  gap: 4px;
   font-size: 1.6rem;
 `;
 
@@ -135,7 +135,6 @@ export default function Navbar({ hexcodleNumber, maxDay }) {
                 <Link
                   style={{ textDecoration: "none" }}
                   href={`/archive/${parseInt(hexcodleNumber, 10) - 1}`}
-                  prefetch={false}
                 >
                   <CaretRightOutlined />
                 </Link>
@@ -150,7 +149,6 @@ export default function Navbar({ hexcodleNumber, maxDay }) {
             <Link
               style={{ textDecoration: "none" }}
               href={"https://www.buymeacoffee.com/hexcodle"}
-              prefetch={false}
             >
               <CoffeeOutlined />
             </Link>
