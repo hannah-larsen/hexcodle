@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 const BackgroundPanel = styled.div`
   width: 100%;
-  background-color: #f3f3f3;
+  background-color: var(--gray-50);
   padding: 8px;
+  border: 1px var(--gray-400) solid;
 `;
 
 const ColourPanel = styled.div`

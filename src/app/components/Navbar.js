@@ -146,12 +146,13 @@ export default function Navbar({ hexcodleNumber, maxDay }) {
             )}
           </NavCenter>
           <NavRight>
-            <Link
+            <a
               style={{ textDecoration: "none" }}
               href={"https://www.buymeacoffee.com/hexcodle"}
+              target={"_blank"}
             >
               <CoffeeOutlined />
-            </Link>
+            </a>
             <SettingOutlined onClick={() => setIsSettingModalVisible(true)} />
           </NavRight>
         </TopWrapper>

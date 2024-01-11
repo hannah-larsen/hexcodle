@@ -15,6 +15,13 @@ const Wrapper = styled.footer`
   gap: 4px;
 `;
 
+const LinkWrapper = styled.div`
+  display: flex;
+  align-items: row;
+  justify-content: center;
+  gap: 8px;
+`;
+
 const PatchButton = styled.button`
   cursor: pointer;
   color: var(--gray-900);
@@ -22,6 +29,11 @@ const PatchButton = styled.button`
   background-color: rgb(255, 255, 255, 0);
   border: none;
   text-decoration: underline;
+  padding: 0;
+
+  &:hover {
+    color: #65a30d;
+  }
 `;
 
 const Tag = styled.p`
@@ -35,6 +47,15 @@ const LinkText = styled.p`
   background-color: rgb(255, 255, 255, 0);
   border: none;
   text-decoration: underline;
+
+  &:hover {
+    color: #65a30d;
+  }
+`;
+
+const NameLink = styled.a`
+  text-decoration: none;
+  color: #65a30d;
 `;
 
 export default function Footer() {
@@ -43,20 +64,37 @@ export default function Footer() {
   return (
     <>
       <Wrapper>
-        <Tag>Made by Hannah and Ekim with 💚</Tag>
-        <Link href={"https://forms.gle/EEX8iJKkr5ATjk6L8"} prefetch={false}>
-          <LinkText>Feedback</LinkText>
-        </Link>
-        {/*<Link href={"/about"} prefetch={false}>
-          <LinkText>About us</LinkText>
-        </Link>*/}
-        <PatchButton
-          onClick={() => {
-            setIsPatchNotesModalVisible(true);
-          }}
-        >
-          Patch Notes
-        </PatchButton>
+        <Tag>
+          Made by{" "}
+          <NameLink href="https://hannah-larsen.github.io" target="_blank">
+            {" "}
+            Hannah
+          </NameLink>{" "}
+          and{" "}
+          <NameLink href="https://ekimerton.github.io" target="_blank">
+            Ekim
+          </NameLink>{" "}
+          with 💚
+        </Tag>
+        <LinkWrapper>
+          <Link
+            href={"https://forms.gle/EEX8iJKkr5ATjk6L8"}
+            prefetch={false}
+            target="_blank"
+          >
+            <LinkText>Feedback</LinkText>
+          </Link>
+          {/*<Link href={"/about"} prefetch={false}>
+              <LinkText>About us</LinkText>
+            </Link>*/}
+          <PatchButton
+            onClick={() => {
+              setIsPatchNotesModalVisible(true);
+            }}
+          >
+            Patch Notes
+          </PatchButton>
+        </LinkWrapper>
       </Wrapper>
       <PatchNotesModal
         okButtonProps={{ style: { backgroundColor: "#3a743a" } }}

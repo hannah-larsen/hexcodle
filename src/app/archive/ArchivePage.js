@@ -6,6 +6,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import ArchivePanel from "../components/ArchivePanel";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Wrapper = styled.div`
   display: grid;
@@ -64,6 +65,7 @@ const ArchivePage = ({ panelsData }) => {
           })}
         </Wrapper>
       </main>
+      <Footer />
     </>
   );
 };

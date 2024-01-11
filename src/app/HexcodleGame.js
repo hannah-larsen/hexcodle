@@ -55,6 +55,7 @@ export default function HexcodleGame({
         } left.`
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guesses, targetColor]);
 
   const handleChange = (event) => {

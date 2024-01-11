@@ -5,10 +5,10 @@ const Wrapper = styled.button`
   border: #3f6212 1px solid;
   border-radius: 24px;
   padding: 4px 12px;
-  max-width: 600px;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  max-width: min(600px, 100%);
+  -webkit-line-clamp: 1;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
   color: #3f6212;
   cursor: pointer;
@@ -17,7 +17,7 @@ const Wrapper = styled.button`
 export default function Announcement({ onClick }) {
   return (
     <Wrapper onClick={onClick}>
-      🎉 Jan 20 Updates 🎉 Thank you for your support...
+      🎉 Jan 1st Updates 🎉 Our parrot is called Hexaviar!
     </Wrapper>
   );
 }
