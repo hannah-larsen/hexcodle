@@ -150,6 +150,7 @@ section {
   border-radius: 16px;
   background-color: var(--gray-50);
   --shadow-color: 0deg 0% 63%;
+  border: var(--gray-400) solid 1px;
   box-shadow:
   0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
   0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
