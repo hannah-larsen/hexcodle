@@ -27,6 +27,7 @@ const NavWrapper = styled.header`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  min-height: 60px;
 
   a {
     color: black;
@@ -53,7 +54,7 @@ const NavLeft = styled.div`
   align-items: center;
   gap: 12px;
   justify-content: start;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 
   @media screen and (max-width: 500px) {
     font-size: 1.1rem;
@@ -71,6 +72,7 @@ const NavRight = styled.div`
 
   @media screen and (max-width: 450px) {
     font-size: 1.2rem;
+    line-height: 1.2rem;
   }
 `;
 

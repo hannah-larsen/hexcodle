@@ -106,7 +106,7 @@ body {
   /* This helps create the illusion of movement */
   font-family: Arial, Helvetica, sans-serif;
   margin: 0px;
-  background: #f3f3f3;
+  background: var(--gray-50);
 }
 
 @keyframes rainbowAnimation {
