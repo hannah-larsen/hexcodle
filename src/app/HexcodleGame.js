@@ -6,7 +6,7 @@ import useLocalStorage from "./hooks/useLocalStorage.js";
 import useSavestate from "./hooks/useSavestate.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
-import PatchNotesModal from "./components/PatchNotesModal.js";
+import Announcement from "./components/Annoucement.js";
 import LaunchModal from "./components/LaunchModal.js";
 import Navbar from "./components/Navbar.js";
 import Footer from "./components/Footer.js";
@@ -32,15 +32,6 @@ export default function HexcodleGame({
 
   const [endModalVisible, setEndModalVisible] = useState(false);
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
-
-  const [hasSeenNotif, setHasSeenNotif] = useState(false);
-
-  /*
-  if (!hasSeenNotif && !isComplete) {
-    setIsLaunchModalVisible(true);
-    setHasSeenNotif(true);
-  }
-  */
 
   const handleKeypress = (event) => {
     if (event.key === "Enter") {
@@ -115,6 +106,7 @@ export default function HexcodleGame({
     <>
       <Navbar hexcodleNumber={number} maxDay={maxDay} />
       <main className="everything">
+        <Announcement onClick={() => setIsLaunchModalVisible(true)} />
         <section className="frosted-glass" style={{ position: "relative" }}>
           <div
             style={{

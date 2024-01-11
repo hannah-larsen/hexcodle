@@ -242,7 +242,7 @@ input:focus {
   padding: 16px 0px;
   background: var(--gray-200);
   background-image: url('ooorganize.svg');
-  background-size: 250px;
+  background-size: 256px;
   background-position-x: center;
   min-height: 100vh;
 }
