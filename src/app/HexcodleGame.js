@@ -111,12 +111,7 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
 
   return (
     <>
-      <Navbar
-        gameStarted={guesses.length > 0}
-        gameOver={isComplete}
-        hardMode={hardMode}
-        setHardMode={setHardMode}
-      />
+      <Navbar hexcodleNumber={number} />
       <main className="everything">
         <section className="frosted-glass" style={{ position: "relative" }}>
           <div

@@ -9,6 +9,8 @@ import {
   HistoryOutlined,
   CoffeeOutlined,
   SettingOutlined,
+  CaretRightOutlined,
+  CaretLeftOutlined,
   QuestionCircleOutlined,
 } from "@ant-design/icons";
 
@@ -40,7 +42,7 @@ const TopWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 600px;
+  //max-width: 600px;
 `;
 
 const NavLeft = styled.div`
@@ -74,6 +76,7 @@ const NavRight = styled.div`
 const NavCenter = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: row;
   gap: 8px;
   font-size: 1.6rem;
 `;
@@ -90,12 +93,7 @@ const HexcodleTitle = styled.h1`
   }
 `;
 
-export default function Navbar({
-  hardMode,
-  setHardMode,
-  gameStarted,
-  gameOver,
-}) {
+export default function Navbar({ hexcodleNumber }) {
   const [isRuleModalVisible, setIsRuleModalVisible] = useState(false);
   const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
 
@@ -104,11 +102,7 @@ export default function Navbar({
       <NavWrapper>
         <TopWrapper>
           <NavLeft>
-            <Link
-              style={{ textDecoration: "none" }}
-              href={"/archive"}
-              prefetch={false}
-            >
+            <Link style={{ textDecoration: "none" }} href={"/archive"}>
               <HistoryOutlined />
             </Link>
             <QuestionCircleOutlined
@@ -118,9 +112,31 @@ export default function Navbar({
             />
           </NavLeft>
           <NavCenter>
-            <Link style={{ textDecoration: "none" }} href={"/"}>
-              <HexcodleTitle>Hexcodle Archives</HexcodleTitle>
-            </Link>
+            {hexcodleNumber ? (
+              <>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  href={`/archive/${parseInt(hexcodleNumber, 10) + 1}`}
+                  prefetch={false}
+                >
+                  <CaretLeftOutlined />
+                </Link>
+                <Link style={{ textDecoration: "none" }} href={"/"}>
+                  <HexcodleTitle>Hexcodle #{hexcodleNumber}</HexcodleTitle>
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  href={`/archive/${parseInt(hexcodleNumber, 10) - 1}`}
+                  prefetch={false}
+                >
+                  <CaretRightOutlined />
+                </Link>
+              </>
+            ) : (
+              <Link style={{ textDecoration: "none" }} href={"/"}>
+                <HexcodleTitle>Hexcodle Archives</HexcodleTitle>
+              </Link>
+            )}
           </NavCenter>
           <NavRight>
             <Link
