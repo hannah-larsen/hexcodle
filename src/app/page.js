@@ -13,6 +13,7 @@ export default async function Home() {
       targetColor={randColor}
       colorName={colorName}
       number={number}
+      maxDay={number}
     />
   );
 }

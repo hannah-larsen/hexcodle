@@ -2,18 +2,23 @@
 
 import React, { useState, useEffect } from "react";
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
-import useTemporaryStorage from "./hooks/useTemporaryStorage.js";
 import useLocalStorage from "./hooks/useLocalStorage.js";
 import useSavestate from "./hooks/useSavestate.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
-import PatchNotesModal from "./components/PatchNotesModal.js";
+import Announcement from "./components/Annoucement.js";
 import LaunchModal from "./components/LaunchModal.js";
 import Navbar from "./components/Navbar.js";
+import Footer from "./components/Footer.js";
 
 const MAX_GUESSES = 5;
 
-export default function HexcodleGame({ targetColor, colorName, number }) {
+export default function HexcodleGame({
+  targetColor,
+  colorName,
+  number,
+  maxDay,
+}) {
   // Inside HexcodleGame component
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
   const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
@@ -27,16 +32,6 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
 
   const [endModalVisible, setEndModalVisible] = useState(false);
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
-  const [isPatchNotesModalVisible, setIsPatchNotesModalVisible] =
-    useState(false);
-  const [hasSeenNotif, setHasSeenNotif] = useState(false);
-
-  /*
-  if (!hasSeenNotif && !isComplete) {
-    setIsLaunchModalVisible(true);
-    setHasSeenNotif(true);
-  }
-  */
 
   const handleKeypress = (event) => {
     if (event.key === "Enter") {
@@ -60,13 +55,8 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
         } left.`
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guesses, targetColor]);
-
-  useEffect(() => {
-    if (isComplete) {
-      setEndModalVisible(true);
-    }
-  }, [isComplete]);
 
   const handleChange = (event) => {
     const text = event.target.value;
@@ -105,19 +95,19 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
 
     const newGuesses = [...guesses];
     newGuesses.unshift(userInput);
+
+    if (newGuesses.includes(targetColor) || newGuesses.length >= MAX_GUESSES) {
+      setEndModalVisible(true);
+    }
     setGuesses(newGuesses);
     setUserInput("#");
   };
 
   return (
     <>
-      <Navbar
-        gameStarted={guesses.length > 0}
-        gameOver={isComplete}
-        hardMode={hardMode}
-        setHardMode={setHardMode}
-      />
+      <Navbar hexcodleNumber={number} maxDay={maxDay} />
       <main className="everything">
+        <Announcement onClick={() => setIsLaunchModalVisible(true)} />
         <section className="frosted-glass" style={{ position: "relative" }}>
           <div
             style={{
@@ -196,18 +186,8 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
             />
           ))}
         </section>
-
-        <footer>
-          <button
-            className="button-patch"
-            onClick={() => {
-              setIsPatchNotesModalVisible(true);
-            }}
-          >
-            Patch Notes
-          </button>
-        </footer>
       </main>
+      <Footer />
 
       <EndModal
         okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
@@ -226,12 +206,6 @@ export default function HexcodleGame({ targetColor, colorName, number }) {
         okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
         isOpen={isLaunchModalVisible}
         setIsOpen={setIsLaunchModalVisible}
-      />
-
-      <PatchNotesModal
-        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-        isOpen={isPatchNotesModalVisible}
-        setIsOpen={setIsPatchNotesModalVisible}
       />
     </>
   );

@@ -13,6 +13,11 @@ export default async function Page({ params }) {
   }
 
   return (
-    <HexcodleGame targetColor={target} colorName={colorName} number={id} />
+    <HexcodleGame
+      targetColor={target}
+      colorName={colorName}
+      number={id}
+      maxDay={currentHexcodle}
+    />
   );
 }
