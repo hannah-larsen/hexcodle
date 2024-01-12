@@ -17,7 +17,7 @@ const Wrapper = styled.button`
 export default function Announcement({ onClick }) {
   return (
     <Wrapper onClick={onClick}>
-      🎉 Jan 1st Updates 🎉 Our parrot is called Hexaviar!
+      🎉 Jan 1st Updates 🎉 Hexcodle parrot naming contest results!
     </Wrapper>
   );
 }
