@@ -29,6 +29,7 @@ export async function load() {
 }
 
 export default async function Archive() {
+  // Static stuff needs to be fixed
   //const headersList = headers();
   const panelsData = await load();
   return <ArchivePage panelsData={panelsData} />;
