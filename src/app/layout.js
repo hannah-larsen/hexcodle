@@ -10,9 +10,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Hexcodle | The Daily Hexcode Guessing Game!",
   description:
-    "Can you guess today's hex color? Challenge your color instincts and decode the hex with Hexcodle! Inspired by Wordle, but for color enthusiasts.",
+    "Can you guess today's hexcode color? Challenge your color instincts and decode the hexcode with Hexcodle! Inspired by Wordle, but for color enthusiasts.",
   keywords:
-    "hex, hexcode, color, guessing game, daily challenge, wordle, puzzle, code",
+    "hex, hexcode, color, colour, guessing game, daily challenge, wordle, puzzle, code",
   og_image: "https://www.hexcodle.com/og_image.png",
   //twitter_card: "summary_large_image",
   //twitter_image: "/path_to_your_twitter_image.png"
