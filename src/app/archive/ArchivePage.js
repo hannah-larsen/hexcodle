@@ -25,7 +25,7 @@ const ArchivePage = ({ panelsData }) => {
         const saves =
           JSON.parse(window.localStorage.getItem("hexcodleSaves")) || {};
         return Object.entries(saves)
-          .filter(([key, data]) => data.isComplete)
+          .filter(([key, data]) => data.isComplete && key > 0)
           .map(([key]) => parseInt(key, 10));
       } catch (error) {
         console.error("Error fetching completed games:", error);

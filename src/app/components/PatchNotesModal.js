@@ -4,7 +4,7 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title={<center>☃️Patch Notes 1.11.24☃️</center>}
+      title={<center>☃️Patch Notes 1.14.24☃️</center>}
       open={isOpen}
       onOk={() => {
         setIsOpen(false);
@@ -23,6 +23,9 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
         <li>
           <strong>Site Makeover:</strong> Check out our newly designed site! Our
           navbar has everything you need to navigate Hexcodle.
+        </li>
+        <li>
+          <strong>Scoring system:</strong> By popular demand, we implemented a scoring system! Now, every day you complete the Hexcodle, you can see what your score is out of 1000! Aim high! 
         </li>
         <li>
           <strong>Bugs:</strong> Please note that our easy/hard toggle is a bit

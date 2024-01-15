@@ -1,7 +1,7 @@
 import Confetti from "./Confetti";
 import Modal from "antd/lib/modal";
 import Popover from "antd/lib/popover";
-import { compareCharacters, getHexcodleNumber } from "../utils";
+import { compareCharacters, getHexcodleNumber, getScore } from "../utils";
 import Timer from "./Timer";
 import Image from "next/image";
 
@@ -23,11 +23,11 @@ export default function EndModal({
         hardMode ? "*" : ""
       } in ${guesses.length} ${
         guesses.length > 1 ? "guesses" : "guess"
-      }!\nhttps://hexcodle.com \n\n`;
+      }! \nMy score: ${getScore(color, guesses)}\nhttps://hexcodle.com \n\n`;
     } else {
       shareableString = `I did not solve Hexcodle #${hexcodleNumber}${
         hardMode ? "*" : ""
-      }
+      } \nMy score: ${getScore(color, guesses)}
       \nhttps://hexcodle.com \n\n`;
     }
 
@@ -84,8 +84,11 @@ export default function EndModal({
           </center>
           <p>
             You solved the Hexcodle in {counter} guess
-            {counter == 1 ? "" : "es"}. Today{"'"}s color was{" "}
+            {counter == 1 ? "" : "es"}. Hexcodle #{hexcodleNumber} was{" "}
             <strong>{colorName}</strong> ({color}).
+          </p>
+          <p>
+            Your score is: {getScore(color, guesses)}
           </p>
         </>
       ) : (
@@ -99,8 +102,11 @@ export default function EndModal({
             />
           </center>
           <p>
-            Bummer! Today{"'"}s color was <strong>{colorName}</strong> ({color}
-            ).<br></br>
+            Bummer! Hexcodle #{hexcodleNumber} was <strong>{colorName}</strong> ({color}
+            ).
+          </p>
+          <p>
+            Your score is: {getScore(color, guesses)}
           </p>
         </>
       )}

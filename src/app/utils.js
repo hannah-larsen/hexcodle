@@ -113,3 +113,26 @@ export async function getColorName(hex) {
     return "Error";
   }
 }
+
+function getRGB(hexcode) {
+  const validHex = hexcode.slice(1);
+  if (validHex.length !== 6) {
+    throw new Error('Invalid hex code');
+  }
+  const red = parseInt(validHex.substring(0, 2), 16);
+  const green = parseInt(validHex.substring(2, 4), 16);
+  const blue = parseInt(validHex.substring(4, 6), 16);
+
+  return { red, green, blue };
+}
+
+export function getScore(target, guesses) {
+  const MAX_GUESSES = 5;
+  let differenceSum = 0;
+  const { red: targetRed, green: targetGreen, blue: targetBlue } = getRGB(target);
+  guesses.forEach(guess => {
+    const {red, green, blue} = getRGB(guess);
+    differenceSum += Math.abs(targetRed - red) + Math.abs(targetGreen - green) + Math.abs(targetBlue - blue)
+  });
+  return Math.round(((765 * MAX_GUESSES) - differenceSum) / (765 * MAX_GUESSES) * 1000);
+}
