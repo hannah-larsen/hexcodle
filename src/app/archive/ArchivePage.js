@@ -51,7 +51,6 @@ const ArchivePage = ({ panelsData }) => {
                 key={hexcodleNumber}
                 href={`/archive/${hexcodleNumber}`}
                 style={{ textDecoration: "none" }}
-                passHref
               >
                 <ArchivePanel
                   hidden={!isComplete}
