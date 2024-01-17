@@ -88,7 +88,7 @@ export default function EndModal({
             <strong>{colorName}</strong> ({color}).
           </p>
           <p>
-            Your score is: {getScore(color, guesses)}
+            Your score: {getScore(color, guesses)}
           </p>
         </>
       ) : (
@@ -106,7 +106,7 @@ export default function EndModal({
             ).
           </p>
           <p>
-            Your score is: {getScore(color, guesses)}
+            Your score: {getScore(color, guesses)}
           </p>
         </>
       )}

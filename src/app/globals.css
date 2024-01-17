@@ -88,8 +88,8 @@ h6 {
 /* Change theme color in layout.js as well!*/
 * {
   --background: hsl(129, 11%, 54%);
-  --primary: hsl(0, 52%, 34%);
-  --primary-hover: hsl(0, 52%, 34%);
+  --primary: #4d7c0f;
+  --primary-hover: #65a30d;
   --gray-50: #f8fafc;
   --gray-100: #f1f5f9;
   --gray-200: #e2e8f0;

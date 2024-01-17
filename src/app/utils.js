@@ -134,5 +134,5 @@ export function getScore(target, guesses) {
     const {red, green, blue} = getRGB(guess);
     differenceSum += Math.abs(targetRed - red) + Math.abs(targetGreen - green) + Math.abs(targetBlue - blue)
   });
-  return Math.round(((765 * MAX_GUESSES) - differenceSum) / (765 * MAX_GUESSES) * 1000);
+  return Math.round(((765 * MAX_GUESSES) - differenceSum) / (765 * MAX_GUESSES) * 100) + "%";
 }

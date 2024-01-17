@@ -10,6 +10,7 @@ import Announcement from "./components/Annoucement.js";
 import LaunchModal from "./components/LaunchModal.js";
 import Navbar from "./components/Navbar.js";
 import Footer from "./components/Footer.js";
+import { getScore } from "./utils.js";
 
 const MAX_GUESSES = 5;
 
@@ -157,7 +158,7 @@ export default function HexcodleGame({
               </button>
             </div>
             <p className="status-text" style={{ margin: 0 }}>
-              {statusText}
+              {statusText} {isComplete ? "Your score is "  + getScore(targetColor, guesses) : ""}
             </p>
           </div>
 
