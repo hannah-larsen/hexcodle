@@ -333,6 +333,7 @@ input:focus {
 
 .status-text {
   padding-bottom: 0;
+  word-wrap: break-word;
 }
 
 .first-square {
@@ -359,4 +360,8 @@ input:focus {
   .first-square {
     margin-right: 16px;
   }
+
+  .status-text {
+    width: 200px;
+}
 }
