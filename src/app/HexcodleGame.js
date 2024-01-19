@@ -20,7 +20,6 @@ export default function HexcodleGame({
   number,
   maxDay,
 }) {
-  // Inside HexcodleGame component
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
   const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
 
@@ -104,6 +103,7 @@ export default function HexcodleGame({
     setUserInput("#");
   };
 
+  // Add score component
   return (
     <>
       <Navbar hexcodleNumber={number} maxDay={maxDay} />
@@ -158,7 +158,10 @@ export default function HexcodleGame({
               </button>
             </div>
             <p className="status-text" style={{ margin: 0 }}>
-              {statusText} {isComplete ? "Your score is "  + getScore(targetColor, guesses) : ""}
+              {statusText}{" "}
+              {isComplete
+                ? "Your score is " + getScore(targetColor, guesses)
+                : ""}
             </p>
           </div>
 
