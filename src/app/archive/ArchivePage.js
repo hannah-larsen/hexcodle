@@ -36,6 +36,8 @@ const ArchivePage = ({ panelsData }) => {
     setCompletedGames(getCompleteGames());
   }, []);
 
+  // TODO: Add archive stats
+
   return (
     <>
       <Navbar />
