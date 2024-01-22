@@ -6,31 +6,38 @@ import {
   generateHexcode,
   getHexcodleNumber,
 } from "../utils";
-// import { headers } from "next/headers";
+import { headers } from "next/headers";
+import { unstable_cache } from "next/cache";
 
-export async function load() {
-  const totalHexcodleItems = getHexcodleNumber();
-  const panelsData = [];
+export async function loadArchive(hexcodleNumber) {
+  const panelsData = await Promise.all(
+    Array.from({ length: hexcodleNumber }, async (_, i) => {
+      const hexcode = generateHexcode(i + 1);
+      const colorName = await getColorName(hexcode);
+      const date = getDateFromHexcodleNumber(i + 1);
 
-  for (let i = 1; i <= totalHexcodleItems; i++) {
-    const hexcode = generateHexcode(i);
-    const colorName = await getColorName(hexcode);
-    const date = getDateFromHexcodleNumber(i);
-
-    panelsData.push({
-      hexcodleNumber: i,
-      colorName,
-      hexcode,
-      date,
-    });
-  }
+      return {
+        hexcodleNumber: i + 1,
+        colorName,
+        hexcode,
+        date,
+      };
+    })
+  );
 
   return panelsData.reverse();
 }
 
 export default async function Archive() {
-  // Static stuff needs to be fixed
-  //const headersList = headers();
-  const panelsData = await load();
+  const hexcodleNumber = getHexcodleNumber();
+  const headersList = headers();
+
+  const loadCachedArchive = unstable_cache(
+    async (hexcodleNumber) => loadArchive(hexcodleNumber),
+    [hexcodleNumber]
+  );
+
+  const panelsData = await loadCachedArchive(hexcodleNumber);
+
   return <ArchivePage panelsData={panelsData} />;
 }
