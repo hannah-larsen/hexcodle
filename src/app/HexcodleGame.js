@@ -22,6 +22,10 @@ export default function HexcodleGame({
 }) {
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
   const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
+  const [streak, setStreak] = useLocalStorage("streak", {
+    lastDate: null,
+    days: 0,
+  });
 
   const [userInput, setUserInput] = useState("#");
   const [statusText, setStatusText] = useState(
@@ -96,7 +100,16 @@ export default function HexcodleGame({
     const newGuesses = [...guesses];
     newGuesses.unshift(userInput);
 
-    if (newGuesses.includes(targetColor) || newGuesses.length >= MAX_GUESSES) {
+    if (newGuesses.includes(targetColor)) {
+      setEndModalVisible(true);
+      if (streak.lastDate === maxDay - 1) {
+        setStreak({ lastDate: maxDay, days: streak.days + 1 });
+      } else {
+        setStreak({ lastDate: maxDay, days: 1 });
+      }
+    }
+
+    if (newGuesses.length >= MAX_GUESSES) {
       setEndModalVisible(true);
     }
     setGuesses(newGuesses);

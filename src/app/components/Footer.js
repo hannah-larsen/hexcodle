@@ -33,6 +33,7 @@ const PatchButton = styled.button`
 
   &:hover {
     color: #65a30d;
+    transition: fade, 0.3s;
   }
 `;
 
@@ -50,12 +51,18 @@ const LinkText = styled.p`
 
   &:hover {
     color: #65a30d;
+    transition: fade, 0.3s;
   }
 `;
 
 const NameLink = styled.a`
   text-decoration: none;
   color: #65a30d;
+
+  &:hover {
+    color: #a3e635;
+    transition: fade, 0.3s;
+  }
 `;
 
 export default function Footer() {
@@ -82,7 +89,7 @@ export default function Footer() {
             prefetch={false}
             target="_blank"
           >
-            <LinkText>Feedback</LinkText>
+            <LinkText>Submit Feedback</LinkText>
           </Link>
           {/*<Link href={"/about"} prefetch={false}>
               <LinkText>About us</LinkText>

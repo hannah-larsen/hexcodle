@@ -57,7 +57,7 @@ const ArchivePanel = ({ hidden, hexcodleNumber, colorName, hexcode, date }) => {
       </ColourNameText>
       <BottomTextWrapper>
         <ColourHexText>{hidden ? "#??????" : hexcode}</ColourHexText>
-        <DateText>{date}</DateText>
+        {date && <DateText>{date}</DateText>}
       </BottomTextWrapper>
     </BackgroundPanel>
   );

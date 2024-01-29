@@ -87,9 +87,7 @@ export default function EndModal({
             {counter == 1 ? "" : "es"}. Hexcodle #{hexcodleNumber} was{" "}
             <strong>{colorName}</strong> ({color}).
           </p>
-          <p>
-            Your score: {getScore(color, guesses)}
-          </p>
+          <p>Your score: {getScore(color, guesses)}</p>
         </>
       ) : (
         <>
@@ -102,12 +100,11 @@ export default function EndModal({
             />
           </center>
           <p>
-            Bummer! Hexcodle #{hexcodleNumber} was <strong>{colorName}</strong> ({color}
+            Bummer! Hexcodle #{hexcodleNumber} was <strong>{colorName}</strong>{" "}
+            ({color}
             ).
           </p>
-          <p>
-            Your score: {getScore(color, guesses)}
-          </p>
+          <p>Your score: {getScore(color, guesses)}</p>
         </>
       )}
       <Timer isModalActive={true} />
