@@ -107,8 +107,8 @@ export default function HexcodleGame({
       setEndModalVisible(true);
       if (streak.lastDate === maxDay - 1) {
         setStreak({ lastDate: maxDay, days: streak.days + 1 });
-      } else {
-        // setStreak({ lastDate: maxDay, days: 1 });
+      } else if (number === maxDay) {
+        setStreak({ lastDate: maxDay, days: 1 });
       }
     }
 
