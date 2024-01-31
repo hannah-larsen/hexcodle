@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import useSound from "use-sound";
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
 import useLocalStorage from "./hooks/useLocalStorage.js";
 import useSavestate from "./hooks/useSavestate.js";
@@ -26,16 +27,16 @@ export default function HexcodleGame({
     lastDate: null,
     days: 0,
   });
-
   const [userInput, setUserInput] = useState("#");
   const [statusText, setStatusText] = useState(
     "Start by typing your guess above!"
   );
+  const [endModalVisible, setEndModalVisible] = useState(false);
+  const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
 
   const hasWon = guesses.includes(targetColor);
 
-  const [endModalVisible, setEndModalVisible] = useState(false);
-  const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
+  const [play] = useSound("/sounds/hexcodle4.mp3", { volume: 0.4 });
 
   const handleKeypress = (event) => {
     if (event.key === "Enter") {
@@ -100,7 +101,9 @@ export default function HexcodleGame({
     const newGuesses = [...guesses];
     newGuesses.unshift(userInput);
 
+    // If user wins
     if (newGuesses.includes(targetColor)) {
+      play();
       setEndModalVisible(true);
       if (streak.lastDate === maxDay - 1) {
         setStreak({ lastDate: maxDay, days: streak.days + 1 });
@@ -109,6 +112,7 @@ export default function HexcodleGame({
       }
     }
 
+    // If user loses
     if (newGuesses.length >= MAX_GUESSES) {
       setEndModalVisible(true);
     }

@@ -4,7 +4,7 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title={<center>💙Patch Notes 1.28.24💙</center>}
+      title={<center>💙 Patch Notes 1.30.24 💙</center>}
       open={isOpen}
       onOk={() => {
         setIsOpen(false);
@@ -24,6 +24,10 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
           <strong>Scoring system:</strong> You may have noticed that our scoring
           system is very generous right now, we are working on implementing a
           better scoring algorithm.
+        </li>
+        <li>
+          <strong>New win sound:</strong> After winning a Hexcodle game you can
+          hear a victory sound! Wow!
         </li>
         <li>
           <strong>Bugs:</strong> Please note that our easy/hard toggle is a bit
