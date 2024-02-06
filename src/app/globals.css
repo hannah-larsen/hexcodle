@@ -181,34 +181,15 @@ section {
   color: #f3f3f3;
 }
 
-input {
-  width: 150px;
-  height: 36px;
-  background-color: #ffffff;
-  color: #333333;
-  border: 1px solid #bdc3c7;
-  border-radius: 5px;
-  margin-right: 10px;
-  font-size: 24px;
-  outline: none;
-  padding-left: 10px;
-  transition: border-color 0.3s ease;
-}
-
-input:focus {
-  border-color: var(--primary);
-}
-
 .square-button {
   width: 36px;
   height: 36px;
   background-color: var(--primary);
-  color: #ffffff;
+  color: var(--gray-50);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  outline: none;
   transition: background-color 0.3s ease;
   padding: 0;
   margin: 0;
@@ -234,6 +215,13 @@ input:focus {
 
 /* Section styles */
 
+.input-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .everything {
   display: flex;
   flex-direction: column;
@@ -248,7 +236,7 @@ input:focus {
 }
 
 .frosted-glass {
-  background: #f9f9f9;
+  background: var(--gray-50);
   padding-left: 30px;
   padding-right: 30px;
   text-align: center;
@@ -278,13 +266,6 @@ input:focus {
   border-radius: 8px;
 }
 
-.input-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .guess-section {
   min-height: 400px;
 }
@@ -309,26 +290,8 @@ input:focus {
   list-style-type: circle;
 }
 
-#user-input {
-  font-size: 1.5rem;
-  margin-right: 8px;
-  width: 150px;
-}
-
-#input-and-button {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  font-size: 1.5rem;
-  margin-bottom: 0;
-}
-
 #guess-heading {
-  color: rgb(4, 4, 19);
-  font-family: "Roboto Mono", monospace;
-  size: 1.2rem;
-  font-weight: bold;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
 }
 
 .status-text {

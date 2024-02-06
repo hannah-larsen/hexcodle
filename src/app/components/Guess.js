@@ -39,7 +39,6 @@ const GuessParagraph = styled.p`
 
 export default function Guess(props) {
   const { guess, target, hardMode = false } = props;
-
   return (
     <GuessContainer>
       {[...guess.substring(1)].map((character, index) => (

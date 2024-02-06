@@ -9,6 +9,7 @@ import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
 import Announcement from "./components/Annoucement.js";
 import LaunchModal from "./components/LaunchModal.js";
+import HexInput from "./components/HexInput.js";
 import Navbar from "./components/Navbar.js";
 import Footer from "./components/Footer.js";
 import { getScore } from "./utils.js";
@@ -38,12 +39,6 @@ export default function HexcodleGame({
 
   const [play] = useSound("/sounds/hexcodle4.mp3", { volume: 0.4 });
 
-  const handleKeypress = (event) => {
-    if (event.key === "Enter") {
-      enterClick();
-    }
-  };
-
   useEffect(() => {
     if (guesses.includes(targetColor)) {
       setStatusText("You guessed it!");
@@ -63,45 +58,14 @@ export default function HexcodleGame({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guesses, targetColor]);
 
-  const handleChange = (event) => {
-    const text = event.target.value;
-    if (text[0] !== "#") {
-      setUserInput("#");
-    } else if (text.length >= 8) {
-      return;
-    } else {
-      setUserInput(text.toUpperCase());
-    }
-  };
-
-  const enterClick = () => {
+  const submitGuess = (newGuess) => {
     if (guesses.length >= MAX_GUESSES) {
       return;
     }
 
-    const hexCodePattern = /^[0-9A-Fa-f]+$/;
-
-    if (userInput.length != 7) {
-      setStatusText("Error: Hex code must be exactly 6 digits.");
-      return;
-    }
-
-    if (!hexCodePattern.test(userInput.substring(1))) {
-      setStatusText("Invalid character. Hex codes may only contain 0-9, A-F");
-      return;
-    }
-
-    if (guesses.includes(userInput)) {
-      setStatusText(
-        "Already guessed this one! Please enter a different hex code."
-      );
-      return;
-    }
-
     const newGuesses = [...guesses];
-    newGuesses.unshift(userInput);
+    newGuesses.unshift(newGuess);
 
-    // If user wins
     if (newGuesses.includes(targetColor)) {
       play();
       setEndModalVisible(true);
@@ -117,7 +81,6 @@ export default function HexcodleGame({
       setEndModalVisible(true);
     }
     setGuesses(newGuesses);
-    setUserInput("#");
   };
 
   // Add score component
@@ -153,27 +116,15 @@ export default function HexcodleGame({
             </div>
           </div>
           <div className="input-section">
-            <div id="input-and-button">
-              <input
-                type="text"
-                className="input input-bordered input-sm w-full max-w-xs"
-                maxLength="7"
-                onKeyPress={handleKeypress}
-                value={userInput}
-                onChange={handleChange}
-                disabled={isComplete}
-              />
-
-              <button
-                className="square-button"
-                onClick={() => {
-                  enterClick();
-                }}
-                disabled={isComplete}
-              >
-                ➜
-              </button>
-            </div>
+            <HexInput
+              userInput={userInput}
+              setUserInput={setUserInput}
+              onClick={submitGuess}
+              gameOver={isComplete}
+              guesses={guesses}
+              setStatusText={setStatusText}
+              type="rgb"
+            />
             <p className="status-text" style={{ margin: 0 }}>
               {statusText}{" "}
               {isComplete
@@ -181,7 +132,6 @@ export default function HexcodleGame({
                 : ""}
             </p>
           </div>
-
           {isComplete && (
             <button
               className="modal-button square-button"

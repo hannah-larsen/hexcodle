@@ -38,6 +38,15 @@ export function hexToDecimal(hexChar) {
   return parseInt(hexChar, 16);
 }
 
+// Function for converting 0-255 to a 2 character hex string
+export function decimalToHex2(n) {
+  if (n < 0 || n > 255) {
+    throw new Error("Input must be a number between 0 and 255.");
+  }
+
+  return n.toString(16).padStart(2, "0");
+}
+
 // Function to print out "guess" emojis corresponding with how close user is to target hex code
 // single arrows denote CLOSE PROXIMITY (within 2 numbers)
 // double arrows denote FURTHER PROXIMITY (within 3 numbers)
@@ -117,7 +126,7 @@ export async function getColorName(hex) {
 function getRGB(hexcode) {
   const validHex = hexcode.slice(1);
   if (validHex.length !== 6) {
-    throw new Error('Invalid hex code');
+    throw new Error("Invalid hex code");
   }
   const red = parseInt(validHex.substring(0, 2), 16);
   const green = parseInt(validHex.substring(2, 4), 16);
@@ -129,10 +138,21 @@ function getRGB(hexcode) {
 export function getScore(target, guesses) {
   const MAX_GUESSES = 5;
   let differenceSum = 0;
-  const { red: targetRed, green: targetGreen, blue: targetBlue } = getRGB(target);
-  guesses.forEach(guess => {
-    const {red, green, blue} = getRGB(guess);
-    differenceSum += Math.abs(targetRed - red) + Math.abs(targetGreen - green) + Math.abs(targetBlue - blue)
+  const {
+    red: targetRed,
+    green: targetGreen,
+    blue: targetBlue,
+  } = getRGB(target);
+  guesses.forEach((guess) => {
+    const { red, green, blue } = getRGB(guess);
+    differenceSum +=
+      Math.abs(targetRed - red) +
+      Math.abs(targetGreen - green) +
+      Math.abs(targetBlue - blue);
   });
-  return Math.round(((765 * MAX_GUESSES) - differenceSum) / (765 * MAX_GUESSES) * 100) + "%";
+  return (
+    Math.round(
+      ((765 * MAX_GUESSES - differenceSum) / (765 * MAX_GUESSES)) * 100
+    ) + "%"
+  );
 }
