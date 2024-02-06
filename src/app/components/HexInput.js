@@ -121,6 +121,7 @@ const HexInput = ({
         userInput.g
       )}${decimalToHex2(userInput.b)}`;
       onClick(hex);
+      rInputRef.current.focus();
       setUserInput({ r: "", g: "", b: "" });
     } else {
       onClick(userInput);

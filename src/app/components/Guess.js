@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { compareCharacters } from "../utils";
+import { compareCharacters, compareRGB, hexToRGB } from "../utils";
 
 const GuessContainer = styled.div`
   display: flex;
@@ -20,13 +20,12 @@ const GuessCharacter = styled.div`
   border: 4px solid ${(props) => props.borderColor}; // combined border properties
   padding: 6px;
   background-color: #ffffff;
-  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
-const GuessParagraph = styled.p`
+const GuessText = styled.p`
   font-family: "Roboto Mono", monospace;
   font-size: 1.4rem;
   margin: 0;
@@ -37,22 +36,45 @@ const GuessParagraph = styled.p`
   }
 `;
 
-export default function Guess(props) {
-  const { guess, target, hardMode = false } = props;
-  return (
-    <GuessContainer>
-      {[...guess.substring(1)].map((character, index) => (
-        <GuessCharacter key={index} borderColor={guess}>
-          <GuessParagraph>{character}</GuessParagraph>
-          <GuessParagraph>
-            {compareCharacters(
-              character,
-              target.substring(1).charAt(index),
-              hardMode
-            )}
-          </GuessParagraph>
-        </GuessCharacter>
-      ))}
-    </GuessContainer>
-  );
+export default function Guess({
+  guess,
+  target,
+  hardMode = false,
+  type = "hex",
+}) {
+  if (type === "hex") {
+    return (
+      <GuessContainer>
+        {[...guess.substring(1)].map((character, index) => (
+          <GuessCharacter key={index} borderColor={guess}>
+            <GuessText>{character}</GuessText>
+            <GuessText>
+              {compareCharacters(
+                character,
+                target.substring(1).charAt(index),
+                hardMode
+              )}
+            </GuessText>
+          </GuessCharacter>
+        ))}
+      </GuessContainer>
+    );
+  }
+
+  if (type === "rgb") {
+    const guessRGB = hexToRGB(guess);
+    const targetRGB = hexToRGB(target);
+    return (
+      <GuessContainer>
+        {Object.keys(guessRGB).map((color, index) => (
+          <GuessCharacter key={index} borderColor={guess}>
+            <GuessText>{guessRGB[color]}</GuessText>
+            <GuessText>
+              {compareRGB(guessRGB[color], targetRGB[color], hardMode)}
+            </GuessText>
+          </GuessCharacter>
+        ))}
+      </GuessContainer>
+    );
+  }
 }

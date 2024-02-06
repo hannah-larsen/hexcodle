@@ -44,7 +44,19 @@ export function decimalToHex2(n) {
     throw new Error("Input must be a number between 0 and 255.");
   }
 
-  return n.toString(16).padStart(2, "0");
+  return n.toString(16).padStart(2, "0").toUpperCase();
+}
+
+export function hexToRGB(hex) {
+  const validHex = hex.slice(1);
+  if (validHex.length !== 6) {
+    throw new Error("Invalid hex code");
+  }
+  const red = parseInt(validHex.substring(0, 2), 16);
+  const green = parseInt(validHex.substring(2, 4), 16);
+  const blue = parseInt(validHex.substring(4, 6), 16);
+
+  return { red, green, blue };
 }
 
 // Function to print out "guess" emojis corresponding with how close user is to target hex code
@@ -67,6 +79,20 @@ export function compareCharacters(guess, target, hardMode = false) {
   ) {
     return "⏬";
   } else if (hexToDecimal(guess) < hexToDecimal(target)) {
+    return "🔼";
+  } else {
+    return "🔽";
+  }
+}
+
+export function compareRGB(guess, target, hardMode = false) {
+  if (guess === target) {
+    return "✅";
+  } else if (guess < target && target - guess >= 3 && !hardMode) {
+    return "⏫";
+  } else if (guess > target && guess - target >= 3 && !hardMode) {
+    return "⏬";
+  } else if (guess < target) {
     return "🔼";
   } else {
     return "🔽";

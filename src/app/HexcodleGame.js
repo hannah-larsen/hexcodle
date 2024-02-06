@@ -152,6 +152,7 @@ export default function HexcodleGame({
             <Guess
               key={index}
               guess={guess}
+              type="hex"
               target={targetColor}
               hardMode={hardMode}
             />
