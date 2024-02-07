@@ -140,6 +140,11 @@ p {
   padding-bottom: 8px;
 }
 
+h4 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 section {
   display: flex;
   flex-direction: column;

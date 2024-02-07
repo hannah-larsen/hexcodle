@@ -59,43 +59,60 @@ export function hexToRGB(hex) {
   return { red, green, blue };
 }
 
-// Function to print out "guess" emojis corresponding with how close user is to target hex code
-// single arrows denote CLOSE PROXIMITY (within 2 numbers)
-// double arrows denote FURTHER PROXIMITY (within 3 numbers)
-// checkmark denotes correct guess
-export function compareCharacters(guess, target, hardMode = false) {
-  if (guess === target) {
-    return "✅";
-  } else if (
-    hexToDecimal(guess) < hexToDecimal(target) &&
-    hexToDecimal(target) - hexToDecimal(guess) >= 3 &&
-    !hardMode
-  ) {
-    return "⏫";
-  } else if (
-    hexToDecimal(guess) > hexToDecimal(target) &&
-    hexToDecimal(guess) - hexToDecimal(target) >= 3 &&
-    !hardMode
-  ) {
-    return "⏬";
-  } else if (hexToDecimal(guess) < hexToDecimal(target)) {
-    return "🔼";
-  } else {
-    return "🔽";
+export function compareCharacters(guess, target, difficulty = "easy") {
+  // Convert hex characters to decimal for comparison
+  const guessVal = hexToDecimal(guess);
+  const targetVal = hexToDecimal(target);
+  const difference = Math.abs(guessVal - targetVal);
+
+  switch (difficulty) {
+    case "easy":
+      if (guess === target) {
+        return "✅";
+      } else if (difference <= 2) {
+        return guessVal < targetVal ? "🔼" : "🔽";
+      } else {
+        return guessVal < targetVal ? "⏫" : "⏬";
+      }
+
+    case "hard":
+      if (guess === target) {
+        return "✅";
+      } else {
+        return guessVal < targetVal ? "🔼" : "🔽";
+      }
+
+    case "expert":
+      return guess === target ? "✅" : "❌";
+
+    default:
+      return "Invalid difficulty level";
   }
 }
 
-export function compareRGB(guess, target, hardMode = false) {
+export function compareRGB(guess, target, difficulty) {
+  // Check for exact match
   if (guess === target) {
     return "✅";
-  } else if (guess < target && target - guess >= 3 && !hardMode) {
-    return "⏫";
-  } else if (guess > target && guess - target >= 3 && !hardMode) {
-    return "⏬";
-  } else if (guess < target) {
-    return "🔼";
-  } else {
-    return "🔽";
+  }
+
+  switch (difficulty) {
+    case "easy":
+      const difference = Math.abs(guess - target);
+      if (difference <= 2) {
+        return guess < target ? "🔼" : "🔽";
+      } else {
+        return guess < target ? "⏫" : "⏬";
+      }
+
+    case "hard":
+      return guess < target ? "🔼" : "🔽";
+
+    case "expert":
+      return "❌";
+
+    default:
+      return "Invalid difficulty level";
   }
 }
 

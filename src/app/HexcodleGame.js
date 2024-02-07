@@ -23,9 +23,12 @@ export default function HexcodleGame({
   maxDay,
 }) {
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
-  const [hardMode, _setHardMode] = useLocalStorage({
-    key: "hexcodle-hardmode",
-    defaultValue: false,
+  const [settings, _setSettings] = useLocalStorage({
+    key: "settings",
+    defaultValue: {
+      difficulty: "easy",
+      colorMode: "hex",
+    },
   });
   const [streak, setStreak] = useLocalStorage({
     key: "streak",
@@ -129,7 +132,7 @@ export default function HexcodleGame({
               gameOver={isComplete}
               guesses={guesses}
               setStatusText={setStatusText}
-              type="rgb"
+              type={settings.colorMode}
             />
             <p className="status-text" style={{ margin: 0 }}>
               {statusText}{" "}
@@ -158,9 +161,9 @@ export default function HexcodleGame({
             <Guess
               key={index}
               guess={guess}
-              type="hex"
+              type={settings.colorMode}
               target={targetColor}
-              hardMode={hardMode}
+              hardMode={settings.difficulty}
             />
           ))}
         </section>
@@ -176,8 +179,8 @@ export default function HexcodleGame({
         counter={guesses.length}
         guesses={guesses}
         win={hasWon}
-        hardMode={hardMode}
         hexcodleNumber={number}
+        settings={settings}
       />
 
       <LaunchModal
