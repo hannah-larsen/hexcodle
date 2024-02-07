@@ -2,7 +2,7 @@
 
 import Modal from "antd/lib/modal";
 import { Switch } from "antd";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { useLocalStorage } from "@mantine/hooks";
 import styled from "styled-components";
 
 const Wrapper = styled.div``;
@@ -14,7 +14,10 @@ const Row = styled.div`
 `;
 
 export default function SettingsModal({ isOpen, setIsOpen }) {
-  const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
+  const [hardMode, setHardMode] = useLocalStorage({
+    key: "hexcodle-hardmode",
+    defaultValue: false,
+  });
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}

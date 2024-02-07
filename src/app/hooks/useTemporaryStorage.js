@@ -1,6 +1,7 @@
 import { useState } from "react";
 import moment from "moment-timezone";
 
+// DO NOT USE THIS: It needs to be refactored to use the useLocalStorage hook
 export default function useTemporaryStorage(key, initialValue) {
   const now = moment().tz("America/New_York");
   const seed = now.format("DD-MM-YYYY");

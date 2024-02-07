@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { useLocalStorage } from "@mantine/hooks";
 
 const Wrapper = styled.div`
   max-width: min(600px, 100%);
@@ -39,9 +39,12 @@ const getAverage = (games) => {
 
 const Stats = (props) => {
   const { games, totalCount } = props;
-  const [streak, _setStreak] = useLocalStorage("streak", {
-    lastDate: null,
-    days: 0,
+  const [streak, _setStreak] = useLocalStorage({
+    key: "streak",
+    defaultValue: {
+      lastDate: null,
+      days: 0,
+    },
   });
   return (
     <Wrapper>

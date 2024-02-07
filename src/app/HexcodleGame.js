@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import useSound from "use-sound";
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
-import useLocalStorage from "./hooks/useLocalStorage.js";
+import { useLocalStorage } from "@mantine/hooks";
 import useSavestate from "./hooks/useSavestate.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
@@ -23,10 +23,16 @@ export default function HexcodleGame({
   maxDay,
 }) {
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
-  const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
-  const [streak, setStreak] = useLocalStorage("streak", {
-    lastDate: null,
-    days: 0,
+  const [hardMode, _setHardMode] = useLocalStorage({
+    key: "hexcodle-hardmode",
+    defaultValue: false,
+  });
+  const [streak, setStreak] = useLocalStorage({
+    key: "streak",
+    defaultValue: {
+      lastDate: null,
+      days: 0,
+    },
   });
   const [userInput, setUserInput] = useState("#");
   const [statusText, setStatusText] = useState(
