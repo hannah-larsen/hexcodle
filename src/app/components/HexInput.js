@@ -147,6 +147,7 @@ const HexInput = ({
           <RGBInput
             ref={rInputRef}
             type="text"
+            inputMode="numeric"
             maxLength={3}
             value={userInput.r}
             onChange={onRGBChange("r", gInputRef)}
@@ -156,6 +157,7 @@ const HexInput = ({
           <RGBInput
             ref={gInputRef}
             type="text"
+            inputMode="numeric"
             maxLength={3}
             value={userInput.g}
             onChange={onRGBChange("g", bInputRef)}
@@ -165,6 +167,7 @@ const HexInput = ({
           <RGBInput
             ref={bInputRef}
             type="text"
+            inputMode="numeric"
             maxLength={3}
             value={userInput.b}
             onChange={onRGBChange("b", null)}
