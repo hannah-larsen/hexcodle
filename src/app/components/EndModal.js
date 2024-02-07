@@ -1,38 +1,33 @@
 import Confetti from "./Confetti";
 import Modal from "antd/lib/modal";
 import Popover from "antd/lib/popover";
-import { compareCharacters, getScore, hexToRGB } from "../utils";
+import { compareCharacters, compareRGB, getScore, hexToRGB } from "../utils";
 import Timer from "./Timer";
 import Image from "next/image";
+import { useLocalStorage } from "@mantine/hooks";
 
 function processHexGuesses(guesses, color, settings) {
-  let resultString = "";
   const reversed = [...guesses].reverse();
-  for (let i = 0; i < reversed.length; i++) {
-    let line = "";
-    for (let j = 0; j < reversed[i].length; j++) {
-      const guessChar = reversed[i].substring(1).charAt(j);
-      const targetChar = color.substring(1).charAt(j);
-      const emoji = compareCharacters(
-        guessChar,
-        targetChar,
-        settings.difficulty
-      );
-      line += emoji;
-    }
-    resultString += line + "\n";
-  }
-  return resultString;
+  const resultLines = reversed.map((guess) => {
+    const line = guess
+      .substring(1)
+      .split("")
+      .map((guessChar, index) => {
+        const targetChar = color.substring(1).charAt(index);
+        return compareCharacters(guessChar, targetChar, settings.difficulty);
+      })
+      .join("");
+    return line;
+  });
+  return resultLines.join("\n");
 }
 
 function processRGBGuesses(guesses, color, settings) {
   let resultString = "";
   const targetRGB = hexToRGB(color);
-
   const reversed = [...guesses].reverse();
   for (let guess of reversed) {
     const guessRGB = hexToRGB(guess);
-
     const redComparison = compareRGB(
       guessRGB.red,
       targetRGB.red,
@@ -48,7 +43,6 @@ function processRGBGuesses(guesses, color, settings) {
       targetRGB.blue,
       settings.difficulty
     );
-
     let line = `🟥${redComparison}🟩${greenComparison}🟦${blueComparison}\n`;
     resultString += line;
   }
@@ -65,8 +59,14 @@ export default function EndModal({
   counter,
   win = false,
   hexcodleNumber,
-  settings,
 }) {
+  const [settings, _setSettings] = useLocalStorage({
+    key: "settings",
+    defaultValue: {
+      difficulty: "easy",
+      colorMode: "hex",
+    },
+  });
   const getSharableString = () => {
     let shareableString = "";
     if (win) {

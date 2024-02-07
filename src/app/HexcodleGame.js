@@ -180,7 +180,6 @@ export default function HexcodleGame({
         guesses={guesses}
         win={hasWon}
         hexcodleNumber={number}
-        settings={settings}
       />
 
       <LaunchModal

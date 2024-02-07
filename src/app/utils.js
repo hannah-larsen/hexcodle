@@ -161,7 +161,6 @@ export async function getColorName(hex) {
     }
     return "Unknown Color";
   } catch (error) {
-    console.error("Error fetching color name:", error);
     return "Error";
   }
 }
