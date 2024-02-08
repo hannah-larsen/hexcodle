@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import useSound from "use-sound";
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
-import useLocalStorage from "./hooks/useLocalStorage.js";
+import { useLocalStorage } from "@mantine/hooks";
 import useSavestate from "./hooks/useSavestate.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
 import Announcement from "./components/Annoucement.js";
 import LaunchModal from "./components/LaunchModal.js";
+import HexInput from "./components/HexInput.js";
 import Navbar from "./components/Navbar.js";
 import Footer from "./components/Footer.js";
 import { getScore } from "./utils.js";
@@ -22,10 +23,23 @@ export default function HexcodleGame({
   maxDay,
 }) {
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
-  const [hardMode, setHardMode] = useLocalStorage("hexcodle-hardmode", false);
-  const [streak, setStreak] = useLocalStorage("streak", {
-    lastDate: null,
-    days: 0,
+  const [settings, _setSettings] = useLocalStorage({
+    key: "settings",
+    defaultValue: {
+      difficulty: "easy",
+      colorMode: "hex",
+    },
+  });
+  const [streak, setStreak] = useLocalStorage({
+    key: "streak",
+    defaultValue: {
+      lastDate: null,
+      days: 0,
+    },
+  });
+  const [loading, setLoading] = useLocalStorage({
+    key: "loading",
+    defaultValue: true,
   });
   const [userInput, setUserInput] = useState("#");
   const [statusText, setStatusText] = useState(
@@ -37,12 +51,6 @@ export default function HexcodleGame({
   const hasWon = guesses.includes(targetColor);
 
   const [play] = useSound("/sounds/hexcodle4.mp3", { volume: 0.4 });
-
-  const handleKeypress = (event) => {
-    if (event.key === "Enter") {
-      enterClick();
-    }
-  };
 
   useEffect(() => {
     if (guesses.includes(targetColor)) {
@@ -63,45 +71,14 @@ export default function HexcodleGame({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guesses, targetColor]);
 
-  const handleChange = (event) => {
-    const text = event.target.value;
-    if (text[0] !== "#") {
-      setUserInput("#");
-    } else if (text.length >= 8) {
-      return;
-    } else {
-      setUserInput(text.toUpperCase());
-    }
-  };
-
-  const enterClick = () => {
+  const submitGuess = (newGuess) => {
     if (guesses.length >= MAX_GUESSES) {
       return;
     }
 
-    const hexCodePattern = /^[0-9A-Fa-f]+$/;
-
-    if (userInput.length != 7) {
-      setStatusText("Error: Hex code must be exactly 6 digits.");
-      return;
-    }
-
-    if (!hexCodePattern.test(userInput.substring(1))) {
-      setStatusText("Invalid character. Hex codes may only contain 0-9, A-F");
-      return;
-    }
-
-    if (guesses.includes(userInput)) {
-      setStatusText(
-        "Already guessed this one! Please enter a different hex code."
-      );
-      return;
-    }
-
     const newGuesses = [...guesses];
-    newGuesses.unshift(userInput);
+    newGuesses.unshift(newGuess);
 
-    // If user wins
     if (newGuesses.includes(targetColor)) {
       play();
       setEndModalVisible(true);
@@ -117,15 +94,18 @@ export default function HexcodleGame({
       setEndModalVisible(true);
     }
     setGuesses(newGuesses);
-    setUserInput("#");
   };
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   // Add score component
   return (
     <>
       <Navbar hexcodleNumber={number} maxDay={maxDay} />
       <main className="everything">
-        <Announcement onClick={() => setIsLaunchModalVisible(true)} />
+        <Announcement onClick={() => setIsLaunchModalVisible(true)} />{" "}
         <section className="frosted-glass" style={{ position: "relative" }}>
           <div
             style={{
@@ -153,27 +133,19 @@ export default function HexcodleGame({
             </div>
           </div>
           <div className="input-section">
-            <div id="input-and-button">
-              <input
-                type="text"
-                className="input input-bordered input-sm w-full max-w-xs"
-                maxLength="7"
-                onKeyPress={handleKeypress}
-                value={userInput}
-                onChange={handleChange}
-                disabled={isComplete}
+            {loading ? (
+              <div style={{ width: 250, height: 36 }} />
+            ) : (
+              <HexInput
+                userInput={userInput}
+                setUserInput={setUserInput}
+                onClick={submitGuess}
+                gameOver={isComplete}
+                guesses={guesses}
+                setStatusText={setStatusText}
+                type={settings.colorMode}
               />
-
-              <button
-                className="square-button"
-                onClick={() => {
-                  enterClick();
-                }}
-                disabled={isComplete}
-              >
-                ➜
-              </button>
-            </div>
+            )}
             <p className="status-text" style={{ margin: 0 }}>
               {statusText}{" "}
               {isComplete
@@ -181,7 +153,6 @@ export default function HexcodleGame({
                 : ""}
             </p>
           </div>
-
           {isComplete && (
             <button
               className="modal-button square-button"
@@ -194,18 +165,19 @@ export default function HexcodleGame({
             </button>
           )}
         </section>
-
         <section className="frosted-glass guess-section">
           <h2 id="guess-heading">Guesses</h2>
 
-          {guesses.map((guess, index) => (
-            <Guess
-              key={index}
-              guess={guess}
-              target={targetColor}
-              hardMode={hardMode}
-            />
-          ))}
+          {!loading &&
+            guesses.map((guess, index) => (
+              <Guess
+                key={index}
+                guess={guess}
+                type={settings.colorMode}
+                target={targetColor}
+                hardMode={settings.difficulty}
+              />
+            ))}
         </section>
       </main>
       <Footer />
@@ -219,7 +191,6 @@ export default function HexcodleGame({
         counter={guesses.length}
         guesses={guesses}
         win={hasWon}
-        hardMode={hardMode}
         hexcodleNumber={number}
       />
 

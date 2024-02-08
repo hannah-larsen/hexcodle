@@ -38,29 +38,83 @@ export function hexToDecimal(hexChar) {
   return parseInt(hexChar, 16);
 }
 
-// Function to print out "guess" emojis corresponding with how close user is to target hex code
-// single arrows denote CLOSE PROXIMITY (within 2 numbers)
-// double arrows denote FURTHER PROXIMITY (within 3 numbers)
-// checkmark denotes correct guess
-export function compareCharacters(guess, target, hardMode = false) {
+// Function for converting 0-255 to a 2 character hex string
+export function decimalToHex2(n) {
+  if (n < 0 || n > 255) {
+    throw new Error("Input must be a number between 0 and 255.");
+  }
+
+  return n.toString(16).padStart(2, "0").toUpperCase();
+}
+
+export function hexToRGB(hex) {
+  const validHex = hex.slice(1);
+  if (validHex.length !== 6) {
+    throw new Error("Invalid hex code");
+  }
+  const red = parseInt(validHex.substring(0, 2), 16);
+  const green = parseInt(validHex.substring(2, 4), 16);
+  const blue = parseInt(validHex.substring(4, 6), 16);
+
+  return { red, green, blue };
+}
+
+export function compareCharacters(guess, target, difficulty = "easy") {
+  // Convert hex characters to decimal for comparison
+  const guessVal = hexToDecimal(guess);
+  const targetVal = hexToDecimal(target);
+  const difference = Math.abs(guessVal - targetVal);
+
+  switch (difficulty) {
+    case "easy":
+      if (guess === target) {
+        return "✅";
+      } else if (difference <= 2) {
+        return guessVal < targetVal ? "🔼" : "🔽";
+      } else {
+        return guessVal < targetVal ? "⏫" : "⏬";
+      }
+
+    case "hard":
+      if (guess === target) {
+        return "✅";
+      } else {
+        return guessVal < targetVal ? "🔼" : "🔽";
+      }
+
+    case "expert":
+      return guess === target ? "✅" : "❌";
+
+    default:
+      return "Invalid difficulty level";
+  }
+}
+
+export function compareRGB(guess, target, difficulty) {
+  // Check for exact match
   if (guess === target) {
     return "✅";
-  } else if (
-    hexToDecimal(guess) < hexToDecimal(target) &&
-    hexToDecimal(target) - hexToDecimal(guess) >= 3 &&
-    !hardMode
-  ) {
-    return "⏫";
-  } else if (
-    hexToDecimal(guess) > hexToDecimal(target) &&
-    hexToDecimal(guess) - hexToDecimal(target) >= 3 &&
-    !hardMode
-  ) {
-    return "⏬";
-  } else if (hexToDecimal(guess) < hexToDecimal(target)) {
-    return "🔼";
-  } else {
-    return "🔽";
+  }
+
+  switch (difficulty) {
+    case "easy":
+      const difference = Math.abs(guess - target);
+      if (difference <= 2) {
+        return guess < target ? "🔼" : "🔽";
+      } else if (difference <= 9) {
+        return guess < target ? "⤴️" : "⤵️";
+      } else {
+        return guess < target ? "⏫" : "⏬";
+      }
+
+    case "hard":
+      return guess < target ? "🔼" : "🔽";
+
+    case "expert":
+      return "❌";
+
+    default:
+      return "Invalid difficulty level";
   }
 }
 
@@ -109,7 +163,6 @@ export async function getColorName(hex) {
     }
     return "Unknown Color";
   } catch (error) {
-    console.error("Error fetching color name:", error);
     return "Error";
   }
 }
@@ -117,7 +170,7 @@ export async function getColorName(hex) {
 function getRGB(hexcode) {
   const validHex = hexcode.slice(1);
   if (validHex.length !== 6) {
-    throw new Error('Invalid hex code');
+    throw new Error("Invalid hex code");
   }
   const red = parseInt(validHex.substring(0, 2), 16);
   const green = parseInt(validHex.substring(2, 4), 16);
@@ -129,10 +182,21 @@ function getRGB(hexcode) {
 export function getScore(target, guesses) {
   const MAX_GUESSES = 5;
   let differenceSum = 0;
-  const { red: targetRed, green: targetGreen, blue: targetBlue } = getRGB(target);
-  guesses.forEach(guess => {
-    const {red, green, blue} = getRGB(guess);
-    differenceSum += Math.abs(targetRed - red) + Math.abs(targetGreen - green) + Math.abs(targetBlue - blue)
+  const {
+    red: targetRed,
+    green: targetGreen,
+    blue: targetBlue,
+  } = getRGB(target);
+  guesses.forEach((guess) => {
+    const { red, green, blue } = getRGB(guess);
+    differenceSum +=
+      Math.abs(targetRed - red) +
+      Math.abs(targetGreen - green) +
+      Math.abs(targetBlue - blue);
   });
-  return Math.round(((765 * MAX_GUESSES) - differenceSum) / (765 * MAX_GUESSES) * 100) + "%";
+  return (
+    Math.round(
+      ((765 * MAX_GUESSES - differenceSum) / (765 * MAX_GUESSES)) * 100
+    ) + "%"
+  );
 }

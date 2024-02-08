@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const Wrapper = styled.button`
-  --color-1: #fef08a;
-  --color-2: #854d0e;
+  --color-1: #fbcfe8;
+  --color-2: #ec4899;
   background-color: var(--color-1);
   border: var(--color-2) 1px solid;
   color: var(--color-2);
@@ -25,6 +25,6 @@ const Wrapper = styled.button`
 
 export default function Announcement({ onClick }) {
   return (
-    <Wrapper onClick={onClick}>Jan 28th Updates: 📢 Contest Alert! 💥</Wrapper>
+    <Wrapper onClick={onClick}>Feb 8th Updates: 📢 New game modes! 💥</Wrapper>
   );
 }

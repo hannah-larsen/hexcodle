@@ -1,9 +1,54 @@
 import Confetti from "./Confetti";
 import Modal from "antd/lib/modal";
 import Popover from "antd/lib/popover";
-import { compareCharacters, getHexcodleNumber, getScore } from "../utils";
+import { compareCharacters, compareRGB, getScore, hexToRGB } from "../utils";
 import Timer from "./Timer";
 import Image from "next/image";
+import { useLocalStorage } from "@mantine/hooks";
+
+function processHexGuesses(guesses, color, settings) {
+  const reversed = [...guesses].reverse();
+  const resultLines = reversed.map((guess) => {
+    const line = guess
+      .substring(1)
+      .split("")
+      .map((guessChar, index) => {
+        const targetChar = color.substring(1).charAt(index);
+        return compareCharacters(guessChar, targetChar, settings.difficulty);
+      })
+      .join("");
+    return line;
+  });
+  return resultLines.join("\n");
+}
+
+function processRGBGuesses(guesses, color, settings) {
+  let resultString = "";
+  const targetRGB = hexToRGB(color);
+  const reversed = [...guesses].reverse();
+  for (let guess of reversed) {
+    const guessRGB = hexToRGB(guess);
+    const redComparison = compareRGB(
+      guessRGB.red,
+      targetRGB.red,
+      settings.difficulty
+    );
+    const greenComparison = compareRGB(
+      guessRGB.green,
+      targetRGB.green,
+      settings.difficulty
+    );
+    const blueComparison = compareRGB(
+      guessRGB.blue,
+      targetRGB.blue,
+      settings.difficulty
+    );
+    let line = `🟥${redComparison}🟩${greenComparison}🟦${blueComparison}\n`;
+    resultString += line;
+  }
+
+  return resultString;
+}
 
 export default function EndModal({
   open,
@@ -13,42 +58,36 @@ export default function EndModal({
   colorName,
   counter,
   win = false,
-  hardMode = false,
   hexcodleNumber,
 }) {
+  const [settings, _setSettings] = useLocalStorage({
+    key: "settings",
+    defaultValue: {
+      difficulty: "easy",
+      colorMode: "hex",
+    },
+  });
   const getSharableString = () => {
     let shareableString = "";
     if (win) {
-      shareableString = `I got Hexcodle #${hexcodleNumber}${
-        hardMode ? "*" : ""
-      } in ${guesses.length} ${
-        guesses.length > 1 ? "guesses" : "guess"
-      }! \nMy score: ${getScore(color, guesses)}\nhttps://hexcodle.com \n\n`;
+      shareableString = `I got Hexcodle #${hexcodleNumber} in ${
+        guesses.length
+      } ${guesses.length > 1 ? "guesses" : "guess"}! \nMy score: ${getScore(
+        color,
+        guesses
+      )}\nhttps://hexcodle.com \n\n`;
     } else {
-      shareableString = `I did not solve Hexcodle #${hexcodleNumber}${
-        hardMode ? "*" : ""
-      } \nMy score: ${getScore(color, guesses)}
-      \nhttps://hexcodle.com \n\n`;
+      shareableString = `I did not solve Hexcodle #${hexcodleNumber} \nMy score: ${getScore(
+        color,
+        guesses
+      )}\nhttps://hexcodle.com \n\n`;
     }
 
-    const reversed = [...guesses].reverse();
+    const processGuesses =
+      settings.colorMode === "hex" ? processHexGuesses : processRGBGuesses;
 
-    for (let i = 0; i < reversed.length; i++) {
-      const guess = reversed[i];
-      let line = "";
+    shareableString += processGuesses(guesses, color, settings);
 
-      for (let j = 0; j < guess.length; j++) {
-        const guessChar = guess.substring(1).charAt(j);
-        const targetChar = color.substring(1).charAt(j);
-        if (!guessChar) {
-          continue;
-        }
-        const emoji = compareCharacters(guessChar, targetChar, hardMode);
-        line += emoji;
-      }
-
-      shareableString += line + "\n";
-    }
     return shareableString;
   };
 

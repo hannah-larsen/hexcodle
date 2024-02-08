@@ -8,6 +8,7 @@ const GTM_ID = "G-1J0E738QRV";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
+  charset: "UTF-8",
   title: "Hexcodle | The Daily Hexcode Guessing Game!",
   description:
     "Can you guess today's hexcode color? Challenge your color instincts and decode the hexcode with Hexcodle! Inspired by Wordle, but for color enthusiasts.",
