@@ -120,6 +120,12 @@ const HexInput = ({
       const hex = `#${decimalToHex2(userInput.r)}${decimalToHex2(
         userInput.g
       )}${decimalToHex2(userInput.b)}`;
+      if (guesses.includes(hex)) {
+        setStatusText(
+          "Already guessed this one! Please try a different guess."
+        );
+        return;
+      }
       onClick(hex);
       rInputRef.current.focus();
       setUserInput({ r: "", g: "", b: "" });

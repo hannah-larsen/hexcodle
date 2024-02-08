@@ -23,12 +23,11 @@ export default function HexcodleGame({
   maxDay,
 }) {
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
-  const [settings, setSettings] = useLocalStorage({
+  const [settings, _setSettings] = useLocalStorage({
     key: "settings",
     defaultValue: {
       difficulty: "easy",
       colorMode: "hex",
-      loaded: false,
     },
   });
   const [streak, setStreak] = useLocalStorage({
@@ -37,6 +36,10 @@ export default function HexcodleGame({
       lastDate: null,
       days: 0,
     },
+  });
+  const [loading, setLoading] = useLocalStorage({
+    key: "loading",
+    defaultValue: true,
   });
   const [userInput, setUserInput] = useState("#");
   const [statusText, setStatusText] = useState(
@@ -94,7 +97,7 @@ export default function HexcodleGame({
   };
 
   useEffect(() => {
-    setSettings({ ...settings, loaded: true });
+    setLoading(false);
   }, []);
 
   // Add score component
@@ -103,7 +106,7 @@ export default function HexcodleGame({
       <Navbar hexcodleNumber={number} maxDay={maxDay} />
       <main className="everything">
         <Announcement onClick={() => setIsLaunchModalVisible(true)} />
-        {settings.loaded && (
+        {!loading && (
           <>
             {" "}
             <section className="frosted-glass" style={{ position: "relative" }}>
