@@ -4,7 +4,7 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title={<center>💙 Patch Notes 1.30.24 💙</center>}
+      title={<center>💕 Patch Notes 2.8.24 💕</center>}
       open={isOpen}
       onOk={() => {
         setIsOpen(false);
@@ -16,6 +16,11 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
     >
       <ul>
         <li>
+          <strong>New game modes:</strong> You asked, we delivered. RGB and
+          Expert modes now available. To toggle between modes, click on the gear
+          icon on the top right side of the page.
+        </li>
+        <li>
           <strong>Statistics:</strong> Now introducing...stats! View your game
           stats on the archive page or on the end game modal when you complete a
           game. Streaks are counted... starting now!
@@ -26,15 +31,8 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
           better scoring algorithm.
         </li>
         <li>
-          <strong>New win sound:</strong> After winning a Hexcodle game you can
-          hear a victory sound! Wow!
-        </li>
-        <li>
-          <strong>Bugs:</strong> Please note that our easy/hard toggle is a bit
-          buggy if you try to switch it mid-game, we are aware and working on
-          fixing it! We are also aware of the issue of an infinite archive by
-          pressing the left-side arrow - consider this Hexcodle unlimited,
-          although these will not count towards your completed games.
+          <strong>New win sound:</strong> Play and win a game of Hexcodle to
+          hear our new victory noise!
         </li>
         <li>
           We see your feedback and we love to improve Hexcodle wherever we can!

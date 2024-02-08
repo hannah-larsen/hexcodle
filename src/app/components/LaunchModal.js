@@ -4,7 +4,7 @@ export default function LaunchModal({ isOpen, setIsOpen }) {
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title="Hexcodle Updates: January 28th, 2023"
+      title="Hexcodle Updates: February 8th, 2023"
       open={isOpen}
       onOk={() => {
         setIsOpen(false);
@@ -14,6 +14,13 @@ export default function LaunchModal({ isOpen, setIsOpen }) {
       }}
       cancelButtonProps={{ style: { display: "none" } }}
     >
+      <p>
+        <strong>Game Updates</strong>
+      </p>
+      <p>
+        New game modes are available! Click the gear icon on the top right
+        corner of the screen to toggle between our various game modes.
+      </p>
       <p>
         <strong>Contest</strong>
       </p>
@@ -28,18 +35,11 @@ export default function LaunchModal({ isOpen, setIsOpen }) {
           here
         </a>{" "}
         for a chance to have it featured on Hexcodle.com in our archive!
+        Submissions close February 12th.
       </p>
       <center>
         <img src="/hexparrot-animated.gif" alt="Hex Parrot Win" />
       </center>
-      <p>
-        <strong>Game Updates</strong>
-      </p>
-      <p>
-        Game statistics are now LIVE! These are a work in progress, but for now,
-        they are visible on the archive page. For a complete list of updates,
-        visit our patch notes link at the bottom of the site.
-      </p>
       <p>- Hannah & Ekim</p>
       <p style={{ fontSize: "0.7rem" }}>
         If you like playing Hexcodle and wish to support the developers, we have

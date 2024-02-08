@@ -25,6 +25,6 @@ const Wrapper = styled.button`
 
 export default function Announcement({ onClick }) {
   return (
-    <Wrapper onClick={onClick}>Jan 28th Updates: 📢 Contest Alert! 💥</Wrapper>
+    <Wrapper onClick={onClick}>Feb 8th Updates: 📢 New game modes! 💥</Wrapper>
   );
 }
