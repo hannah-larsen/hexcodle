@@ -105,84 +105,80 @@ export default function HexcodleGame({
     <>
       <Navbar hexcodleNumber={number} maxDay={maxDay} />
       <main className="everything">
-        <Announcement onClick={() => setIsLaunchModalVisible(true)} />
-        {!loading && (
-          <>
-            {" "}
-            <section className="frosted-glass" style={{ position: "relative" }}>
+        <Announcement onClick={() => setIsLaunchModalVisible(true)} />{" "}
+        <section className="frosted-glass" style={{ position: "relative" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "start",
+              alignItems: "end",
+              width: "100%",
+              marginBottom: 8,
+            }}
+          >
+            <div className="first-square" style={{ flex: 1 }}>
+              <h2 className="guess-title" style={{ marginBottom: 8 }}>
+                Target
+              </h2>
               <div
-                style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "end",
-                  width: "100%",
-                  marginBottom: 8,
-                }}
-              >
-                <div className="first-square" style={{ flex: 1 }}>
-                  <h2 className="guess-title" style={{ marginBottom: 8 }}>
-                    Target
-                  </h2>
-                  <div
-                    className="square"
-                    style={{ backgroundColor: targetColor }}
-                  />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <h2 className="guess-title" style={{ marginBottom: 8 }}>
-                    Your Guess
-                  </h2>
-                  <div
-                    className="square"
-                    style={{ backgroundColor: guesses[0] }}
-                  />
-                </div>
-              </div>
-              <div className="input-section">
-                <HexInput
-                  userInput={userInput}
-                  setUserInput={setUserInput}
-                  onClick={submitGuess}
-                  gameOver={isComplete}
-                  guesses={guesses}
-                  setStatusText={setStatusText}
-                  type={settings.colorMode}
-                />
-                <p className="status-text" style={{ margin: 0 }}>
-                  {statusText}{" "}
-                  {isComplete
-                    ? "Your score is " + getScore(targetColor, guesses)
-                    : ""}
-                </p>
-              </div>
-              {isComplete && (
-                <button
-                  className="modal-button square-button"
-                  id="shareScore"
-                  onClick={() => {
-                    setEndModalVisible(true);
-                  }}
-                >
-                  <ShareAltOutlined />
-                </button>
-              )}
-            </section>
-            <section className="frosted-glass guess-section">
-              <h2 id="guess-heading">Guesses</h2>
+                className="square"
+                style={{ backgroundColor: targetColor }}
+              />
+            </div>
+            <div style={{ flex: 1 }}>
+              <h2 className="guess-title" style={{ marginBottom: 8 }}>
+                Your Guess
+              </h2>
+              <div className="square" style={{ backgroundColor: guesses[0] }} />
+            </div>
+          </div>
+          <div className="input-section">
+            {loading ? (
+              <div style={{ width: 250, height: 36 }} />
+            ) : (
+              <HexInput
+                userInput={userInput}
+                setUserInput={setUserInput}
+                onClick={submitGuess}
+                gameOver={isComplete}
+                guesses={guesses}
+                setStatusText={setStatusText}
+                type={settings.colorMode}
+              />
+            )}
+            <p className="status-text" style={{ margin: 0 }}>
+              {statusText}{" "}
+              {isComplete
+                ? "Your score is " + getScore(targetColor, guesses)
+                : ""}
+            </p>
+          </div>
+          {isComplete && (
+            <button
+              className="modal-button square-button"
+              id="shareScore"
+              onClick={() => {
+                setEndModalVisible(true);
+              }}
+            >
+              <ShareAltOutlined />
+            </button>
+          )}
+        </section>
+        <section className="frosted-glass guess-section">
+          <h2 id="guess-heading">Guesses</h2>
 
-              {settings &&
-                guesses.map((guess, index) => (
-                  <Guess
-                    key={index}
-                    guess={guess}
-                    type={settings.colorMode}
-                    target={targetColor}
-                    hardMode={settings.difficulty}
-                  />
-                ))}
-            </section>
-          </>
-        )}
+          {!loading &&
+            guesses.map((guess, index) => (
+              <Guess
+                key={index}
+                guess={guess}
+                type={settings.colorMode}
+                target={targetColor}
+                hardMode={settings.difficulty}
+              />
+            ))}
+        </section>
       </main>
       <Footer />
 
