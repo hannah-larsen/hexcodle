@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import useSound from "use-sound";
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
 import { useLocalStorage } from "@mantine/hooks";
@@ -23,11 +23,12 @@ export default function HexcodleGame({
   maxDay,
 }) {
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
-  const [settings, _setSettings] = useLocalStorage({
+  const [settings, setSettings] = useLocalStorage({
     key: "settings",
     defaultValue: {
       difficulty: "easy",
       colorMode: "hex",
+      loaded: false,
     },
   });
   const [streak, setStreak] = useLocalStorage({
@@ -92,81 +93,93 @@ export default function HexcodleGame({
     setGuesses(newGuesses);
   };
 
+  useEffect(() => {
+    setSettings({ ...settings, loaded: true });
+  }, []);
+
   // Add score component
   return (
     <>
       <Navbar hexcodleNumber={number} maxDay={maxDay} />
       <main className="everything">
         <Announcement onClick={() => setIsLaunchModalVisible(true)} />
-        <section className="frosted-glass" style={{ position: "relative" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "start",
-              alignItems: "end",
-              width: "100%",
-              marginBottom: 8,
-            }}
-          >
-            <div className="first-square" style={{ flex: 1 }}>
-              <h2 className="guess-title" style={{ marginBottom: 8 }}>
-                Target
-              </h2>
+        {settings.loaded && (
+          <>
+            {" "}
+            <section className="frosted-glass" style={{ position: "relative" }}>
               <div
-                className="square"
-                style={{ backgroundColor: targetColor }}
-              />
-            </div>
-            <div style={{ flex: 1 }}>
-              <h2 className="guess-title" style={{ marginBottom: 8 }}>
-                Your Guess
-              </h2>
-              <div className="square" style={{ backgroundColor: guesses[0] }} />
-            </div>
-          </div>
-          <div className="input-section">
-            <HexInput
-              userInput={userInput}
-              setUserInput={setUserInput}
-              onClick={submitGuess}
-              gameOver={isComplete}
-              guesses={guesses}
-              setStatusText={setStatusText}
-              type={settings.colorMode}
-            />
-            <p className="status-text" style={{ margin: 0 }}>
-              {statusText}{" "}
-              {isComplete
-                ? "Your score is " + getScore(targetColor, guesses)
-                : ""}
-            </p>
-          </div>
-          {isComplete && (
-            <button
-              className="modal-button square-button"
-              id="shareScore"
-              onClick={() => {
-                setEndModalVisible(true);
-              }}
-            >
-              <ShareAltOutlined />
-            </button>
-          )}
-        </section>
+                style={{
+                  display: "flex",
+                  justifyContent: "start",
+                  alignItems: "end",
+                  width: "100%",
+                  marginBottom: 8,
+                }}
+              >
+                <div className="first-square" style={{ flex: 1 }}>
+                  <h2 className="guess-title" style={{ marginBottom: 8 }}>
+                    Target
+                  </h2>
+                  <div
+                    className="square"
+                    style={{ backgroundColor: targetColor }}
+                  />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <h2 className="guess-title" style={{ marginBottom: 8 }}>
+                    Your Guess
+                  </h2>
+                  <div
+                    className="square"
+                    style={{ backgroundColor: guesses[0] }}
+                  />
+                </div>
+              </div>
+              <div className="input-section">
+                <HexInput
+                  userInput={userInput}
+                  setUserInput={setUserInput}
+                  onClick={submitGuess}
+                  gameOver={isComplete}
+                  guesses={guesses}
+                  setStatusText={setStatusText}
+                  type={settings.colorMode}
+                />
+                <p className="status-text" style={{ margin: 0 }}>
+                  {statusText}{" "}
+                  {isComplete
+                    ? "Your score is " + getScore(targetColor, guesses)
+                    : ""}
+                </p>
+              </div>
+              {isComplete && (
+                <button
+                  className="modal-button square-button"
+                  id="shareScore"
+                  onClick={() => {
+                    setEndModalVisible(true);
+                  }}
+                >
+                  <ShareAltOutlined />
+                </button>
+              )}
+            </section>
+            <section className="frosted-glass guess-section">
+              <h2 id="guess-heading">Guesses</h2>
 
-        <section className="frosted-glass guess-section">
-          <h2 id="guess-heading">Guesses</h2>
-
-          {guesses.map((guess, index) => (
-            <Guess
-              key={index}
-              guess={guess}
-              type={settings.colorMode}
-              target={targetColor}
-              hardMode={settings.difficulty}
-            />
-          ))}
-        </section>
+              {settings &&
+                guesses.map((guess, index) => (
+                  <Guess
+                    key={index}
+                    guess={guess}
+                    type={settings.colorMode}
+                    target={targetColor}
+                    hardMode={settings.difficulty}
+                  />
+                ))}
+            </section>
+          </>
+        )}
       </main>
       <Footer />
 

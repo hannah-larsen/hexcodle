@@ -17,6 +17,16 @@ const OptionGroup = styled.div`
   gap: 4px;
 `;
 
+const Explanation = styled.div`
+  p {
+    padding: 0;
+  }
+`;
+
+const Emoji = styled.span`
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+`;
+
 const difficultyOptions = [
   { label: "Easy", value: "easy" },
   { label: "Hard", value: "hard" },
@@ -51,6 +61,36 @@ export default function SettingsModal({ isOpen, setIsOpen }) {
       cancelButtonProps={{ style: { display: "none" } }}
     >
       <Wrapper>
+        <Explanation>
+          <h4>Emoji Legend</h4>
+          <p>✅ Correct</p>
+          {settings.difficulty === "expert" && (
+            <>
+              <p>❌ Incorrect</p>
+            </>
+          )}
+          {settings.difficulty === "hard" && (
+            <>
+              <p>🔼 / 🔽 Guess higher or lower</p>
+            </>
+          )}
+          {settings.difficulty === "easy" && settings.colorMode === "rgb" && (
+            <>
+              <p>🔼 / 🔽 Guess higher or lower by 1 or 2</p>
+              <p>
+                <Emoji>⤴️</Emoji> / <Emoji>⤵️</Emoji> Guess higher or lower by 3
+                to 9
+              </p>
+              <p>⏫️ / ⏬️ Guess higher or lower by 10+</p>
+            </>
+          )}
+          {settings.difficulty === "easy" && settings.colorMode === "hex" && (
+            <>
+              <p>🔼 / 🔽 Guess higher or lower by 1 or 2</p>
+              <p>⏫️ / ⏬️ Guess higher or lower by 3+</p>
+            </>
+          )}
+        </Explanation>
         <OptionGroup>
           <h4>Difficulty</h4>
           <Radio.Group

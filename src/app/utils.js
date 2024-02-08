@@ -101,6 +101,8 @@ export function compareRGB(guess, target, difficulty) {
       const difference = Math.abs(guess - target);
       if (difference <= 2) {
         return guess < target ? "🔼" : "🔽";
+      } else if (difference <= 9) {
+        return guess < target ? "⤴️" : "⤵️";
       } else {
         return guess < target ? "⏫" : "⏬";
       }
