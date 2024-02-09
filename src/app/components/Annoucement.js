@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.button`
   --color-1: #fbcfe8;
-  --color-2: #ec4899;
+  --color-2: #9d174d;
   background-color: var(--color-1);
   border: var(--color-2) 1px solid;
   color: var(--color-2);

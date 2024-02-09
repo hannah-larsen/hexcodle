@@ -23,19 +23,12 @@ export default function RulesModal({ isOpen, setIsOpen }) {
       <p>
         There will be symbols that pop up in the <i>guesses</i> section that
         indicate the closeness of your guess. Use these to gauge your next
-        guess! Here is what each symbol means:
+        guess!
       </p>
       <p>
-        ✅ You got it! <br></br>
-        🔼 You need to guess higher (only off by 1 or 2)* <br></br>
-        🔽 You need to guess lower (only off by 1 or 2)* <br></br>⏫ You need to
-        guess way higher! (off by 3 or more) <br></br>⏬ You need to guess way
-        lower! (off by 3 or more) <br></br>
-      </p>
-      <p>
-        *Note: If <i>hard</i> mode is enabled, you will only see if your current
-        guess needs to be higher or lower, the closeness of your guess will not
-        be revealed.
+        Symbols that are displayed in the <i>guesses</i> section depend on which
+        game setting/difficulty you choose. Head over to the <i>settings</i>{" "}
+        icon on the top right corner to choose your preferred game mode!
       </p>
     </Modal>
   );
