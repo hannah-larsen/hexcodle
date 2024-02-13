@@ -96,7 +96,7 @@ const HexcodleTitle = styled.h1`
   }
 `;
 
-export default function Navbar({ hexcodleNumber, maxDay }) {
+export default function Navbar({ hexcodleNumber, maxDay, arrowsDisabled }) {
   const [isRuleModalVisible, setIsRuleModalVisible] = useState(false);
   const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
   const [isSettingModalVisible, setIsSettingModalVisible] = useState(false);
@@ -118,7 +118,7 @@ export default function Navbar({ hexcodleNumber, maxDay }) {
           <NavCenter>
             {hexcodleNumber ? (
               <>
-                {parseInt(hexcodleNumber, 10) + 1 > maxDay ? (
+                {parseInt(hexcodleNumber, 10) + 1 > maxDay || arrowsDisabled ? (
                   <CaretLeftOutlined style={{ color: "var(--gray-300)" }} />
                 ) : (
                   <Link
@@ -132,12 +132,16 @@ export default function Navbar({ hexcodleNumber, maxDay }) {
                 <Link style={{ textDecoration: "none" }} href={"/"}>
                   <HexcodleTitle>Hexcodle #{hexcodleNumber}</HexcodleTitle>
                 </Link>
-                <Link
-                  style={{ textDecoration: "none" }}
-                  href={`/archive/${parseInt(hexcodleNumber, 10) - 1}`}
-                >
-                  <CaretRightOutlined />
-                </Link>
+                {arrowsDisabled ? (
+                  <CaretRightOutlined style={{ color: "var(--gray-300)" }} />
+                ) : (
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    href={`/archive/${parseInt(hexcodleNumber, 10) - 1}`}
+                  >
+                    <CaretRightOutlined />
+                  </Link>
+                )}
               </>
             ) : (
               <Link style={{ textDecoration: "none" }} href={"/"}>

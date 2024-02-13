@@ -9,10 +9,15 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Stats from "../components/Stats";
 
+const SectionTitle = styled.h2`
+  font-size: 1.8rem;
+  padding: 16px;
+`;
+
 const Wrapper = styled.div`
   display: grid;
   gap: 16px;
-  padding: 16px;
+  padding: 0px 16px;
   width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 `;
@@ -23,6 +28,44 @@ const StatsWrapper = styled.div`
   width: 100%;
 `;
 
+const customPanelData = [
+  {
+    id: "CONTEST1",
+    colorName: "When Pigs Fly",
+    hexcode: "#D46C8D",
+    urlEndpoint: "contest1",
+    date: "Contest 1",
+  },
+  {
+    id: "CONTEST2",
+    colorName: "Rainy Day Sunday",
+    hexcode: "#BBC3DB",
+    urlEndpoint: "contest2",
+    date: "Contest 2",
+  },
+  {
+    id: "CONTEST3",
+    colorName: "Food Court Honey Mustard",
+    hexcode: "#DCB73E",
+    urlEndpoint: "contest3",
+    date: "Contest 3",
+  },
+  {
+    id: "HANNAH",
+    colorName: "Hannah's Green",
+    hexcode: "#83C955",
+    urlEndpoint: "hannah",
+    date: "Bonus 1",
+  },
+  {
+    id: "EKIM",
+    colorName: "Ekim's Blue",
+    hexcode: "#1392ED",
+    urlEndpoint: "ekim",
+    date: "Bonus 2",
+  },
+];
+
 const ArchivePage = ({ panelsData }) => {
   const [completedGames, setCompletedGames] = useState([]);
 
@@ -31,15 +74,13 @@ const ArchivePage = ({ panelsData }) => {
       try {
         const saves =
           JSON.parse(window.localStorage.getItem("hexcodleSaves")) || {};
-        return Object.entries(saves).filter(
-          ([key, data]) => data.isComplete && key > 0
-        );
+        return Object.entries(saves).filter(([key, data]) => data.isComplete);
       } catch (error) {
         console.error("Error fetching completed games:", error);
         return [];
       }
     };
-
+    console.log(getCompleteGames());
     setCompletedGames(getCompleteGames());
   }, []);
 
@@ -51,8 +92,37 @@ const ArchivePage = ({ panelsData }) => {
         style={{ paddingLeft: 0, paddingRight: 0, gap: 0 }}
       >
         <StatsWrapper>
-          <Stats games={completedGames} totalCount={panelsData.length} />
+          <Stats
+            games={completedGames.filter(([key]) => parseInt(key, 10) > 0)}
+            totalCount={panelsData.length}
+          />
         </StatsWrapper>
+        <SectionTitle>Bonus Hexcodles</SectionTitle>
+        <Wrapper>
+          {customPanelData.map(
+            ({ id, colorName, hexcode, urlEndpoint, date }) => {
+              const isComplete = completedGames
+                .map(([key]) => key)
+                .includes(id);
+              return (
+                <Link
+                  key={id}
+                  href={`/archive/${urlEndpoint}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <ArchivePanel
+                    hidden={!isComplete}
+                    hexcodleNumber={id}
+                    colorName={colorName}
+                    hexcode={hexcode}
+                    date={date}
+                  />
+                </Link>
+              );
+            }
+          )}
+        </Wrapper>
+        <SectionTitle>Daily Hexcodle Archive</SectionTitle>
         <Wrapper>
           {panelsData.map(({ hexcodleNumber, colorName, hexcode, date }) => {
             const isComplete = completedGames
@@ -74,17 +144,6 @@ const ArchivePage = ({ panelsData }) => {
               </Link>
             );
           })}
-          {/*
-          <Link href={`/archive/hannah`} style={{ textDecoration: "none" }}>
-            <ArchivePanel
-              hidden={!completedGames.includes("HANNAH")}
-              hexcodleNumber={"HANNAH"}
-              colorName={"Hannah's Green"}
-              hexcode={"#83C955"}
-              date={"Bonus 1"}
-            />
-          </Link>
-        */}
         </Wrapper>
       </main>
       <Footer />

@@ -21,6 +21,7 @@ export default function HexcodleGame({
   colorName,
   number,
   maxDay,
+  arrowsDisabled = false,
 }) {
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
   const [settings, _setSettings] = useLocalStorage({
@@ -103,7 +104,11 @@ export default function HexcodleGame({
   // Add score component
   return (
     <>
-      <Navbar hexcodleNumber={number} maxDay={maxDay} />
+      <Navbar
+        hexcodleNumber={number}
+        maxDay={maxDay}
+        arrowsDisabled={arrowsDisabled}
+      />
       <main className="everything">
         <Announcement onClick={() => setIsLaunchModalVisible(true)} />{" "}
         <section className="frosted-glass" style={{ position: "relative" }}>

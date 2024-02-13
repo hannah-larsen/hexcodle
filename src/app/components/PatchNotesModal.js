@@ -4,7 +4,7 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title={<center>💕 Patch Notes 2.8.24 💕</center>}
+      title={<center>💘 Patch Notes 2.12.24 💘</center>}
       open={isOpen}
       onOk={() => {
         setIsOpen(false);
@@ -15,6 +15,12 @@ export default function PatchNotesModal({ isOpen, setIsOpen }) {
       cancelButtonProps={{ style: { display: "none" } }}
     >
       <ul>
+        <li>
+          <strong>Contest Winners:</strong> Huge thanks to everyone who
+          submitted a colour in our custom colour contest! Head on over to our
+          archive to play the winning contest puzzles and see if your submission
+          won!
+        </li>
         <li>
           <strong>New game modes:</strong> You asked, we delivered. RGB and
           Expert modes now available. To toggle between modes, click on the gear

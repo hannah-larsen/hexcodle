@@ -4,7 +4,7 @@ export default function LaunchModal({ isOpen, setIsOpen }) {
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title="Hexcodle Updates: February 8th, 2023"
+      title="Hexcodle Updates: February 12th, 2024"
       open={isOpen}
       onOk={() => {
         setIsOpen(false);
@@ -15,27 +15,19 @@ export default function LaunchModal({ isOpen, setIsOpen }) {
       cancelButtonProps={{ style: { display: "none" } }}
     >
       <p>
+        <strong>Contest</strong>
+      </p>
+      <p>
+        Congratulations to the winners of our custom colour contest! Head on
+        over to our archive to play the winning contest puzzles and see if your
+        submission won! 🎉
+      </p>
+      <p>
         <strong>Game Updates</strong>
       </p>
       <p>
         New game modes are available! Click the gear icon on the top right
         corner of the screen to toggle between our various game modes.
-      </p>
-      <p>
-        <strong>Contest</strong>
-      </p>
-      <p>
-        Love Hexcodle? Want to have your very own puzzle featured on our
-        website? Submit your colour + name choice
-        <a
-          target="_blank"
-          href="https://docs.google.com/forms/d/1rm-W_P0t25lVo4XeFrsZWoSMeK6gsiPi4JJAkcpJDGc/"
-        >
-          {" "}
-          here
-        </a>{" "}
-        for a chance to have it featured on Hexcodle.com in our archive!
-        Submissions close February 12th.
       </p>
       <center>
         <img src="/hexparrot-animated.gif" alt="Hex Parrot Win" />

@@ -6,9 +6,9 @@ export default async function Page({}) {
 
   return (
     <HexcodleGame
-      targetColor={"#83C955"}
-      colorName={"Hannah's Green"}
-      number={"HANNAH"}
+      targetColor={"#DCB73E"}
+      colorName={"Food Court Honey Mustard"}
+      number={"CONTEST3"}
       maxDay={currentHexcodle}
       arrowsDisabled
     />
