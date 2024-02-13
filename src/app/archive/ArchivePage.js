@@ -12,6 +12,7 @@ import Stats from "../components/Stats";
 const SectionTitle = styled.h2`
   font-size: 1.8rem;
   padding: 16px;
+  text-align: center;
 `;
 
 const Wrapper = styled.div`
