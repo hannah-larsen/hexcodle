@@ -22,12 +22,12 @@
 */
 * {
   margin: 0;
+  overflow: auto;
 }
 
 /*
   3. Allow percentage-based heights in the application
 */
-html,
 body {
   height: 100%;
 }
@@ -62,19 +62,6 @@ button,
 textarea,
 select {
   font: inherit;
-}
-
-/*
-  8. Avoid text overflows
-*/
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
 }
 
 /*
@@ -218,8 +205,6 @@ section {
   transition: color 0.5 ease;
 }
 
-/* Section styles */
-
 .input-section {
   display: flex;
   flex-direction: column;
@@ -266,7 +251,7 @@ section {
 
 .square {
   flex: 1;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   background-color: var(--gray-600);
   margin-bottom: 6px;
   border-radius: 8px;
@@ -276,7 +261,6 @@ section {
   min-height: 400px;
 }
 
-/* ID styles */
 #row {
   display: flex;
   flex-direction: row;
