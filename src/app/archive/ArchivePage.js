@@ -29,6 +29,17 @@ const StatsWrapper = styled.div`
   width: 100%;
 `;
 
+const CustomPuzzleLink = styled.a`
+  padding-top: 16px;
+  color: black;
+  font-size: 0.8rem;
+
+  &:hover {
+    color: #334155;
+    transition: fade, 0.2s;
+  }
+`;
+
 const customPanelData = [
   {
     id: "CONTEST1",
@@ -98,7 +109,31 @@ const ArchivePage = ({ panelsData }) => {
             totalCount={panelsData.length}
           />
         </StatsWrapper>
-        <SectionTitle>Bonus Hexcodles</SectionTitle>
+        <CustomPuzzleLink href="#bonusPuzzles">Click here for fan-made bonus puzzles!</CustomPuzzleLink>
+        <SectionTitle>Daily Hexcodle Archive</SectionTitle>
+        <Wrapper >
+          {panelsData.map(({ hexcodleNumber, colorName, hexcode, date }) => {
+            const isComplete = completedGames
+              .map(([key]) => parseInt(key, 10))
+              .includes(hexcodleNumber);
+            return (
+              <Link
+                key={hexcodleNumber}
+                href={`/archive/${hexcodleNumber}`}
+                style={{ textDecoration: "none" }}
+              >
+                <ArchivePanel
+                  hidden={!isComplete}
+                  hexcodleNumber={hexcodleNumber}
+                  colorName={colorName}
+                  hexcode={hexcode}
+                  date={date}
+                />
+              </Link>
+            );
+          })}
+        </Wrapper>
+        <SectionTitle id="bonusPuzzles">Bonus Hexcodles</SectionTitle>
         <Wrapper>
           {customPanelData.map(
             ({ id, colorName, hexcode, urlEndpoint, date }) => {
@@ -123,29 +158,7 @@ const ArchivePage = ({ panelsData }) => {
             }
           )}
         </Wrapper>
-        <SectionTitle>Daily Hexcodle Archive</SectionTitle>
-        <Wrapper>
-          {panelsData.map(({ hexcodleNumber, colorName, hexcode, date }) => {
-            const isComplete = completedGames
-              .map(([key]) => parseInt(key, 10))
-              .includes(hexcodleNumber);
-            return (
-              <Link
-                key={hexcodleNumber}
-                href={`/archive/${hexcodleNumber}`}
-                style={{ textDecoration: "none" }}
-              >
-                <ArchivePanel
-                  hidden={!isComplete}
-                  hexcodleNumber={hexcodleNumber}
-                  colorName={colorName}
-                  hexcode={hexcode}
-                  date={date}
-                />
-              </Link>
-            );
-          })}
-        </Wrapper>
+        <CustomPuzzleLink href="#top">Back to top</CustomPuzzleLink>
       </main>
       <Footer />
     </>
