@@ -32,7 +32,6 @@ const StatsWrapper = styled.div`
 const CustomPuzzleLink = styled.a`
   padding-top: 16px;
   color: black;
-  font-size: 0.8rem;
 
   &:hover {
     color: #334155;
