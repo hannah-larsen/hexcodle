@@ -26,7 +26,7 @@ export default function LaunchModal({ isOpen, setIsOpen }) {
       </p>
       <p>
         Introducing... Relatle! A daily game where you have to guess a word
-        given synonyms or "related" words. Play against your friends and see how
+        given synonyms or related words. Play against your friends and see how
         fast you can guess the daily word!
         <p>
           You can find Relate{" "}
