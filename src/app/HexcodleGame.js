@@ -170,7 +170,10 @@ export default function HexcodleGame({
             </button>
           )}
         </section>
-        <section className="frosted-glass guess-section">
+        <section
+          className="frosted-glass guess-section"
+          style={{ overflowX: "hidden" }}
+        >
           <h2 id="guess-heading">Guesses</h2>
 
           {!loading &&
