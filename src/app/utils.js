@@ -121,9 +121,10 @@ export function compareRGB(guess, target, difficulty) {
 export function generateHexcode(num = getHexcodleNumber()) {
   const date = getDateFromHexcodleNumber(num);
 
-  const r = generateUniqueNumber(255, 0, date);
-  const g = generateUniqueNumber(255, 1, date);
-  const b = generateUniqueNumber(255, 2, date);
+  // Really fucked fix
+  const r = Math.min(generateUniqueNumber(256, 0, date), 255);
+  const g = Math.min(generateUniqueNumber(256, 1, date), 255);
+  const b = Math.min(generateUniqueNumber(256, 2, date), 255);
 
   const componentToHex = (c) => {
     const hex = c.toString(16);
