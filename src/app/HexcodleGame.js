@@ -8,10 +8,8 @@ import useSavestate from "./hooks/useSavestate.js";
 import Guess from "./components/Guess.js";
 import EndModal from "./components/EndModal.js";
 import Announcement from "./components/Annoucement.js";
-import LaunchModal from "./components/LaunchModal.js";
 import HexInput from "./components/HexInput.js";
 import Navbar from "./components/Navbar.js";
-import Footer from "./components/Footer.js";
 import { getScore } from "./utils.js";
 
 const MAX_GUESSES = 5;
@@ -22,6 +20,7 @@ export default function HexcodleGame({
   number,
   maxDay,
   arrowsDisabled = false,
+  isMini = false,
 }) {
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
   const [settings, _setSettings] = useLocalStorage({
@@ -101,14 +100,9 @@ export default function HexcodleGame({
     setLoading(false);
   }, []);
 
-  // Add score component
   return (
     <>
-      <Navbar
-        hexcodleNumber={number}
-        maxDay={maxDay}
-        arrowsDisabled={arrowsDisabled}
-      />
+      <Navbar />
       <main className="everything">
         <Announcement onClick={() => setIsLaunchModalVisible(true)} />{" "}
         <section className="frosted-glass" style={{ position: "relative" }}>
@@ -122,7 +116,10 @@ export default function HexcodleGame({
             }}
           >
             <div className="first-square" style={{ flex: 1 }}>
-              <h2 className="guess-title" style={{ marginBottom: 8 }}>
+              <h2
+                className="guess-title text-xl roboto font-semibold"
+                style={{ marginBottom: 8 }}
+              >
                 Target
               </h2>
               <div
@@ -131,7 +128,10 @@ export default function HexcodleGame({
               />
             </div>
             <div style={{ flex: 1 }}>
-              <h2 className="guess-title" style={{ marginBottom: 8 }}>
+              <h2
+                className="guess-title text-xl roboto font-semibold"
+                style={{ marginBottom: 8 }}
+              >
                 Your Guess
               </h2>
               <div className="square" style={{ backgroundColor: guesses[0] }} />
@@ -151,11 +151,11 @@ export default function HexcodleGame({
                 type={settings.colorMode}
               />
             )}
-            <p className="status-text" style={{ margin: 0 }}>
+            <p className="status-text pt-2">
               {statusText}{" "}
-              {isComplete
+              {/*{isComplete
                 ? "Your score is " + getScore(targetColor, guesses)
-                : ""}
+                : ""}*/}
             </p>
           </div>
           {isComplete && (
@@ -174,7 +174,9 @@ export default function HexcodleGame({
           className="frosted-glass guess-section"
           style={{ overflowX: "hidden" }}
         >
-          <h2 id="guess-heading">Guesses</h2>
+          <h2 id="guess-heading" className="text-xl roboto font-semibold">
+            Guesses
+          </h2>
 
           {!loading &&
             guesses.map((guess, index) => (
@@ -188,7 +190,6 @@ export default function HexcodleGame({
             ))}
         </section>
       </main>
-      <Footer />
 
       <EndModal
         okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
@@ -200,12 +201,6 @@ export default function HexcodleGame({
         guesses={guesses}
         win={hasWon}
         hexcodleNumber={number}
-      />
-
-      <LaunchModal
-        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-        isOpen={isLaunchModalVisible}
-        setIsOpen={setIsLaunchModalVisible}
       />
     </>
   );

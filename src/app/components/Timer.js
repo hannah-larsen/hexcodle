@@ -29,7 +29,7 @@ const Timer = ({ isModalActive }) => {
 
   return (
     isModalActive && (
-      <p>
+      <p className="mt-4">
         Come back tomorrow for a new colour! <br /> New daily Hexcodle in:{" "}
         {remainingTime}{" "}
       </p>

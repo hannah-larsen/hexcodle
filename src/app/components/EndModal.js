@@ -59,6 +59,7 @@ export default function EndModal({
   counter,
   win = false,
   hexcodleNumber,
+  isMini,
 }) {
   const [settings, _setSettings] = useLocalStorage({
     key: "settings",
@@ -72,15 +73,11 @@ export default function EndModal({
     if (win) {
       shareableString = `I got Hexcodle #${hexcodleNumber} in ${
         guesses.length
-      } ${guesses.length > 1 ? "guesses" : "guess"}! \nMy score: ${getScore(
-        color,
-        guesses
-      )}\nhttps://hexcodle.com \n\n`;
+      } ${
+        guesses.length > 1 ? "guesses" : "guess"
+      }! \nhttps://hexcodle.com \n\n`;
     } else {
-      shareableString = `I did not solve Hexcodle #${hexcodleNumber} \nMy score: ${getScore(
-        color,
-        guesses
-      )}\nhttps://hexcodle.com \n\n`;
+      shareableString = `I did not solve Hexcodle #${hexcodleNumber} \nhttps://hexcodle.com \n\n`;
     }
 
     const processGuesses =
@@ -122,11 +119,11 @@ export default function EndModal({
             />
           </center>
           <p>
-            You solved the Hexcodle in {counter} guess
+            You solved the Hexcodle {isMini ? "Mini" : ""} in {counter} guess
             {counter == 1 ? "" : "es"}. Hexcodle #{hexcodleNumber} was{" "}
             <strong>{colorName}</strong> ({color}).
           </p>
-          <p>Your score: {getScore(color, guesses)}</p>
+          {/*<p>Your score: {getScore(color, guesses)}</p>*/}
         </>
       ) : (
         <>
@@ -139,23 +136,24 @@ export default function EndModal({
             />
           </center>
           <p>
-            Bummer! Hexcodle #{hexcodleNumber} was <strong>{colorName}</strong>{" "}
-            ({color}
+            Bummer! Hexcodle {isMini ? "Mini" : ""} #{hexcodleNumber} was{" "}
+            <strong>{colorName}</strong> ({color}
             ).
           </p>
-          <p>Your score: {getScore(color, guesses)}</p>
+          {/*<p>Your score: {getScore(color, guesses)}</p>*/}
         </>
       )}
-      <Timer isModalActive={true} />
       <Popover content="Copied to clipboard!" trigger="click">
         <a
           onClick={() => {
             navigator.clipboard.writeText(getSharableString());
           }}
+          className="text-blue-500 hover:text-blue-300"
         >
           Share your results
         </a>
       </Popover>
+      <Timer isModalActive={true} />
     </Modal>
   );
 }

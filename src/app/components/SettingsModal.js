@@ -1,31 +1,18 @@
-"use client";
-
-import Modal from "antd/lib/modal";
+import { Button } from "@/app/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose,
+} from "@/app/components/ui/dialog";
+import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import { Label } from "./ui/label";
+import { Settings } from "lucide-react";
 import { useLocalStorage } from "@mantine/hooks";
-import styled from "styled-components";
-import { Radio } from "antd";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`;
-
-const OptionGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-`;
-
-const Explanation = styled.div`
-  p {
-    padding: 0;
-  }
-`;
-
-const Emoji = styled.span`
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-`;
 
 const difficultyOptions = [
   { label: "Easy", value: "easy" },
@@ -38,7 +25,7 @@ const colorModeOptions = [
   { label: "RGB", value: "rgb" },
 ];
 
-export default function SettingsModal({ isOpen, setIsOpen }) {
+export default function SettingsModal() {
   const [settings, setSettings] = useLocalStorage({
     key: "settings",
     defaultValue: {
@@ -47,21 +34,35 @@ export default function SettingsModal({ isOpen, setIsOpen }) {
     },
   });
 
+  // Handlers for radio changes
+  const handleDifficultyChange = (val) => {
+    setSettings({ ...settings, difficulty: val });
+  };
+
+  const handleColorModeChange = (val) => {
+    setSettings({ ...settings, colorMode: val });
+  };
+
   return (
-    <Modal
-      okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title="Settings"
-      open={isOpen}
-      onOk={() => {
-        setIsOpen(false);
-      }}
-      onCancel={() => {
-        setIsOpen(false);
-      }}
-      cancelButtonProps={{ style: { display: "none" } }}
-    >
-      <Wrapper>
-        <Explanation>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="md:h-9 md:px-4 md:py-2 md:text-base max-sm:hidden"
+        >
+          <Settings className="h-4 w-4 mr-2" />
+          Settings
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="max-sm:max-w-[425px] max-w-lg">
+        <DialogHeader>
+          <DialogTitle>Settings</DialogTitle>
+          <DialogDescription>
+            Your changes are saved automatically.
+          </DialogDescription>
+        </DialogHeader>
+        <div>
           <h4>Emoji Legend</h4>
           <p>✅ Correct</p>
           {settings.difficulty === "expert" && (
@@ -78,8 +79,9 @@ export default function SettingsModal({ isOpen, setIsOpen }) {
             <>
               <p>🔼 / 🔽 Guess higher or lower by 1 or 2</p>
               <p>
-                <Emoji>⤴️</Emoji> / <Emoji>⤵️</Emoji> Guess higher or lower by 3
-                to 9
+                <span className="emoji">⤴️</span> /{" "}
+                <span className="emoji">⤵️</span> Guess higher or lower by 3 to
+                9
               </p>
               <p>⏫️ / ⏬️ Guess higher or lower by 10+</p>
             </>
@@ -90,28 +92,53 @@ export default function SettingsModal({ isOpen, setIsOpen }) {
               <p>⏫️ / ⏬️ Guess higher or lower by 3+</p>
             </>
           )}
-        </Explanation>
-        <OptionGroup>
-          <h4>Difficulty</h4>
-          <Radio.Group
-            options={difficultyOptions}
-            onChange={(e) => {
-              setSettings({ ...settings, difficulty: e.target.value });
+        </div>
+        <div>
+          <h4 className="pb-1">Difficulty</h4>
+          <RadioGroup
+            defaultValue={settings.difficulty}
+            onValueChange={(val) => {
+              handleDifficultyChange(val);
             }}
-            value={settings.difficulty}
-          />
-        </OptionGroup>
-        <OptionGroup>
-          <h4>Color Mode</h4>
-          <Radio.Group
-            options={colorModeOptions}
-            onChange={(e) => {
-              setSettings({ ...settings, colorMode: e.target.value });
+          >
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="easy" id="d1" />
+              <Label htmlFor="r1">Easy</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="hard" id="d2" />
+              <Label htmlFor="r2">Hard</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="expert" id="d3" />
+              <Label htmlFor="r3">Expert</Label>
+            </div>
+          </RadioGroup>
+        </div>
+        <div>
+          <h4 className="pb-1">Color Mode</h4>
+          <RadioGroup
+            defaultValue={settings.colorMode}
+            onValueChange={(val) => {
+              handleColorModeChange(val);
             }}
-            value={settings.colorMode}
-          />
-        </OptionGroup>
-      </Wrapper>
-    </Modal>
+          >
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="hex" id="d1" />
+              <Label htmlFor="c1">Hexcode</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="rgb" id="d2" />
+              <Label htmlFor="c2">RGB</Label>
+            </div>
+          </RadioGroup>
+        </div>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button type="button">Close</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

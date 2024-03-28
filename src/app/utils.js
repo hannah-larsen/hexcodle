@@ -22,19 +22,11 @@ export function generateUniqueNumber(n, offset = 0, customDate = null) {
 
 // Function for converting 0-15 to a character
 export function decimalToHex(n) {
-  if (n < 0 || n > 15) {
-    throw new Error("Input must be a number between 0 and 15.");
-  }
-
   return n.toString(16);
 }
 
 // Function for converting a character to 0-15
 export function hexToDecimal(hexChar) {
-  if (typeof hexChar !== "string" || !hexChar.match(/^[0-9a-fA-F]$/)) {
-    throw new Error("Input must be a char between 0 and f.");
-  }
-
   return parseInt(hexChar, 16);
 }
 
@@ -52,6 +44,7 @@ export function hexToRGB(hex) {
   if (validHex.length !== 6) {
     throw new Error("Invalid hex code");
   }
+
   const red = parseInt(validHex.substring(0, 2), 16);
   const green = parseInt(validHex.substring(2, 4), 16);
   const blue = parseInt(validHex.substring(4, 6), 16);
@@ -136,6 +129,18 @@ export function generateHexcode(num = getHexcodleNumber()) {
   )}`.toUpperCase();
 }
 
+export function generateMiniHexcode(num = getMiniNumber()) {
+  const date = getDateFromHexcodleNumber(num);
+
+  const r = generateUniqueNumber(16, 15, date);
+  const g = generateUniqueNumber(16, 16, date);
+  const b = generateUniqueNumber(16, 17, date);
+
+  return `#${decimalToHex(r)}${decimalToHex(g)}${decimalToHex(
+    b
+  )}`.toUpperCase();
+}
+
 export function getHexcodleNumber() {
   // August 10th, 2023 - start day of deployment
   const startDate = moment.tz("2023-08-10", "America/New_York").startOf("day");
@@ -144,9 +149,23 @@ export function getHexcodleNumber() {
   return daysPassed;
 }
 
+export function getMiniNumber() {
+  // March 27th, 2024 - start day of deployment
+  const startDate = moment.tz("2024-03-27", "America/New_York").startOf("day");
+  const currentDate = moment().tz("America/New_York");
+  const daysPassed = currentDate.diff(startDate, "days");
+  return daysPassed;
+}
+
 export function getDateFromHexcodleNumber(hexcodleNumber) {
   const startDate = moment.tz("2023-08-10", "America/New_York").startOf("day");
   const targetDate = startDate.add(hexcodleNumber, "days");
+  return targetDate.format("DD-MM-YYYY");
+}
+
+export function getDateFromMiniNumber(miniNumber) {
+  const startDate = moment.tz("2024-03-27", "America/New_York").startOf("day");
+  const targetDate = startDate.add(miniNumber, "days");
   return targetDate.format("DD-MM-YYYY");
 }
 
@@ -170,9 +189,9 @@ export async function getColorName(hex) {
 
 function getRGB(hexcode) {
   const validHex = hexcode.slice(1);
-  if (validHex.length !== 6) {
+  /*if (validHex.length !== 6) {
     throw new Error("Invalid hex code");
-  }
+  }*/
   const red = parseInt(validHex.substring(0, 2), 16);
   const green = parseInt(validHex.substring(2, 4), 16);
   const blue = parseInt(validHex.substring(4, 6), 16);
@@ -180,6 +199,7 @@ function getRGB(hexcode) {
   return { red, green, blue };
 }
 
+// NEED TO MODIFY THIS FOR MINI - CURRENTLY DISPLAYING NAN
 export function getScore(target, guesses) {
   const MAX_GUESSES = 5;
   let differenceSum = 0;

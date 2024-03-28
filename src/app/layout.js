@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import StyledComponentsRegistry from "./lib/registry";
 import AntRegistry from "./lib/AntRegistry";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Footer from "./components/Footer";
 
 const GTM_ID = "G-1J0E738QRV";
 const inter = Inter({ subsets: ["latin"] });
@@ -60,8 +61,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <StyledComponentsRegistry>
           <AntRegistry>
-            {children}
             <GoogleAnalytics gaId={GTM_ID} />
+            {children}
+            <Footer />
           </AntRegistry>
         </StyledComponentsRegistry>
       </body>

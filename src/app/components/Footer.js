@@ -1,7 +1,8 @@
+"use client";
+
 import styled from "styled-components";
 import PatchNotesModal from "./PatchNotesModal";
 import Link from "next/link";
-import { useState } from "react";
 
 const Wrapper = styled.footer`
   width: 100%;
@@ -66,8 +67,6 @@ const NameLink = styled.a`
 `;
 
 export default function Footer() {
-  const [isPatchNotesModalVisible, setIsPatchNotesModalVisible] =
-    useState(false);
   return (
     <>
       <Wrapper>
@@ -84,30 +83,15 @@ export default function Footer() {
           with 💚
         </Tag>
         <LinkWrapper>
-          <Link
+          <a
             href={"https://forms.gle/EEX8iJKkr5ATjk6L8"}
             prefetch={false}
             target="_blank"
           >
             <LinkText>Submit Feedback</LinkText>
-          </Link>
-          {/*<Link href={"/about"} prefetch={false}>
-              <LinkText>About us</LinkText>
-            </Link>*/}
-          <PatchButton
-            onClick={() => {
-              setIsPatchNotesModalVisible(true);
-            }}
-          >
-            Patch Notes
-          </PatchButton>
+          </a>
         </LinkWrapper>
       </Wrapper>
-      <PatchNotesModal
-        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-        isOpen={isPatchNotesModalVisible}
-        setIsOpen={setIsPatchNotesModalVisible}
-      />
     </>
   );
 }
