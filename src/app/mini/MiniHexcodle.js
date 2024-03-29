@@ -22,7 +22,7 @@ export default function MiniHexcodle({
   isMini = true,
 }) {
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(
-    `mini-${number}`
+    `hexcodle-mini-${number}`
   );
   /*const [settings, _setSettings] = useLocalStorage({
     key: "settings",

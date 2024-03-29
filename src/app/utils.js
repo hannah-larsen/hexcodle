@@ -132,9 +132,9 @@ export function generateHexcode(num = getHexcodleNumber()) {
 export function generateMiniHexcode(num = getMiniNumber()) {
   const date = getDateFromHexcodleNumber(num);
 
-  const r = generateUniqueNumber(16, 15, date);
-  const g = generateUniqueNumber(16, 16, date);
-  const b = generateUniqueNumber(16, 17, date);
+  const r = generateUniqueNumber(15, 15, date);
+  const g = generateUniqueNumber(15, 16, date);
+  const b = generateUniqueNumber(15, 17, date);
 
   return `#${decimalToHex(r)}${decimalToHex(g)}${decimalToHex(
     b
