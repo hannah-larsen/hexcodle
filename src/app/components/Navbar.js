@@ -87,8 +87,8 @@ export default function Navbar() {
             <NavbarCenter />
           </NavCenter>
           <NavRight>
-            {isHexcodleOrMini && <RulesModal />}
             {isHexcodle && <SettingsModal />}
+            {isHexcodleOrMini && <RulesModal />}
           </NavRight>
         </TopWrapper>
       </NavWrapper>

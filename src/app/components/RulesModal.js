@@ -15,13 +15,8 @@ export default function RulesModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="md:h-9 md:px-4 md:py-2 md:text-base"
-        >
-          <CircleHelp className="h-4 w-4 mr-2" />
-          Help
+        <Button variant="ghost" size="icon">
+          <CircleHelp className="h-6 w-6" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-lg">

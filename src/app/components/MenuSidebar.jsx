@@ -17,14 +17,9 @@ export default function MenuSidebar() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="md:h-9 md:px-4 md:py-2 md:text-base relative"
-        >
-          <Menu className="h-4 w-4 mr-2" />
-          <p>Menu</p>
-          <div className="absolute top-1 right-1 h-2 w-2 bg-pink-700 rounded-full" />
+        <Button variant="ghost" size="icon" className="relative rounded-none">
+          <Menu className="h-6 w-6" />
+          <div className="absolute top-0 right-0 h-2 w-2 bg-pink-700 rounded-full" />
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="overflow-x-auto">

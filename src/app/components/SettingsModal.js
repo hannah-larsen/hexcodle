@@ -46,13 +46,8 @@ export default function SettingsModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="md:h-9 md:px-4 md:py-2 md:text-base max-sm:hidden"
-        >
-          <Settings className="h-4 w-4 mr-2" />
-          Settings
+        <Button variant="ghost" size="icon">
+          <Settings className="h-6 w-6" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-lg">
