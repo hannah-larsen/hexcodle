@@ -31,7 +31,7 @@ The classic gateway game into dailies. **The goal is simple: guess the correct 5
 
 ### **Connections**
 
-**Finding 4 groups from a 16 word pool is easy, right...*right*?** I really want to have a chat with the creator of this game and ask where the inspiration for these groupings comes from because half the time it genuinely makes NO SENSE!!!! Please tell me I'm not the only one...
+**Finding 4 groups from a 16 word pool is easy, *right?* I really want to have a chat with the creator of this game and ask where the inspiration for these groupings comes from because half the time it genuinely makes NO SENSE!!!! Please tell me I'm not the only one...
  
 ### **Plusword**
 
@@ -59,11 +59,11 @@ Your goal is to **find a path of countries that links the two daily countries to
 
 ### **Hexcodle**
 
-Shameless self plug - calling all designers, colour-enthusiasts and daily-game-player's, **guess the hex code of the daily mystery colour** and share results with your friends! We just recently created the highly-requested [Hexcodle Mini](https://hexcodle.com/mini) where you guess 3 colour values instead of 6!
+Shameless self plug! Calling all designers, colour-enthusiasts and daily-game-player's: **guess the hex code of the daily mystery colour** and share results with your friends! We just recently created the highly-requested [Hexcodle Mini](https://hexcodle.com/mini), a more compact version of the original Hexcodle.
 
 ### **Relatle**
 
-Our newest creation! If thesaurus.com is in your recents, consider playing our synonym-like game where you need to **find a daily mystery word based off related words given**. We are still workshopping this game to be more fun based on your feedback, but feel free to check it out if you'd like!
+Our newest creation. If thesaurus.com is in your recents, consider playing our synonym-like game where you need to **find a daily mystery word based off related words given**. We are still workshopping this game to be more fun based on your feedback, but feel free to check it out if you'd like!
 
 ### **Unolingo**
 

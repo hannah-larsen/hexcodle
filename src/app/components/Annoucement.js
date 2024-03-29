@@ -62,7 +62,7 @@ export default function Announcement() {
           </Link>{" "}
           is now live! Instead of entering 6 digits of RGB values, the Mini is
           only comprised of 3 values, so you will no longer need to guess those
-          pesky secondary colours.
+          pesky secondary digits.
         </p>
         <p>
           <strong>Blog</strong>
@@ -77,7 +77,7 @@ export default function Announcement() {
             blog
           </Link>
           !!! Check out our first post and see what Wordle-style games we
-          reccomend, maybe you&apos;ll find a new favourite. 👀
+          recommend, maybe you&apos;ll find a new favourite. 👀
         </p>
         <p>
           <strong>Relatle</strong>
