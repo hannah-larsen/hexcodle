@@ -69,15 +69,16 @@ export default function EndModal({
     },
   });
   const getSharableString = () => {
+    const name = `Hexcodle ${isMini ? "Mini" : ""}`;
+    const url = `https://hexcodle.com/${isMini ? "mini" : ""}`;
+
     let shareableString = "";
     if (win) {
-      shareableString = `I got Hexcodle #${hexcodleNumber} in ${
+      shareableString = `I got ${name} #${hexcodleNumber} in ${
         guesses.length
-      } ${
-        guesses.length > 1 ? "guesses" : "guess"
-      }! \nhttps://hexcodle.com \n\n`;
+      } ${guesses.length > 1 ? "guesses" : "guess"}! \n${url} \n\n`;
     } else {
-      shareableString = `I did not solve Hexcodle #${hexcodleNumber} \nhttps://hexcodle.com \n\n`;
+      shareableString = `I did not solve ${name} #${hexcodleNumber} \n${url} \n\n`;
     }
 
     const processGuesses =
@@ -120,7 +121,7 @@ export default function EndModal({
           </center>
           <p>
             You solved the Hexcodle {isMini ? "Mini" : ""} in {counter} guess
-            {counter == 1 ? "" : "es"}. Hexcodle #{hexcodleNumber} was{" "}
+            {counter == 1 ? "" : "es"}. The hidden colour was{" "}
             <strong>{colorName}</strong> ({color}).
           </p>
           {/*<p>Your score: {getScore(color, guesses)}</p>*/}
