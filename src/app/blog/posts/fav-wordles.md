@@ -39,7 +39,7 @@ This game is like if Wordle and the NYT Mini Crossword had a love child. **It's 
 
 ### **Twofer Goofer**
 
-The hidden gem of daily games, you need to **guess a rhyming pair of words based on the clue given.** At the end of the game, an AI-generated image of the word pairing pops up and some of the pictures are so unhinged, we always get such a good laugh out of this game. Rumor has it that you can also buy merch from this game with the aformentioned unhinged AI images, do with that information as you please.
+Curretly Ekim's fav, you need to **guess a rhyming pair of words based on the clue given.** At the end of the game, an AI-generated image of the word pairing pops up and some of the pictures are so unhinged, we always get such a good laugh out of this game. Rumor has it that you can also buy merch from this game with the aformentioned unhinged AI images, do with that information as you please.
 
 ### **Flagle**
 
