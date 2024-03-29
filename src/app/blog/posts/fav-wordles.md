@@ -31,7 +31,7 @@ The classic gateway game into dailies. **The goal is simple: guess the correct 5
 
 ### **Connections**
 
-**Finding 4 groups from a 16 word pool is easy, *right?* I really want to have a chat with the creator of this game and ask where the inspiration for these groupings comes from because half the time it genuinely makes NO SENSE!!!! Please tell me I'm not the only one...
+**Finding 4 groups from a 16 word pool is easy, *right?*** I really want to have a chat with the creator of this game and ask where the inspiration for these groupings comes from because half the time it genuinely makes NO SENSE!!!! Please tell me I'm not the only one...
  
 ### **Plusword**
 
@@ -39,7 +39,7 @@ This game is like if Wordle and the NYT Mini Crossword had a love child. **It's 
 
 ### **Twofer Goofer**
 
-Curretly Ekim's fav, you need to **guess a rhyming pair of words based on the clue given.** At the end of the game, an AI-generated image of the word pairing pops up and some of the pictures are so unhinged, we always get such a good laugh out of this game. Rumor has it that you can also buy merch from this game with the aformentioned unhinged AI images, do with that information as you please.
+Currently Ekim's fav, you **guess a rhyming pair of words based on the clue given.** At the end of the game, an AI-generated image of the word pairing pops up and some of the pictures are so unhinged, we always get such a good laugh out of this game. Rumor has it that you can also buy merch from this game with the aformentioned unhinged AI images, do with that information as you please.
 
 ### **Flagle**
 
