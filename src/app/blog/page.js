@@ -2,6 +2,14 @@ import { loadAllPosts } from "./loadPosts";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Hexcodle Blog",
+  description:
+    "Blogging about our development and design processes behind hexcodle, as well as our favourite games such as wordle and NYT Connections.",
+  keywords:
+    "blog, wordle, hexcodle, games, daily games, daily game, word game, color game, connections",
+};
+
 export default async function Page() {
   const posts = await loadAllPosts();
 

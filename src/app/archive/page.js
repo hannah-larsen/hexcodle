@@ -28,6 +28,11 @@ export async function loadArchive(hexcodleNumber) {
   return panelsData.reverse();
 }
 
+export const metadata = {
+  title: "Hexcodle Archive",
+  description: "Dive into our past hexcodles to test your skills!",
+};
+
 export default async function Archive() {
   const hexcodleNumber = getHexcodleNumber();
   const headersList = headers();

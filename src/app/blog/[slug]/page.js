@@ -1,6 +1,21 @@
 import { loadPost } from "../loadPosts";
 import Navbar from "@/app/components/Navbar";
 
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+  const { frontMatter } = await loadPost(slug);
+
+  const keywordsArray = frontMatter.keywords
+    .split(",")
+    .map((keyword) => keyword.trim());
+
+  return {
+    title: frontMatter.title,
+    description: frontMatter.description,
+    keywords: keywordsArray,
+  };
+}
+
 export default async function Post({ params }) {
   const { slug } = params;
   const { frontMatter, content } = await loadPost(slug);

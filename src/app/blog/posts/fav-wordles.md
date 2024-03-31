@@ -1,5 +1,7 @@
 ---
 title: 'The Hannah and Ekim Daily Wordle Roster'
+description: 'Join Hannah and Ekim in their nightly puzzle escapade through an extensive list of Wordle-like daily games. From the quick wit of the NYT Mini Crossword to Connections to the creative challenge of Hexcodle, discover the joy of solving daily puzzles together.'
+keywords: 'Daily Wordle games, NYT Mini Crossword, Puzzle games routine, Hexcodle, Globle, Unolingo, Word puzzles, Daily challenges, Brain teasers, Online puzzles, Puzzle solving tradition, Educational games'
 author: 'Hannah Larsen'
 date: 'March 28th, 2024'
 ---
