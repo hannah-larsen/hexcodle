@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>https://hexcodle.com/</loc>
+      <lastmod>2024-03-31</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://hexcodle.com/mini</loc>
+      <lastmod>2024-03-31</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://hexcodle.com/archive</loc>
+      <lastmod>2024-03-31</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://hexcodle.com/mini/archive</loc>
+      <lastmod>2024-03-31</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://hexcodle.com/blog</loc>
+      <lastmod>2024-03-28</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://hexcodle.com/blog/fav-wordles</loc>
+      <lastmod>2024-03-28</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <!-- Add more blog posts as needed -->
+</urlset>
