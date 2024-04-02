@@ -153,9 +153,9 @@ export default function HexcodleGame({
             )}
             <p className="status-text pt-2">
               {statusText}{" "}
-              {/*{isComplete
+              {isComplete
                 ? "Your score is " + getScore(targetColor, guesses)
-                : ""}*/}
+                : ""}
             </p>
           </div>
           {isComplete && (

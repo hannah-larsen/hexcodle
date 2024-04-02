@@ -124,7 +124,7 @@ export default function EndModal({
             {counter == 1 ? "" : "es"}. The hidden colour was{" "}
             <strong>{colorName}</strong> ({color}).
           </p>
-          {/*<p>Your score: {getScore(color, guesses)}</p>*/}
+          {<p>Your score: {getScore(color, guesses)}</p>}
         </>
       ) : (
         <>
@@ -141,7 +141,7 @@ export default function EndModal({
             <strong>{colorName}</strong> ({color}
             ).
           </p>
-          {/*<p>Your score: {getScore(color, guesses)}</p>*/}
+          {<p>Your score: {getScore(color, guesses)}</p>}
         </>
       )}
       <Popover content="Copied to clipboard!" trigger="click">

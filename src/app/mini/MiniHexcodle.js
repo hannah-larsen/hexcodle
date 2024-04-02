@@ -104,7 +104,6 @@ export default function MiniHexcodle({
     setLoading(false);
   }, []);
 
-  // Add score component
   return (
     <>
       <Navbar />
@@ -158,9 +157,9 @@ export default function MiniHexcodle({
             )}
             <p className="status-text pt-2">
               {statusText}{" "}
-              {/*{isComplete
-                ? "Your score is " + getScore(targetColor, guesses)
-                : ""}*/}
+              {isComplete
+                ? `Your score is ${getScore(targetColor, guesses)}`
+                : ""}
             </p>
           </div>
           {isComplete && (

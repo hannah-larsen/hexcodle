@@ -208,15 +208,18 @@ function getRGB(hexcode) {
   return { red, green, blue };
 }
 
-// NEED TO MODIFY THIS FOR MINI - CURRENTLY DISPLAYING NAN
 export function getScore(target, guesses) {
   const MAX_GUESSES = 5;
   let differenceSum = 0;
+  const maxDifferencePerChannel = 255;
+  const maxTotalDifference = maxDifferencePerChannel * 3 * guesses.length;
+
   const {
     red: targetRed,
     green: targetGreen,
     blue: targetBlue,
   } = getRGB(target);
+
   guesses.forEach((guess) => {
     const { red, green, blue } = getRGB(guess);
     differenceSum +=
@@ -224,9 +227,13 @@ export function getScore(target, guesses) {
       Math.abs(targetGreen - green) +
       Math.abs(targetBlue - blue);
   });
-  return (
-    Math.round(
-      ((765 * MAX_GUESSES - differenceSum) / (765 * MAX_GUESSES)) * 100
-    ) + "%"
-  );
+
+  const closenessScore =
+    ((maxTotalDifference - differenceSum) / maxTotalDifference) * 30;
+
+  const guessesScore = ((MAX_GUESSES - guesses.length + 1) / MAX_GUESSES) * 70;
+
+  const finalScore = closenessScore + guessesScore;
+
+  return Math.round(finalScore) + "%";
 }
