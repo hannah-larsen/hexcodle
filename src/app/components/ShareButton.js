@@ -4,11 +4,24 @@ import { Button } from "./ui/button";
 import { Share2 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
-export default function ShareButton({ mini, number, emojis, score }) {
+export default function ShareButton({
+  mini,
+  number,
+  emojis,
+  score,
+  win,
+  guessCount,
+}) {
   function generateShareableString() {
-    let shareString = `Hexcodle ${mini ? "Mini " : ""}#${number}\n\n`;
+    let shareString = "";
+    shareString += win
+      ? `I got Hexcodle ${
+          mini ? "Mini " : ""
+        }#${number} in ${guessCount}! Score: ${score}\n\n`
+      : `I didn't get Hexcodle ${
+          mini ? "Mini " : ""
+        }#${number} :( Score: ${score}\n\n`;
     shareString += emojis;
-    shareString += `\nScore: ${score} `;
     shareString += `\n\nhttps://hexcodle.com${mini ? "/mini" : ""}`;
 
     return shareString;

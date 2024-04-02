@@ -27,7 +27,7 @@ import Timer from "./Timer";
 import ShareButton from "./ShareButton";
 
 function processHexGuesses(guesses, color, settings) {
-  const reversed = [...guesses].reverse();
+  const reversed = [...guesses];
   const resultLines = reversed.map((guess) => {
     const line = guess
       .substring(1)
@@ -45,7 +45,7 @@ function processHexGuesses(guesses, color, settings) {
 function processRGBGuesses(guesses, color, settings) {
   let resultString = "";
   const targetRGB = hexToRGB(color);
-  const reversed = [...guesses].reverse();
+  const reversed = [...guesses];
   for (let guess of reversed) {
     const guessRGB = hexToRGB(guess);
     const redComparison = compareRGB(
@@ -218,6 +218,8 @@ export function EndModal({
             number={hexcodleNumber}
             emojis={emojis}
             score={getScore(color, guesses)}
+            win={win}
+            guessCount={guesses.length}
           />
         </div>
         <DrawerFooter className="text-center font-light text-slate-600 text-sm">
