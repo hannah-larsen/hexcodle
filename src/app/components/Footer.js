@@ -81,11 +81,7 @@ export default function Footer() {
           with 💚
         </Tag>
         <LinkWrapper>
-          <a
-            href={"https://forms.gle/EEX8iJKkr5ATjk6L8"}
-            prefetch={false}
-            target="_blank"
-          >
+          <a href={"https://forms.gle/EEX8iJKkr5ATjk6L8"} target="_blank">
             <LinkText>Submit Feedback</LinkText>
           </a>
         </LinkWrapper>

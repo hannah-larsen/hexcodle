@@ -24,6 +24,24 @@ export default function NavbarCenter() {
     );
   }
 
+  if (pathname === "/custom-archive") {
+    return (
+      <Link href={"/custom-archive"}>
+        <p className="roboto font-semibold tracking-tight">Hexcodle Extras</p>
+      </Link>
+    );
+  }
+
+  if (pathComponents[0] === "archive" && isNaN(pathComponents[1])) {
+    return (
+      <Link href={"/custom-archive"}>
+        <p className="roboto font-semibold tracking-tight">
+          Hexcodle #{pathComponents[1]}
+        </p>
+      </Link>
+    );
+  }
+
   if (
     pathname === "/" ||
     (pathComponents[0] === "archive" &&

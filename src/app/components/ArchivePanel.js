@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "styled-components";
 
 const BackgroundPanel = styled.div`
@@ -48,7 +50,7 @@ const BottomTextWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const ArchivePanel = ({ hidden, hexcodleNumber, colorName, hexcode, date }) => {
+const ArchivePanel = ({ hidden, colorName, hexcode, date }) => {
   return (
     <BackgroundPanel>
       <ColourPanel hexcode={hexcode} hiddenColor={hidden}></ColourPanel>

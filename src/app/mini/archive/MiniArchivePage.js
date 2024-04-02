@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import ArchivePanel from "../components/ArchivePanel";
-import Navbar from "../components/Navbar";
-import Stats from "../components/Stats";
+import ArchivePanel from "@/app/components/ArchivePanel";
+import Navbar from "@/app/components/Navbar";
+import Stats from "@/app/components/Stats";
 
 const Wrapper = styled.div`
   display: grid;
@@ -21,7 +21,7 @@ const StatsWrapper = styled.div`
   width: 100%;
 `;
 
-const ArchivePage = ({ panelsData }) => {
+const MiniArchivePage = ({ panelsData }) => {
   const [completedGames, setCompletedGames] = useState([]);
 
   useEffect(() => {
@@ -29,13 +29,22 @@ const ArchivePage = ({ panelsData }) => {
       try {
         const saves =
           JSON.parse(window.localStorage.getItem("hexcodleSaves")) || {};
-        return Object.entries(saves).filter(([key, data]) => data.isComplete);
+        return Object.entries(saves).filter(([key, data]) => {
+          const isCompleted = data.isComplete;
+          // Improved regex to capture the number part of the ID
+          const match = key.match(/^hexcodle-mini-(\d+)$/);
+          const matchesMiniPattern = match !== null;
+          // Parse the captured number part and check if it's greater than 0
+          const numberGreaterThanZero =
+            matchesMiniPattern && parseInt(match[1], 10) > 0;
+          return isCompleted && matchesMiniPattern && numberGreaterThanZero;
+        });
       } catch (error) {
         console.error("Error fetching completed games:", error);
         return [];
       }
     };
-    console.log(getCompleteGames());
+
     setCompletedGames(getCompleteGames());
   }, []);
 
@@ -47,20 +56,17 @@ const ArchivePage = ({ panelsData }) => {
         style={{ paddingLeft: 0, paddingRight: 0, gap: 16 }}
       >
         <StatsWrapper>
-          <Stats
-            games={completedGames.filter(([key]) => parseInt(key, 10) > 0)}
-            totalCount={panelsData.length}
-          />
+          <Stats games={completedGames} totalCount={panelsData.length} />
         </StatsWrapper>
         <Wrapper>
           {panelsData.map(({ hexcodleNumber, colorName, hexcode, date }) => {
-            const isComplete = completedGames
-              .map(([key]) => parseInt(key, 10))
-              .includes(hexcodleNumber);
+            const isComplete = completedGames.some(
+              ([key]) => key === `hexcodle-mini-${hexcodleNumber}`
+            );
             return (
               <Link
                 key={hexcodleNumber}
-                href={`/archive/${hexcodleNumber}`}
+                href={`/mini/archive/${hexcodleNumber}`}
                 style={{ textDecoration: "none" }}
               >
                 <ArchivePanel
@@ -79,4 +85,4 @@ const ArchivePage = ({ panelsData }) => {
   );
 };
 
-export default ArchivePage;
+export default MiniArchivePage;

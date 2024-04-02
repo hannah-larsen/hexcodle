@@ -1,4 +1,3 @@
-// app/archive/page.js
 import ArchivePage from "./ArchivePage";
 import {
   getColorName,

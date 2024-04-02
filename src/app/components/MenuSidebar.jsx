@@ -55,7 +55,7 @@ export default function MenuSidebar() {
               Archive
             </Link>
           </Button>
-          {/*<Button
+          <Button
             asChild
             variant="ghost"
             size="full"
@@ -65,7 +65,7 @@ export default function MenuSidebar() {
               <div className="mr-4 h-6 w-6" />
               Custom Games
             </Link>
-  </Button>*/}
+          </Button>
           <Button asChild variant="ghost" size="full" className="font-semibold">
             <Link href="/mini">
               <img
@@ -77,7 +77,7 @@ export default function MenuSidebar() {
               <Badge className="ml-4">New</Badge>
             </Link>
           </Button>
-          {/*<Button
+          <Button
             asChild
             variant="ghost"
             size="full"
@@ -87,7 +87,7 @@ export default function MenuSidebar() {
               <div className="mr-4 h-6 w-6" />
               Archive
             </Link>
-</Button>*/}
+          </Button>
           <Button asChild variant="ghost" size="full" className="font-semibold">
             <a href="https://www.relatle.lol" target="_blank">
               <img
