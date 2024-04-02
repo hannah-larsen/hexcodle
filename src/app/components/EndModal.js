@@ -76,13 +76,18 @@ export default function EndModal({
     if (win) {
       shareableString = `I got ${name} #${hexcodleNumber} in ${
         guesses.length
-      } ${guesses.length > 1 ? "guesses" : "guess"}! \n${url} \n\n`;
+      } ${guesses.length > 1 ? "guesses" : "guess"}! \nMy score: ${getScore(
+        color,
+        guesses
+      )}\n${url} \n\n`;
     } else {
       shareableString = `I did not solve ${name} #${hexcodleNumber} \n${url} \n\n`;
     }
 
     const processGuesses =
-      settings.colorMode === "hex" ? processHexGuesses : processRGBGuesses;
+      settings.colorMode === "hex" || isMini
+        ? processHexGuesses
+        : processRGBGuesses;
 
     shareableString += processGuesses(guesses, color, settings);
 
