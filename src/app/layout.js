@@ -1,9 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import StyledComponentsRegistry from "./lib/registry";
-import AntRegistry from "./lib/AntRegistry";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Analytics } from "@vercel/analytics/react";
 import Footer from "./components/Footer";
 
 const GTM_ID = "G-1J0E738QRV";
@@ -61,12 +59,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <StyledComponentsRegistry>
-          <AntRegistry>
-            <GoogleAnalytics gaId={GTM_ID} />
-            <Analytics />
-            {children}
-            <Footer />
-          </AntRegistry>
+          <GoogleAnalytics gaId={GTM_ID} />
+          {children}
+          <Footer />
         </StyledComponentsRegistry>
       </body>
     </html>

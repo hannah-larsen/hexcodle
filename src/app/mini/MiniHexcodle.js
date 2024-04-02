@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import useSound from "use-sound";
 import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
 import { useLocalStorage } from "@mantine/hooks";
 import useSavestate from "@/app/hooks/useSavestate.js";
 import Guess from "@/app/components/Guess.js";
-import EndModal from "@/app/components/EndModal.js";
 import Announcement from "@/app/components/Annoucement.js";
 import MiniHexcodleInput from "@/app/components/MiniHexcodleInput.js";
 import Navbar from "@/app/components/Navbar.js";
 import { getScore } from "@/app/utils.js";
+import { EndModal } from "../components/EndModal";
 
 const MAX_GUESSES = 5;
 
@@ -163,15 +163,16 @@ export default function MiniHexcodle({
             </p>
           </div>
           {isComplete && (
-            <button
-              className="modal-button square-button"
-              id="shareScore"
-              onClick={() => {
-                setEndModalVisible(true);
-              }}
-            >
-              <ShareAltOutlined />
-            </button>
+            <EndModal
+              open={endModalVisible}
+              setOpen={setEndModalVisible}
+              color={targetColor}
+              colorName={colorName}
+              guesses={guesses}
+              win={hasWon}
+              hexcodleNumber={number}
+              isMini={isMini}
+            />
           )}
         </section>
         <section
@@ -194,19 +195,6 @@ export default function MiniHexcodle({
             ))}
         </section>
       </main>
-
-      <EndModal
-        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-        open={endModalVisible}
-        setOpen={setEndModalVisible}
-        color={targetColor}
-        colorName={colorName}
-        counter={guesses.length}
-        guesses={guesses}
-        win={hasWon}
-        hexcodleNumber={number}
-        isMini={isMini}
-      />
     </>
   );
 }

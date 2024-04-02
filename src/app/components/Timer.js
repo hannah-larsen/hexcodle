@@ -27,14 +27,7 @@ const Timer = ({ isModalActive }) => {
     return () => clearInterval(timer);
   }, [isModalActive]);
 
-  return (
-    isModalActive && (
-      <p className="mt-4">
-        Come back tomorrow for a new colour! <br /> New daily Hexcodle in:{" "}
-        {remainingTime}{" "}
-      </p>
-    )
-  );
+  return isModalActive && <p>New puzzles in: {remainingTime} </p>;
 };
 
 export default Timer;

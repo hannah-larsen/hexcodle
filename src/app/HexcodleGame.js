@@ -6,7 +6,7 @@ import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
 import { useLocalStorage } from "@mantine/hooks";
 import useSavestate from "./hooks/useSavestate.js";
 import Guess from "./components/Guess.js";
-import EndModal from "./components/EndModal.js";
+import { EndModal } from "./components/EndModal.js";
 import Announcement from "./components/Annoucement.js";
 import HexInput from "./components/HexInput.js";
 import Navbar from "./components/Navbar.js";
@@ -159,15 +159,16 @@ export default function HexcodleGame({
             </p>
           </div>
           {isComplete && (
-            <button
-              className="modal-button square-button"
-              id="shareScore"
-              onClick={() => {
-                setEndModalVisible(true);
-              }}
-            >
-              <ShareAltOutlined />
-            </button>
+            <EndModal
+              open={endModalVisible}
+              setOpen={setEndModalVisible}
+              color={targetColor}
+              colorName={colorName}
+              guesses={guesses}
+              win={hasWon}
+              hexcodleNumber={number}
+              isMini={isMini}
+            />
           )}
         </section>
         <section
@@ -190,18 +191,6 @@ export default function HexcodleGame({
             ))}
         </section>
       </main>
-
-      <EndModal
-        okButtonProps={{ style: { backgroundColor: "#3a743a" } }}
-        open={endModalVisible}
-        setOpen={setEndModalVisible}
-        color={targetColor}
-        colorName={colorName}
-        counter={guesses.length}
-        guesses={guesses}
-        win={hasWon}
-        hexcodleNumber={number}
-      />
     </>
   );
 }

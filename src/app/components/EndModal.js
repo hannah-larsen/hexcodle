@@ -1,10 +1,30 @@
-import Confetti from "./Confetti";
-import Modal from "antd/lib/modal";
-import Popover from "antd/lib/popover";
+/* eslint-disable @next/next/no-img-element */
+import * as React from "react";
+import useMediaQuery from "@/app/hooks/use-media-query";
+import { Button } from "@/app/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/app/components/ui/dialog";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/app/components/ui/drawer";
+import { Share2 } from "lucide-react";
+import { useLocalStorage } from "@mantine/hooks";
 import { compareCharacters, compareRGB, getScore, hexToRGB } from "../utils";
 import Timer from "./Timer";
-import Image from "next/image";
-import { useLocalStorage } from "@mantine/hooks";
+import ShareButton from "./ShareButton";
 
 function processHexGuesses(guesses, color, settings) {
   const reversed = [...guesses].reverse();
@@ -50,17 +70,17 @@ function processRGBGuesses(guesses, color, settings) {
   return resultString;
 }
 
-export default function EndModal({
+export function EndModal({
   open,
   setOpen,
-  guesses,
   color,
   colorName,
-  counter,
-  win = false,
+  guesses,
+  win,
   hexcodleNumber,
   isMini,
 }) {
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const [settings, _setSettings] = useLocalStorage({
     key: "settings",
     defaultValue: {
@@ -68,98 +88,142 @@ export default function EndModal({
       colorMode: "hex",
     },
   });
-  const getSharableString = () => {
-    const name = `Hexcodle ${isMini ? "Mini" : ""}`;
-    const url = `https://hexcodle.com/${isMini ? "mini" : ""}`;
+  const processGuesses =
+    settings.colorMode === "hex" || isMini
+      ? processHexGuesses
+      : processRGBGuesses;
+  const emojis = processGuesses(guesses, color, settings);
 
-    let shareableString = "";
-    if (win) {
-      shareableString = `I got ${name} #${hexcodleNumber} in ${
-        guesses.length
-      } ${guesses.length > 1 ? "guesses" : "guess"}! \nMy score: ${getScore(
-        color,
-        guesses
-      )}\n${url} \n\n`;
-    } else {
-      shareableString = `I did not solve ${name} #${hexcodleNumber} \n${url} \n\n`;
-    }
-
-    const processGuesses =
-      settings.colorMode === "hex" || isMini
-        ? processHexGuesses
-        : processRGBGuesses;
-
-    shareableString += processGuesses(guesses, color, settings);
-
-    return shareableString;
-  };
+  if (isDesktop) {
+    return (
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button size="icon" className="absolute bottom-5 right-5">
+            <Share2 className="w-4 h-4" />
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-lg">
+          <DialogHeader className="text-center flex flex-col items-center">
+            {win ? (
+              <img
+                width={100}
+                height={100}
+                src="/hexparrot-animated.gif"
+                alt="Hexavier the Parrot - Win Animation"
+              />
+            ) : (
+              <img
+                width={100}
+                height={100}
+                src="/hexparrot-sad-animation.gif"
+                alt="Hexavier the Parrot - Loss Animation"
+              />
+            )}
+            <DialogTitle>{win ? "Great Job!" : "Bummer"}</DialogTitle>
+            <DialogDescription>
+              {isMini ? "Mini" : "Hexcodle"} #{hexcodleNumber}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="items-center flex flex-col gap-4 pb-2">
+            <div>
+              <p className="pb-2">
+                The hidden color was{" "}
+                <span className="font-semibold">{colorName}</span> ({color})
+              </p>
+              <p className="text-center font-semibold">
+                Score: {getScore(color, guesses)}
+              </p>
+              <div className="text-3xl tracking-widest text-center">
+                <p>
+                  {" "}
+                  {emojis.split("\n").map((line, index) => (
+                    <React.Fragment key={index}>
+                      {line}
+                      {index < emojis.split("\n").length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
+                </p>
+              </div>
+            </div>
+            <ShareButton
+              mini={isMini}
+              number={hexcodleNumber}
+              emojis={emojis}
+              score={getScore(color, guesses)}
+            />
+          </div>
+          <DialogFooter
+            className="text-center font-light text-slate-600 text-sm"
+            style={{ justifyContent: "center" }}
+          >
+            <Timer isModalActive={open} />
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
   return (
-    <Modal
-      okButtonProps={{ style: { backgroundColor: "var(--primary)" } }}
-      title={
-        win ? (
-          <center>Congrats!</center>
-        ) : (
-          <center>Better luck next time</center>
-        )
-      }
-      open={open}
-      onOk={() => {
-        setOpen(false);
-      }}
-      onCancel={() => {
-        setOpen(false);
-      }}
-      cancelButtonProps={{ style: { display: "none" } }}
-    >
-      {win ? (
-        <>
-          <Confetti />
-          <center>
-            <Image
+    <Drawer open={open} onOpenChange={setOpen}>
+      <DrawerTrigger asChild>
+        <Button size="icon" className="absolute bottom-5 right-5">
+          <Share2 className="w-4 h-4" />
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader className="text-center flex flex-col items-center">
+          {win ? (
+            <img
               width={100}
               height={100}
               src="/hexparrot-animated.gif"
               alt="Hexavier the Parrot - Win Animation"
             />
-          </center>
-          <p>
-            You solved the Hexcodle {isMini ? "Mini" : ""} in {counter} guess
-            {counter == 1 ? "" : "es"}. The hidden colour was{" "}
-            <strong>{colorName}</strong> ({color}).
-          </p>
-          {<p>Your score: {getScore(color, guesses)}</p>}
-        </>
-      ) : (
-        <>
-          <center>
-            <Image
+          ) : (
+            <img
               width={100}
               height={100}
               src="/hexparrot-sad-animation.gif"
               alt="Hexavier the Parrot - Loss Animation"
             />
-          </center>
-          <p>
-            Bummer! Hexcodle {isMini ? "Mini" : ""} #{hexcodleNumber} was{" "}
-            <strong>{colorName}</strong> ({color}
-            ).
-          </p>
-          {<p>Your score: {getScore(color, guesses)}</p>}
-        </>
-      )}
-      <Popover content="Copied to clipboard!" trigger="click">
-        <a
-          onClick={() => {
-            navigator.clipboard.writeText(getSharableString());
-          }}
-          className="text-blue-500 hover:text-blue-300"
-        >
-          Share your results
-        </a>
-      </Popover>
-      <Timer isModalActive={true} />
-    </Modal>
+          )}
+          <DrawerTitle>{win ? "Great Job!" : "Bummer"}</DrawerTitle>
+          <DrawerDescription>
+            {isMini ? "Mini" : "Hexcodle"} #{hexcodleNumber}
+          </DrawerDescription>
+        </DrawerHeader>
+        <div className="items-center flex flex-col gap-4 pb-2">
+          <div>
+            <p className="pb-2">
+              The hidden color was{" "}
+              <span className="font-semibold">{colorName}</span> ({color})
+            </p>
+            <p className="text-center font-semibold">
+              Score: {getScore(color, guesses)}
+            </p>
+            <div className="text-3xl tracking-widest text-center">
+              <p>
+                {" "}
+                {emojis.split("\n").map((line, index) => (
+                  <React.Fragment key={index}>
+                    {line}
+                    {index < emojis.split("\n").length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </p>
+            </div>
+          </div>
+          <ShareButton
+            mini={isMini}
+            number={hexcodleNumber}
+            emojis={emojis}
+            score={getScore(color, guesses)}
+          />
+        </div>
+        <DrawerFooter className="text-center font-light text-slate-600 text-sm">
+          <Timer isModalActive={open} />
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 }
