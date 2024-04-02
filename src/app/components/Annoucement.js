@@ -23,6 +23,8 @@ const Wrapper = styled.button`
   border-radius: 24px;
   padding: 4px 12px;
   max-width: min(600px, 100%);
+  margin-top: -4px;
+  margin-bottom: -4px;
   -webkit-line-clamp: 1;
   overflow: hidden;
   white-space: nowrap;

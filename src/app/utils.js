@@ -188,10 +188,19 @@ export async function getColorName(hex) {
 }
 
 function getRGB(hexcode) {
-  const validHex = hexcode.slice(1);
-  /*if (validHex.length !== 6) {
+  let validHex = hexcode.slice(1);
+
+  if (validHex.length === 3) {
+    validHex = validHex
+      .split("")
+      .map((char) => char + char)
+      .join("");
+  }
+
+  if (validHex.length !== 6) {
     throw new Error("Invalid hex code");
-  }*/
+  }
+
   const red = parseInt(validHex.substring(0, 2), 16);
   const green = parseInt(validHex.substring(2, 4), 16);
   const blue = parseInt(validHex.substring(4, 6), 16);

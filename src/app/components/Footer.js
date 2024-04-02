@@ -1,8 +1,6 @@
 "use client";
 
 import styled from "styled-components";
-import PatchNotesModal from "./PatchNotesModal";
-import Link from "next/link";
 
 const Wrapper = styled.footer`
   width: 100%;
