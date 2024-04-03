@@ -32,6 +32,7 @@ export default function ShareButton({
       <Button
         variant="secondary"
         asChild
+        disabled={win === undefined}
         onClick={() => {
           navigator.clipboard.writeText(generateShareableString(win));
         }}
