@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { getHexcodleNumber, getMiniNumber } from "../utils";
-import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export default function NavbarCenter() {
@@ -50,7 +50,7 @@ export default function NavbarCenter() {
     const currentDay = getHexcodleNumber();
     return (
       <>
-        <CaretLeftOutlined style={{ color: "var(--gray-300)" }} />
+        <ChevronLeft style={{ color: "var(--gray-300)" }} />
         <Link href={"/"}>
           <p className="roboto font-semibold tracking-tight">
             Hexcodle #{currentDay}
@@ -61,7 +61,7 @@ export default function NavbarCenter() {
           className="flex items-center justify-center"
           href={`/archive/${parseInt(currentDay, 10) - 1}`}
         >
-          <CaretRightOutlined />
+          <ChevronRight />
         </Link>
       </>
     );
@@ -76,7 +76,7 @@ export default function NavbarCenter() {
           className="flex items-center justify-center"
           href={`/archive/${parseInt(currentDay, 10) + 1}`}
         >
-          <CaretLeftOutlined />
+          <ChevronLeft />
         </Link>
         <Link href={"/"}>
           <p className="roboto font-semibold tracking-tight">
@@ -88,7 +88,7 @@ export default function NavbarCenter() {
           className="flex items-center justify-center"
           href={`/archive/${parseInt(currentDay, 10) - 1}`}
         >
-          <CaretRightOutlined />
+          <ChevronRight />
         </Link>
       </>
     );
@@ -103,7 +103,7 @@ export default function NavbarCenter() {
     const currentDay = getMiniNumber();
     return (
       <>
-        <CaretLeftOutlined style={{ color: "var(--gray-300)" }} />
+        <ChevronLeft style={{ color: "var(--gray-300)" }} />
         <Link href={"/mini"}>
           <p className="roboto font-semibold tracking-tight">
             Mini #{currentDay}
@@ -114,7 +114,7 @@ export default function NavbarCenter() {
           className="flex items-center justify-center"
           href={`/mini/archive/${parseInt(currentDay, 10) - 1}`}
         >
-          <CaretRightOutlined />
+          <ChevronRight />
         </Link>
       </>
     );
@@ -133,7 +133,7 @@ export default function NavbarCenter() {
           className="flex items-center justify-center"
           href={`/mini/archive/${parseInt(currentDay, 10) + 1}`}
         >
-          <CaretLeftOutlined />
+          <ChevronLeft />
         </Link>
         <Link href={"/mini"}>
           <p className="roboto font-semibold tracking-tight">
@@ -145,7 +145,7 @@ export default function NavbarCenter() {
           className="flex items-center justify-center"
           href={`/mini/archive/${parseInt(currentDay, 10) - 1}`}
         >
-          <CaretRightOutlined />
+          <ChevronRight />
         </Link>
       </>
     );
