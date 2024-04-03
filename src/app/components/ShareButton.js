@@ -9,13 +9,12 @@ export default function ShareButton({
   number,
   emojis,
   score,
-  win = true,
+  win,
   guessCount,
 }) {
-  function generateShareableString() {
+  function generateShareableString(hasWon) {
     let shareString = "";
-    console.log(win);
-    shareString += win
+    shareString += hasWon
       ? `I got Hexcodle ${
           mini ? "Mini " : ""
         }#${number} in ${guessCount}! Score: ${score}\n\n`
@@ -34,7 +33,7 @@ export default function ShareButton({
         variant="secondary"
         asChild
         onClick={() => {
-          navigator.clipboard.writeText(generateShareableString());
+          navigator.clipboard.writeText(generateShareableString(win));
         }}
       >
         <PopoverTrigger>
