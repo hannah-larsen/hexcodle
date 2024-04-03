@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import useSound from "use-sound";
-import ShareAltOutlined from "@ant-design/icons/ShareAltOutlined";
 import { useLocalStorage } from "@mantine/hooks";
 import useSavestate from "@/app/hooks/useSavestate.js";
 import Guess from "@/app/components/Guess.js";
