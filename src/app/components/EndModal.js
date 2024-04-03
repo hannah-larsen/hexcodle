@@ -150,6 +150,8 @@ export function EndModal({
               number={hexcodleNumber}
               emojis={emojis}
               score={getScore(color, guesses)}
+              win={win}
+              guessCount={guesses.length}
             />
           </div>
           <DialogFooter
