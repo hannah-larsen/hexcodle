@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import useSound from "use-sound";
 import { useLocalStorage } from "@mantine/hooks";
 import useSavestate from "@/app/hooks/useSavestate.js";
@@ -51,7 +51,9 @@ export default function MiniHexcodle({
   const [endModalVisible, setEndModalVisible] = useState(false);
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
 
-  const hasWon = guesses.includes(targetColor);
+  const hasWon = useMemo(() => {
+    return guesses.includes(targetColor);
+  }, [guesses, targetColor]);
 
   const [play] = useSound("/sounds/hexcodle4.mp3", { volume: 0.4 });
 

@@ -9,11 +9,12 @@ export default function ShareButton({
   number,
   emojis,
   score,
-  win,
+  win = true,
   guessCount,
 }) {
   function generateShareableString() {
     let shareString = "";
+    console.log(win);
     shareString += win
       ? `I got Hexcodle ${
           mini ? "Mini " : ""
