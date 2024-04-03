@@ -231,9 +231,10 @@ export function getScore(target, guesses) {
   const closenessScore =
     ((maxTotalDifference - differenceSum) / maxTotalDifference) * 30;
 
-  const guessesScore = ((MAX_GUESSES - guesses.length + 1) / MAX_GUESSES) * 70;
+  const guessesScore =
+    (Math.min(MAX_GUESSES - guesses.length + 2, 5) / MAX_GUESSES) * 70;
 
-  const finalScore = closenessScore + guessesScore;
+  const finalScore = Math.floor(closenessScore) + Math.floor(guessesScore);
 
   return Math.round(finalScore) + "%";
 }

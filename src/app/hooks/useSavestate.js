@@ -7,7 +7,6 @@ export default function useSavestate(gameNumber) {
         JSON.parse(window.localStorage.getItem("hexcodleSaves")) || {};
       return saves[gameNumber] || { guesses: [], isComplete: false };
     } catch (error) {
-      console.log(error);
       return { guesses: [], isComplete: false };
     }
   });
@@ -18,9 +17,7 @@ export default function useSavestate(gameNumber) {
         JSON.parse(window.localStorage.getItem("hexcodleSaves")) || {};
       saves[gameNumber] = gameData;
       window.localStorage.setItem("hexcodleSaves", JSON.stringify(saves));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }, [gameData, gameNumber]);
 
   const setGuesses = (newGuesses) => {

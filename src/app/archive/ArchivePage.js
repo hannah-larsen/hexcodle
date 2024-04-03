@@ -35,7 +35,6 @@ const ArchivePage = ({ panelsData }) => {
         return [];
       }
     };
-    console.log(getCompleteGames());
     setCompletedGames(getCompleteGames());
   }, []);
 
