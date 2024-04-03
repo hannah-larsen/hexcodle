@@ -12,10 +12,6 @@ const BackgroundPanel = styled.div`
 const ColourPanel = styled.div`
   width: 100%;
   height: 150px;
-  background-color: ${(props) =>
-    props.hiddenColor
-      ? "#8f8f8f"
-      : props.hexcode}; //this will be the colour of the archive day
   align-items: center;
 `;
 
@@ -51,14 +47,21 @@ const BottomTextWrapper = styled.div`
 `;
 
 const ArchivePanel = ({ hidden, colorName, hexcode, date }) => {
+  const generateQuestionMarks = (length) => "?".repeat(length);
+
   return (
     <BackgroundPanel>
-      <ColourPanel hexcode={hexcode} hiddenColor={hidden}></ColourPanel>
+      <ColourPanel
+        hexcode={hexcode}
+        style={{ backgroundColor: hidden ? "#8f8f8f" : hexcode }}
+      ></ColourPanel>
       <ColourNameText>
         {hidden ? "UNSOLVED" : colorName.toUpperCase()}
       </ColourNameText>
       <BottomTextWrapper>
-        <ColourHexText>{hidden ? "#??????" : hexcode}</ColourHexText>
+        <ColourHexText>
+          {hidden ? `#${generateQuestionMarks(hexcode.length - 1)}` : hexcode}
+        </ColourHexText>
         {date && <DateText>{date}</DateText>}
       </BottomTextWrapper>
     </BackgroundPanel>
