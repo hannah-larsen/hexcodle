@@ -15,8 +15,8 @@ import {
 } from "@/app/components/ui/dialog";
 
 const Wrapper = styled.button`
-  --color-1: #fbcfe8;
-  --color-2: #be185d;
+  --color-1: #bbf7d0;
+  --color-2: #166534;
   background-color: var(--color-1);
   border: var(--color-2) 1px solid;
   color: var(--color-2);
@@ -43,29 +43,41 @@ export default function Announcement() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Wrapper>🌈 New Gamemode: Hexcodle Mini 🌈</Wrapper>
+        <Wrapper>
+          🏆 Contest: Create your own colour puzzle for Hexcodle Mini! ✨
+        </Wrapper>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90vh]">
         <DialogHeader>
-          <DialogTitle>Updates: March 28th, 2024</DialogTitle>
-          <DialogDescription>Hexcodle Mini, Blog and more!</DialogDescription>
+          <DialogTitle>Updates: April 9th, 2024</DialogTitle>
+          <DialogDescription>
+            New Contest, Hexcodle Mini & Other Updates!
+          </DialogDescription>
         </DialogHeader>
         <p>
-          <strong>Hexcodle Mini</strong>
+          <strong>Hexcodle Mini Contest</strong>
         </p>
         <p>
-          The highly-requested{" "}
+          To kick off the end of the first week of{" "}
           <Link
             className="text-blue-500 hover:text-blue-400"
             href="/mini"
             target="_blank"
           >
             Hexcodle Mini
-          </Link>{" "}
-          is now live! Instead of entering 6 digits of RGB values, the Mini is
-          only comprised of 3 values, so you will no longer need to guess those
-          pesky secondary digits.
+          </Link>
+          {", "}
+          we are excited to announce that we will be holding another{" "}
+          <strong>custom puzzle contest!</strong> Submissions close April 20th.
         </p>
+        <div className="flex items-center justify-start">
+          <Button className="max-md:w-full" asChild variant="secondary">
+            <Link target="_blank" href="https://forms.gle/UeQ9bPvso2WZm2uw9">
+              <div />
+              Enter Contest
+            </Link>
+          </Button>
+        </div>
         <p>
           <strong>Blog</strong>
         </p>
@@ -79,21 +91,7 @@ export default function Announcement() {
             blog
           </Link>
           !!! Check out our first post and see what Wordle-style games we
-          recommend, maybe you&apos;ll find a new favourite. 👀
-        </p>
-        <p>
-          <strong>Relatle</strong>
-        </p>
-        <p>
-          Looking for something new to play? You may like{" "}
-          <a
-            href="https://www.relatle.lol"
-            className="text-blue-500 hover:text-blue-400"
-            target="_blank"
-          >
-            Relatle
-          </a>
-          , our newest daily word game!
+          recommend, maybe you&apos;ll find a new favourite.
         </p>
         <center>
           <Image
