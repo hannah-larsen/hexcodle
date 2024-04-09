@@ -236,11 +236,11 @@ export function getScore(target, guesses) {
   });
 
   const closenessScore = Math.max(
-    ((maxTotalDifference - differenceSum) / maxTotalDifference) * 45,
+    ((maxTotalDifference - differenceSum) / maxTotalDifference) * 60,
     0
   );
   const closenessLogScore = Math.max(
-    ((maxTotalLogDifference - differenceLogSum) / maxTotalLogDifference) * 45,
+    ((maxTotalLogDifference - differenceLogSum) / maxTotalLogDifference) * 30,
     0
   );
 
