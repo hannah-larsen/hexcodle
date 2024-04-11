@@ -98,8 +98,9 @@ export function EndModal({
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button size="icon" className="absolute bottom-5 right-5">
-            <Share2 className="w-4 h-4" />
+          <Button>
+            <Share2 className="w-4 h-4 mr-2" />
+            <p>See Results</p>
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-lg">
@@ -168,8 +169,9 @@ export function EndModal({
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button size="icon" className="absolute bottom-5 right-5">
-          <Share2 className="w-4 h-4" />
+        <Button>
+          <Share2 className="w-4 h-4 mr-2" />
+          <p>See Results</p>
         </Button>
       </DrawerTrigger>
       <DrawerContent>

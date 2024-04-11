@@ -10,6 +10,7 @@ import MiniHexcodleInput from "@/app/components/MiniHexcodleInput.js";
 import Navbar from "@/app/components/Navbar.js";
 import { getScore } from "@/app/utils.js";
 import { EndModal } from "../components/EndModal";
+import HexKeyboard from "../components/HexKeyboard";
 
 const MAX_GUESSES = 5;
 
@@ -44,12 +45,11 @@ export default function MiniHexcodle({
     key: "loading",
     defaultValue: true,
   });
-  const [userInput, setUserInput] = useState("#");
+  const [userInput, setUserInput] = useState("");
   const [statusText, setStatusText] = useState(
     "Start by typing your guess above!"
   );
   const [endModalVisible, setEndModalVisible] = useState(false);
-  const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
 
   const hasWon = useMemo(() => {
     return guesses.includes(targetColor);
@@ -82,7 +82,7 @@ export default function MiniHexcodle({
     }
 
     const newGuesses = [...guesses];
-    newGuesses.unshift(newGuess);
+    newGuesses.push(newGuess);
 
     if (newGuesses.includes(targetColor)) {
       play();
@@ -108,62 +108,44 @@ export default function MiniHexcodle({
   return (
     <>
       <Navbar />
-      <main className="everything">
-        <Announcement onClick={() => setIsLaunchModalVisible(true)} />{" "}
-        <section className="frosted-glass" style={{ position: "relative" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "start",
-              alignItems: "end",
-              width: "100%",
-              marginBottom: 8,
-            }}
-          >
-            <div className="first-square" style={{ flex: 1 }}>
-              <h2
-                className="guess-title text-xl roboto font-semibold"
-                style={{ marginBottom: 8 }}
-              >
-                Target
-              </h2>
-              <div
-                className="square"
-                style={{ backgroundColor: targetColor }}
-              />
-            </div>
-            <div style={{ flex: 1 }}>
-              <h2
-                className="guess-title text-xl roboto font-semibold"
-                style={{ marginBottom: 8 }}
-              >
-                Your Guess
-              </h2>
-              <div className="square" style={{ backgroundColor: guesses[0] }} />
-            </div>
+      <main className="everything" style={{ minHeight: "auto" }}>
+        <Announcement />
+        <div className="flex flex-col gap-4 items-center justify-center max-w-xl w-full">
+          <div className="flex">
+            <div
+              className="h-32 w-16"
+              style={{ backgroundColor: targetColor }}
+            />
+            <div
+              className={`h-32 w-16 ${
+                guesses.length > 0
+                  ? ""
+                  : "border-2 border-black border-dashed border-l-0"
+              }`}
+              style={{ backgroundColor: guesses[guesses.length - 1] }}
+            />
           </div>
-          <div className="input-section">
-            {loading ? (
-              <div style={{ width: 250, height: 36 }} />
-            ) : (
-              <MiniHexcodleInput
-                userInput={userInput}
-                setUserInput={setUserInput}
-                onClick={submitGuess}
-                gameOver={isComplete}
-                guesses={guesses}
-                setStatusText={setStatusText}
-                type={settings.colorMode}
-              />
+          <div className="flex flex-col w-full justify-center items-center">
+            {!loading &&
+              guesses.map((guess, index) => (
+                <Guess
+                  key={index}
+                  guess={guess}
+                  type={settings.colorMode}
+                  target={targetColor}
+                  hardMode={settings.difficulty}
+                />
+              ))}
+            {guesses.length !== MAX_GUESSES && (
+              <Guess type="text" guess={userInput} maxLength={3} />
             )}
-            <p className="status-text pt-2">
-              {statusText}{" "}
-              {isComplete
-                ? `Your score is ${getScore(targetColor, guesses)}`
-                : ""}
-            </p>
+            {Array.from({ length: MAX_GUESSES - guesses.length - 1 }).map(
+              (_, index) => (
+                <Guess key={index} type="empty" maxLength={3} />
+              )
+            )}
           </div>
-          {isComplete && (
+          {isComplete ? (
             <EndModal
               open={endModalVisible}
               setOpen={setEndModalVisible}
@@ -174,27 +156,15 @@ export default function MiniHexcodle({
               hexcodleNumber={number}
               isMini={isMini}
             />
+          ) : (
+            <HexKeyboard
+              input={userInput}
+              setInput={setUserInput}
+              onSubmit={(currentInput) => submitGuess(currentInput)}
+              maxLength={3}
+            />
           )}
-        </section>
-        <section
-          className="frosted-glass guess-section"
-          style={{ overflowX: "hidden" }}
-        >
-          <h2 id="guess-heading" className="text-xl roboto font-semibold">
-            Guesses
-          </h2>
-
-          {!loading &&
-            guesses.map((guess, index) => (
-              <Guess
-                key={index}
-                guess={guess}
-                type={settings.colorMode}
-                target={targetColor}
-                hardMode={settings.difficulty}
-              />
-            ))}
-        </section>
+        </div>
       </main>
     </>
   );

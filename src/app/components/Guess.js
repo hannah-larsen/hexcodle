@@ -6,19 +6,18 @@ const GuessContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
   max-width: 600px;
-  margin: 4px 16px; // top and bottom margin set to 4px, left and right to 16px
-  gap: 6px;
+  gap: 1rem;
+  padding: 0.5rem;
 `;
 
 const GuessCharacter = styled.div`
   text-align: center;
   font-weight: bold;
-  flex: 1;
-  border-radius: 8px;
-  border: 4px solid ${(props) => props.borderColor}; // combined border properties
-  padding: 6px;
+  border: 2px solid ${(props) => props.borderColor};
+  height: 4rem;
+  width: 4rem;
+  padding: 4px;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -28,8 +27,9 @@ const GuessCharacter = styled.div`
 const GuessText = styled.p`
   font-family: "Roboto Mono", monospace;
   font-size: 1.4rem;
-  margin: 0;
+  margin: 2px;
   padding: 0;
+  line-height: 1.4rem;
 
   @media screen and (max-width: 650px) {
     font-size: 4vw;
@@ -40,13 +40,14 @@ export default function Guess({
   guess,
   target,
   hardMode = false,
+  maxLength = 6,
   type = "hex",
 }) {
   if (type === "hex") {
     return (
-      <GuessContainer>
+      <GuessContainer className="w-min" style={{ backgroundColor: guess }}>
         {[...guess.substring(1)].map((character, index) => (
-          <GuessCharacter key={index} borderColor={guess}>
+          <GuessCharacter key={index} borderColor={"#aaa"}>
             <GuessText>{character}</GuessText>
             <GuessText>
               {compareCharacters(
@@ -72,6 +73,33 @@ export default function Guess({
             <GuessText>
               {compareRGB(guessRGB[color], targetRGB[color], hardMode)}
             </GuessText>
+          </GuessCharacter>
+        ))}
+      </GuessContainer>
+    );
+  }
+
+  if (type === "text") {
+    return (
+      <GuessContainer>
+        {Array.from({ length: maxLength }).map((_, index) => (
+          <GuessCharacter key={index} borderColor="#aaa">
+            <GuessText>
+              {guess[index] !== undefined ? guess[index] : "\u00A0"}
+            </GuessText>
+          </GuessCharacter>
+        ))}
+      </GuessContainer>
+    );
+  }
+
+  if (type === "empty") {
+    return (
+      <GuessContainer>
+        {Array.from({ length: maxLength }).map((_, index) => (
+          <GuessCharacter key={index} borderColor="#aaa">
+            <GuessText>{"\u00A0"}</GuessText>
+            <GuessText>{"\u00A0"}</GuessText>
           </GuessCharacter>
         ))}
       </GuessContainer>

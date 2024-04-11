@@ -130,7 +130,7 @@ section {
   align-items: center;
   width: 100%;
   max-width: 600px;
-  padding: 8px;
+  padding: 16px;
   border-radius: 16px;
   background-color: var(--gray-50);
   --shadow-color: 0deg 0% 63%;
@@ -294,6 +294,22 @@ section {
 
 .emoji {
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.react-simple-keyboard {
+  width: 100%;
+  max-width: 450px;
+  background-color: transparent !important; 
+  padding: 0 !important;
+}
+
+.hg-standardBtn {
+  flex-grow: 0.37 !important;
+  text-transform: uppercase;
+}
+
+.hg-row {
+  justify-content: center;
 }
 
 @media screen and (max-width: 650px) {

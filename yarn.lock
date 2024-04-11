@@ -5263,7 +5263,7 @@ react-canvas-confetti@^1.4.0:
     "@types/canvas-confetti" "1.6.0"
     canvas-confetti "1.6.0"
 
-"react-dom@^16.8 || ^17.0 || ^18.0", react-dom@^18.2.0, "react-dom@>= 16.8.0", react-dom@>=16.8.0:
+"react-dom@^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.8 || ^17.0 || ^18.0", react-dom@^18.2.0, "react-dom@>= 16.8.0", react-dom@>=16.8.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
@@ -5295,6 +5295,11 @@ react-remove-scroll@2.5.5:
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
 
+react-simple-keyboard@^3.7.105:
+  version "3.7.105"
+  resolved "https://registry.npmjs.org/react-simple-keyboard/-/react-simple-keyboard-3.7.105.tgz"
+  integrity sha512-NOpSxh+4lUX3F7ybvwSpZrAP4WQMRCPRKvEGSVx1ztmq1yIIBC2ozYM/89f2FjRgv7Tl+uV8p0Z0TulLl3mohQ==
+
 react-style-singleton@^2.2.1:
   version "2.2.1"
   resolved "https://registry.npmjs.org/react-style-singleton/-/react-style-singleton-2.2.1.tgz"
@@ -5304,7 +5309,7 @@ react-style-singleton@^2.2.1:
     invariant "^2.2.4"
     tslib "^2.0.0"
 
-react@*, "react@^16.5.1 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.x || ^17.x || ^18.x", "react@^18 || ^19", react@^18.2.0, "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", react@>=16.8, react@>=16.8.0:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.5.1 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.x || ^17.x || ^18.x", "react@^18 || ^19", react@^18.2.0, "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", react@>=16.8, react@>=16.8.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
