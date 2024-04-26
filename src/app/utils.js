@@ -235,21 +235,19 @@ export function getScore(target, guesses) {
       localDiffSum !== 0 ? Math.log(localDiffSum * localDiffSum) / logBase : 0;
   });
 
-  const closenessScore = Math.max(
-    ((maxTotalDifference - differenceSum) / maxTotalDifference) * 60,
-    0
-  );
-  const closenessLogScore = Math.max(
-    ((maxTotalLogDifference - differenceLogSum) / maxTotalLogDifference) * 30,
-    0
-  );
+  const closenessScore =
+    (maxTotalDifference - differenceSum) / maxTotalDifference;
 
-  const guessesScore = ((MAX_GUESSES - guesses.length + 1) / MAX_GUESSES) * 10;
+  const closenessLogScore =
+    (maxTotalLogDifference - differenceLogSum) / maxTotalLogDifference;
+
+  const guessesScore =
+    Math.min(MAX_GUESSES - guesses.length + 2, 5) / MAX_GUESSES;
 
   const finalScore =
-    Math.floor(closenessScore) +
-    Math.floor(closenessLogScore) +
-    Math.floor(guessesScore);
+    Math.floor(closenessScore * 60) +
+    Math.floor(closenessLogScore * 30) +
+    Math.floor(guessesScore * 10);
 
   return Math.round(finalScore) + "%";
 }
