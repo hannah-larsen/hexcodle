@@ -212,9 +212,9 @@ export function getScore(target, guesses) {
   const MAX_GUESSES = 5;
   let differenceSum = 0;
   let differenceLogSum = 0;
-  const maxDifferencePerChannel = 64;
+  const maxDifferencePerChannel = guesses[0].length === 3 ? 15 : 255; // Mini check
   const maxTotalDifference = maxDifferencePerChannel * 3 * MAX_GUESSES;
-  const logBase = Math.log(64);
+  const logBase = Math.log(10);
   const maxTotalLogDifference = MAX_GUESSES * logBase;
 
   const {
@@ -243,6 +243,8 @@ export function getScore(target, guesses) {
 
   const guessesScore =
     Math.min(MAX_GUESSES - guesses.length + 2, 5) / MAX_GUESSES;
+
+  console.log({ closenessScore, closenessLogScore, guessesScore });
 
   const finalScore =
     Math.floor(closenessScore * 60) +
