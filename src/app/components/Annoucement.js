@@ -47,7 +47,7 @@ export default function Announcement() {
           🏆 Contest: Create your own colour puzzle for Hexcodle Mini! ✨
         </Wrapper>
       </DialogTrigger>
-      <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90vh]">
+      <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
           <DialogTitle>Updates: April 9th, 2024</DialogTitle>
           <DialogDescription>
