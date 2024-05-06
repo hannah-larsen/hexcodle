@@ -8,7 +8,7 @@ export default async function Page({}) {
     <MiniHexcodle
       targetColor={"#EF3"}
       colorName={"Highlighter Yellow"}
-      number={"contest2"}
+      number={"CONTEST2"}
       maxDay={currentHexcodle}
       arrowsDisabled
     />

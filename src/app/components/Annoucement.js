@@ -15,8 +15,8 @@ import {
 } from "@/app/components/ui/dialog";
 
 const Wrapper = styled.button`
-  --color-1: #bbf7d0;
-  --color-2: #166534;
+  --color-1: #ddd6fe;
+  --color-2: #5b21b6;
   background-color: var(--color-1);
   border: var(--color-2) 1px solid;
   color: var(--color-2);
@@ -43,55 +43,62 @@ export default function Announcement() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Wrapper>
-          🏆 Contest: Create your own colour puzzle for Hexcodle Mini! ✨
-        </Wrapper>
+        <Wrapper>🎉 Hexcodle Mini Contest Winners! 🎉</Wrapper>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
-          <DialogTitle>Updates: April 9th, 2024</DialogTitle>
+          <DialogTitle>Updates: May 6th, 2024</DialogTitle>
           <DialogDescription>
-            New Contest, Hexcodle Mini & Other Updates!
+            Hexcodle Mini Contest Winners! 🎉
           </DialogDescription>
         </DialogHeader>
         <p>
-          <strong>Hexcodle Mini Contest</strong>
-        </p>
-        <p>
-          To kick off the end of the first week of{" "}
-          <Link
+          After a long-awaited month, we have finally chosen the Hexcodle Mini
+          contest winners and added the puzzles to the{" "}
+          <a
             className="text-blue-500 hover:text-blue-400"
-            href="/mini"
             target="_blank"
+            href="/mini/custom-archive"
           >
-            Hexcodle Mini
-          </Link>
-          {", "}
-          we are excited to announce that we will be holding another{" "}
-          <strong>custom puzzle contest!</strong> Submissions close April 20th.
-        </p>
-        <div className="flex items-center justify-start">
-          <Button className="max-md:w-full" asChild variant="secondary">
-            <Link target="_blank" href="https://forms.gle/UeQ9bPvso2WZm2uw9">
-              <div />
-              Enter Contest
-            </Link>
-          </Button>
-        </div>
-        <p>
-          <strong>Blog</strong>
+            Mini Extras
+          </a>{" "}
+          page.
         </p>
         <p>
-          We now have our own{" "}
-          <Link
+          Congratulations to{" "}
+          <a
+            className="text-blue-500 hover:text-blue-400"
+            target="_blank"
+            href="/mini/archive/contest1"
+          >
+            Kaylie
+          </a>
+          ,{" "}
+          <a
+            className="text-blue-500 hover:text-blue-400"
+            target="_blank"
+            href="/mini/archive/contest2"
+          >
+            Thomas
+          </a>{" "}
+          and{" "}
+          <a
+            className="text-blue-500 hover:text-blue-400"
+            target="_blank"
+            href="/mini/archive/contest3"
+          >
+            Joseph
+          </a>{" "}
+          for winning! We loved reading the names for all the colours submitted!
+          Stay tuned for a{" "}
+          <a
+            className="text-blue-500 hover:text-blue-400"
+            target="_blank"
             href="/blog"
-            className="text-blue-500 hover:text-blue-400"
-            target="_blank"
           >
-            blog
-          </Link>
-          !!! Check out our first post and see what Wordle-style games we
-          recommend, maybe you&apos;ll find a new favourite.
+            blog post
+          </a>{" "}
+          soon, recapping some of our other favourite submissions.
         </p>
         <center>
           <Image
@@ -101,11 +108,9 @@ export default function Announcement() {
             height={100}
           />
         </center>
-        <p>- Hannah & Ekim</p>
-        <br></br>
+        <p>Thanks for Hexcodle-ing! Yours truly, Hannah & Ekim</p>
         <p style={{ fontSize: "0.7rem" }}>
-          If you like playing Hexcodle and wish to support the developers, we
-          have a link set up{" "}
+          If you like playing Hexcodle and wish to support the developers, click{" "}
           <a
             className="text-blue-500 hover:text-blue-400"
             target="_blank"
