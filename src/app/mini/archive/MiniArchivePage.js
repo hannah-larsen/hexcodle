@@ -68,6 +68,7 @@ const MiniArchivePage = ({ panelsData }) => {
                 key={hexcodleNumber}
                 href={`/mini/archive/${hexcodleNumber}`}
                 style={{ textDecoration: "none" }}
+                prefetch={false}
               >
                 <ArchivePanel
                   hidden={!isComplete}

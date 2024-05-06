@@ -88,14 +88,13 @@ export default function MenuSidebar() {
           </Button>
           <Button
             asChild
-            variant="inactivelink"
+            variant="ghost"
             size="full"
             className="text-slate-500"
           >
-            <Link href="">
+            <Link href="/mini/custom-archive">
               <div className="mr-4 h-6 w-6" />
               Custom Games
-              <Badge className="ml-4" variant="secondary">Coming soon!</Badge>
             </Link>
           </Button>
           <Button asChild variant="ghost" size="full" className="font-semibold">

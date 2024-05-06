@@ -18,7 +18,6 @@ export default function HexcodleGame({
   colorName,
   number,
   maxDay,
-  arrowsDisabled = false,
   isMini = false,
 }) {
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(number);
