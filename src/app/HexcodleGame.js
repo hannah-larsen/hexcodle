@@ -103,7 +103,7 @@ export default function HexcodleGame({
     <>
       <Navbar />
       <main className="everything">
-        <Announcement onClick={() => setIsLaunchModalVisible(true)} />{" "}
+        {/*<Announcement onClick={() => setIsLaunchModalVisible(true)} />{" "}*/}
         <section className="frosted-glass" style={{ position: "relative" }}>
           <div
             style={{

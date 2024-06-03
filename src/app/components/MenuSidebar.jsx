@@ -19,7 +19,7 @@ export default function MenuSidebar() {
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="relative rounded-none">
           <Menu className="h-6 w-6" />
-          <div className="absolute top-0 right-0 h-2 w-2 bg-pink-700 rounded-full" />
+          <div className="absolute top-0 right-0" />
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="overflow-x-auto">
@@ -74,7 +74,6 @@ export default function MenuSidebar() {
                 className="mr-4 h-6 w-6 rounded-sm"
               />
               Hexcodle Mini
-              <Badge className="ml-4">New</Badge>
             </Link>
           </Button>
           <Button
@@ -113,7 +112,6 @@ export default function MenuSidebar() {
             <Link href="/blog">
               <BookHeart className="mr-4 h-6 w-6 p-1 bg-blue-300 rounded-sm" />
               Blog
-              <Badge className="ml-4">New</Badge>
             </Link>
           </Button>
           <Button asChild variant="ghost" size="full" className="font-semibold">
