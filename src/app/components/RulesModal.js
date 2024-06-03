@@ -39,17 +39,24 @@ export default function RulesModal() {
           game mode!
         </p>
         <p>
-          <strong>
-            New to hex codes? Click{" "}
-            <a
-              target="_blank"
-              href="https://www.freecodecamp.org/news/how-hex-code-colors-work-how-to-choose-colors-without-a-color-picker/"
-              className="text-blue-500 hover:text-blue-300"
-            >
-              here
-            </a>{" "}
-            to learn more!{" "}
-          </strong>
+          New to hex codes? Click{" "}
+          <a
+            target="_blank"
+            href="https://www.freecodecamp.org/news/how-hex-code-colors-work-how-to-choose-colors-without-a-color-picker/"
+            className="text-blue-500 hover:text-blue-300"
+          >
+            here
+          </a>{" "}
+          to learn more! <br></br>
+          Want to improve your hex guessing skills? Click{" "}
+          <a
+            target="_blank"
+            href="https://youtube.com/shorts/nRogtTo5cxQ?si=wmjYfK79ZQbFAU5S"
+            className="text-blue-500 hover:text-blue-300"
+          >
+            here
+          </a>
+          !
         </p>
         <DialogFooter>
           <DialogClose asChild>

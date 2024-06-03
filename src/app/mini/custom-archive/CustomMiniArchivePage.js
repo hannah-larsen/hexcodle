@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import ArchivePanel from "../components/ArchivePanel";
-import Navbar from "../components/Navbar";
-import Stats from "../components/Stats";
+import ArchivePanel from "@/app/components/ArchivePanel";
+import Navbar from "@/app/components/Navbar";
+import Stats from "@/app/components/Stats";
 
 const Wrapper = styled.div`
   display: grid;
@@ -21,7 +21,7 @@ const StatsWrapper = styled.div`
   width: 100%;
 `;
 
-const ArchivePage = ({ panelsData }) => {
+const CustomMiniArchivePage = ({ panelsData }) => {
   const [completedGames, setCompletedGames] = useState([]);
 
   useEffect(() => {
@@ -29,14 +29,20 @@ const ArchivePage = ({ panelsData }) => {
       try {
         const saves =
           JSON.parse(window.localStorage.getItem("hexcodleSaves")) || {};
-        return Object.entries(saves).filter(([key, data]) => data.isComplete);
+
+        const validKeys = new Set(panelsData.map((panel) => panel.id));
+
+        return Object.entries(saves).filter(
+          ([key, data]) => data.isComplete && validKeys.has(key)
+        );
       } catch (error) {
         console.error("Error fetching completed games:", error);
         return [];
       }
     };
+
     setCompletedGames(getCompleteGames());
-  }, []);
+  }, [panelsData]); //
 
   return (
     <>
@@ -46,26 +52,20 @@ const ArchivePage = ({ panelsData }) => {
         style={{ paddingLeft: 0, paddingRight: 0, gap: 16 }}
       >
         <StatsWrapper>
-          <Stats
-            games={completedGames.filter(([key]) => parseInt(key, 10) > 0)}
-            totalCount={panelsData.length}
-          />
+          <Stats games={completedGames} totalCount={panelsData.length} />
         </StatsWrapper>
         <Wrapper>
-          {panelsData.map(({ hexcodleNumber, colorName, hexcode, date }) => {
-            const isComplete = completedGames
-              .map(([key]) => parseInt(key, 10))
-              .includes(hexcodleNumber);
+          {panelsData.map(({ id, colorName, hexcode, urlEndpoint, date }) => {
+            const isComplete = completedGames.map(([key]) => key).includes(id);
             return (
               <Link
-                key={hexcodleNumber}
-                href={`/archive/${hexcodleNumber}`}
+                key={id}
+                href={`/mini/archive/${urlEndpoint}`}
                 style={{ textDecoration: "none" }}
-                prefetch={false}
               >
                 <ArchivePanel
                   hidden={!isComplete}
-                  hexcodleNumber={hexcodleNumber}
+                  hexcodleNumber={id}
                   colorName={colorName}
                   hexcode={hexcode}
                   date={date}
@@ -79,4 +79,4 @@ const ArchivePage = ({ panelsData }) => {
   );
 };
 
-export default ArchivePage;
+export default CustomMiniArchivePage;

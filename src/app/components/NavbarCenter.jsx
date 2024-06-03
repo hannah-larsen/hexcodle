@@ -8,6 +8,7 @@ export default function NavbarCenter() {
   const pathname = usePathname();
   const pathComponents = pathname.split("/").filter(Boolean);
 
+  // Archive Home
   if (pathname === "/archive") {
     return (
       <Link href={"/"}>
@@ -16,6 +17,7 @@ export default function NavbarCenter() {
     );
   }
 
+  // Mini Archive Home
   if (pathname === "/mini/archive") {
     return (
       <Link href={"/mini"}>
@@ -24,6 +26,7 @@ export default function NavbarCenter() {
     );
   }
 
+  // Extras Home
   if (pathname === "/custom-archive") {
     return (
       <Link href={"/custom-archive"}>
@@ -32,11 +35,45 @@ export default function NavbarCenter() {
     );
   }
 
+  // Mini Extras Home
+  if (pathname === "/mini/custom-archive") {
+    return (
+      <Link href={"/mini/custom-archive"}>
+        <p className="roboto font-semibold tracking-tight">Mini Extras</p>
+      </Link>
+    );
+  }
+
+  // Blog
+  if (pathComponents[0] === "blog") {
+    return (
+      <Link href={"/blog"}>
+        <p className="roboto font-semibold tracking-tight">Hexcodle Blog</p>
+      </Link>
+    );
+  }
+
+  // Custom Page
   if (pathComponents[0] === "archive" && isNaN(pathComponents[1])) {
     return (
       <Link href={"/custom-archive"}>
         <p className="roboto font-semibold tracking-tight">
           Hexcodle #{pathComponents[1]}
+        </p>
+      </Link>
+    );
+  }
+
+  // Custom Page
+  if (
+    pathComponents[0] === "mini" &&
+    pathComponents[1] === "archive" &&
+    isNaN(pathComponents[2])
+  ) {
+    return (
+      <Link href={"/mini/custom-archive"}>
+        <p className="roboto font-semibold tracking-tight">
+          Mini #{pathComponents[2]}
         </p>
       </Link>
     );
@@ -148,14 +185,6 @@ export default function NavbarCenter() {
           <ChevronRight />
         </Link>
       </>
-    );
-  }
-
-  if (pathComponents[0] === "blog") {
-    return (
-      <Link href={"/blog"}>
-        <p className="roboto font-semibold tracking-tight">Hexcodle Blog</p>
-      </Link>
     );
   }
 

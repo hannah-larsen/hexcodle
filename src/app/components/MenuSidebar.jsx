@@ -19,7 +19,7 @@ export default function MenuSidebar() {
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="relative rounded-none">
           <Menu className="h-6 w-6" />
-          <div className="absolute top-0 right-0" />
+          <div className="absolute top-0 right-0 h-2 w-2 bg-pink-700 rounded-full" />
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="overflow-x-auto">
@@ -85,6 +85,17 @@ export default function MenuSidebar() {
             <Link href="/mini/archive">
               <div className="mr-4 h-6 w-6" />
               Archive
+            </Link>
+          </Button>
+          <Button
+            asChild
+            variant="ghost"
+            size="full"
+            className="text-slate-500"
+          >
+            <Link href="/mini/custom-archive">
+              <div className="mr-4 h-6 w-6" />
+              Custom Games
             </Link>
           </Button>
           <Button asChild variant="ghost" size="full" className="font-semibold">
