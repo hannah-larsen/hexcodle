@@ -11,19 +11,19 @@ About a month ago, Ekim and I had the pleasure of reviewing your *fabulous* subm
 Now the moment you've all been patiently awaiting... Reviewing our runner-up's!
 
 **Our Fave Funny Submissions:**
-![#ABC](https://www.hexcodle.com/blog/abc.png)
+![#ABC](http://hexcodle.com/blog/abc.png)
 ##### #ABC -> Alphabet Soup (Casey)
-![#314](https://www.hexcodle.com/blog/314.png)
+![#314](http://hexcodle.com/blog/314.png)
 ##### #314 -> Pi Purple (Michaela)
-![#FFF](https://www.hexcodle.com/blog/fff.png)
+![#FFF](http://hexcodle.com/blog/fff.png)
 ##### #FFF -> I cant even see it white (Unibirb)
 
 **Scarily Accurate Hex Names:**
-![#D21](https://www.hexcodle.com/blog/d21.png)
+![#D21](http://hexcodle.com/blog/d21.png)
 ##### #D21 -> Snow White's Poison Apple (Lake_Being)
-![#690](https://www.hexcodle.com/blog/690.png)
+![#690](http://hexcodle.com/blog/690.png)
 ##### #690 -> Leafy green (James M)
-![#ABC](https://www.hexcodle.com/blog/067.png)
+![#ABC](http://hexcodle.com/blog/067.png)
 ##### #067 -> Sea monster (Leah)
 
 And that concludes our list! We want to thank you again for participating in our contest. If you have any fun ideas for Hexcodle, or just want to let us know your thoughts on the game, we encourage you to send us an email to our (newly created) email address: [**hexcodle@gmail.com**](mailto:hexcodle@gmail.com) or submit a ticket on our [**feedback form**](https://docs.google.com/forms/d/e/1FAIpQLSe_EMsc0Gf00wNMl4xZ1t2VcGSY4k7NvqVAnnpoXCi16YgVxw/viewform). Happy Hexcodle-ing <3
