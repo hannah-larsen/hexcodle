@@ -19,7 +19,7 @@ export default function MenuSidebar() {
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="relative rounded-none">
           <Menu className="h-6 w-6" />
-          <div className="absolute top-0 right-0 h-2 w-2 bg-pink-700 rounded-full" />
+          <div className="absolute top-0 right-0" />
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="overflow-x-auto">

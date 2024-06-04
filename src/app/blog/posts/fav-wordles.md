@@ -71,7 +71,7 @@ Our newest creation. If thesaurus.com is in your recents, consider playing our s
 
 MY FAVOURITE GAME EVER!!! Whoever created this I love you, I am obsessed, I sleep, eat, and dream Unolingo. Picture this, you're given a grid that looks like a crossword type of situation, but some letters are already filled in. You then have to **place each letter of the alphabet exactly ONCE in the grid to form proper words**. I think our best time playing this game was 1 minute and 5 seconds.
 
-In conclusion, there are lots of super awesome Wordle-style games out there. If you have a favourite game that didn't make this list, we would love to hear your game suggestions! Shoot us an email at [larsnmusic@gmail.com](mailto:larsnmusic@gmail.com). See you next time!
+In conclusion, there are lots of super awesome Wordle-style games out there. If you have a favourite game that didn't make this list, we would love to hear your game suggestions! Shoot us an email at [hexcodle@gmail.com](mailto:hexcodle@gmail.com). See you next time!
 
 ![Unolingo](http://hexcodle.com/blog/unolingo.png)
 ##### A sweet victory for Hannah & Ekim playing Unolingo
