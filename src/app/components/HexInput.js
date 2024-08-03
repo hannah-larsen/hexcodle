@@ -111,7 +111,7 @@ const HexInput = ({
       }
     } else {
       const { r, g, b } = userInput;
-      if (!(r && g && b)) {
+      if (r == null || g == null || b == null) {
         setStatusText("Error: All RGB values must be filled in.");
         return;
       }

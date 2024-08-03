@@ -26,6 +26,7 @@ Now the moment you've all been patiently awaiting... Reviewing our runner-up's!
 ![#ABC](http://hexcodle.com/blog/067.png)
 ##### #067 -> Sea monster (Leah)
 
+
 And that concludes our list! We want to thank you again for participating in our contest. If you have any fun ideas for Hexcodle, or just want to let us know your thoughts on the game, we encourage you to send us an email to our (newly created) email address: [**hexcodle@gmail.com**](mailto:hexcodle@gmail.com) or submit a ticket on our [**feedback form**](https://docs.google.com/forms/d/e/1FAIpQLSe_EMsc0Gf00wNMl4xZ1t2VcGSY4k7NvqVAnnpoXCi16YgVxw/viewform). Happy Hexcodle-ing <3
 
 
