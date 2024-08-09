@@ -4,6 +4,7 @@ import StyledComponentsRegistry from "./lib/registry";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Footer from "./components/Footer";
 
+export const dynamic = "force-static";
 const GTM_ID = "G-1J0E738QRV";
 const inter = Inter({ subsets: ["latin"] });
 
