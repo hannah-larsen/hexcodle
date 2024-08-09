@@ -9,7 +9,7 @@ export default function Unlimited() {
   const [statusText, setStatusText] = useState("");
   const [guessText, setGuessText] = useState("");
   const [guesses, setGuesses] = useState([]);
-  const [counter, setCounter] = useState(5);
+  const [counter, setCounter] = useState(4);
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function Unlimited() {
       setStatusText("ALREADY GUESSED, please try a different hex code.");
     } else {
       setCounter(counter - 1);
-      if (counter > 0 && userInput === randColor) {
+      if (counter >= 0 && userInput === randColor) {
         const newGuesses = [...guesses];
         setStatusText("You guessed it!");
         newGuesses.unshift(userInput);
@@ -69,6 +69,9 @@ export default function Unlimited() {
         newGuesses.unshift(userInput);
         setGuesses(newGuesses);
       } else if (counter <= 0 && userInput !== randColor) {
+        const newGuesses = [...guesses];
+        newGuesses.unshift(userInput);
+        setGuesses(newGuesses);
         setStatusText(`Out of guesses. Todays Hexcodle was ${randColor}.`);
         setGameOver(true);
         return;
@@ -130,7 +133,7 @@ export default function Unlimited() {
       <p id="instructions">
         You will have 5 tries to correctly guess the hex code of the colour
         displayed on screen.<br></br>
-        Dont know hex codes by memory? No worries! Try the{" "} 
+        Dont know hex codes by memory? No worries! Try the{" "}
         <a
           href="https://htmlcolorcodes.com/color-picker/"
           style={{ color: "#0000ff" }}
@@ -141,7 +144,7 @@ export default function Unlimited() {
       </p>
 
       <div id="colourGen" style={{ backgroundColor: randColor }}></div>
-
+      <p>{randColor}</p>
       <div id="inputAndButton">
         <input
           type="text"
