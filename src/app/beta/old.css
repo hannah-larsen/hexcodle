@@ -13,6 +13,12 @@ body {
   padding-bottom: 16px;
 }
 
+#disclaimer {
+  color: rgb(167, 139, 105);
+  text-align: center;
+  font-size: small;
+}
+
 #title{
   color: rgb(4, 4, 19);
   font-family: 'Roboto Mono', monospace;

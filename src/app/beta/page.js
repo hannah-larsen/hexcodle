@@ -117,6 +117,11 @@ export default function Unlimited() {
 
   return (
     <div id="everything">
+      <p id="disclaimer">
+        From the future: Hexcodle classic only had up and down indicators.
+        <br />
+        Refresh to get a new target color!
+      </p>
       <Link href="/" style={{ color: "#0000ff" }}>
         -- Back to Hexcodle --
       </Link>
