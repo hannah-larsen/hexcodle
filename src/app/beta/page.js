@@ -144,7 +144,6 @@ export default function Unlimited() {
       </p>
 
       <div id="colourGen" style={{ backgroundColor: randColor }}></div>
-      <p>{randColor}</p>
       <div id="inputAndButton">
         <input
           type="text"
