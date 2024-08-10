@@ -43,71 +43,55 @@ export default function Announcement() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Wrapper>🎉 Hexcodle Mini Contest Winners! 🎉</Wrapper>
+        <Wrapper>🎉 Happy Birthday Hexcodle! 🎂</Wrapper>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
-          <DialogTitle>Updates: May 6th, 2024</DialogTitle>
+          <DialogTitle>Updates: August 10th, 2024</DialogTitle>
           <DialogDescription>
-            Hexcodle Mini Contest Winners! 🎉
+            Hexcodle turns one year old! 🎂✨
           </DialogDescription>
         </DialogHeader>
         <p>
-          After a long-awaited month, we have finally chosen the Hexcodle Mini
-          contest winners and added the puzzles to the{" "}
-          <a
-            className="text-blue-500 hover:text-blue-400"
-            target="_blank"
-            href="/mini/custom-archive"
-          >
-            Mini Extras
-          </a>{" "}
-          page.
+          Long time no see! We are back with exciting news: <b>Hexcodle turns 1 today!!!</b> <i>(and yes, we are aware its puzzle
+          #366 due to the leap year raaaahhh)</i>. We cannot 
+          believe that it has been a whole year since we released Hexcodle into the world and we
+          are so grateful for all the love and support you have shown us over the past 12 months.
         </p>
         <p>
-          Congratulations to{" "}
+          To celebrate our anniversary, we have made the beta version of Hexcodle playable
+          and we hope you get a laugh out of it! It sure is crazy to see how much the game has evolved. Play{" "}
           <a
             className="text-blue-500 hover:text-blue-400"
             target="_blank"
-            href="/mini/archive/contest1"
+            href="/beta"
           >
-            Kaylie
-          </a>
-          ,{" "}
-          <a
-            className="text-blue-500 hover:text-blue-400"
-            target="_blank"
-            href="/mini/archive/contest2"
-          >
-            Thomas
+            Hexcodle Beta
           </a>{" "}
-          and{" "}
+          here.
+        </p>
+        <p>
+          To read the full history of Hexcodle, check out our newest{" "}
           <a
             className="text-blue-500 hover:text-blue-400"
             target="_blank"
-            href="/mini/archive/contest3"
-          >
-            Joseph
-          </a>{" "}
-          for winning! We loved reading the names for all the colours submitted!
-          Stay tuned for a{" "}
-          <a
-            className="text-blue-500 hover:text-blue-400"
-            target="_blank"
-            href="/blog"
+            href="/blog/hexcodle-one-year"
           >
             blog post
           </a>{" "}
-          soon, recapping some of our other favourite submissions.
+          .
         </p>
         <center>
           <Image
-            src="/hexparrot-animated.gif"
-            alt="Hex Parrot Win"
+            src="/hexparrot-birthday.png"
+            alt="Hex Parrot Birthday"
             width={100}
             height={100}
           />
         </center>
+        <p>
+          <i>We also added a few fun Hexcodle birthday easter eggs around the site, see if you can find them all! 👀</i>
+        </p>
         <p>Thanks for Hexcodle-ing! Yours truly, Hannah & Ekim</p>
         <p style={{ fontSize: "0.7rem" }}>
           If you like playing Hexcodle and wish to support the developers, click{" "}

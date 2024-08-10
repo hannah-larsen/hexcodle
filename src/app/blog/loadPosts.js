@@ -35,7 +35,7 @@ export async function loadAllPosts() {
   });
 
   posts.sort((a, b) => {
-    if (a.frontMatter.date < b.frontMatter.date) {
+    if (a.frontMatter.date > b.frontMatter.date) {
       return 1;
     } else {
       return -1;

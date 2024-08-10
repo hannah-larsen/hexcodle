@@ -48,7 +48,7 @@ export default function HexcodleGame({
 
   const hasWon = guesses.includes(targetColor);
 
-  const [play] = useSound("/sounds/hexcodle4.mp3", { volume: 0.4 });
+  const [play] = useSound("/sounds/hexcodle-bday-jingle.wav", { volume: 0.4 });
 
   useEffect(() => {
     if (guesses.includes(targetColor)) {
@@ -102,7 +102,7 @@ export default function HexcodleGame({
     <>
       <Navbar />
       <main className="everything">
-        {/*<Announcement onClick={() => setIsLaunchModalVisible(true)} />{" "}*/}
+        <Announcement onClick={() => setIsLaunchModalVisible(true)} />
         <section className="frosted-glass" style={{ position: "relative" }}>
           <div
             style={{
