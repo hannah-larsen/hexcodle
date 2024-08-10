@@ -24,7 +24,7 @@ After feedback from our friends and small audience, we decided to change up the 
 Introducing... a nav bar!!!!! We finally added a proper navigation system to include various things to help make Hexcodle more user-friendly. 
 
 ![Hexcodle December 2023](https://hexcodle.com/blog/nov26.png)
-##### Hexcodle December 2023
+##### Hexcodle November 2023
 
 #### February 2024
 We added the much-desired archive page that allows you to play previous puzzles!
