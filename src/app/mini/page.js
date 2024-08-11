@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import MiniHexcodle from "./MiniHexcodle";
 import { cookies } from "next/headers";
 import { generateMiniHexcode, getColorName, getMiniNumber } from "@/app/utils";

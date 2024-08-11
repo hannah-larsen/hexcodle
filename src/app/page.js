@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import HexcodleGame from "./HexcodleGame";
 import { cookies } from "next/headers";
 import { generateHexcode, getColorName, getHexcodleNumber } from "./utils";
