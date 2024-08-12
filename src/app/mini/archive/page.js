@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import MiniArchivePage from "./MiniArchivePage";
 
 import { headers } from "next/headers";

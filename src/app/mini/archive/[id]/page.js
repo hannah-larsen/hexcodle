@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { generateMiniHexcode } from "@/app/utils";
 import MiniHexcodle from "../../MiniHexcodle";
 import { generateHexcode, getColorName, getMiniNumber } from "@/app/utils";

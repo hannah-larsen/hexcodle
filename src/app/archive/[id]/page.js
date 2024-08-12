@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import HexcodleGame from "../../HexcodleGame";
 import { generateHexcode, getColorName, getHexcodleNumber } from "../../utils";
 import { redirect } from "next/navigation";

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import ArchivePage from "./ArchivePage";
 import {
   getColorName,
@@ -7,8 +9,6 @@ import {
 } from "../utils";
 import { headers } from "next/headers";
 import { unstable_cache } from "next/cache";
-
-// TODO trouble here
 
 export async function loadArchive(hexcodleNumber) {
   const panelsData = await Promise.all(
