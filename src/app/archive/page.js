@@ -8,6 +8,8 @@ import {
 import { headers } from "next/headers";
 import { unstable_cache } from "next/cache";
 
+// TODO trouble here
+
 export async function loadArchive(hexcodleNumber) {
   const panelsData = await Promise.all(
     Array.from({ length: hexcodleNumber }, async (_, i) => {
