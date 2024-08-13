@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+// TODO: fix
 
 import { generateMiniHexcode } from "@/app/utils";
 import MiniHexcodle from "../../MiniHexcodle";
