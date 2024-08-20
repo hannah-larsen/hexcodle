@@ -5,8 +5,10 @@ import MenuSidebar from "./MenuSidebar";
 import NavbarCenter from "./NavbarCenter";
 import NavbarRight from "./NavbarRight";
 import { getHexcodleNumber, getMiniNumber } from "../utils";
+import { headers } from "next/headers";
 
 export default async function Navbar() {
+  const headersList = headers();
   const hexcodleNumber = getHexcodleNumber();
   const miniNumber = getMiniNumber();
 
