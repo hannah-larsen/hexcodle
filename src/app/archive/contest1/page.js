@@ -1,5 +1,3 @@
-"use server";
-
 import HexcodleGame from "../../HexcodleGame";
 import { getHexcodleNumber } from "../../utils";
 

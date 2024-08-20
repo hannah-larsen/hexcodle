@@ -1,4 +1,3 @@
-"use server";
 export const dynamic = "force-dynamic";
 
 import HexcodleGame from "../../HexcodleGame";
