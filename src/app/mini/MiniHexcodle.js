@@ -55,7 +55,7 @@ export default function MiniHexcodle({
     return guesses.includes(targetColor);
   }, [guesses, targetColor]);
 
-  const [play] = useSound("/sounds/hexcodle-bday-jingle.wav", { volume: 0.4 });
+  const [play] = useSound("/sounds/hexcodle4.wav", { volume: 0.4 });
 
   useEffect(() => {
     if (guesses.includes(targetColor)) {

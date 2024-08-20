@@ -29,20 +29,14 @@ const CustomMiniArchivePage = ({ panelsData }) => {
       try {
         const saves =
           JSON.parse(window.localStorage.getItem("hexcodleSaves")) || {};
-
-        const validKeys = new Set(panelsData.map((panel) => panel.id));
-
-        return Object.entries(saves).filter(
-          ([key, data]) => data.isComplete && validKeys.has(key)
-        );
+        return Object.entries(saves).filter(([key, data]) => data.isComplete);
       } catch (error) {
         console.error("Error fetching completed games:", error);
         return [];
       }
     };
-
     setCompletedGames(getCompleteGames());
-  }, [panelsData]); //
+  }, []);
 
   return (
     <>
@@ -56,7 +50,11 @@ const CustomMiniArchivePage = ({ panelsData }) => {
         </StatsWrapper>
         <Wrapper>
           {panelsData.map(({ id, colorName, hexcode, urlEndpoint, date }) => {
-            const isComplete = completedGames.map(([key]) => key).includes(id);
+            console.log(id);
+            const isComplete = completedGames.some(
+              ([key]) => key === `hexcodle-mini-${id.toUpperCase()}`
+            );
+            console.log(isComplete);
             return (
               <Link
                 key={id}

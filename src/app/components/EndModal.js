@@ -126,7 +126,7 @@ export function EndModal({
           </DialogHeader>
           <div className="items-center flex flex-col gap-4 pb-2">
             <div>
-              <p className="pb-2">
+              <p className="pb-2 text-center">
                 The hidden color was{" "}
                 <span className="font-semibold">{colorName}</span> ({color})
               </p>
