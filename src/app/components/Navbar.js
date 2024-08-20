@@ -1,28 +1,86 @@
-import React from "react";
-import RulesModal from "./RulesModal";
-import MenuSidebar from "./MenuSidebar";
-import SettingsModal from "./SettingsModal";
-import NavbarCenter from "./NavbarCenter";
+"use server";
+export const dynamic = "force-dynamic";
 
-export default function Navbar({ pathname }) {
-  const isHexcodle = /^\/(archive\/[^\/]+)?$/.test(pathname);
-  const isHexcodleOrMini =
-    /^\/(archive\/[^\/]+|mini(\/archive\/[^\/]+)?)?$/.test(pathname);
+import React from "react";
+import styled from "styled-components";
+import MenuSidebar from "./MenuSidebar";
+import NavbarCenter from "./NavbarCenter";
+import NavbarRight from "./NavbarRight";
+import { getHexcodleNumber, getMiniNumber } from "../utils";
+
+const NavWrapper = styled.header`
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+  background-color: var(--gray-50);
+  border-bottom: 1px var(--gray-400) solid;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+
+  a {
+    color: black;
+  }
+
+  a:active {
+    color: var(--primary);
+  }
+`;
+
+const TopWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  //max-width: 600px;
+`;
+
+const NavLeft = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+`;
+
+const NavCenter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 4px;
+  font-size: 1.6rem;
+
+  @media screen and (max-width: 600px) {
+    font-size: 1.3rem;
+  }
+`;
+
+export default async function Navbar() {
+  const hexcodleNumber = getHexcodleNumber();
+  const miniNumber = getMiniNumber();
 
   return (
-    <header className="sticky top-0 w-full z-20 bg-gray-50 border-b border-gray-400 p-2 flex items-center justify-center min-h-[60px]">
-      <div className="flex w-full items-center justify-between">
-        <div className="flex flex-1 items-center justify-start">
-          <MenuSidebar />
-        </div>
-        <div className="flex items-center justify-center gap-1 text-2xl sm:text-xl">
-          <NavbarCenter pathname={pathname} />
-        </div>
-        <div className="flex flex-1 items-center justify-end">
-          {isHexcodle && <SettingsModal />}
-          {isHexcodleOrMini && <RulesModal />}
-        </div>
-      </div>
-    </header>
+    <>
+      <NavWrapper>
+        <TopWrapper>
+          <NavLeft>
+            <MenuSidebar />
+          </NavLeft>
+          <NavCenter>
+            <NavbarCenter
+              hexcodleNumber={hexcodleNumber}
+              miniNumber={miniNumber}
+            />
+          </NavCenter>
+          <NavbarRight />
+        </TopWrapper>
+      </NavWrapper>
+    </>
   );
 }

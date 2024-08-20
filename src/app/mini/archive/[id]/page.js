@@ -1,3 +1,4 @@
+"use server";
 export const dynamic = "force-dynamic";
 // TODO: fix
 
@@ -19,7 +20,7 @@ export default async function Page({ params }) {
 
   const currentHexcodle = getMiniNumber();
   if (isNaN(id) || id > currentHexcodle) {
-    redirect("/404");
+    return <p>This page unlocks in {id - currentHexcodle} day(s)</p>;
   }
 
   return (
