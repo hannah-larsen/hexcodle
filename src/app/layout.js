@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import StyledComponentsRegistry from "./lib/registry";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 export const dynamic = "force-static";
 const GTM_ID = "G-1J0E738QRV";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <StyledComponentsRegistry>
           <GoogleAnalytics gaId={GTM_ID} />
+          <Navbar />
           {children}
           <Footer />
         </StyledComponentsRegistry>

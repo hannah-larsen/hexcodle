@@ -22,7 +22,6 @@ export default async function Post({ params }) {
 
   return (
     <>
-      <Navbar />
       <div className="everything" style={{ padding: 8 }}>
         <article className="prose lg:prose-lg mx-auto bg-white p-6 rounded-md max-w-3xl hover:prose-a:text-blue-500 md:prose-img:mx-auto md:prose-img:max-w-sm prose-h5:text-center prose-h5:text-sm prose-h5:-mt-6 border border-gray-400">
           <p className="text-sm ">{frontMatter.date}</p>

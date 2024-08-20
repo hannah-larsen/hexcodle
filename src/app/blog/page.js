@@ -15,7 +15,6 @@ export default async function Page() {
 
   return (
     <>
-      <Navbar />
       <main className="everything">
         {posts.map(({ slug, frontMatter }) => (
           <Link

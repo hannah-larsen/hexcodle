@@ -46,7 +46,6 @@ const CustomMiniArchivePage = ({ panelsData }) => {
 
   return (
     <>
-      <Navbar />
       <main
         className="everything"
         style={{ paddingLeft: 0, paddingRight: 0, gap: 16 }}

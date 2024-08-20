@@ -107,7 +107,6 @@ export default function MiniHexcodle({
 
   return (
     <>
-      <Navbar />
       <main className="everything">
         <Announcement onClick={() => setIsLaunchModalVisible(true)} />{" "}
         <section className="frosted-glass" style={{ position: "relative" }}>
