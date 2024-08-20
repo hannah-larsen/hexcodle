@@ -3,11 +3,8 @@ import RulesModal from "./RulesModal";
 import MenuSidebar from "./MenuSidebar";
 import SettingsModal from "./SettingsModal";
 import NavbarCenter from "./NavbarCenter";
-import { headers } from "next/headers";
 
-export default function Navbar() {
-  const pathname = headers().get("x-nextjs-page-path");
-
+export default function Navbar({ pathname }) {
   const isHexcodle = /^\/(archive\/[^\/]+)?$/.test(pathname);
   const isHexcodleOrMini =
     /^\/(archive\/[^\/]+|mini(\/archive\/[^\/]+)?)?$/.test(pathname);
@@ -19,7 +16,7 @@ export default function Navbar() {
           <MenuSidebar />
         </div>
         <div className="flex items-center justify-center gap-1 text-2xl sm:text-xl">
-          <NavbarCenter />
+          <NavbarCenter pathname={pathname} />
         </div>
         <div className="flex flex-1 items-center justify-end">
           {isHexcodle && <SettingsModal />}

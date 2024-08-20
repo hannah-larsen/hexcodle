@@ -1,5 +1,4 @@
 import { loadAllPosts } from "./loadPosts";
-import Navbar from "../components/Navbar";
 import Link from "next/link";
 
 export const metadata = {

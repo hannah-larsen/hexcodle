@@ -1,5 +1,4 @@
 import { loadPost } from "../loadPosts";
-import Navbar from "@/app/components/Navbar";
 
 export async function generateMetadata({ params }) {
   const { slug } = params;

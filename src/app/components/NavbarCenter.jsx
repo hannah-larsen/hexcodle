@@ -1,11 +1,9 @@
-import { usePathname } from "next/navigation";
 import { getHexcodleNumber, getMiniNumber } from "../utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 // TODO: fix date issue
-export default function NavbarCenter() {
-  const pathname = usePathname();
+export default function NavbarCenter({ pathname }) {
   const pathComponents = pathname.split("/").filter(Boolean);
 
   // Archive Home

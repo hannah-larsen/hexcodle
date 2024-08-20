@@ -56,13 +56,15 @@ export const viewport = {
   themeColor: "#f8fafc",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params }) {
+  const pathname = params?.slug ? `/${params.slug.join("/")}` : "/";
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <StyledComponentsRegistry>
           <GoogleAnalytics gaId={GTM_ID} />
-          <Navbar />
+          <Navbar pathname={pathname} />
           {children}
           <Footer />
         </StyledComponentsRegistry>
