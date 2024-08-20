@@ -42,7 +42,7 @@ const CustomArchivePage = ({ panelsData }) => {
     };
 
     setCompletedGames(getCompleteGames());
-  }, [panelsData]); //
+  }, [panelsData]);
 
   return (
     <>
