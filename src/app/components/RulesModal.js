@@ -19,7 +19,7 @@ export default function RulesModal() {
           <CircleHelp className="h-6 w-6" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-sm:max-w-[425px] max-w-lg">
+      <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
           <DialogTitle>How to Play</DialogTitle>
           <DialogDescription>Learn the basics of Hexcodle</DialogDescription>
