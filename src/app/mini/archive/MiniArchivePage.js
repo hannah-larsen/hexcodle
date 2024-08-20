@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import ArchivePanel from "@/app/components/ArchivePanel";
-import Navbar from "@/app/components/Navbar";
 import Stats from "@/app/components/Stats";
 
 const Wrapper = styled.div`
@@ -50,7 +49,6 @@ const MiniArchivePage = ({ panelsData }) => {
 
   return (
     <>
-      <Navbar />
       <main
         className="everything"
         style={{ paddingLeft: 0, paddingRight: 0, gap: 16 }}

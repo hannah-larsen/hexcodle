@@ -1,5 +1,4 @@
 import { loadAllPosts } from "./loadPosts";
-import Navbar from "../components/Navbar";
 import Link from "next/link";
 
 export const metadata = {
@@ -15,7 +14,6 @@ export default async function Page() {
 
   return (
     <>
-      <Navbar />
       <main className="everything">
         {posts.map(({ slug, frontMatter }) => (
           <Link

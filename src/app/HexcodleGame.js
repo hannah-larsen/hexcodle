@@ -8,7 +8,6 @@ import Guess from "./components/Guess.js";
 import { EndModal } from "./components/EndModal.js";
 import Announcement from "./components/Annoucement.js";
 import HexInput from "./components/HexInput.js";
-import Navbar from "./components/Navbar.js";
 import { getScore } from "./utils.js";
 
 const MAX_GUESSES = 5;
@@ -100,7 +99,6 @@ export default function HexcodleGame({
 
   return (
     <>
-      <Navbar />
       <main className="everything">
         <Announcement onClick={() => setIsLaunchModalVisible(true)} />
         <section className="frosted-glass" style={{ position: "relative" }}>

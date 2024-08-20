@@ -11,7 +11,6 @@ import {
   SheetTrigger,
 } from "@/app/components/ui/sheet";
 import Link from "next/link";
-import { Badge } from "./ui/badge";
 
 export default function MenuSidebar() {
   return (

@@ -7,7 +7,6 @@ import useSavestate from "@/app/hooks/useSavestate.js";
 import Guess from "@/app/components/Guess.js";
 import Announcement from "@/app/components/Annoucement.js";
 import MiniHexcodleInput from "@/app/components/MiniHexcodleInput.js";
-import Navbar from "@/app/components/Navbar.js";
 import { getScore } from "@/app/utils.js";
 import { EndModal } from "../components/EndModal";
 
@@ -107,7 +106,6 @@ export default function MiniHexcodle({
 
   return (
     <>
-      <Navbar />
       <main className="everything">
         <Announcement onClick={() => setIsLaunchModalVisible(true)} />{" "}
         <section className="frosted-glass" style={{ position: "relative" }}>
