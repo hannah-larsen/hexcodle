@@ -10,7 +10,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/app/components/ui/sheet";
-import Link from "next/link";
 
 export default function MenuSidebar() {
   return (
@@ -30,18 +29,18 @@ export default function MenuSidebar() {
         </SheetHeader>
 
         <h2 className="font-semibold mt-4 mb-2 text-base">
-          Check out our other links
+          Check out our other as
         </h2>
         <div className="-mx-4">
           <Button asChild variant="ghost" size="full" className="font-semibold">
-            <Link href="/">
+            <a href="/">
               <img
                 alt="Hexcodle Logo"
                 src="https://www.hexcodle.com/favicon.ico"
                 className="mr-4 h-6 w-6 rounded-sm"
               />
               Hexcodle
-            </Link>
+            </a>
           </Button>
           <Button
             asChild
@@ -49,10 +48,10 @@ export default function MenuSidebar() {
             size="full"
             className="text-slate-500"
           >
-            <Link href="/archive">
+            <a href="/archive">
               <div className="mr-4 h-6 w-6" />
               Archive
-            </Link>
+            </a>
           </Button>
           <Button
             asChild
@@ -60,20 +59,20 @@ export default function MenuSidebar() {
             size="full"
             className="text-slate-500"
           >
-            <Link href="/custom-archive">
+            <a href="/custom-archive">
               <div className="mr-4 h-6 w-6" />
               Custom Games
-            </Link>
+            </a>
           </Button>
           <Button asChild variant="ghost" size="full" className="font-semibold">
-            <Link href="/mini">
+            <a href="/mini">
               <img
                 alt="Hexcodle Mini Logo"
                 src="https://www.hexcodle.com/favicon.ico"
                 className="mr-4 h-6 w-6 rounded-sm"
               />
               Hexcodle Mini
-            </Link>
+            </a>
           </Button>
           <Button
             asChild
@@ -81,10 +80,10 @@ export default function MenuSidebar() {
             size="full"
             className="text-slate-500"
           >
-            <Link href="/mini/archive">
+            <a href="/mini/archive">
               <div className="mr-4 h-6 w-6" />
               Archive
-            </Link>
+            </a>
           </Button>
           <Button
             asChild
@@ -92,10 +91,10 @@ export default function MenuSidebar() {
             size="full"
             className="text-slate-500"
           >
-            <Link href="/mini/custom-archive">
+            <a href="/mini/custom-archive">
               <div className="mr-4 h-6 w-6" />
               Custom Games
-            </Link>
+            </a>
           </Button>
           <Button asChild variant="ghost" size="full" className="font-semibold">
             <a href="https://www.relatle.lol" target="_blank">
@@ -119,10 +118,10 @@ export default function MenuSidebar() {
             </a>
           </Button>
           <Button asChild variant="ghost" size="full" className="font-semibold">
-            <Link href="/blog">
+            <a href="/blog">
               <BookHeart className="mr-4 h-6 w-6 p-1 bg-blue-300 rounded-sm" />
               Blog
-            </Link>
+            </a>
           </Button>
           <Button asChild variant="ghost" size="full" className="font-semibold">
             <a
