@@ -2,7 +2,8 @@ export const dynamic = "force-dynamic";
 
 import MiniHexcodle from "./MiniHexcodle";
 import { cookies } from "next/headers";
-import { generateMiniHexcode, getColorName, getMiniNumber } from "@/app/utils";
+import { getColorName } from "@/app/utils";
+import { generateMiniHexcode, getMiniNumber } from "../timeUtils";
 
 export const metadata = {
   title: "Hexcodle Mini - The Bite-Sized Hexcode Guessing Game!",
@@ -13,9 +14,9 @@ export const metadata = {
 export default async function MiniHome() {
   // Added to force dynamic rendering
   const cookieStore = cookies();
-  const randColor = generateMiniHexcode();
+  const number = await getMiniNumber();
+  const randColor = await generateMiniHexcode(number);
   const colorName = await getColorName(randColor);
-  const number = getMiniNumber();
   return (
     <MiniHexcodle
       targetColor={randColor}

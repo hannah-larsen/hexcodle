@@ -4,19 +4,19 @@ import MiniArchivePage from "./MiniArchivePage";
 
 import { headers } from "next/headers";
 import { unstable_cache } from "next/cache";
+import { getColorName } from "@/app/utils";
 import {
-  getColorName,
-  getDateFromMiniNumber,
   generateMiniHexcode,
   getMiniNumber,
-} from "@/app/utils";
+  getDateFromMiniNumber,
+} from "@/app/timeUtils";
 
 async function loadArchive(miniNumber) {
   const panelsData = await Promise.all(
     Array.from({ length: miniNumber }, async (_, i) => {
-      const hexcode = generateMiniHexcode(i + 1);
+      const hexcode = await generateMiniHexcode(i + 1);
       const colorName = await getColorName(hexcode);
-      const date = getDateFromMiniNumber(i + 1);
+      const date = await getDateFromMiniNumber(i + 1);
 
       return {
         hexcodleNumber: i + 1,
@@ -35,7 +35,7 @@ export const metadata = {
 };
 
 export default async function Page() {
-  const hexcodleNumber = getMiniNumber();
+  const hexcodleNumber = await getMiniNumber();
   const headersList = headers();
 
   const loadCachedArchive = unstable_cache(

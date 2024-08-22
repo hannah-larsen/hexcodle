@@ -1,8 +1,8 @@
 import HexcodleGame from "../../HexcodleGame";
-import { getHexcodleNumber } from "../../utils";
+import { getHexcodleNumber } from "./timeUtils";
 
 export default async function Page({}) {
-  const currentHexcodle = getHexcodleNumber();
+  const currentHexcodle = await getHexcodleNumber();
 
   return (
     <HexcodleGame

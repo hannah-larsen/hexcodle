@@ -8,7 +8,9 @@ import Link from "next/link";
 export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   const pathname = usePathname();
   const pathComponents = pathname.split("/").filter(Boolean);
-
+  <p>
+    {hexcodleNumber} - {miniNumber}
+  </p>;
   // Archive Home
   if (pathname === "/archive") {
     return (

@@ -1,9 +1,9 @@
 export const dynamic = "force-dynamic";
 // TODO: fix
 
-import { generateMiniHexcode } from "@/app/utils";
 import MiniHexcodle from "../../MiniHexcodle";
-import { generateHexcode, getColorName, getMiniNumber } from "@/app/utils";
+import { getColorName } from "@/app/utils";
+import { getMiniNumber, generateMiniHexcode } from "@/app/timeUtils";
 import { redirect } from "next/navigation";
 
 export const metadata = {
@@ -14,10 +14,9 @@ export const metadata = {
 
 export default async function Page({ params }) {
   const { id } = params;
-  const target = generateMiniHexcode(id);
+  const target = await generateMiniHexcode(id);
   const colorName = await getColorName(target);
-
-  const currentHexcodle = getMiniNumber();
+  const currentHexcodle = await getMiniNumber();
   if (isNaN(id) || id > currentHexcodle) {
     return <p>This page unlocks in {id - currentHexcodle} day(s)</p>;
   }

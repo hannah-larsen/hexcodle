@@ -4,13 +4,13 @@ import React from "react";
 import MenuSidebar from "./MenuSidebar";
 import NavbarCenter from "./NavbarCenter";
 import NavbarRight from "./NavbarRight";
-import { getHexcodleNumber, getMiniNumber } from "../utils";
+import { getHexcodleNumber, getMiniNumber } from "../timeUtils";
 import { headers } from "next/headers";
 
 export default async function Navbar() {
   const headersList = headers();
-  const hexcodleNumber = getHexcodleNumber();
-  const miniNumber = getMiniNumber();
+  const hexcodleNumber = await getHexcodleNumber();
+  const miniNumber = await getMiniNumber();
 
   return (
     <header className="sticky top-0 w-full z-20 bg-gray-50 border-b border-gray-400 p-2 flex flex-row items-center justify-center min-h-[60px]">

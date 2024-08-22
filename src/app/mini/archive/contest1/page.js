@@ -1,8 +1,8 @@
 import MiniHexcodle from "../../MiniHexcodle";
-import { getMiniNumber } from "@/app/utils";
+import { getMiniNumber } from "@/app/timeUtils";
 
 export default async function Page({}) {
-  const currentHexcodle = getMiniNumber();
+  const currentHexcodle = await getMiniNumber();
 
   return (
     <MiniHexcodle

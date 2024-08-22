@@ -2,14 +2,16 @@ export const dynamic = "force-dynamic";
 
 import HexcodleGame from "./HexcodleGame";
 import { cookies } from "next/headers";
-import { generateHexcode, getColorName, getHexcodleNumber } from "./utils";
+import { getColorName } from "./utils";
+import { generateHexcode, getHexcodleNumber } from "./timeUtils";
 
 export default async function Home() {
   // Added to force dynamic rendering
   const cookieStore = cookies();
-  const randColor = generateHexcode();
+  const number = await getHexcodleNumber();
+  const randColor = await generateHexcode(number);
   const colorName = await getColorName(randColor);
-  const number = getHexcodleNumber();
+
   return (
     <HexcodleGame
       targetColor={randColor}

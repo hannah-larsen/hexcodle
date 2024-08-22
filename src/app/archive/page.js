@@ -1,21 +1,21 @@
 export const dynamic = "force-dynamic";
 
 import ArchivePage from "./ArchivePage";
+import { getColorName } from "../utils";
 import {
-  getColorName,
+  getHexcodleNumber,
   getDateFromHexcodleNumber,
   generateHexcode,
-  getHexcodleNumber,
-} from "../utils";
+} from "../timeUtils";
 import { headers } from "next/headers";
 import { unstable_cache } from "next/cache";
 
 export async function loadArchive(hexcodleNumber) {
   const panelsData = await Promise.all(
     Array.from({ length: hexcodleNumber }, async (_, i) => {
-      const hexcode = generateHexcode(i + 1);
+      const hexcode = await generateHexcode(i + 1);
       const colorName = await getColorName(hexcode);
-      const date = getDateFromHexcodleNumber(i + 1);
+      const date = await getDateFromHexcodleNumber(i + 1);
 
       return {
         hexcodleNumber: i + 1,
@@ -35,7 +35,7 @@ export const metadata = {
 };
 
 export default async function Archive() {
-  const hexcodleNumber = getHexcodleNumber();
+  const hexcodleNumber = await getHexcodleNumber();
   const headersList = headers();
 
   const loadCachedArchive = unstable_cache(
