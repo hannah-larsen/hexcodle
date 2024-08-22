@@ -36,7 +36,7 @@ export async function generateMiniHexcode(num) {
 export async function getHexcodleNumber() {
   // August 10th, 2023 - start day of deployment
   const startDate = moment.tz("2023-08-10", "America/New_York").startOf("day");
-  const currentDate = moment().tz("America/New_York");
+  const currentDate = await getCurrentDate();
   const daysPassed = currentDate.diff(startDate, "days");
   return daysPassed;
 }
@@ -44,7 +44,7 @@ export async function getHexcodleNumber() {
 export async function getMiniNumber() {
   // March 27th, 2024 - start day of deployment
   const startDate = moment.tz("2024-03-27", "America/New_York").startOf("day");
-  const currentDate = moment().tz("America/New_York");
+  const currentDate = await getCurrentDate();
   const daysPassed = currentDate.diff(startDate, "days");
   return daysPassed;
 }
@@ -62,6 +62,19 @@ export async function getDateFromMiniNumber(miniNumber) {
 }
 
 export async function getCurrentDate() {
-  const currentDate = moment().tz("America/New_York");
-  return currentDate.format("dddd, MMMM Do YYYY, h:mm:ss A");
+  const response = await fetch(
+    "http://worldtimeapi.org/api/timezone/America/Toronto",
+    {
+      next: { revalidate: 60 }, // Revalidate every 60 seconds (1 minute)
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch current date and time from the API.");
+  }
+
+  const data = await response.json();
+  const datetime = moment.unix(data.unixtime).tz("America/New_York");
+
+  return datetime;
 }
