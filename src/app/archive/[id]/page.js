@@ -2,17 +2,27 @@ export const dynamic = "force-dynamic";
 
 import HexcodleGame from "../../HexcodleGame";
 import { getColorName } from "../../utils";
-import { getHexcodleNumber, generateHexcode } from "../../timeUtils";
+import {
+  getHexcodleNumber,
+  generateHexcode,
+  getCurrentDate,
+} from "../../timeUtils";
 import { redirect } from "next/navigation";
 
 export default async function Page({ params }) {
   const { id } = params;
   const target = await generateHexcode(id);
   const colorName = await getColorName(target);
+  const currentDate = await getCurrentDate();
   console.log(target);
   const currentHexcodle = await getHexcodleNumber();
   if (isNaN(id) || id > currentHexcodle) {
-    return <p>This page unlocks in {id - currentHexcodle} day(s)</p>;
+    return (
+      <p>
+        This page unlocks in {id - currentHexcodle} day(s). Currently its{" "}
+        {currentDate}
+      </p>
+    );
   }
 
   return (

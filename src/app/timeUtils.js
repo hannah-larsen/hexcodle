@@ -68,3 +68,8 @@ export async function getDateFromMiniNumber(miniNumber) {
   const targetDate = startDate.add(miniNumber, "days");
   return targetDate.format("DD-MM-YYYY");
 }
+
+export async function getCurrentDate() {
+  const currentDate = moment().tz("America/New_York");
+  return currentDate.format("dddd, MMMM Do YYYY, h:mm:ss A");
+}

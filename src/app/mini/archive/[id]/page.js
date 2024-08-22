@@ -3,7 +3,11 @@ export const dynamic = "force-dynamic";
 
 import MiniHexcodle from "../../MiniHexcodle";
 import { getColorName } from "@/app/utils";
-import { getMiniNumber, generateMiniHexcode } from "@/app/timeUtils";
+import {
+  getMiniNumber,
+  generateMiniHexcode,
+  getCurrentDate,
+} from "@/app/timeUtils";
 import { redirect } from "next/navigation";
 
 export const metadata = {
@@ -17,8 +21,14 @@ export default async function Page({ params }) {
   const target = await generateMiniHexcode(id);
   const colorName = await getColorName(target);
   const currentHexcodle = await getMiniNumber();
+  const currentDate = await getCurrentDate();
   if (isNaN(id) || id > currentHexcodle) {
-    return <p>This page unlocks in {id - currentHexcodle} day(s)</p>;
+    return (
+      <p>
+        This page unlocks in {id - currentHexcodle} day(s). Currently its{" "}
+        {currentDate}
+      </p>
+    );
   }
 
   return (
