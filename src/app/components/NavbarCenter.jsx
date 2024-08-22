@@ -15,7 +15,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathname === "/archive") {
     return (
       <Link href={"/"}>
-        <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+        <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
           Hexcodle Archive
         </p>
       </Link>
@@ -26,7 +26,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathname === "/mini/archive") {
     return (
       <Link href={"/mini"}>
-        <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+        <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
           Mini Archive
         </p>
       </Link>
@@ -37,7 +37,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathname === "/custom-archive") {
     return (
       <Link href={"/custom-archive"}>
-        <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+        <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
           Hexcodle Extras
         </p>
       </Link>
@@ -48,7 +48,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathname === "/mini/custom-archive") {
     return (
       <Link href={"/mini/custom-archive"}>
-        <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+        <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
           Mini Extras
         </p>
       </Link>
@@ -59,7 +59,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathComponents[0] === "blog") {
     return (
       <Link href={"/blog"}>
-        <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+        <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
           Hexcodle Blog
         </p>
       </Link>
@@ -70,7 +70,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathComponents[0] === "archive" && isNaN(pathComponents[1])) {
     return (
       <Link href={"/custom-archive"}>
-        <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+        <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
           Hexcodle #{pathComponents[1]}
         </p>
       </Link>
@@ -85,7 +85,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   ) {
     return (
       <Link href={"/mini/custom-archive"}>
-        <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+        <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
           Mini #{pathComponents[2]}
         </p>
       </Link>
@@ -101,7 +101,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
       <>
         <ChevronLeft style={{ color: "var(--gray-300)" }} />
         <Link href={"/"}>
-          <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+          <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
             Hexcodle #{currentDay}
           </p>
         </Link>
@@ -128,7 +128,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
           <ChevronLeft />
         </Link>
         <Link href={"/"}>
-          <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+          <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
             Hexcodle #{currentDay}
           </p>
         </Link>
@@ -154,7 +154,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
       <>
         <ChevronLeft style={{ color: "var(--gray-300)" }} />
         <Link href={"/mini"}>
-          <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+          <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
             Mini #{currentDay}
           </p>
         </Link>
@@ -185,7 +185,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
           <ChevronLeft />
         </Link>
         <Link href={"/mini"}>
-          <p className="roboto font-semibold tracking-tight text-2xl hover:text-lime-600 active:text-lime-700">
+          <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
             Mini #{currentDay}
           </p>
         </Link>
