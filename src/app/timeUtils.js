@@ -1,4 +1,5 @@
 "use server";
+export const dynamic = "force-dynamic";
 import moment from "moment-timezone";
 import seedrandom from "seedrandom";
 import { generateUniqueNumber, decimalToHex } from "./utils";
