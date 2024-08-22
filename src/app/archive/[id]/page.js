@@ -7,9 +7,10 @@ import {
   generateHexcode,
   getCurrentDate,
 } from "../../timeUtils";
-import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 export default async function Page({ params }) {
+  const cookieStore = cookie();
   const { id } = params;
   const target = await generateHexcode(id);
   const colorName = await getColorName(target);

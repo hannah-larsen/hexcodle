@@ -4,13 +4,14 @@ import React from "react";
 import MenuSidebar from "./MenuSidebar";
 import NavbarCenter from "./NavbarCenter";
 import NavbarRight from "./NavbarRight";
-import { getHexcodleNumber, getMiniNumber } from "../timeUtils";
+import { getHexcodleNumber, getMiniNumber, getCurrentDate } from "../timeUtils";
 import { headers } from "next/headers";
 
 export default async function Navbar() {
   const headersList = headers();
   const hexcodleNumber = await getHexcodleNumber();
   const miniNumber = await getMiniNumber();
+  const currentDate = getCurrentDate();
 
   return (
     <header className="sticky top-0 w-full z-20 bg-gray-50 border-b border-gray-400 p-2 flex flex-row items-center justify-center min-h-[60px]">
@@ -22,6 +23,7 @@ export default async function Navbar() {
           <NavbarCenter
             hexcodleNumber={hexcodleNumber}
             miniNumber={miniNumber}
+            currentDate={currentDate}
           />
         </div>
         <NavbarRight />

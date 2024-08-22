@@ -1,16 +1,7 @@
 "use server";
-export const dynamic = "force-dynamic";
 import moment from "moment-timezone";
 import seedrandom from "seedrandom";
 import { generateUniqueNumber, decimalToHex } from "./utils";
-
-/*
-    async function to generate a random number based on the current date
-    This is a pseudo-random async function that generated a number between (0 and n].
-    Normally you'd have to generate a new target every day and store that in a database
-    but this makes it so everyone has the same random target every day,
-    while needing no server :>
-*/
 
 export async function generateHexcode(num) {
   const date = await getDateFromHexcodleNumber(num);
