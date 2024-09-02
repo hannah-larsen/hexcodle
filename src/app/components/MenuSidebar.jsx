@@ -33,11 +33,7 @@ export default function MenuSidebar() {
             Thanks for playing! Check out our other games & fun stuff here!
           </SheetDescription>
         </SheetHeader>
-
-        <h2 className="font-semibold mt-4 mb-2 text-base">
-          Thanks for playing! Check out our other games & fun stuff here!
-        </h2>
-        <div className="-mx-4">
+        <div className="-mx-4 mt-2">
           <Button asChild variant="ghost" size="full" className="font-semibold">
             <a href="/">
               <img
