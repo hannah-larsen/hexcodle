@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import RulesModal from "./RulesModal";
 import SettingsModal from "./SettingsModal";
 
-export default function NavbarRight({ hexcodleNumber, miniNumber }) {
+export default function NavbarRight() {
   const pathname = usePathname();
   const isHexcodle = /^\/(archive\/[^\/]+)?$/.test(pathname);
   const isHexcodleOrMini =
@@ -12,7 +12,9 @@ export default function NavbarRight({ hexcodleNumber, miniNumber }) {
 
   return (
     <div class="flex flex-1 flex-row items-center justify-end">
-      {isHexcodle && <SettingsModal />}
+      {isHexcodleOrMini && (
+        <SettingsModal mode={isHexcodle ? "hexcodle" : "mini"} />
+      )}
       {isHexcodleOrMini && <RulesModal />}
     </div>
   );

@@ -22,16 +22,13 @@ export default function MiniHexcodle({
   const [guesses, setGuesses, isComplete, setIsComplete] = useSavestate(
     `hexcodle-mini-${number}`
   );
-  /*const [settings, _setSettings] = useLocalStorage({
+  const [settings, _setSettings] = useLocalStorage({
     key: "settings",
     defaultValue: {
       difficulty: "easy",
-      colorMode: "hex",
     },
   });
-  */
 
-  const settings = { difficulty: "easy", colorMode: "hex" };
   const [streak, setStreak] = useLocalStorage({
     key: "streak",
     defaultValue: {
@@ -151,7 +148,7 @@ export default function MiniHexcodle({
                 gameOver={isComplete}
                 guesses={guesses}
                 setStatusText={setStatusText}
-                type={settings.colorMode}
+                type="hex"
               />
             )}
             <p className="status-text pt-2">
@@ -187,7 +184,7 @@ export default function MiniHexcodle({
               <Guess
                 key={index}
                 guess={guess}
-                type={settings.colorMode}
+                type="hex"
                 target={targetColor}
                 hardMode={settings.difficulty}
               />

@@ -16,18 +16,7 @@ import { Label } from "./ui/label";
 import { Settings } from "lucide-react";
 import { useLocalStorage } from "@mantine/hooks";
 
-const difficultyOptions = [
-  { label: "Easy", value: "easy" },
-  { label: "Hard", value: "hard" },
-  { label: "Expert", value: "expert" },
-];
-
-const colorModeOptions = [
-  { label: "Hexcode", value: "hex" },
-  { label: "RGB", value: "rgb" },
-];
-
-export default function SettingsModal() {
+export default function SettingsModal({ mode = "mini" }) {
   const [settings, setSettings] = useLocalStorage({
     key: "settings",
     defaultValue: {
@@ -112,24 +101,26 @@ export default function SettingsModal() {
             </div>
           </RadioGroup>
         </div>
-        <div>
-          <h4 className="pb-1">Color Mode</h4>
-          <RadioGroup
-            defaultValue={settings.colorMode}
-            onValueChange={(val) => {
-              handleColorModeChange(val);
-            }}
-          >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="hex" id="d1" />
-              <Label htmlFor="c1">Hexcode</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="rgb" id="d2" />
-              <Label htmlFor="c2">RGB</Label>
-            </div>
-          </RadioGroup>
-        </div>
+        {mode === "hexcodle" && (
+          <div>
+            <h4 className="pb-1">Color Mode</h4>
+            <RadioGroup
+              defaultValue={settings.colorMode}
+              onValueChange={(val) => {
+                handleColorModeChange(val);
+              }}
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="hex" id="d1" />
+                <Label htmlFor="c1">Hexcode</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="rgb" id="d2" />
+                <Label htmlFor="c2">RGB</Label>
+              </div>
+            </RadioGroup>
+          </div>
+        )}
         <DialogFooter>
           <DialogClose asChild>
             <Button type="button">Close</Button>
