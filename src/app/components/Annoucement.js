@@ -15,8 +15,8 @@ import {
 } from "@/app/components/ui/dialog";
 
 const Wrapper = styled.button`
-  --color-1: #ddd6fe;
-  --color-2: #5b21b6;
+  --color-1: #fecaca;
+  --color-2: #dc2626;
   background-color: var(--color-1);
   border: var(--color-2) 1px solid;
   color: var(--color-2);
@@ -43,67 +43,64 @@ export default function Announcement() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Wrapper>🎉 Happy Birthday Hexcodle! 🎂</Wrapper>
+        <Wrapper>🌈 Hexcodle Merch is Here! 🌈</Wrapper>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
-          <DialogTitle>Updates: August 10th, 2024</DialogTitle>
+          <DialogTitle>Updates: September 2nd, 2024</DialogTitle>
           <DialogDescription>
-            Hexcodle turns one year old! 🎂✨
+            Now Introducing...Hexcodle Merch!
           </DialogDescription>
         </DialogHeader>
         <p>
-          Long time no see! We are back with exciting news: <b>Hexcodle turns 1 today!!!</b> <i>(and yes, we are aware its puzzle
-          #366 due to the leap year raaaahhh)</i>. We cannot 
-          believe that it has been a whole year since we released Hexcodle into the world and we
-          are so grateful for all the love and support you have shown us over the past 12 months.
-        </p>
-        <p>
-          To celebrate our anniversary, we have made the beta version of Hexcodle playable
-          and we hope you get a laugh out of it! It sure is crazy to see how much the game has evolved. Play{" "}
+          Hey Hexcodle friends! It’s been an incredible year, and we’re excited
+          to share something new with you—Hexcodle merch! Check it out at the{" "}
           <a
             className="text-blue-500 hover:text-blue-400"
             target="_blank"
-            href="/beta"
+            href="https://hexcodle.myshopify.com"
           >
-            Hexcodle Beta
-          </a>{" "}
-          here.
+            Hexcodle Shop
+          </a>
+          !
         </p>
         <p>
-          To read the full history of Hexcodle, check out our newest{" "}
+          We’ll be adding new designs from time to time, so stay tuned. If you
+          have any ideas for merch, we’d love to hear them! You can share your
+          thoughts through our{" "}
           <a
             className="text-blue-500 hover:text-blue-400"
             target="_blank"
-            href="/blog/hexcodle-one-year"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe_EMsc0Gf00wNMl4xZ1t2VcGSY4k7NvqVAnnpoXCi16YgVxw/viewform"
           >
-            blog post
-          </a>{" "}
+            Feedback Form
+          </a>
           .
+        </p>
+        <p>
+          Running Hexcodle ad-free is super important to us, and your purchases
+          and donations help keep it that way. We couldn’t do this without your
+          support, so thank you from the bottom of our hearts.
         </p>
         <center>
           <Image
-            src="/hexparrot-birthday.png"
-            alt="Hex Parrot Birthday"
+            src="/hexparrot-animated.gif"
+            alt="Hex Parrot Gif"
             width={100}
             height={100}
           />
         </center>
-        <p>
-          <i>We also added a few fun Hexcodle birthday easter eggs around the site, see if you can find them all! 👀</i>
-        </p>
-        <p>Thanks for Hexcodle-ing! Yours truly, Hannah & Ekim</p>
+        <p>Thanks for being here! 💚 Hannah & Ekim</p>
         <p style={{ fontSize: "0.7rem" }}>
-          If you like playing Hexcodle and wish to support the developers, click{" "}
+          P.S. If you enjoy Hexcodle and want to support us a bit more, you can{" "}
           <a
             className="text-blue-500 hover:text-blue-400"
             target="_blank"
             href="https://www.buymeacoffee.com/hexcodle"
           >
-            here
+            buy us a coffee
           </a>
-          . Donations are appreciated, but are in no way mandatory. Thank you to
-          everyone who has supported us!
+          . It’s completely optional, but we appreciate every bit of support.
         </p>
         <DialogFooter>
           <DialogClose asChild>

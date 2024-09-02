@@ -1,6 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { Button } from "@/app/components/ui/button";
-import { Menu, BookHeart, Coffee, MessageCircleDashed } from "lucide-react";
+import {
+  Menu,
+  BookHeart,
+  Coffee,
+  MessageCircleDashed,
+  ShoppingCart,
+} from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -29,7 +35,7 @@ export default function MenuSidebar() {
         </SheetHeader>
 
         <h2 className="font-semibold mt-4 mb-2 text-base">
-          Check out our other as
+          Thanks for playing! Check out our other games & fun stuff here!
         </h2>
         <div className="-mx-4">
           <Button asChild variant="ghost" size="full" className="font-semibold">
@@ -130,6 +136,12 @@ export default function MenuSidebar() {
             >
               <MessageCircleDashed className="mr-4 h-6 w-6 p-1 bg-blue-300 rounded-sm" />
               Feedback Form
+            </a>
+          </Button>
+          <Button asChild variant="ghost" size="full" className="font-semibold">
+            <a href="https://hexcodle.myshopify.com" target="_blank">
+              <ShoppingCart className="mr-4 h-6 w-6 p-1 bg-indigo-300 rounded-sm" />
+              Hexcodle Shop
             </a>
           </Button>
           <Button asChild variant="ghost" size="full" className="font-semibold">

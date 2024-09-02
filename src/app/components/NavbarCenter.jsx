@@ -5,14 +5,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 // TODO: fix date issue
-export default function NavbarCenter({
-  hexcodleNumber,
-  miniNumber,
-  currentDate,
-}) {
+export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   const pathname = usePathname();
   const pathComponents = pathname.split("/").filter(Boolean);
-  console.log(currentDate);
   // Archive Home
   if (pathname === "/archive") {
     return (

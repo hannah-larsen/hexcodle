@@ -11,7 +11,6 @@ export default async function Navbar() {
   const headersList = headers();
   const hexcodleNumber = await getHexcodleNumber();
   const miniNumber = await getMiniNumber();
-  const currentDate = await getCurrentDate();
 
   return (
     <header className="sticky top-0 w-full z-20 bg-gray-50 border-b border-gray-400 p-2 flex flex-row items-center justify-center min-h-[60px]">
@@ -23,7 +22,6 @@ export default async function Navbar() {
           <NavbarCenter
             hexcodleNumber={hexcodleNumber}
             miniNumber={miniNumber}
-            currentDate={currentDate}
           />
         </div>
         <NavbarRight />
