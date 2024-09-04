@@ -36,6 +36,13 @@ const customPanelData = [
     urlEndpoint: "ekim",
     date: "Bonus 2",
   },
+  {
+    id: "JARED",
+    colorName: "Dark Orchid",
+    hexcode: "#982890",
+    urlEndpoint: "jared",
+    date: "Jared Cross",
+  },
 ];
 
 export default function Page({}) {
