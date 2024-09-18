@@ -11,7 +11,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   // Archive Home
   if (pathname === "/archive") {
     return (
-      <Link href={"/"}>
+      <Link href={"/"} prefetch={false}>
         <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
           Hexcodle Archive
         </p>
@@ -22,7 +22,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   // Mini Archive Home
   if (pathname === "/mini/archive") {
     return (
-      <Link href={"/mini"}>
+      <Link href={"/mini"} prefetch={false}>
         <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
           Mini Archive
         </p>
@@ -97,7 +97,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
     return (
       <>
         <ChevronLeft style={{ color: "var(--gray-300)" }} />
-        <Link href={"/"}>
+        <Link href={"/"} prefetch={false}>
           <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
             Hexcodle #{currentDay}
           </p>
@@ -124,7 +124,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
         >
           <ChevronLeft />
         </Link>
-        <Link href={"/"}>
+        <Link href={"/"} prefetch={false}>
           <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
             Hexcodle #{currentDay}
           </p>
@@ -150,7 +150,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
     return (
       <>
         <ChevronLeft style={{ color: "var(--gray-300)" }} />
-        <Link href={"/mini"}>
+        <Link href={"/mini"} prefetch={false}>
           <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
             Mini #{currentDay}
           </p>
@@ -181,7 +181,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
         >
           <ChevronLeft />
         </Link>
-        <Link href={"/mini"}>
+        <Link href={"/mini"} prefetch={false}>
           <p className="roboto font-semibold tracking-tight text-xl hover:text-lime-600 active:text-lime-700">
             Mini #{currentDay}
           </p>
