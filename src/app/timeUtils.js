@@ -64,7 +64,9 @@ export async function getDateFromMiniNumber(miniNumber) {
 export async function getCurrentDate() {
   const response = await fetch(
     "http://worldtimeapi.org/api/timezone/America/Toronto",
-    { cache: "no-store" }
+    {
+      next: { revalidate: 60 }, // Revalidate every 60 seconds (1 minute)
+    }
   );
 
   if (!response.ok) {
