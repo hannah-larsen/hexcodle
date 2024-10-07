@@ -15,8 +15,8 @@ import {
 } from "@/app/components/ui/dialog";
 
 const Wrapper = styled.button`
-  --color-1: #fecaca;
-  --color-2: #dc2626;
+  --color-1: #bef264;
+  --color-2: #3f6212;
   background-color: var(--color-1);
   border: var(--color-2) 1px solid;
   color: var(--color-2);
@@ -43,65 +43,58 @@ export default function Announcement() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Wrapper>🌈 Hexcodle Merch is Here! 🌈</Wrapper>
+        <Wrapper>👒 Contest Time! Win Free Merch! 🦜</Wrapper>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
-          <DialogTitle>Updates: September 2nd, 2024</DialogTitle>
+          <DialogTitle>Hexcodle Free Merch Contest</DialogTitle>
           <DialogDescription>
-            Now Introducing...Hexcodle Merch!
+            Post and Win Hexcodle Merch - Oct 6th, 2024
           </DialogDescription>
         </DialogHeader>
         <p>
-          Hey Hexcodle friends! It’s been an incredible year, and we’re excited
-          to share something new with you—Hexcodle merch! Check it out at the{" "}
-          <a
-            className="text-blue-500 hover:text-blue-400"
+          Hey friends, we&apos;re thrilled to announce our new contest, where
+          you have the chance to win free Hexcodle merch! There are two ways to
+          participate:
+        </p>
+        <ul>
+          <li class="mb-2">
+            <strong>Hexcodle Post Contest:</strong> Make a cool, creative or
+            funny Hexcodle-related post on any platform. It could be a video,
+            image or whatever medium you like, just don&apos;t forget to tag us!
+          </li>
+          <li>
+            <strong>Hexcodle Archive Contest:</strong> Post a screenshot of your
+            Hexcodle archive on any platform and tag us. The more completed, the
+            better!
+          </li>
+        </ul>
+        <p>
+          One prize will be awarded for each contest, so don&apos;t miss out! We
+          will be accepting submissions until November 1st. Make sure to use the
+          hashtag <strong>#hexcodle</strong> on your post. If you&apos;d like to
+          guarentee we see your submission, you can optionally fill out{" "}
+          <Link
+            href="https://forms.gle/s6FHKo1fgG2mMQEb9"
             target="_blank"
+            className="text-blue-500 hover:text-blue-400"
+          >
+            this form.
+          </Link>{" "}
+        </p>
+        <p>
+          Head over to the{" "}
+          <Link
             href="https://hexcodle.myshopify.com"
+            target="_blank"
+            className="text-blue-500 hover:text-blue-400"
           >
             Hexcodle Shop
-          </a>
-          !
+          </Link>{" "}
+          to check out what&apos;s up for grabs. We can&apos;t wait to see what
+          you share!
         </p>
-        <p>
-          We’ll be adding new designs from time to time, so stay tuned. If you
-          have any ideas for merch, we’d love to hear them! You can share your
-          thoughts through our{" "}
-          <a
-            className="text-blue-500 hover:text-blue-400"
-            target="_blank"
-            href="https://docs.google.com/forms/d/e/1FAIpQLSe_EMsc0Gf00wNMl4xZ1t2VcGSY4k7NvqVAnnpoXCi16YgVxw/viewform"
-          >
-            Feedback Form
-          </a>
-          .
-        </p>
-        <p>
-          Running Hexcodle ad-free is super important to us, and your purchases
-          and donations help keep it that way. We couldn’t do this without your
-          support, so thank you from the bottom of our hearts.
-        </p>
-        <center>
-          <Image
-            src="/hexparrot-animated.gif"
-            alt="Hex Parrot Gif"
-            width={100}
-            height={100}
-          />
-        </center>
-        <p>Thanks for being here! 💚 Hannah & Ekim</p>
-        <p style={{ fontSize: "0.7rem" }}>
-          P.S. If you enjoy Hexcodle and want to support us a bit more, you can{" "}
-          <a
-            className="text-blue-500 hover:text-blue-400"
-            target="_blank"
-            href="https://www.buymeacoffee.com/hexcodle"
-          >
-            buy us a coffee
-          </a>
-          . It’s completely optional, but we appreciate every bit of support.
-        </p>
+        <p>As always, love from E&H 💚</p>
         <DialogFooter>
           <DialogClose asChild>
             <Button type="button">Close</Button>
