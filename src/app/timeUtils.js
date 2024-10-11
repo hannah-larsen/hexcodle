@@ -2,6 +2,7 @@
 import moment from "moment-timezone";
 import seedrandom from "seedrandom";
 import { generateUniqueNumber, decimalToHex } from "./utils";
+import { getCurrentDate } from "./getCurrentDate"; // Import the function
 
 export async function generateHexcode(num) {
   const date = await getDateFromHexcodleNumber(num);
@@ -59,22 +60,4 @@ export async function getDateFromMiniNumber(miniNumber) {
   const startDate = moment.tz("2024-03-27", "America/New_York").startOf("day");
   const targetDate = startDate.add(miniNumber, "days");
   return targetDate.format("DD-MM-YYYY");
-}
-
-export async function getCurrentDate() {
-  const response = await fetch(
-    "http://worldtimeapi.org/api/timezone/America/Toronto",
-    {
-      next: { revalidate: 60 }, // Revalidate every 60 seconds (1 minute)
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch current date and time from the API.");
-  }
-
-  const data = await response.json();
-  const datetime = moment.unix(data.unixtime).tz("America/New_York");
-
-  return datetime;
 }
