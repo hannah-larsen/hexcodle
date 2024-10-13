@@ -1,8 +1,10 @@
 "use server";
 import moment from "moment-timezone";
 import { generateUniqueNumber, decimalToHex } from "./utils";
+import { headers } from "next/headers"; // Import headers
 
 export async function getCurrentDate() {
+  headers();
   const datetime = moment().tz("America/New_York");
   return datetime;
 }
@@ -38,6 +40,7 @@ export async function generateMiniHexcode(num) {
 }
 
 export async function getHexcodleNumber() {
+  headers();
   // August 10th, 2023 - start day of deployment
   const startDate = moment.tz("2023-08-10", "America/New_York").startOf("day");
   const currentDate = await getCurrentDate();
