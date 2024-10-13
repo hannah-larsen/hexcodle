@@ -2,7 +2,6 @@ export const dynamic = "force-dynamic";
 
 import MiniArchivePage from "./MiniArchivePage";
 
-import { headers } from "next/headers";
 import { unstable_cache } from "next/cache";
 import { getColorName } from "@/app/utils";
 import {
@@ -36,7 +35,6 @@ export const metadata = {
 
 export default async function Page() {
   const hexcodleNumber = await getMiniNumber();
-  const headersList = headers();
 
   const loadCachedArchive = unstable_cache(
     async (hexcodleNumber) => loadArchive(hexcodleNumber),

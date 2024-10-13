@@ -1,7 +1,6 @@
 export const dynamic = "force-dynamic";
 
 import MiniHexcodle from "./MiniHexcodle";
-import { cookies } from "next/headers";
 import { getColorName } from "@/app/utils";
 import { generateMiniHexcode, getMiniNumber } from "../timeUtils";
 
@@ -12,8 +11,6 @@ export const metadata = {
 };
 
 export default async function MiniHome() {
-  // Added to force dynamic rendering
-  const cookieStore = cookies();
   const number = await getMiniNumber();
   const randColor = await generateMiniHexcode(number);
   const colorName = await getColorName(randColor);

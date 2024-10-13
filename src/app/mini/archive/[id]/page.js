@@ -7,7 +7,6 @@ import {
   generateMiniHexcode,
   getCurrentDate,
 } from "@/app/timeUtils";
-import { headers } from "next/headers";
 
 export const metadata = {
   title: "Hexcodle Mini - The Bite Sized Hexcode Guessing Game!",
@@ -16,7 +15,6 @@ export const metadata = {
 };
 
 export default async function Page({ params }) {
-  const cookieStore = headers();
   const { id } = params;
   const target = await generateMiniHexcode(id);
   const colorName = await getColorName(target);
