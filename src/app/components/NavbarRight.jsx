@@ -11,7 +11,7 @@ export default function NavbarRight() {
     /^\/(archive\/[^\/]+|mini(\/archive\/[^\/]+)?)?$/.test(pathname);
 
   return (
-    <div class="flex flex-1 flex-row items-center justify-end">
+    <div className="flex flex-1 flex-row items-center justify-end">
       {isHexcodleOrMini && (
         <SettingsModal mode={isHexcodle ? "hexcodle" : "mini"} />
       )}

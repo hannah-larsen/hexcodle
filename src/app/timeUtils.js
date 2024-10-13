@@ -1,8 +1,11 @@
 "use server";
 import moment from "moment-timezone";
-import seedrandom from "seedrandom";
 import { generateUniqueNumber, decimalToHex } from "./utils";
-import { getCurrentDate } from "./getCurrentDate"; // Import the function
+
+export async function getCurrentDate() {
+  const datetime = moment().tz("America/New_York");
+  return datetime;
+}
 
 export async function generateHexcode(num) {
   const date = await getDateFromHexcodleNumber(num);

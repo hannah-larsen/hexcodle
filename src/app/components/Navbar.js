@@ -4,7 +4,7 @@ import React from "react";
 import MenuSidebar from "./MenuSidebar";
 import NavbarCenter from "./NavbarCenter";
 import NavbarRight from "./NavbarRight";
-import { getHexcodleNumber, getMiniNumber, getCurrentDate } from "../timeUtils";
+import { getHexcodleNumber, getMiniNumber } from "../timeUtils";
 
 export default async function Navbar() {
   const hexcodleNumber = await getHexcodleNumber();

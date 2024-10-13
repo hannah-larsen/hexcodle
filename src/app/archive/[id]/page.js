@@ -12,8 +12,7 @@ export default async function Page({ params }) {
   const { id } = params;
   const target = await generateHexcode(id);
   const colorName = await getColorName(target);
-  const currentDate = await getCurrentDate();
-  console.log(target);
+  const currentDate = (await getCurrentDate()).toString();
   const currentHexcodle = await getHexcodleNumber();
   if (isNaN(id) || id > currentHexcodle) {
     return (
