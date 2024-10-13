@@ -7,7 +7,6 @@ import {
   getDateFromHexcodleNumber,
   generateHexcode,
 } from "../timeUtils";
-import { headers } from "next/headers";
 import { unstable_cache } from "next/cache";
 
 export async function loadArchive(hexcodleNumber) {
@@ -36,7 +35,6 @@ export const metadata = {
 
 export default async function Archive() {
   const hexcodleNumber = await getHexcodleNumber();
-  const headersList = headers();
 
   const loadCachedArchive = unstable_cache(
     async (hexcodleNumber) => loadArchive(hexcodleNumber),

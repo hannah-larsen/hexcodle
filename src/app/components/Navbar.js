@@ -5,10 +5,8 @@ import MenuSidebar from "./MenuSidebar";
 import NavbarCenter from "./NavbarCenter";
 import NavbarRight from "./NavbarRight";
 import { getHexcodleNumber, getMiniNumber, getCurrentDate } from "../timeUtils";
-import { headers } from "next/headers";
 
 export default async function Navbar() {
-  const headersList = headers();
   const hexcodleNumber = await getHexcodleNumber();
   const miniNumber = await getMiniNumber();
 
