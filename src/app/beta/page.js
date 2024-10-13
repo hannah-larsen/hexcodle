@@ -2,6 +2,7 @@
 import Link from "next/link";
 import "./old.css";
 import React, { useState, useEffect } from "react";
+export const dynamic = "force-static";
 
 export default function Unlimited() {
   const [userInput, setUserInput] = useState("#");

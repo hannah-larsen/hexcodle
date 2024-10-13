@@ -1,6 +1,7 @@
-// TODO: fix
+export const dynamic = "force-dynamic";
 
 import MiniHexcodle from "../../MiniHexcodle";
+import { headers } from "next/headers";
 import { getColorName } from "@/app/utils";
 import {
   getMiniNumber,
@@ -8,13 +9,8 @@ import {
   getCurrentDate,
 } from "@/app/timeUtils";
 
-export const metadata = {
-  title: "Hexcodle Mini - The Bite Sized Hexcode Guessing Game!",
-  description:
-    "Can you guess today's hexcode color? Challenge your color instincts and decode the hexcode with Hexcodle! Inspired by Wordle, but for color enthusiasts.",
-};
-
 export default async function Page({ params }) {
+  headers();
   const { id } = params;
   const target = await generateMiniHexcode(id);
   const colorName = await getColorName(target);

@@ -1,4 +1,5 @@
 import { loadPost } from "../loadPosts";
+export const dynamic = "force-static";
 
 export async function generateMetadata({ params }) {
   const { slug } = params;

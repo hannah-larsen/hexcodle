@@ -1,5 +1,6 @@
 import { loadAllPosts } from "./loadPosts";
 import Link from "next/link";
+export const dynamic = "force-static";
 
 export const metadata = {
   title: "Hexcodle Blog",

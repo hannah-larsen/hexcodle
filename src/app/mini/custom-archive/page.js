@@ -1,4 +1,5 @@
 import CustomMiniArchivePage from "./CustomMiniArchivePage";
+export const dynamic = "force-static";
 
 const customPanelData = [
   {
