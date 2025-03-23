@@ -1,29 +1,17 @@
-name: Daily Blank Commit
+name: daily puzzle deployment
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs every day at midnight UTC
-  workflow_dispatch: # Allows manual triggering from the Actions tab
+    - cron:  '00 00 * * *'
 
 jobs:
-  push-blank-commit:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Create Blank Commit
-        run: |
-          git commit --allow-empty -m "chore: Daily trigger commit [skip ci]"
-
-      - name: Push Changes
-        uses: ad-m/github-push-action@v0.6.0
+      - uses: actions/checkout@v2
+      - uses: amondnet/now-deployment@v2
         with:
-          github_token: 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
-          branch: main
+          zeit-token: ${{ secrets.ZEIT_TOKEN }}
+          now-args: '--prod'
+          now-org-id: ${{ secrets.ZEIT_ORG_ID }}
+          now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
