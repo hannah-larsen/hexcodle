@@ -2,11 +2,13 @@ name: daily puzzle deployment
 
 on:
   schedule:
-    - cron:  '00 00 * * *'
+    - cron:  '00 20 * * *'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
       - uses: actions/checkout@v2
       - uses: amondnet/now-deployment@v2
