@@ -3,17 +3,16 @@ name: daily puzzle deployment
 on:
   schedule:
     - cron:  '00 4 * * *'
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
-      - uses: actions/checkout@v2
-      - uses: amondnet/now-deployment@v2
+      - uses: actions/checkout@v4
+      - uses: amondnet/vercel-action@v25
         with:
-          zeit-token: ${{ secrets.ZEIT_TOKEN }}
-          now-args: '--prod'
-          now-org-id: ${{ secrets.ZEIT_ORG_ID }}
-          now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
+          vercel-token: ${{ secrets.ZEIT_TOKEN }}
+          vercel-org-id: ${{ secrets.ZEIT_ORG_ID }}
+          vercel-project-id: ${{ secrets.ZEIT_PROJECT_ID }}
+          vercel-args: '--prod'
