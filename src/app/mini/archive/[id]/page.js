@@ -9,7 +9,8 @@ import {
     getCurrentDate,
 } from "@/app/timeUtils";
 
-export default async function Page({ params }) {
+export default async function Page(props) {
+    const params = await props.params;
     const { id } = params;
     const target = await generateMiniHexcode(id);
     const colorName = await getColorName(target);

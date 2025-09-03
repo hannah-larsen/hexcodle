@@ -1,7 +1,8 @@
 import { loadPost } from "../loadPosts";
 // export const dynamic = "force-static";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+    const params = await props.params;
     const { slug } = params;
     const { frontMatter } = await loadPost(slug);
 
@@ -16,7 +17,8 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default async function Post({ params }) {
+export default async function Post(props) {
+    const params = await props.params;
     const { slug } = params;
     const { frontMatter, content } = await loadPost(slug);
 

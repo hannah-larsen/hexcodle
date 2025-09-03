@@ -55,7 +55,13 @@ export const viewport = {
   themeColor: "#f8fafc",
 };
 
-export default function RootLayout({ children, params }) {
+export default async function RootLayout(props) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const pathname = params?.slug ? `/${params.slug.join("/")}` : "/";
 
   return (
