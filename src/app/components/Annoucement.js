@@ -15,8 +15,8 @@ import {
 } from "@/app/components/ui/dialog";
 
 const Wrapper = styled.button`
-  --color-1: #bef264;
-  --color-2: #3f6212;
+  --color-1: #f8a5f8ff;
+  --color-2: #5f1262ff;
   background-color: var(--color-1);
   border: var(--color-2) 1px solid;
   color: var(--color-2);
@@ -43,33 +43,24 @@ export default function Announcement() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Wrapper>Sorry for the interruption!</Wrapper>
+        <Wrapper>✨New Blog Post!✨</Wrapper>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
-          <DialogTitle>Daily puzzles are back</DialogTitle>
-          <DialogDescription>About the Sep 1-3 outage</DialogDescription>
+          <DialogTitle>Where TF have we been?!</DialogTitle>
+          <DialogDescription>Read up on Hannah & Ekim&apos;s latest adventures!</DialogDescription>
         </DialogHeader>
         <p>
-          Hey friends, it&apos;s been a while since we&apos;ve given you an update like this.
+          Howdy Hexcodlers! It&apos;s been a while since we&apos;ve been able to sit down and take some time to work on Hexcodle.
         </p>
-        <p>We recently moved across the continent to start new jobs, which has made us a bit busier than usual.
-          As such, our goal has been to put Hexcodle into a stable maintenance mode.
-          The lack of new puzzles for the last couple of days was an issue
-          that slipped past us, but now we&apos;re back on track.</p>
         <p>
-          Rest assured, Hexcodle isn&apos;t going anywhere! If you want to
-          catch up, you can play missed days in the{" "}
-          <Link href="/archive" className="text-blue-500 hover:text-blue-400">
-            Archive
+          Truth is, we&apos;ve had a lot on our plate! Check out our newest{" "}
+          <Link href="/blog/september-update" className="text-blue-500 hover:text-blue-400">
+            blog post
           </Link>
-          .
+          {" "}to read all about what we&apos;ve been up to.
         </p>
-        <p>
-          Stay tuned for a blog post coming soon!
-        </p>
-        <p>With love,</p>
-        <p>-E&amp;H 💚</p>
+        <p>-E&amp;H 💗</p>
         <DialogFooter>
           <DialogClose asChild>
             <Button type="button">Close</Button>
