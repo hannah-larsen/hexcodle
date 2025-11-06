@@ -39,6 +39,12 @@ export default function RulesModal() {
           game mode!
         </p>
         <p>
+          If you are playing <b>Hexcodle Mini</b>, you only need to guess 3
+          values instead of 6. Normal hex codes are structred as follows:
+          RRGGBB, but the Mini only makes you guess: RGB (the second digits in
+          each RGB pairing are omitted in this version).
+        </p>
+        <p>
           New to hex codes? Click{" "}
           <a
             target="_blank"

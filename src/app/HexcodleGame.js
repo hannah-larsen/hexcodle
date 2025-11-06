@@ -60,7 +60,8 @@ export default function HexcodleGame({
       setIsComplete(true);
     } else {
       setStatusText(
-        `Not quite! ${MAX_GUESSES - guesses.length} guess${MAX_GUESSES - guesses.length === 1 ? "" : "es"
+        `Not quite! ${MAX_GUESSES - guesses.length} guess${
+          MAX_GUESSES - guesses.length === 1 ? "" : "es"
         } left.`
       );
     }
@@ -99,7 +100,7 @@ export default function HexcodleGame({
   return (
     <>
       <main className="everything">
-        <Announcement onClick={() => setIsLaunchModalVisible(true)} />
+        {/*<Announcement onClick={() => setIsLaunchModalVisible(true)} />*/}
         <section className="frosted-glass" style={{ position: "relative" }}>
           <div
             style={{

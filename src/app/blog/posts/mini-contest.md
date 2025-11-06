@@ -3,7 +3,7 @@ title: 'Vibrant Winners and Stunning Runner-Ups; The Hexcodle Mini Colour Contes
 description: 'Hannah reviews the top submissions from the Hexcodle Mini Colour Contest.'
 keywords: 'Daily Wordle games, Hexcodle, Hexcodle Mini, Colour, Color, Colour game, Wordle, Contest'
 author: 'Hannah Larsen'
-date: 'June 3rd, 2024'
+date: 'June 3, 2024'
 ---
 
 About a month ago, Ekim and I had the pleasure of reviewing your *fabulous* submissions for the Hexcodle Mini colour contest. It was a shame we could only pick 3 winners because there were some truly great (and utterly unhinged) names. To begin, let's give another round of applause to our three winners. **Congratulations Kaylie, Thomas and Joseph!**

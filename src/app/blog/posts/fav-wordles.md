@@ -3,7 +3,7 @@ title: 'The Hannah and Ekim Daily Wordle Roster'
 description: 'Join Hannah and Ekim in their nightly puzzle escapade through an extensive list of Wordle-like daily games. From the quick wit of the NYT Mini Crossword to Connections to the creative challenge of Hexcodle, discover the joy of solving daily puzzles together.'
 keywords: 'Daily Wordle games, NYT Mini Crossword, Puzzle games routine, Hexcodle, Globle, Unolingo, Word puzzles, Daily challenges, Brain teasers, Online puzzles, Puzzle solving tradition, Educational games'
 author: 'Hannah Larsen'
-date: 'March 28th, 2024'
+date: 'March 28, 2024'
 ---
 
 Every night, as soon as the clock strikes midnight, Ekim and I make it a routine to run through our ***very extensive*** list of daily Wordle-games. We've had this tradition for slightly over a year now, and it's so fun finding new daily games to play. For the sake of authenticity, I will also be listing these in the particular order we play every night (and yes, the order does in fact matter).

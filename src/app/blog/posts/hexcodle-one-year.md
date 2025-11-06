@@ -3,7 +3,7 @@ title: 'Happy Birthday Hexcodle!'
 description: ''
 keywords: ''
 author: 'Hannah Larsen'
-date: 'August 10th, 2024'
+date: 'August 10, 2024'
 ---
 
 **Happy Birthday Hexcodle!** That's right, August 10th, exactly 1 year ago today is when your favourite hexcode game was released into the world. We are so incredibly grateful for all the support we've received over the past year & can't thank you all enough. To commemorate this wonderful occasion, we decided to take a stroll down memory lane and recap our progression of the app and perhaps even a small surprise that many of you have been asking for...

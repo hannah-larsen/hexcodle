@@ -1,12 +1,12 @@
 ---
-title: 'Where the HEX Have the Hexcodle Developers Been?'
-description: 'Life Updates from Developers Hannah and Ekim'
-keywords: 'Daily Wordle games, Hexcodle, Hexcodle Mini, Colour, Color, Colour game, Wordle, Contest'
-author: 'Hannah Larsen'
-date: 'September 15th, 2025'
+title: "Where the HEX Have the Hexcodle Developers Been?"
+description: "Life Updates from Developers Hannah and Ekim"
+keywords: "Daily Wordle games, Hexcodle, Hexcodle Mini, Colour, Color, Colour game, Wordle, Contest"
+author: "Hannah Larsen"
+date: "September 15, 2025"
 ---
 
-Hey Hexcodlers! *It's been a minute...*
+Hey Hexcodlers! _It's been a minute..._
 
 First and foremost, Ekim and I want to thank you all for continuing to play Hexcodle every day. It's a privilege to have created something that so many people interact with each day 😊
 
@@ -16,7 +16,7 @@ Ekim got a job offer he couldn't refuse, so in April of this year, **we packed u
 
 Moving was both fun-filled and stress-inducing. It's so bittersweet packing up all your belongings into boxes and saying goodbye to all your friends and family. Nevertheless, what an experience!
 
-Ekim started work at the beginning of May and I started down a path (which felt like forever) trying to find a job & get my visa situated. As of last month, everything worked out *(yippee!!!!)* and we finally have some time to put some much-needed maintenance into Hexcodle.
+Ekim started work at the beginning of May and I started down a path (which felt like forever) trying to find a job & get my visa situated. As of last month, everything worked out _(yippee!!!!)_ and we finally have some time to put some much-needed maintenance into Hexcodle.
 
 ### Our Seattle Adventures So Far
 
@@ -47,6 +47,5 @@ Thanks for being a part of this journey with us. We appreciate you more than you
 As always, **happy Hexcodle-ing!** 🌈
 
 -E&H
-
 
 ##### Wanna get in touch? Send us an email to hexcodle@gmail.com
