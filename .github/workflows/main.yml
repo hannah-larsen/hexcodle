@@ -2,7 +2,7 @@ name: daily puzzle deployment
 
 on:
   schedule:
-    - cron:  '00 4 * * *'
+    - cron:  '00 3 * * *'
   workflow_dispatch:
 
 jobs:
