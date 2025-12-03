@@ -114,6 +114,7 @@ export async function getColorName(hex) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+    console.log(data);
     if (data && data.colors && data.colors.length > 0) {
       return data.colors[0].name;
     }
