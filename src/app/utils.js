@@ -108,7 +108,7 @@ export function compareRGB(guess, target, difficulty) {
 export async function getColorName(hex) {
   try {
     const response = await fetch(
-      `https://api.color.pizza/v1/${hex.replace("#", "")}`
+      `https://api.color.pizza/v1/${hex.replace("#", "")}`, { cache: "force-cache" }
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
