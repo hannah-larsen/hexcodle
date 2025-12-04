@@ -54,7 +54,7 @@ export default function Announcement() {
           Hey Hexcodlers,
         </p>
         <p>
-        We are aware of the issue where the color name is displaying <i>"Error"</i>. We are actively working on resolving this issue. Thank you for your patience!
+        We are aware of the issue where the color name is displaying <i>Error</i>. We are actively working on resolving this issue. Thank you for your patience!
         </p>
         <p>-E&amp;H 💗</p>
         <DialogFooter>
