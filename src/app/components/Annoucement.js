@@ -15,8 +15,8 @@ import {
 } from "@/app/components/ui/dialog";
 
 const Wrapper = styled.button`
-  --color-1: #f8a5f8ff;
-  --color-2: #5f1262ff;
+  --color-1: #f8b6a5ff;
+  --color-2: #9b1616ff;
   background-color: var(--color-1);
   border: var(--color-2) 1px solid;
   color: var(--color-2);
@@ -43,22 +43,18 @@ export default function Announcement() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Wrapper>✨New Blog Post!✨</Wrapper>
+        <Wrapper>Hexcodle Color Name Error</Wrapper>
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
-          <DialogTitle>Where TF have we been?!</DialogTitle>
-          <DialogDescription>Read up on Hannah & Ekim&apos;s latest adventures!</DialogDescription>
+          <DialogTitle>Sorry for the Error!</DialogTitle>
+          <DialogDescription></DialogDescription>
         </DialogHeader>
         <p>
-          Howdy Hexcodlers! It&apos;s been a while since we&apos;ve been able to sit down and take some time to work on Hexcodle.
+          Hey Hexcodlers,
         </p>
         <p>
-          Truth is, we&apos;ve had a lot on our plate! Check out our newest{" "}
-          <Link href="/blog/september-update" className="text-blue-500 hover:text-blue-400">
-            blog post
-          </Link>
-          {" "}to read all about what we&apos;ve been up to.
+        We are aware of the issue where the color name is displaying <i>"Error"</i>. We are actively working on resolving this issue. Thank you for your patience!
         </p>
         <p>-E&amp;H 💗</p>
         <DialogFooter>
