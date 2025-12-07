@@ -4,6 +4,8 @@ import { getColorName } from "../serverUtils";
 import {
     getDateFromHexcodleNumber,
     generateHexcode,
+    generateMiniHexcode,
+    getDateFromMiniNumber,
 } from "../timeUtils";
 
 export async function fetchArchiveBatch(startNum, count) {
