@@ -1,32 +1,9 @@
 // export const dynamic = "force-dynamic";
 
 import ArchivePage from "./ArchivePage";
-import { getColorName } from "../serverUtils";
-import {
-    getHexcodleNumber,
-    getDateFromHexcodleNumber,
-    generateHexcode,
-} from "../timeUtils";
+import { getHexcodleNumber } from "../timeUtils";
+import { fetchArchiveBatch } from "./actions";
 import { unstable_cache } from "next/cache";
-
-export async function loadArchive(hexcodleNumber) {
-    const panelsData = await Promise.all(
-        Array.from({ length: hexcodleNumber }, async (_, i) => {
-            const hexcode = await generateHexcode(i + 1);
-            const colorName = await getColorName(hexcode);
-            const date = await getDateFromHexcodleNumber(i + 1);
-
-            return {
-                hexcodleNumber: i + 1,
-                colorName,
-                hexcode,
-                date,
-            };
-        })
-    );
-
-    return panelsData.reverse();
-}
 
 export const metadata = {
     title: "Hexcodle Archive",
@@ -36,12 +13,12 @@ export const metadata = {
 export default async function Archive() {
     const hexcodleNumber = await getHexcodleNumber();
 
-    const loadCachedArchive = unstable_cache(
-        async (hexcodleNumber) => loadArchive(hexcodleNumber),
-        [hexcodleNumber]
+    const loadInitialArchive = unstable_cache(
+        async (startNum) => fetchArchiveBatch(startNum, 100),
+        ["archive-initial", hexcodleNumber.toString()]
     );
 
-    const panelsData = await loadCachedArchive(hexcodleNumber);
+    const panelsData = await loadInitialArchive(hexcodleNumber);
 
-    return <ArchivePage panelsData={panelsData} />;
+    return <ArchivePage panelsData={panelsData} totalCount={hexcodleNumber} />;
 }
