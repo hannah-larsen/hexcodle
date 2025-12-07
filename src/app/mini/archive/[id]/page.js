@@ -2,7 +2,7 @@
 
 import MiniHexcodle from "../../MiniHexcodle";
 import { headers } from "next/headers";
-import { getColorName } from "@/app/utils";
+import { getColorName } from "@/app/serverUtils";
 import {
     getMiniNumber,
     generateMiniHexcode,

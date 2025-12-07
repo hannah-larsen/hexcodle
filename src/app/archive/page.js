@@ -1,7 +1,7 @@
 // export const dynamic = "force-dynamic";
 
 import ArchivePage from "./ArchivePage";
-import { getColorName } from "../utils";
+import { getColorName } from "../serverUtils";
 import {
     getHexcodleNumber,
     getDateFromHexcodleNumber,

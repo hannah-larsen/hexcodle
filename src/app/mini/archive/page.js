@@ -2,7 +2,7 @@
 
 import MiniArchivePage from "./MiniArchivePage";
 import { unstable_cache } from "next/cache";
-import { getColorName } from "@/app/utils";
+import { getColorName } from "@/app/serverUtils";
 import {
     generateMiniHexcode,
     getMiniNumber,
