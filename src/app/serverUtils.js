@@ -8,7 +8,10 @@ export async function getColorName(hex) {
             `https://api.color.pizza/v1/${cleanHex}`,
             {
                 cache: "force-cache",
-                next: { tags: [tag] }
+                next: { tags: [tag] },
+                headers: {
+                    "X-Referrer": "hexcodle"
+                }
             }
         );
         if (!response.ok) {
