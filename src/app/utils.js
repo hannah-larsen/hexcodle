@@ -105,24 +105,7 @@ export function compareRGB(guess, target, difficulty) {
   }
 }
 
-export async function getColorName(hex) {
-  try {
-    const response = await fetch(
-      `https://api.color.pizza/v1/${hex.replace("#", "")}`, { cache: "force-cache" }
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    console.log(data);
-    if (data && data.colors && data.colors.length > 0) {
-      return data.colors[0].name;
-    }
-    return "Unknown Color";
-  } catch (error) {
-    return "Error";
-  }
-}
+
 
 function getRGB(hexcode) {
   let validHex = hexcode.slice(1);

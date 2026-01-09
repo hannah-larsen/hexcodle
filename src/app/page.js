@@ -1,7 +1,7 @@
 // export const dynamic = "force-dynamic";
 
 import HexcodleGame from "./HexcodleGame";
-import { getColorName } from "./utils";
+import { getColorName } from "./serverUtils";
 import { generateHexcode, getHexcodleNumber } from "./timeUtils";
 
 export default async function Home() {

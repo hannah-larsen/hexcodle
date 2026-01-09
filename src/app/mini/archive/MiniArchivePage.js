@@ -5,6 +5,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import ArchivePanel from "@/app/components/ArchivePanel";
 import Stats from "@/app/components/Stats";
+import { fetchMiniArchiveBatch } from "../../archive/actions";
 
 const Wrapper = styled.div`
   display: grid;
@@ -20,8 +21,34 @@ const StatsWrapper = styled.div`
   width: 100%;
 `;
 
-const MiniArchivePage = ({ panelsData }) => {
+const LoadMoreButton = styled.button`
+  background-color: #f3f4f6;
+  color: #1f2937;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 24px auto;
+  display: block;
+
+  &:hover {
+    background-color: #e5e7eb;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+`;
+
+const MiniArchivePage = ({ panelsData: initialPanels, totalCount }) => {
+  const [panels, setPanels] = useState(initialPanels);
   const [completedGames, setCompletedGames] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getCompleteGames = () => {
@@ -47,6 +74,21 @@ const MiniArchivePage = ({ panelsData }) => {
     setCompletedGames(getCompleteGames());
   }, []);
 
+  const loadMore = async () => {
+    if (loading) return;
+    setLoading(true);
+    try {
+      const lastPanel = panels[panels.length - 1];
+      const startNum = lastPanel.hexcodleNumber - 1;
+      const newPanels = await fetchMiniArchiveBatch(startNum, 100);
+      setPanels((prev) => [...prev, ...newPanels]);
+    } catch (error) {
+      console.error("Error loading more puzzles:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <main
@@ -54,10 +96,10 @@ const MiniArchivePage = ({ panelsData }) => {
         style={{ paddingLeft: 0, paddingRight: 0, gap: 16 }}
       >
         <StatsWrapper>
-          <Stats games={completedGames} totalCount={panelsData.length} />
+          <Stats games={completedGames} totalCount={totalCount} />
         </StatsWrapper>
         <Wrapper>
-          {panelsData.map(({ hexcodleNumber, colorName, hexcode, date }) => {
+          {panels.map(({ hexcodleNumber, colorName, hexcode, date }) => {
             const isComplete = completedGames.some(
               ([key]) => key === `hexcodle-mini-${hexcodleNumber}`
             );
@@ -79,6 +121,11 @@ const MiniArchivePage = ({ panelsData }) => {
             );
           })}
         </Wrapper>
+        {panels.length < totalCount && (
+          <LoadMoreButton onClick={loadMore} disabled={loading}>
+            {loading ? "Loading..." : "Load More Puzzles"}
+          </LoadMoreButton>
+        )}
       </main>
     </>
   );

@@ -1,7 +1,7 @@
 // export const dynamic = "force-dynamic";
 
 import MiniHexcodle from "./MiniHexcodle";
-import { getColorName } from "@/app/utils";
+import { getColorName } from "@/app/serverUtils";
 import { generateMiniHexcode, getMiniNumber } from "../timeUtils";
 
 export const metadata = {
