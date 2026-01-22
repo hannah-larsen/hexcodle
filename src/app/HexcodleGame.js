@@ -8,6 +8,7 @@ import Guess from "./components/Guess.js";
 import { EndModal } from "./components/EndModal.js";
 import Announcement from "./components/Annoucement.js";
 import HexInput from "./components/HexInput.js";
+import Keyboard from "./components/Keyboard.js";
 import { getScore } from "./utils.js";
 
 const MAX_GUESSES = 5;
@@ -60,8 +61,7 @@ export default function HexcodleGame({
       setIsComplete(true);
     } else {
       setStatusText(
-        `Not quite! ${MAX_GUESSES - guesses.length} guess${
-          MAX_GUESSES - guesses.length === 1 ? "" : "es"
+        `Not quite! ${MAX_GUESSES - guesses.length} guess${MAX_GUESSES - guesses.length === 1 ? "" : "es"
         } left.`
       );
     }
@@ -97,63 +97,106 @@ export default function HexcodleGame({
     setLoading(false);
   }, []);
 
+  const handleKey = (key) => {
+    if (loading || isComplete) return;
+
+    if (key === "ENTER") {
+      if (userInput.length !== 7) {
+        setStatusText("Error: Hex code must be exactly 6 digits.");
+        return;
+      }
+      if (guesses.includes(userInput)) {
+        setStatusText(
+          "Already guessed this one! Please try a different guess."
+        );
+        return;
+      }
+      submitGuess(userInput);
+      setUserInput("#");
+    } else if (key === "BACKSPACE") {
+      if (userInput.length > 1) {
+        setUserInput(userInput.slice(0, -1));
+      }
+    } else {
+      if (userInput.length < 7) {
+        setUserInput(userInput + key);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
+      // Prevent default behavior for Backspace to avoid browser navigation
+      if (e.key === "Backspace") {
+        // e.preventDefault(); // Optional, but usually good for games
+      }
+
+      if (e.key === "Enter") {
+        handleKey("ENTER");
+      } else if (e.key === "Backspace") {
+        handleKey("BACKSPACE");
+      } else if (/^[0-9a-fA-F]$/.test(e.key)) {
+        handleKey(e.key.toUpperCase());
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [userInput, isComplete, loading, guesses, settings]);
+
+  const reversedGuesses = [...guesses].reverse();
+
   return (
     <>
-      <main className="everything">
+      <main className="flex flex-col items-center gap-4 py-4 px-2 min-h-screen bg-slate-50">
         {/*<Announcement onClick={() => setIsLaunchModalVisible(true)} />*/}
-        <section className="frosted-glass" style={{ position: "relative" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "start",
-              alignItems: "end",
-              width: "100%",
-              marginBottom: 8,
-            }}
-          >
-            <div className="first-square" style={{ flex: 1 }}>
-              <h2
-                className="guess-title text-xl roboto font-semibold"
-                style={{ marginBottom: 8 }}
-              >
-                Target
-              </h2>
-              <div
-                className="square"
-                style={{ backgroundColor: targetColor }}
-              />
-            </div>
-            <div style={{ flex: 1 }}>
-              <h2
-                className="guess-title text-xl roboto font-semibold"
-                style={{ marginBottom: 8 }}
-              >
-                Your Guess
-              </h2>
-              <div className="square" style={{ backgroundColor: guesses[0] }} />
-            </div>
+        <section className="relative px-2 sm:px-8 py-4 text-center items-center flex flex-col w-full max-w-[600px]">
+          <div className="flex flex-row justify-between items-center w-full mb-8 pt-0">
+            <h2 className="text-xl font-mono font-semibold mb-0">
+              Target:
+            </h2>
+            <div
+              className="w-[50px] h-[50px] rounded-xl"
+              style={{
+                backgroundColor: targetColor,
+              }}
+            />
           </div>
-          <div className="input-section">
-            {loading ? (
-              <div style={{ width: 250, height: 36 }} />
-            ) : (
-              <HexInput
-                userInput={userInput}
-                setUserInput={setUserInput}
-                onClick={submitGuess}
-                gameOver={isComplete}
-                guesses={guesses}
-                setStatusText={setStatusText}
-                type={settings.colorMode}
-              />
-            )}
-            <p className="status-text pt-2">
+
+          <div className="flex flex-col w-full max-w-[600px] gap-2">
+            {Array.from({ length: MAX_GUESSES }).map((_, index) => {
+              if (index < reversedGuesses.length) {
+                return (
+                  <Guess
+                    key={index}
+                    guess={reversedGuesses[index]}
+                    type={settings.colorMode}
+                    target={targetColor}
+                    hardMode={settings.difficulty}
+                  />
+                );
+              } else if (index === reversedGuesses.length && !isComplete && !loading) {
+                return <HexInput key={index} userInput={userInput} isCurrentRow={true} />;
+              } else {
+                return <HexInput key={index} userInput="#" isCurrentRow={false} />;
+              }
+            })}
+          </div>
+
+          <div className="mt-40">
+            <p className="pb-0 break-words">
               {statusText}{" "}
               {isComplete
                 ? "Your score is " + getScore(targetColor, guesses)
                 : ""}
             </p>
           </div>
+
+          {settings.colorMode === "hex" && !isComplete && (
+            <Keyboard onKey={handleKey} />
+          )}
+
           {isComplete && (
             <EndModal
               open={endModalVisible}
@@ -166,25 +209,6 @@ export default function HexcodleGame({
               isMini={isMini}
             />
           )}
-        </section>
-        <section
-          className="frosted-glass guess-section"
-          style={{ overflowX: "hidden" }}
-        >
-          <h2 id="guess-heading" className="text-xl roboto font-semibold">
-            Guesses
-          </h2>
-
-          {!loading &&
-            guesses.map((guess, index) => (
-              <Guess
-                key={index}
-                guess={guess}
-                type={settings.colorMode}
-                target={targetColor}
-                hardMode={settings.difficulty}
-              />
-            ))}
         </section>
       </main>
     </>

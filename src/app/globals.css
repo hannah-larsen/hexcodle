@@ -60,6 +60,9 @@ select {
 /*
   9. Create a root stacking context
 */
+/*
+  9. Create a root stacking context
+*/
 #root,
 #__next {
   isolation: isolate;
@@ -121,22 +124,7 @@ h4 {
   font-weight: 600;
 }
 
-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  padding: 8px;
-  border-radius: 16px;
-  background-color: var(--gray-50);
-  --shadow-color: 0deg 0% 63%;
-  border: var(--gray-400) solid 1px;
-  box-shadow:
-  0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
-  0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
-  1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
-}
+/* Removed: section style refactored to Tailwind */
 
 .modal-button {
   /*background-color: var(--primary);*/
@@ -197,36 +185,7 @@ section {
   transition: color 0.5 ease;
 }
 
-.input-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 8px;
-}
-
-.everything {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 0px;
-  background: var(--gray-200);
-  background-image: url('ooorganize.svg');
-  background-size: 256px;
-  background-position-x: center;
-  min-height: 100vh;
-}
-
-.frosted-glass {
-  background: var(--gray-50);
-  padding-left: 30px;
-  padding-right: 30px;
-  text-align: center;
-  align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
+/* Removed: .input-section, .everything, .frosted-glass refactored to Tailwind */
 
 .container {
   width: 100%;
@@ -249,9 +208,7 @@ section {
   border-radius: 8px;
 }
 
-.guess-section {
-  min-height: 400px;
-}
+/* Removed: .guess-section */
 
 #row {
   display: flex;
@@ -276,14 +233,7 @@ section {
   padding-bottom: 8px;
 }
 
-.status-text {
-  padding-bottom: 0;
-  word-wrap: break-word;
-}
-
-.first-square {
-  margin-right: 32px;
-}
+/* Removed: .status-text, .first-square, media queries affecting these classes */
 
 .ant-switch-checked {
   background: var(--primary) !important;
@@ -291,26 +241,4 @@ section {
 
 .emoji {
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-@media screen and (max-width: 650px) {
-  .everything {
-    padding: 16px 16px;
-  }
-
-  .guess-title {
-    font-size: 1.25rem;
-  }
-
-  .frosted-glass {
-    padding: 16px;
-  }
-
-  .first-square {
-    margin-right: 16px;
-  }
-
-  .status-text {
-    width: 200px;
-}
 }

@@ -1,198 +1,35 @@
-import React, { useRef, useState } from "react";
-import styled from "styled-components";
-import { decimalToHex2 } from "../utils";
+import React from "react";
 
-const InputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  font-size: 1.5rem;
-  margin-bottom: 0;
-  gap: 8px;
-`;
+const HexInput = ({ userInput, isCurrentRow = true }) => {
+  // userInput is expected to start with '#', e.g., "#1A2B3C"
+  // We want to display characters at indices 1 through 6.
 
-const HexcodeInput = styled.input`
-  width: 150px;
-  height: 36px;
-  background-color: var(--gray-50);
-  color: var(--gray-900);
-  border: 1px solid #bdc3c7;
-  border-radius: 5px;
-  font-size: 24px;
-  padding-left: 10px;
-  transition: border-color 0.3s ease;
-
-  &:focus {
-    border-color: var(--primary);
-  }
-`;
-
-const RGBInput = styled.input`
-  width: 75px;
-  height: 36px;
-  background-color: var(--gray-50);
-  color: var(--gray-900);
-  border: 1px solid #bdc3c7;
-  border-radius: 5px;
-  border-radius: 5px;
-  font-size: 24px;
-  text-align: center;
-`;
-
-const HexInput = ({
-  userInput,
-  setUserInput,
-  onClick,
-  gameOver,
-  guesses,
-  setStatusText,
-  type = "hex",
-}) => {
-  const rInputRef = useRef(null);
-  const gInputRef = useRef(null);
-  const bInputRef = useRef(null);
-
-  const onHexChange = (event) => {
-    const text = event.target.value;
-    if (text[0] !== "#") {
-      setUserInput("#");
-    } else if (text.length >= 8) {
-      return;
-    } else {
-      setUserInput(text.toUpperCase());
-    }
-  };
-
-  const onRGBChange = (component, nextRef) => (event) => {
-    const { value } = event.target;
-    // Allow empty input and only parse and clamp numbers when input is not empty
-    const numValue =
-      value === "" ? "" : Math.min(255, Math.max(0, parseInt(value, 10) || 0));
-    setUserInput((prev) => ({
-      ...prev,
-      [component]: numValue,
-    }));
-
-    if (value.length === 3 && nextRef) {
-      nextRef.current.focus();
-    }
-  };
-
-  const handleKeyDown = (event, prevRef) => {
-    if (
-      event.key === "Backspace" &&
-      event.target.value.length === 0 &&
-      prevRef
-    ) {
-      prevRef.current.focus();
-    }
-
-    if (event.key === "Enter") {
-      onSubmit();
-    }
-  };
-
-  const onSubmit = () => {
-    if (type === "hex") {
-      const hexCodePattern = /^[0-9A-Fa-f]+$/;
-      if (userInput.length != 7) {
-        setStatusText("Error: Hex code must be exactly 6 digits.");
-        return;
-      }
-      if (!hexCodePattern.test(userInput.substring(1))) {
-        setStatusText("Invalid character. Hex codes may only contain 0-9, A-F");
-        return;
-      }
-      if (guesses.includes(userInput)) {
-        setStatusText(
-          "Already guessed this one! Please try a different guess."
-        );
-        return;
-      }
-    } else {
-      const { r, g, b } = userInput;
-      if (r == null || g == null || b == null) {
-        setStatusText("Error: All RGB values must be filled in.");
-        return;
-      }
-    }
-    if (type === "rgb") {
-      const hex = `#${decimalToHex2(userInput.r)}${decimalToHex2(
-        userInput.g
-      )}${decimalToHex2(userInput.b)}`;
-      if (guesses.includes(hex)) {
-        setStatusText(
-          "Already guessed this one! Please try a different guess."
-        );
-        return;
-      }
-      onClick(hex);
-      rInputRef.current.focus();
-      setUserInput({ r: "", g: "", b: "" });
-    } else {
-      onClick(userInput);
-      setUserInput("#");
-    }
-  };
+  const chars = userInput.slice(1).padEnd(6, " ").split("");
 
   return (
-    <InputWrapper>
-      {type === "hex" && (
-        <HexcodeInput
-          type="text"
-          maxLength="7"
-          value={userInput}
-          onChange={onHexChange}
-          disabled={gameOver}
-          onKeyDown={(event) => handleKeyDown(event, null)}
-        />
-      )}
+    <div className="flex flex-row justify-between w-full max-w-[600px] gap-1.5">
+      <div className="flex gap-1.5">
+        {chars.map((char, index) => {
+          const isActive = isCurrentRow && char === " " && userInput.length - 1 === index;
+          const hasValue = char !== " ";
+          const borderColorClass = (isActive || hasValue) ? "border-slate-800" : "border-slate-300";
 
-      {type === "rgb" && (
-        <>
-          <RGBInput
-            ref={rInputRef}
-            type="text"
-            inputMode="numeric"
-            maxLength={3}
-            value={userInput.r}
-            onChange={onRGBChange("r", gInputRef)}
-            onKeyDown={(event) => handleKeyDown(event, null)}
-            disabled={gameOver}
-          />
-          <RGBInput
-            ref={gInputRef}
-            type="text"
-            inputMode="numeric"
-            maxLength={3}
-            value={userInput.g}
-            onChange={onRGBChange("g", bInputRef)}
-            onKeyDown={(event) => handleKeyDown(event, rInputRef)}
-            disabled={gameOver}
-          />
-          <RGBInput
-            ref={bInputRef}
-            type="text"
-            inputMode="numeric"
-            maxLength={3}
-            value={userInput.b}
-            onChange={onRGBChange("b", null)}
-            onKeyDown={(event) => handleKeyDown(event, gInputRef)}
-            disabled={gameOver}
-          />
-        </>
-      )}
-
-      <button
-        className="square-button"
-        onClick={() => {
-          onSubmit();
-        }}
-        disabled={gameOver}
-      >
-        ➜
-      </button>
-    </InputWrapper>
+          return (
+            <div
+              key={index}
+              className={`
+                w-[44px] h-[54px] flex justify-center items-center text-xl font-bold 
+                text-slate-900 bg-transparent uppercase select-none 
+                border-b-2 ${borderColorClass}
+              `}
+            >
+              {char !== " " ? char : ""}
+            </div>
+          );
+        })}
+      </div>
+      <div className="w-[50px] h-[50px]" />
+    </div>
   );
 };
 

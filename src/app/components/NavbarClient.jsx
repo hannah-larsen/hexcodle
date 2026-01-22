@@ -84,10 +84,10 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
 
             {/* Expanded Menu */}
             <div
-                className="overflow-hidden transition-[max-height] duration-500 ease-in-out bg-gray-50"
-                style={{ maxHeight: isOpen ? "400px" : "0" }}
+                className={`grid overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] bg-gray-50 ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
             >
-                <div className="border-t border-gray-200">
+                <div className="min-h-0 border-t border-gray-200">
                     <div className="max-w-7xl mx-auto px-4 py-4 md:py-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                             {menuItems.map((item, idx) => (

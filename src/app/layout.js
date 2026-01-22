@@ -70,7 +70,7 @@ export default async function RootLayout(props) {
         <StyledComponentsRegistry>
           <GoogleAnalytics gaId={GTM_ID} />
           <Navbar pathname={pathname} />
-          <main className="pt-36">
+          <main className="pt-24">
             {children}
           </main>
           <Footer />
