@@ -52,7 +52,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
     const squiggleMask = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='64'%3E%3Cpath d='M0 10 Q 4 5, 8 10 T 16 10 L 16 54 Q 12 59, 8 54 T 0 54 Z' fill='black'/%3E%3C/svg%3E")`;
 
     return (
-        <header className="sticky top-0 w-full z-50 bg-gray-50 mb-10">
+        <header className="fixed top-0 w-full z-50 bg-gray-50 drop-shadow-xl">
             <div className="flex flex-row items-center justify-between p-2 min-h-[60px] max-w-7xl mx-auto w-full">
                 <div className="flex-1 flex flex-row items-center justify-start">
                     <Button
@@ -84,69 +84,67 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
 
             {/* Expanded Menu */}
             <div
-                className="overflow-hidden transition-[max-height] duration-1000 ease-in-out bg-gray-50"
-                style={{ maxHeight: isOpen ? "600px" : "0" }}
+                className="overflow-hidden transition-[max-height] duration-500 ease-in-out bg-gray-50"
+                style={{ maxHeight: isOpen ? "400px" : "0" }}
             >
-                <div className="max-w-7xl mx-auto p-2 md:p-10 flex flex-col gap-6">
-                    {menuItems.map((item, idx) => (
-                        <div
-                            key={idx}
-                            className="flex flex-row items-center justify-between gap-4 p-4"
-                        >
-                            <Link
-                                href={item.href}
-                                onClick={() => setIsOpen(false)}
-                                className="flex items-center gap-4 group min-w-0"
-                            >
-                                <div className="relative shrink-0">
-                                    <div className="absolute -inset-1 bg-blue-500 rounded-lg blur opacity-0 group-hover:opacity-30 transition-opacity" />
-                                    <img
-                                        src={item.icon}
-                                        alt={item.title}
-                                        className="relative h-10 w-10 rounded-lg shadow-sm"
-                                    />
+                <div className="border-t border-gray-200">
+                    <div className="max-w-7xl mx-auto px-4 py-4 md:py-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+                            {menuItems.map((item, idx) => (
+                                <div
+                                    key={idx}
+                                    className="flex flex-col gap-4"
+                                >
+                                    <h3 className="text-lg md:text-xl font-serif font-bold text-gray-900">
+                                        {item.title}
+                                    </h3>
+
+                                    <div className="flex flex-row gap-2 flex-wrap">
+                                        <Link
+                                            href={item.href}
+                                            onClick={() => setIsOpen(false)}
+                                            className="bg-white border border-gray-200 text-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-100 hover:border-gray-300 transition-all flex items-center gap-1.5 text-xs font-serif font-bold shadow-sm group/item"
+                                        >
+                                            <span>Play Today</span>
+                                            <ChevronRight className="h-3 w-3 transition-transform group-hover/item:translate-x-0.5" />
+                                        </Link>
+                                        {item.subItems.map((sub, sIdx) => (
+                                            <Link
+                                                key={sIdx}
+                                                href={sub.href}
+                                                onClick={() => setIsOpen(false)}
+                                                className="bg-white border border-gray-200 text-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-100 hover:border-gray-300 transition-all flex items-center gap-1.5 text-xs font-serif font-bold shadow-sm group/item"
+                                            >
+                                                <span>{sub.title}</span>
+                                                <ChevronRight className="h-3 w-3 transition-transform group-hover/item:translate-x-0.5" />
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
-                                <h3 className="text-xl md:text-2xl font-serif font-semibold text-gray-800 group-hover:text-blue-900 transition-colors truncate">
-                                    {item.title}
-                                </h3>
-                            </Link>
-
-                            <div className="flex flex-row items-center gap-2 md:gap-4 shrink-0">
-                                {item.subItems.map((sub, sIdx) => (
-                                    <Link
-                                        key={sIdx}
-                                        href={sub.href}
-                                        onClick={() => setIsOpen(false)}
-                                        className="bg-blue-900 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg hover:bg-blue-800 transition-colors flex items-center gap-1.5 text-xs md:text-sm font-bold group/item whitespace-nowrap shadow-sm"
-                                    >
-                                        <span>{sub.title}</span>
-                                        <ChevronRight className="h-3 w-3 md:h-4 md:w-4" />
-                                    </Link>
-                                ))}
-                            </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    </div>
 
-                {/* Footer Links */}
-                <div className="bg-gray-50 border-t border-gray-200">
-                    <div className="max-w-7xl mx-auto p-4 flex flex-wrap items-center justify-center gap-4 md:gap-8">
-                        {footerLinks.map((link, idx) => (
-                            <Link
-                                key={idx}
-                                href={link.href}
-                                onClick={() => setIsOpen(false)}
-                                className="bg-blue-900 text-white px-5 py-2.5 rounded-xl hover:bg-blue-800 transition-colors group shadow-md flex items-center gap-3"
-                                target={link.external ? "_blank" : undefined}
-                            >
-                                <span className="text-white">
-                                    {link.icon}
-                                </span>
-                                <span className="text-xs md:text-sm font-black tracking-widest uppercase">
-                                    {link.title}
-                                </span>
-                            </Link>
-                        ))}
+                    {/* Simplified Footer Links */}
+                    <div className="bg-gray-100/50 border-t border-gray-200">
+                        <div className="max-w-7xl mx-auto px-4 py-4 pb-5 flex flex-wrap items-center justify-center gap-6 md:gap-12">
+                            {footerLinks.map((link, idx) => (
+                                <Link
+                                    key={idx}
+                                    href={link.href}
+                                    onClick={() => setIsOpen(false)}
+                                    className="flex items-center gap-2 text-gray-500 hover:text-blue-900 transition-colors group"
+                                    target={link.external ? "_blank" : undefined}
+                                >
+                                    <span className="text-gray-400 group-hover:text-blue-900 transition-colors">
+                                        {React.cloneElement(link.icon, { className: "h-4 w-4" })}
+                                    </span>
+                                    <span className="text-[10px] md:text-xs font-serif font-bold tracking-widest uppercase">
+                                        {link.title}
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
