@@ -63,9 +63,9 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                         aria-label="Toggle Menu"
                     >
                         {isOpen ? (
-                            <X className="h-6 w-6 text-gray-600" />
+                            <X className="h-6 w-6 text-black" />
                         ) : (
-                            <Menu className="h-6 w-6 text-gray-600" />
+                            <Menu className="h-6 w-6 text-black" />
                         )}
                     </Button>
                 </div>
@@ -99,14 +99,14 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                                 className="flex items-center gap-4 group min-w-0"
                             >
                                 <div className="relative shrink-0">
-                                    <div className="absolute -inset-1 bg-lime-400 rounded-lg blur opacity-0 group-hover:opacity-30 transition-opacity" />
+                                    <div className="absolute -inset-1 bg-blue-500 rounded-lg blur opacity-0 group-hover:opacity-30 transition-opacity" />
                                     <img
                                         src={item.icon}
                                         alt={item.title}
                                         className="relative h-10 w-10 rounded-lg shadow-sm"
                                     />
                                 </div>
-                                <h3 className="text-xl md:text-2xl font-serif font-semibold text-gray-800 group-hover:text-lime-700 transition-colors truncate">
+                                <h3 className="text-xl md:text-2xl font-serif font-semibold text-gray-800 group-hover:text-blue-900 transition-colors truncate">
                                     {item.title}
                                 </h3>
                             </Link>
