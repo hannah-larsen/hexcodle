@@ -52,7 +52,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
     const squiggleMask = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='64'%3E%3Cpath d='M0 10 Q 4 5, 8 10 T 16 10 L 16 54 Q 12 59, 8 54 T 0 54 Z' fill='black'/%3E%3C/svg%3E")`;
 
     return (
-        <header className="fixed top-0 w-full z-50 bg-gray-50 drop-shadow-xl">
+        <header className="fixed top-0 w-full z-50 bg-cream-50 drop-shadow-xl">
             <div className="flex flex-row items-center justify-between p-2 min-h-[60px] max-w-7xl mx-auto w-full">
                 <div className="flex-1 flex flex-row items-center justify-start">
                     <Button
@@ -84,7 +84,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
 
             {/* Expanded Menu */}
             <div
-                className={`grid overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] bg-gray-50 ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                className={`grid overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] bg-cream-50 ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                     }`}
             >
                 <div className="min-h-0 border-t border-gray-200">
@@ -126,7 +126,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                     </div>
 
                     {/* Simplified Footer Links */}
-                    <div className="bg-gray-100/50 border-t border-gray-200">
+                    <div className="bg-cream-100 border-t border-gray-200">
                         <div className="max-w-7xl mx-auto px-4 py-4 pb-5 flex flex-wrap items-center justify-center gap-6 md:gap-12">
                             {footerLinks.map((link, idx) => (
                                 <Link

@@ -149,7 +149,7 @@ export default function HexcodleGame({
 
   return (
     <>
-      <main className="flex flex-col items-center gap-4 py-4 px-2 min-h-screen bg-slate-50">
+      <main className="flex flex-col items-center gap-4 py-4 px-2 min-h-screen bg-cream-50">
         {/*<Announcement onClick={() => setIsLaunchModalVisible(true)} />*/}
         <section className="relative px-2 sm:px-8 py-4 text-center items-center flex flex-col w-full max-w-[600px]">
           <div className="flex flex-row justify-between items-center w-full mb-8 pt-0">
