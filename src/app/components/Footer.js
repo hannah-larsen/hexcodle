@@ -6,6 +6,7 @@ import Link from "next/link";
 export default function Footer() {
   // Mask for clipping the footer's top edge
   const squiggleMask = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='12'%3E%3Cpath d='M0 12 L 0 6 Q 4 1, 8 6 T 16 6 L 16 12 Z' fill='black'/%3E%3C/svg%3E")`;
+  const noiseTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.20' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.40'/%3E%3C/svg%3E")`;
 
   return (
     <footer className="w-full mt-12 bg-transparent">
@@ -20,7 +21,9 @@ export default function Footer() {
           maskPosition: "top left, 0 12px",
           WebkitMaskPosition: "top left, 0 12px",
           maskSize: "16px 12px, 100% 100%",
-          WebkitMaskSize: "16px 12px, 100% 100%"
+          WebkitMaskSize: "16px 12px, 100% 100%",
+          backgroundImage: noiseTexture,
+          backgroundSize: "75px 75px",
         }}
       >
         <div className="flex flex-col items-center gap-2">
@@ -52,7 +55,6 @@ export default function Footer() {
             >
               Submit Feedback
             </Link>
-            <span className="text-blue-800">|</span>
             <Link
               href="https://www.buymeacoffee.com/hexcodle"
               target="_blank"

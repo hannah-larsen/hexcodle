@@ -41,7 +41,7 @@ export default function HexcodleGame({
   });
   const [userInput, setUserInput] = useState("#");
   const [statusText, setStatusText] = useState(
-    "Start by typing your guess above!"
+    "Start by typing your guess!"
   );
   const [endModalVisible, setEndModalVisible] = useState(false);
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
@@ -55,7 +55,7 @@ export default function HexcodleGame({
       setStatusText("You guessed it!");
       setIsComplete(true);
     } else if (guesses.length == 0) {
-      setStatusText("Start by typing your guess above!");
+      setStatusText("Start by typing your guess!");
     } else if (guesses.length >= MAX_GUESSES) {
       setStatusText("Out of guesses.");
       setIsComplete(true);
@@ -149,15 +149,15 @@ export default function HexcodleGame({
 
   return (
     <>
-      <main className="flex flex-col items-center gap-4 py-4 px-2 min-h-screen bg-cream-50">
+      <main className="flex flex-col items-center gap-4 py-4 px-2 bg-cream-50">
         {/*<Announcement onClick={() => setIsLaunchModalVisible(true)} />*/}
         <section className="relative px-2 sm:px-8 py-4 text-center items-center flex flex-col w-full max-w-[600px]">
           <div className="flex flex-row justify-between items-center w-full mb-6 p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
             <h2 className="text-xl md:text-2xl font-serif font-bold text-gray-800">
-              Target Color
+              Target Color:
             </h2>
             <div
-              className="w-12 h-12 md:w-14 md:h-14 rounded-lg shadow-inner border border-gray-100"
+              className="flex-1 h-12 md:h-14 ml-4 rounded-lg shadow-inner border border-gray-100"
               style={{
                 backgroundColor: targetColor,
               }}
@@ -184,7 +184,7 @@ export default function HexcodleGame({
             })}
           </div>
 
-          <div className="my-6 w-full flex justify-center">
+          <div className="my-2 mt-4 w-full flex justify-center">
             <div className="bg-white border border-gray-200 px-6 py-3 rounded-full shadow-sm text-center">
               <p className="text-sm md:text-base font-serif font-medium text-gray-700">
                 {statusText}{" "}

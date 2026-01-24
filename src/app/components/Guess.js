@@ -39,7 +39,7 @@ export default function Guess({
             return (
               <div
                 key={index}
-                className="flex-1 flex flex-col items-center justify-center p-2 bg-white rounded-lg shadow-sm border border-gray-200 min-h-[64px]"
+                className="flex-1 flex flex-col items-center justify-center p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-[72px]"
               >
                 <div className="mb-1">{getIcon(result)}</div>
                 <p className="font-mono text-xl font-bold text-gray-800">{character}</p>
@@ -48,7 +48,7 @@ export default function Guess({
           })}
         </div>
         <div
-          className="w-16 self-stretch min-h-[64px] rounded-lg shadow-inner border border-gray-200 shrink-0"
+          className="w-16 self-stretch h-[72px] rounded-lg shadow-inner border border-gray-200 shrink-0"
           style={{
             backgroundColor: guess,
           }}
