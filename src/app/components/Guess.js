@@ -1,5 +1,5 @@
-import React from "react";
 import { compareCharacters, compareRGB, hexToRGB } from "../utils";
+import { ChevronUp, ChevronDown, ChevronsUp, ChevronsDown, Check, X } from "lucide-react";
 
 export default function Guess({
   guess,
@@ -7,29 +7,48 @@ export default function Guess({
   hardMode = false,
   type = "hex",
 }) {
-  const containerClasses = "flex flex-row justify-between w-full max-w-[600px] gap-1.5";
-  const characterClasses = "text-center font-bold w-[44px] h-[54px] p-1 bg-transparent flex flex-col justify-end items-center border-b-2 border-slate-800";
-  const textClasses = "font-mono text-xl m-0 p-0 leading-tight"; // text-xl is 1.25rem
+  const getIcon = (result) => {
+    switch (result) {
+      case "✅":
+        return <Check className="w-5 h-5 text-green-600" />;
+      case "🔼":
+        return <ChevronUp className="w-5 h-5 text-gray-600" />;
+      case "🔽":
+        return <ChevronDown className="w-5 h-5 text-gray-600" />;
+      case "⏫":
+        return <ChevronsUp className="w-5 h-5 text-gray-600" />;
+      case "⏬":
+        return <ChevronsDown className="w-5 h-5 text-gray-600" />;
+      case "❌":
+        return <X className="w-5 h-5 text-red-500" />;
+      default:
+        return null;
+    }
+  };
 
   if (type === "hex") {
     return (
-      <div className={containerClasses}>
-        <div className="flex gap-1.5">
-          {[...guess.substring(1)].map((character, index) => (
-            <div key={index} className={characterClasses}>
-              <p className={`${textClasses} text-base mb-0.5`}>
-                {compareCharacters(
-                  character,
-                  target.substring(1).charAt(index),
-                  hardMode
-                )}
-              </p>
-              <p className={textClasses}>{character}</p>
-            </div>
-          ))}
+      <div className="flex flex-row justify-between w-full max-w-[600px] gap-2 mb-2">
+        <div className="flex gap-2 w-full justify-between">
+          {[...guess.substring(1)].map((character, index) => {
+            const result = compareCharacters(
+              character,
+              target.substring(1).charAt(index),
+              hardMode
+            );
+            return (
+              <div
+                key={index}
+                className="flex-1 flex flex-col items-center justify-center p-2 bg-white rounded-lg shadow-sm border border-gray-200 min-h-[64px]"
+              >
+                <div className="mb-1">{getIcon(result)}</div>
+                <p className="font-mono text-xl font-bold text-gray-800">{character}</p>
+              </div>
+            );
+          })}
         </div>
         <div
-          className="w-[50px] h-[50px] rounded-xl"
+          className="w-16 self-stretch min-h-[64px] rounded-lg shadow-inner border border-gray-200 shrink-0"
           style={{
             backgroundColor: guess,
           }}

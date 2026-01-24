@@ -152,12 +152,12 @@ export default function HexcodleGame({
       <main className="flex flex-col items-center gap-4 py-4 px-2 min-h-screen bg-cream-50">
         {/*<Announcement onClick={() => setIsLaunchModalVisible(true)} />*/}
         <section className="relative px-2 sm:px-8 py-4 text-center items-center flex flex-col w-full max-w-[600px]">
-          <div className="flex flex-row justify-between items-center w-full mb-8 pt-0">
-            <h2 className="text-xl font-mono font-semibold mb-0">
-              Target:
+          <div className="flex flex-row justify-between items-center w-full mb-6 p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
+            <h2 className="text-xl md:text-2xl font-serif font-bold text-gray-800">
+              Target Color
             </h2>
             <div
-              className="w-[50px] h-[50px] rounded-xl"
+              className="w-12 h-12 md:w-14 md:h-14 rounded-lg shadow-inner border border-gray-100"
               style={{
                 backgroundColor: targetColor,
               }}
@@ -184,13 +184,17 @@ export default function HexcodleGame({
             })}
           </div>
 
-          <div className="mt-40">
-            <p className="pb-0 break-words">
-              {statusText}{" "}
-              {isComplete
-                ? "Your score is " + getScore(targetColor, guesses)
-                : ""}
-            </p>
+          <div className="my-6 w-full flex justify-center">
+            <div className="bg-white border border-gray-200 px-6 py-3 rounded-full shadow-sm text-center">
+              <p className="text-sm md:text-base font-serif font-medium text-gray-700">
+                {statusText}{" "}
+                {isComplete && (
+                  <span className="font-bold text-blue-600 block sm:inline sm:ml-2">
+                    Score: {getScore(targetColor, guesses)}
+                  </span>
+                )}
+              </p>
+            </div>
           </div>
 
           {settings.colorMode === "hex" && !isComplete && (

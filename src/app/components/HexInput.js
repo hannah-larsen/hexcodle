@@ -7,20 +7,21 @@ const HexInput = ({ userInput, isCurrentRow = true }) => {
   const chars = userInput.slice(1).padEnd(6, " ").split("");
 
   return (
-    <div className="flex flex-row justify-between w-full max-w-[600px] gap-1.5">
-      <div className="flex gap-1.5">
+    <div className="flex flex-row justify-between w-full max-w-[600px] gap-2 mb-2">
+      <div className="flex gap-2 w-full justify-between">
         {chars.map((char, index) => {
           const isActive = isCurrentRow && char === " " && userInput.length - 1 === index;
           const hasValue = char !== " ";
-          const borderColorClass = (isActive || hasValue) ? "border-slate-800" : "border-slate-300";
+          // Active state (cursor position) gets a blue border or ring
+          const activeClass = isActive ? "ring-2 ring-blue-400 border-blue-400" : "border-gray-200";
 
           return (
             <div
               key={index}
               className={`
-                w-[44px] h-[54px] flex justify-center items-center text-xl font-bold 
-                text-slate-900 bg-transparent uppercase select-none 
-                border-b-2 ${borderColorClass}
+                flex-1 flex justify-center items-center text-2xl font-mono font-bold 
+                text-gray-800 bg-white rounded-lg shadow-sm border min-h-[64px]
+                ${activeClass}
               `}
             >
               {char !== " " ? char : ""}
@@ -28,7 +29,8 @@ const HexInput = ({ userInput, isCurrentRow = true }) => {
           );
         })}
       </div>
-      <div className="w-[50px] h-[50px]" />
+      {/* Placeholder for the color preview box to keep alignment */}
+      <div className="w-16 self-stretch min-h-[64px] rounded-lg border border-dashed border-gray-300 shrink-0 bg-gray-50/50" />
     </div>
   );
 };

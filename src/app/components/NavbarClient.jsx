@@ -126,7 +126,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                     </div>
 
                     {/* Simplified Footer Links */}
-                    <div className="bg-cream-100 border-t border-gray-200">
+                    <div className="bg-cream-50 border-t border-gray-200">
                         <div className="max-w-7xl mx-auto px-4 py-4 pb-5 flex flex-wrap items-center justify-center gap-6 md:gap-12">
                             {footerLinks.map((link, idx) => (
                                 <Link
