@@ -2,48 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import styled from "styled-components";
 import ArchivePanel from "@/app/components/ArchivePanel";
 import Stats from "@/app/components/Stats";
 import { fetchMiniArchiveBatch } from "../../archive/actions";
-
-const Wrapper = styled.div`
-  display: grid;
-  gap: 16px;
-  padding: 0px 16px;
-  width: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-`;
-
-const StatsWrapper = styled.div`
-  max-width: min(600px, 100%);
-  padding: 0px 16px;
-  width: 100%;
-`;
-
-const LoadMoreButton = styled.button`
-  background-color: #f3f4f6;
-  color: #1f2937;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin: 24px auto;
-  display: block;
-
-  &:hover {
-    background-color: #e5e7eb;
-    transform: translateY(-1px);
-  }
-
-  &:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    transform: none;
-  }
-`;
 
 const MiniArchivePage = ({ panelsData: initialPanels, totalCount }) => {
   const [panels, setPanels] = useState(initialPanels);
@@ -91,14 +52,11 @@ const MiniArchivePage = ({ panelsData: initialPanels, totalCount }) => {
 
   return (
     <>
-      <main
-        className="everything"
-        style={{ paddingLeft: 0, paddingRight: 0, gap: 16 }}
-      >
-        <StatsWrapper>
+      <main className="flex flex-col items-center gap-4 py-4 px-0 bg-cream-50">
+        <div className="max-w-[600px] w-full px-4">
           <Stats games={completedGames} totalCount={totalCount} />
-        </StatsWrapper>
-        <Wrapper>
+        </div>
+        <div className="grid gap-4 px-4 w-full grid-cols-[repeat(auto-fill,minmax(250px,1fr))]">
           {panels.map(({ hexcodleNumber, colorName, hexcode, date }) => {
             const isComplete = completedGames.some(
               ([key]) => key === `hexcodle-mini-${hexcodleNumber}`
@@ -107,7 +65,7 @@ const MiniArchivePage = ({ panelsData: initialPanels, totalCount }) => {
               <Link
                 key={hexcodleNumber}
                 href={`/mini/archive/${hexcodleNumber}`}
-                style={{ textDecoration: "none" }}
+                className="no-underline"
                 prefetch={false}
               >
                 <ArchivePanel
@@ -120,11 +78,15 @@ const MiniArchivePage = ({ panelsData: initialPanels, totalCount }) => {
               </Link>
             );
           })}
-        </Wrapper>
+        </div>
         {panels.length < totalCount && (
-          <LoadMoreButton onClick={loadMore} disabled={loading}>
+          <button
+            onClick={loadMore}
+            disabled={loading}
+            className="bg-white border border-gray-200 text-gray-700 px-6 py-3 rounded-lg font-serif font-semibold cursor-pointer transition-all my-6 mx-auto block hover:bg-gray-100 hover:border-gray-300 shadow-sm disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+          >
             {loading ? "Loading..." : "Load More Puzzles"}
-          </LoadMoreButton>
+          </button>
         )}
       </main>
     </>
