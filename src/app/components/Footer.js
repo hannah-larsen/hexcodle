@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className="w-full mt-0 bg-transparent">
       {/* The Footer body with clipped top edge */}
       <div
-        className="w-full bg-blue-900 pt-16 pb-12 flex flex-col items-center justify-center gap-4"
+        className="w-full bg-blue-900 pt-12 pb-12 flex flex-col items-center justify-center gap-4"
         style={{
           maskImage: `${squiggleMask}, linear-gradient(to bottom, black 12px, black 100%)`,
           WebkitMaskImage: `${squiggleMask}, linear-gradient(to bottom, black 12px, black 100%)`,

@@ -1,10 +1,10 @@
 import React from "react";
 
-const HexInput = ({ userInput, isCurrentRow = true }) => {
-  // userInput is expected to start with '#', e.g., "#1A2B3C"
-  // We want to display characters at indices 1 through 6.
+const HexInput = ({ userInput, isCurrentRow = true, numDigits = 6 }) => {
+  // userInput is expected to start with '#', e.g., "#1A2B3C" (6 digits) or "#ABC" (3 digits)
+  // We want to display characters at indices 1 through numDigits.
 
-  const chars = userInput.slice(1).padEnd(6, " ").split("");
+  const chars = userInput.slice(1).padEnd(numDigits, " ").split("");
 
   return (
     <div className="flex flex-row justify-between w-full max-w-[600px] gap-2 mb-2">
