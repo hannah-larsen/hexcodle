@@ -149,7 +149,7 @@ export default function HexcodleGame({
 
   return (
     <>
-      <main className="flex flex-col items-center gap-4 py-4 px-2 bg-cream-50">
+      <main className="flex flex-col items-center gap-4 py-0 px-2 bg-cream-50">
         {/*<Announcement onClick={() => setIsLaunchModalVisible(true)} />*/}
         <section className="relative px-2 sm:px-8 py-4 text-center items-center flex flex-col w-full max-w-[600px]">
           <div className="flex flex-row justify-between items-center w-full mb-6 p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
@@ -157,7 +157,7 @@ export default function HexcodleGame({
               Target Color:
             </h2>
             <div
-              className="flex-1 h-12 md:h-14 ml-4 rounded-lg shadow-inner border border-gray-100"
+              className="w-12 h-12 md:h-14 ml-4 rounded-lg shadow-inner border border-gray-100"
               style={{
                 backgroundColor: targetColor,
               }}

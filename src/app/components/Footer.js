@@ -6,10 +6,10 @@ import Link from "next/link";
 export default function Footer() {
   // Mask for clipping the footer's top edge
   const squiggleMask = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='12'%3E%3Cpath d='M0 12 L 0 6 Q 4 1, 8 6 T 16 6 L 16 12 Z' fill='black'/%3E%3C/svg%3E")`;
-  const noiseTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.20' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.40'/%3E%3C/svg%3E")`;
+  const noiseTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.20' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.20'/%3E%3C/svg%3E")`;
 
   return (
-    <footer className="w-full mt-12 bg-transparent">
+    <footer className="w-full mt-0 bg-transparent">
       {/* The Footer body with clipped top edge */}
       <div
         className="w-full bg-blue-900 pt-16 pb-12 flex flex-col items-center justify-center gap-4"

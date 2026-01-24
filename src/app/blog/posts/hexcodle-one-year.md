@@ -1,6 +1,6 @@
 ---
 title: 'Happy Birthday Hexcodle!'
-description: ''
+description: 'Hexcodle turns one year old!'
 keywords: ''
 author: 'Hannah Larsen'
 date: 'August 10, 2024'

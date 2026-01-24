@@ -50,7 +50,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
     ];
 
     const squiggleMask = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='64'%3E%3Cpath d='M0 10 Q 4 5, 8 10 T 16 10 L 16 54 Q 12 59, 8 54 T 0 54 Z' fill='black'/%3E%3C/svg%3E")`;
-    const noiseTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.20' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.40'/%3E%3C/svg%3E")`;
+    const noiseTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.20' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.20'/%3E%3C/svg%3E")`;
 
     return (
         <header className="fixed top-0 w-full z-50 bg-cream-50 drop-shadow-xl">
