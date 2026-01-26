@@ -12,7 +12,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathname === "/archive") {
     return (
       <Link href={"/"} prefetch={false}>
-        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
           Hexcodle Archive
         </p>
       </Link>
@@ -23,7 +23,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathname === "/mini/archive") {
     return (
       <Link href={"/mini"} prefetch={false}>
-        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
           Mini Archive
         </p>
       </Link>
@@ -34,7 +34,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathname === "/custom-archive") {
     return (
       <Link href={"/custom-archive"}>
-        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
           Hexcodle Extras
         </p>
       </Link>
@@ -45,7 +45,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathname === "/mini/custom-archive") {
     return (
       <Link href={"/mini/custom-archive"}>
-        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
           Mini Extras
         </p>
       </Link>
@@ -56,7 +56,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathComponents[0] === "blog") {
     return (
       <Link href={"/blog"}>
-        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
           Hexcodle Blog
         </p>
       </Link>
@@ -67,7 +67,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   if (pathComponents[0] === "archive" && isNaN(pathComponents[1])) {
     return (
       <Link href={"/custom-archive"}>
-        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
           Hexcodle #{pathComponents[1]}
         </p>
       </Link>
@@ -82,7 +82,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   ) {
     return (
       <Link href={"/mini/custom-archive"}>
-        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+        <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
           Mini #{pathComponents[2]}
         </p>
       </Link>
@@ -98,13 +98,13 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
       <>
         <ChevronLeft style={{ color: "var(--gray-300)" }} />
         <Link href={"/"} prefetch={false}>
-          <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+          <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
             Hexcodle #{currentDay}
           </p>
         </Link>
         <Link
           style={{ textDecoration: "none" }}
-          className="flex items-center justify-center hover:text-blue-900 active:text-blue-800"
+          className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
           href={`/archive/${parseInt(currentDay, 10) - 1}`}
         >
           <ChevronRight />
@@ -119,19 +119,19 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
       <>
         <Link
           style={{ textDecoration: "none" }}
-          className="flex items-center justify-center hover:text-blue-900 active:text-blue-800"
+          className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
           href={`/archive/${parseInt(currentDay, 10) + 1}`}
         >
           <ChevronLeft />
         </Link>
         <Link href={"/"} prefetch={false}>
-          <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+          <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
             Hexcodle #{currentDay}
           </p>
         </Link>
         <Link
           style={{ textDecoration: "none" }}
-          className="flex items-center justify-center hover:text-blue-900 active:text-blue-800"
+          className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
           href={`/archive/${parseInt(currentDay, 10) - 1}`}
         >
           <ChevronRight />
@@ -151,13 +151,13 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
       <>
         <ChevronLeft style={{ color: "var(--gray-300)" }} />
         <Link href={"/mini"} prefetch={false}>
-          <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+          <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
             Mini #{currentDay}
           </p>
         </Link>
         <Link
           style={{ textDecoration: "none" }}
-          className="flex items-center justify-center hover:text-blue-900 active:text-blue-800"
+          className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
           href={`/mini/archive/${parseInt(currentDay, 10) - 1}`}
         >
           <ChevronRight />
@@ -176,19 +176,19 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
       <>
         <Link
           style={{ textDecoration: "none" }}
-          className="flex items-center justify-center hover:text-blue-900 active:text-blue-800"
+          className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
           href={`/mini/archive/${parseInt(currentDay, 10) + 1}`}
         >
           <ChevronLeft />
         </Link>
         <Link href={"/mini"} prefetch={false}>
-          <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-900 active:text-blue-800">
+          <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
             Mini #{currentDay}
           </p>
         </Link>
         <Link
           style={{ textDecoration: "none" }}
-          className="flex items-center justify-center hover:text-blue-900 active:text-blue-800"
+          className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
           href={`/mini/archive/${parseInt(currentDay, 10) - 1}`}
         >
           <ChevronRight />

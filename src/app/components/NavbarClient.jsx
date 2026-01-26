@@ -53,39 +53,56 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
     const noiseTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.20' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.20'/%3E%3C/svg%3E")`;
 
     return (
-        <header className="fixed top-0 w-full z-50 bg-cream-50 drop-shadow-xl">
-            <div className="flex flex-row items-center justify-between p-2 min-h-[60px] max-w-7xl mx-auto w-full">
-                <div className="flex-1 flex flex-row items-center justify-start">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={toggleMenu}
-                        className="hover:bg-gray-200 transition-colors"
-                        aria-label="Toggle Menu"
-                    >
-                        {isOpen ? (
-                            <X className="h-6 w-6 text-black" />
-                        ) : (
-                            <Menu className="h-6 w-6 text-black" />
-                        )}
-                    </Button>
-                </div>
+        <header className="fixed top-0 w-full z-50 drop-shadow-xl">
+            {/* Top Section */}
+            <div
+                className="bg-blue-900 w-full relative z-20 pb-4"
+                style={{
+                    maskImage: `linear-gradient(to bottom, black 0%, black calc(100% - 12px)), ${squiggleMask}`,
+                    WebkitMaskImage: `linear-gradient(to bottom, black 0%, black calc(100% - 12px)), ${squiggleMask}`,
+                    maskRepeat: "no-repeat, repeat-x",
+                    WebkitMaskRepeat: "no-repeat, repeat-x",
+                    maskPosition: "top left, bottom left",
+                    WebkitMaskPosition: "top left, bottom left",
+                    maskSize: "100% calc(100% - 12px), 16px 64px",
+                    WebkitMaskSize: "100% calc(100% - 12px), 16px 64px",
+                    backgroundImage: noiseTexture,
+                    backgroundSize: "75px 75px",
+                }}
+            >
+                <div className="flex flex-row items-center justify-between p-2 min-h-[60px] max-w-7xl mx-auto w-full">
+                    <div className="flex-1 flex flex-row items-center justify-start">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={toggleMenu}
+                            className="text-white hover:bg-blue-800 transition-colors"
+                            aria-label="Toggle Menu"
+                        >
+                            {isOpen ? (
+                                <X className="h-6 w-6" />
+                            ) : (
+                                <Menu className="h-6 w-6" />
+                            )}
+                        </Button>
+                    </div>
 
-                <div className="flex items-center justify-center flex-row gap-1 text-lg md:text-xl shrink-0">
-                    <NavbarCenter
-                        hexcodleNumber={hexcodleNumber}
-                        miniNumber={miniNumber}
-                    />
-                </div>
+                    <div className="flex items-center justify-center flex-row gap-1 text-lg md:text-xl shrink-0 text-white">
+                        <NavbarCenter
+                            hexcodleNumber={hexcodleNumber}
+                            miniNumber={miniNumber}
+                        />
+                    </div>
 
-                <div className="flex-1 flex justify-end">
-                    <NavbarRight />
+                    <div className="flex-1 flex justify-end text-white">
+                        <NavbarRight />
+                    </div>
                 </div>
             </div>
 
-            {/* Expanded Menu */}
+            {/* Middle Section (Expanded Menu) */}
             <div
-                className={`grid overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] bg-cream-50 ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                className={`grid overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] bg-cream-50 -mt-3 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     }`}
             >
                 <div className="min-h-0 border-t border-gray-200">
@@ -150,7 +167,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                 </div>
             </div>
 
-            {/* Interactive Squiggly Ribbon using CSS Mask */}
+            {/* Bottom Section (Interactive Squiggly Ribbon) */}
             <Link
                 href="/blog"
                 className="absolute top-[calc(100%-12px)] left-0 w-full z-10 block bg-blue-900 hover:bg-blue-800 transition-colors duration-300 group/ribbon"
@@ -173,4 +190,5 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
             </Link>
         </header>
     );
+
 }
