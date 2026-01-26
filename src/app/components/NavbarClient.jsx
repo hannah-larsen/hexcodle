@@ -68,6 +68,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                     WebkitMaskSize: "100% calc(100% - 12px), 16px 64px",
                     backgroundImage: noiseTexture,
                     backgroundSize: "75px 75px",
+                    filter: "drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white)"
                 }}
             >
                 <div className="flex flex-row items-center justify-between p-2 min-h-[60px] max-w-7xl mx-auto w-full">
@@ -76,7 +77,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                             variant="ghost"
                             size="icon"
                             onClick={toggleMenu}
-                            className="text-white hover:bg-blue-800 transition-colors"
+                            className="text-white hover:bg-blue-200/20 hover:text-white transition-colors"
                             aria-label="Toggle Menu"
                         >
                             {isOpen ? (
@@ -168,27 +169,35 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
             </div>
 
             {/* Bottom Section (Interactive Squiggly Ribbon) */}
-            <Link
-                href="/blog"
-                className="absolute top-[calc(100%-12px)] left-0 w-full z-10 block bg-blue-900 hover:bg-blue-800 transition-colors duration-300 group/ribbon"
+            <div
+                className="absolute top-[calc(100%-12px)] left-0 w-full z-30 pointer-events-none"
                 style={{
-                    maskImage: squiggleMask,
-                    WebkitMaskImage: squiggleMask,
-                    maskRepeat: "repeat-x",
-                    WebkitMaskRepeat: "repeat-x",
-                    height: "64px",
-                    backgroundImage: noiseTexture,
-                    backgroundSize: "75px 75px",
+                    filter: "drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white)"
                 }}
             >
-                <div className="flex items-center justify-center h-full pt-2">
-                    <span className="text-white text-sm md:text-xs font-mono font-bold tracking-wider uppercase opacity-90 flex items-center gap-2 -mt-1.5">
-                        Update: Jan 23 2026
-                        <ArrowRight className="h-3 w-3 md:h-4 md:w-4 transition-transform duration-300 group-hover/ribbon:translate-x-1.5" />
-                    </span>
-                </div>
-            </Link>
+                <Link
+                    href="/blog"
+                    className="block w-full bg-blue-900 hover:bg-blue-800 transition-colors duration-300 group/ribbon pointer-events-auto"
+                    style={{
+                        maskImage: squiggleMask,
+                        WebkitMaskImage: squiggleMask,
+                        maskRepeat: "repeat-x",
+                        WebkitMaskRepeat: "repeat-x",
+                        height: "64px",
+                        backgroundImage: noiseTexture,
+                        backgroundSize: "75px 75px",
+                    }}
+                >
+                    <div className="flex items-center justify-center h-full pt-2">
+                        <span className="text-white text-sm md:text-xs font-mono font-bold tracking-wider uppercase opacity-90 flex items-center gap-2 -mt-1.5">
+                            Update: Jan 23 2026
+                            <ArrowRight className="h-3 w-3 md:h-4 md:w-4 transition-transform duration-300 group-hover/ribbon:translate-x-1.5" />
+                        </span>
+                    </div>
+                </Link>
+            </div>
         </header>
     );
+
 
 }

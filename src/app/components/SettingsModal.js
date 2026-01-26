@@ -37,7 +37,7 @@ export default function SettingsModal({ mode = "mini" }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" className="text-white hover:bg-blue-200/20 hover:text-white transition-colors">
           <Settings className="h-6 w-6" />
         </Button>
       </DialogTrigger>
