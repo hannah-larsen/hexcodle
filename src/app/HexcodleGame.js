@@ -3,6 +3,7 @@
 import React, { useState, useEffect, use } from "react";
 import useSound from "use-sound";
 import { useLocalStorage } from "@mantine/hooks";
+import { ArrowRight } from "lucide-react";
 import useSavestate from "./hooks/useSavestate.js";
 import Guess from "./components/Guess.js";
 import { EndModal } from "./components/EndModal.js";
@@ -185,16 +186,24 @@ export default function HexcodleGame({
           </div>
 
           <div className="my-2 mt-4 w-full flex justify-center">
-            <div className="bg-white border border-gray-200 px-6 py-3 rounded-full shadow-sm text-center">
-              <p className="text-sm md:text-base font-serif font-medium text-gray-700">
+            <button
+              onClick={isComplete ? () => setEndModalVisible(true) : undefined}
+              disabled={!isComplete}
+              className={`bg-white border border-gray-200 px-6 py-3 rounded-full shadow-sm text-center transition-all group ${isComplete
+                ? "cursor-pointer hover:bg-gray-50 active:scale-95 hover:border-gray-300"
+                : "cursor-default"
+                }`}
+            >
+              <p className="text-sm md:text-base font-serif font-medium text-gray-700 flex items-center justify-center gap-2">
                 {statusText}{" "}
                 {isComplete && (
-                  <span className="font-bold text-blue-600 block sm:inline sm:ml-2">
+                  <span className="font-bold text-blue-600 flex items-center gap-1">
                     Score: {getScore(targetColor, guesses)}
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                 )}
               </p>
-            </div>
+            </button>
           </div>
 
           {settings.colorMode === "hex" && !isComplete && (

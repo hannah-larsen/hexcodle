@@ -39,11 +39,11 @@ const Wrapper = styled.button`
   }
 `;
 
-export default function Announcement() {
+export default function Announcement({ children }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Wrapper>Hexcodle Color Name Error</Wrapper>
+        {children ? children : <Wrapper>Hexcodle Color Name Error</Wrapper>}
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
@@ -54,7 +54,7 @@ export default function Announcement() {
           Hey Hexcodlers,
         </p>
         <p>
-        We are aware of the issue where the color name is displaying <i>Error</i>. We are actively working on resolving this issue. Thank you for your patience!
+          We are aware of the issue where the color name is displaying <i>Error</i>. We are actively working on resolving this issue. Thank you for your patience!
         </p>
         <p>-E&amp;H 💗</p>
         <DialogFooter>

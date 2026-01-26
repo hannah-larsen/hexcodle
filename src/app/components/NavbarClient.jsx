@@ -6,6 +6,7 @@ import { Menu, X, BookHeart, Coffee, MessageCircleDashed, ChevronRight, ArrowRig
 import { Button } from "@/app/components/ui/button";
 import NavbarCenter from "./NavbarCenter";
 import NavbarRight from "./NavbarRight";
+import Announcement from "./Annoucement.js";
 
 export default function NavbarClient({ hexcodleNumber, miniNumber }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -175,26 +176,27 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                     filter: "drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white)"
                 }}
             >
-                <Link
-                    href="/blog"
-                    className="block w-full bg-blue-900 hover:bg-blue-800 transition-colors duration-300 group/ribbon pointer-events-auto"
-                    style={{
-                        maskImage: squiggleMask,
-                        WebkitMaskImage: squiggleMask,
-                        maskRepeat: "repeat-x",
-                        WebkitMaskRepeat: "repeat-x",
-                        height: "64px",
-                        backgroundImage: noiseTexture,
-                        backgroundSize: "75px 75px",
-                    }}
-                >
-                    <div className="flex items-center justify-center h-full pt-2">
-                        <span className="text-white text-sm md:text-xs font-mono font-bold tracking-wider uppercase opacity-90 flex items-center gap-2 -mt-1.5">
-                            Update: Jan 23 2026
-                            <ArrowRight className="h-3 w-3 md:h-4 md:w-4 transition-transform duration-300 group-hover/ribbon:translate-x-1.5" />
-                        </span>
-                    </div>
-                </Link>
+                <Announcement>
+                    <button
+                        className="block w-full bg-blue-900 hover:bg-blue-800 transition-colors duration-300 group/ribbon pointer-events-auto"
+                        style={{
+                            maskImage: squiggleMask,
+                            WebkitMaskImage: squiggleMask,
+                            maskRepeat: "repeat-x",
+                            WebkitMaskRepeat: "repeat-x",
+                            height: "64px",
+                            backgroundImage: noiseTexture,
+                            backgroundSize: "75px 75px",
+                        }}
+                    >
+                        <div className="flex items-center justify-center h-full pt-2">
+                            <span className="text-white text-sm md:text-xs font-mono font-bold tracking-wider uppercase opacity-90 flex items-center gap-2 -mt-1.5">
+                                Update: Jan 23 2026
+                                <ArrowRight className="h-3 w-3 md:h-4 md:w-4 transition-transform duration-300 group-hover/ribbon:translate-x-1.5" />
+                            </span>
+                        </div>
+                    </button>
+                </Announcement>
             </div>
         </header>
     );

@@ -97,11 +97,6 @@ export function EndModal({
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button size="icon" className="absolute bottom-5 right-5">
-            <Share2 className="w-4 h-4" />
-          </Button>
-        </DialogTrigger>
         <DialogContent className="max-w-lg">
           <DialogHeader className="text-center flex flex-col items-center">
             {win ? (
@@ -167,11 +162,6 @@ export function EndModal({
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
-        <Button size="icon" className="absolute bottom-5 right-5">
-          <Share2 className="w-4 h-4" />
-        </Button>
-      </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-center flex flex-col items-center">
           {win ? (

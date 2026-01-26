@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 
@@ -12,9 +10,9 @@ export default function Footer() {
     <footer className="w-full bg-transparent">
       {/* The Footer body with clipped top edge */}
       <div
-        className="pt-4"
+        className="pt-2"
         style={{
-          filter: "drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white)"
+          filter: "drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white) drop-shadow(0 -4px 12px rgba(0,0,0,0.15))"
         }}
       >
         <div
