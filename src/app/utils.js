@@ -131,8 +131,11 @@ function getRGB(hexcode) {
 export function getScore(target, guesses) {
   const MAX_GUESSES = 5;
   let differenceSum = 0;
-  const maxDifferencePerChannel = 255;
-  const maxTotalDifference = maxDifferencePerChannel * 3 * guesses.length;
+  let differenceLogSum = 0;
+  const maxDifferencePerChannel = guesses[0].length === 3 ? 15 : 255; // Mini check
+  const maxTotalDifference = maxDifferencePerChannel * 3 * MAX_GUESSES;
+  const logBase = Math.log(10);
+  const maxTotalLogDifference = MAX_GUESSES * logBase;
 
   const {
     red: targetRed,
@@ -142,19 +145,31 @@ export function getScore(target, guesses) {
 
   guesses.forEach((guess) => {
     const { red, green, blue } = getRGB(guess);
-    differenceSum +=
+
+    const localDiffSum =
       Math.abs(targetRed - red) +
       Math.abs(targetGreen - green) +
       Math.abs(targetBlue - blue);
+    differenceSum += localDiffSum;
+    differenceLogSum +=
+      localDiffSum !== 0 ? Math.log(localDiffSum * localDiffSum) / logBase : 0;
   });
 
   const closenessScore =
-    ((maxTotalDifference - differenceSum) / maxTotalDifference) * 30;
+    (maxTotalDifference - differenceSum) / maxTotalDifference;
+
+  const closenessLogScore =
+    (maxTotalLogDifference - differenceLogSum) / maxTotalLogDifference;
 
   const guessesScore =
-    (Math.min(MAX_GUESSES - guesses.length + 2, 5) / MAX_GUESSES) * 70;
+    Math.min(MAX_GUESSES - guesses.length + 2, 5) / MAX_GUESSES;
 
-  const finalScore = Math.floor(closenessScore) + Math.floor(guessesScore);
+  console.log({ closenessScore, closenessLogScore, guessesScore });
+
+  const finalScore =
+    Math.floor(closenessScore * 60) +
+    Math.floor(closenessLogScore * 30) +
+    Math.floor(guessesScore * 10);
 
   return Math.round(finalScore) + "%";
 }
