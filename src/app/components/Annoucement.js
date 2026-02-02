@@ -47,16 +47,18 @@ export default function Announcement({ children }) {
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
-          <DialogTitle>Sorry for the Error!</DialogTitle>
+          <DialogTitle className="font-serif text-2xl">Sorry for the Error!</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
-        <p>
-          Hey Hexcodlers,
-        </p>
-        <p>
-          We are aware of the issue where the color name is displaying <i>Error</i>. We are actively working on resolving this issue. Thank you for your patience!
-        </p>
-        <p>-E&amp;H 💗</p>
+        <div className="font-serif space-y-4 text-gray-700">
+          <p>
+            Hey Hexcodlers,
+          </p>
+          <p>
+            We are aware of the issue where the color name is displaying <i>Error</i>. We are actively working on resolving this issue. Thank you for your patience!
+          </p>
+          <p>-E&amp;H 💗</p>
+        </div>
         <DialogFooter>
           <DialogClose asChild>
             <Button type="button">Close</Button>

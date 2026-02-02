@@ -114,8 +114,8 @@ export function EndModal({
                 alt="Hexavier the Parrot - Loss Animation"
               />
             )}
-            <DialogTitle>{win ? "Great Job!" : "Bummer"}</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="font-serif text-2xl">{win ? "Great Job!" : "Bummer"}</DialogTitle>
+            <DialogDescription className="font-serif">
               {isMini ? "Mini" : "Hexcodle"} #{hexcodleNumber}
             </DialogDescription>
           </DialogHeader>
@@ -179,8 +179,8 @@ export function EndModal({
               alt="Hexavier the Parrot - Loss Animation"
             />
           )}
-          <DrawerTitle>{win ? "Great Job!" : "Bummer"}</DrawerTitle>
-          <DrawerDescription>
+          <DrawerTitle className="font-serif text-2xl">{win ? "Great Job!" : "Bummer"}</DrawerTitle>
+          <DrawerDescription className="font-serif">
             {isMini ? "Mini" : "Hexcodle"} #{hexcodleNumber}
           </DrawerDescription>
         </DrawerHeader>

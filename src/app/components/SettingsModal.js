@@ -43,13 +43,13 @@ export default function SettingsModal({ mode = "mini" }) {
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-lg">
         <DialogHeader>
-          <DialogTitle>Settings</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="font-serif text-2xl">Settings</DialogTitle>
+          <DialogDescription className="font-serif">
             Your changes are saved automatically.
           </DialogDescription>
         </DialogHeader>
-        <div>
-          <h4>Emoji Legend</h4>
+        <div className="font-serif">
+          <h4 className="font-bold">Emoji Legend</h4>
           <p>✅ Correct</p>
           {settings.difficulty === "expert" && (
             <>
@@ -79,8 +79,8 @@ export default function SettingsModal({ mode = "mini" }) {
             </>
           )}
         </div>
-        <div>
-          <h4 className="pb-1">Difficulty</h4>
+        <div className="font-serif">
+          <h4 className="pb-1 font-bold text-lg">Difficulty</h4>
           <RadioGroup
             defaultValue={settings.difficulty}
             onValueChange={(val) => {
@@ -102,8 +102,8 @@ export default function SettingsModal({ mode = "mini" }) {
           </RadioGroup>
         </div>
         {mode === "hexcodle" && (
-          <div>
-            <h4 className="pb-1">Color Mode</h4>
+          <div className="font-serif">
+            <h4 className="pb-1 font-bold text-lg">Color Mode</h4>
             <RadioGroup
               defaultValue={settings.colorMode}
               onValueChange={(val) => {
