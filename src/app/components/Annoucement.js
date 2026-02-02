@@ -43,7 +43,7 @@ export default function Announcement({ children }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        {children ? children : <Wrapper>Hexcodle Color Name Error</Wrapper>}
+        {children}
       </DialogTrigger>
       <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
         <DialogHeader>
