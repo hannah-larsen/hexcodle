@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect, use, useRef } from "react";
 import useSound from "use-sound";
 import { useLocalStorage } from "@mantine/hooks";
 import { ArrowRight } from "lucide-react";
@@ -46,6 +46,7 @@ export default function HexcodleGame({
   );
   const [endModalVisible, setEndModalVisible] = useState(false);
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
+  const inputRef = useRef(null);
 
   const hasWon = guesses.includes(targetColor);
 
@@ -98,8 +99,18 @@ export default function HexcodleGame({
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    if (!isComplete && !loading && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [guesses.length, isComplete, loading]);
+
   const handleKey = (key) => {
     if (loading || isComplete) return;
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
 
     if (key === "ENTER") {
       if (userInput.length !== 7) {
@@ -128,10 +139,9 @@ export default function HexcodleGame({
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
-      // Prevent default behavior for Backspace to avoid browser navigation
-      if (e.key === "Backspace") {
-        // e.preventDefault(); // Optional, but usually good for games
-      }
+
+      // Only process keys if the game input is focused
+      if (document.activeElement !== inputRef.current) return;
 
       if (e.key === "Enter") {
         handleKey("ENTER");
@@ -141,6 +151,7 @@ export default function HexcodleGame({
         handleKey(e.key.toUpperCase());
       }
     };
+
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -178,7 +189,14 @@ export default function HexcodleGame({
                   />
                 );
               } else if (index === reversedGuesses.length && !isComplete && !loading) {
-                return <HexInput key={index} userInput={userInput} isCurrentRow={true} />;
+                return (
+                  <HexInput
+                    key={index}
+                    ref={inputRef}
+                    userInput={userInput}
+                    isCurrentRow={true}
+                  />
+                );
               } else {
                 return <HexInput key={index} userInput="#" isCurrentRow={false} />;
               }

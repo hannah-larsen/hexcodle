@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import useSound from "use-sound";
 import { useLocalStorage } from "@mantine/hooks";
 import { ArrowRight } from "lucide-react";
@@ -48,6 +48,7 @@ export default function MiniHexcodle({
   );
   const [endModalVisible, setEndModalVisible] = useState(false);
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
+  const inputRef = useRef(null);
 
   const hasWon = useMemo(() => {
     return guesses.includes(targetColor);
@@ -102,8 +103,18 @@ export default function MiniHexcodle({
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    if (!isComplete && !loading && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [guesses.length, isComplete, loading]);
+
   const handleKey = (key) => {
     if (loading || isComplete) return;
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
 
     if (key === "ENTER") {
       if (userInput.length !== 4) {
@@ -132,10 +143,9 @@ export default function MiniHexcodle({
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
-      // Prevent default behavior for Backspace to avoid browser navigation
-      if (e.key === "Backspace") {
-        // e.preventDefault(); // Optional, but usually good for games
-      }
+
+      // Only process keys if the game input is focused
+      if (document.activeElement !== inputRef.current) return;
 
       if (e.key === "Enter") {
         handleKey("ENTER");
@@ -181,7 +191,15 @@ export default function MiniHexcodle({
                   />
                 );
               } else if (index === reversedGuesses.length && !isComplete && !loading) {
-                return <HexInput key={index} userInput={userInput} isCurrentRow={true} numDigits={3} />;
+                return (
+                  <HexInput
+                    key={index}
+                    ref={inputRef}
+                    userInput={userInput}
+                    isCurrentRow={true}
+                    numDigits={3}
+                  />
+                );
               } else {
                 return <HexInput key={index} userInput="#" isCurrentRow={false} numDigits={3} />;
               }
