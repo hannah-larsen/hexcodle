@@ -58,24 +58,40 @@ export default function Guess({
   }
 
   if (type === "rgb") {
-    // Note: RGB implementation might need similar layout updates to match Hex Design if used.
-    // Preserving logic but switching to Tailwind classes for basic container/text.
     const guessRGB = hexToRGB(guess);
     const targetRGB = hexToRGB(target);
+
+    const rgbMap = {
+      r: "red",
+      g: "green",
+      b: "blue"
+    };
+
     return (
-      <div className={containerClasses} style={{ justifyContent: 'center' }}>
-        {Object.keys(guessRGB).map((color, index) => (
-          // RGB mode was not fully refactored in previous steps to new design (underline etc).
-          // Applying basic tailwind classes similar to old design for now or matching new one?
-          // I'll apply the new "Underline" style to be consistent.
-          <div key={index} className={characterClasses} style={{ width: 'auto', flex: 1 }}>
-            <p className={`${textClasses} text-base mb-0.5`}>
-              {compareRGB(guessRGB[color], targetRGB[color], hardMode)}
-            </p>
-            <p className={textClasses}>{guessRGB[color]}</p>
-          </div>
-        ))}
+      <div className="flex flex-row justify-between w-full max-w-[600px] gap-2 mb-2">
+        <div className="flex gap-2 w-full justify-between">
+          {["r", "g", "b"].map((color, index) => {
+            const result = compareRGB(guessRGB[rgbMap[color]], targetRGB[rgbMap[color]], hardMode);
+            return (
+              <div
+                key={index}
+                className="flex-1 flex flex-col items-center justify-center p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-[72px]"
+              >
+                <div className="mb-1">{getIcon(result)}</div>
+                <p className="font-mono text-xl font-bold text-gray-800">{guessRGB[rgbMap[color]]}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div
+          className="w-16 self-stretch h-[72px] rounded-lg shadow-inner border border-gray-200 shrink-0"
+          style={{
+            backgroundColor: guess,
+          }}
+        />
       </div>
     );
   }
+
+
 }

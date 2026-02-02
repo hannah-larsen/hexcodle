@@ -45,12 +45,13 @@ export default function Announcement({ children }) {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
-        <DialogHeader>
-          <DialogTitle className="font-serif text-2xl">Sorry for the Error!</DialogTitle>
+      <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%] bg-cream-50 border-gray-200">
+        <DialogHeader className="space-y-0">
+          <DialogTitle className="font-serif text-2xl font-bold">Sorry for the Error!</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
-        <div className="font-serif space-y-4 text-gray-700">
+
+        <div className="font-sans space-y-4 text-gray-700">
           <p>
             Hey Hexcodlers,
           </p>
@@ -61,10 +62,13 @@ export default function Announcement({ children }) {
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button type="button">Close</Button>
+            <Button type="button" className="bg-blue-900 hover:bg-blue-800 text-white font-serif font-bold">Close</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
+
+
+
     </Dialog>
   );
 }

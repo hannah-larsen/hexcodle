@@ -97,8 +97,8 @@ export function EndModal({
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-lg">
-          <DialogHeader className="text-center flex flex-col items-center">
+        <DialogContent className="max-w-lg bg-cream-50 border-gray-200">
+          <DialogHeader className="text-center flex flex-col items-center space-y-0">
             {win ? (
               <img
                 width={100}
@@ -114,18 +114,20 @@ export function EndModal({
                 alt="Hexavier the Parrot - Loss Animation"
               />
             )}
-            <DialogTitle className="font-serif text-2xl">{win ? "Great Job!" : "Bummer"}</DialogTitle>
-            <DialogDescription className="font-serif">
+            <DialogTitle className="font-serif text-2xl font-bold">{win ? "Great Job!" : "Bummer"}</DialogTitle>
+            <DialogDescription className="font-sans">
               {isMini ? "Mini" : "Hexcodle"} #{hexcodleNumber}
             </DialogDescription>
           </DialogHeader>
-          <div className="items-center flex flex-col gap-4 pb-2">
+
+
+          <div className="items-center flex flex-col gap-4 pb-2 font-sans text-gray-700">
             <div>
               <p className="pb-2 text-center">
                 The hidden color was{" "}
                 <span className="font-semibold">{colorName}</span> ({color})
               </p>
-              <p className="text-center font-semibold">
+              <p className="text-center font-semibold text-gray-900">
                 Score: {getScore(color, guesses)}
               </p>
               <div className="text-3xl tracking-widest text-center">
@@ -150,7 +152,7 @@ export function EndModal({
             />
           </div>
           <DialogFooter
-            className="text-center font-light text-slate-600 text-sm"
+            className="text-center font-sans text-gray-500 text-sm"
             style={{ justifyContent: "center" }}
           >
             <Timer isModalActive={open} />
@@ -162,8 +164,8 @@ export function EndModal({
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerContent>
-        <DrawerHeader className="text-center flex flex-col items-center">
+      <DrawerContent className="bg-cream-50 border-gray-200">
+        <DrawerHeader className="text-center flex flex-col items-center space-y-0">
           {win ? (
             <img
               width={100}
@@ -179,18 +181,20 @@ export function EndModal({
               alt="Hexavier the Parrot - Loss Animation"
             />
           )}
-          <DrawerTitle className="font-serif text-2xl">{win ? "Great Job!" : "Bummer"}</DrawerTitle>
-          <DrawerDescription className="font-serif">
+          <DrawerTitle className="font-serif text-2xl font-bold">{win ? "Great Job!" : "Bummer"}</DrawerTitle>
+          <DrawerDescription className="font-sans">
             {isMini ? "Mini" : "Hexcodle"} #{hexcodleNumber}
           </DrawerDescription>
         </DrawerHeader>
-        <div className="items-center flex flex-col gap-4 pb-2">
+
+
+        <div className="items-center flex flex-col gap-4 pb-2 font-sans text-gray-700">
           <div>
             <p className="pb-2 text-center">
               The hidden color was{" "}
               <span className="font-semibold">{colorName}</span> ({color})
             </p>
-            <p className="text-center font-semibold">
+            <p className="text-center font-semibold text-gray-900">
               Score: {getScore(color, guesses)}
             </p>
             <div className="text-3xl tracking-widest text-center">
@@ -214,10 +218,12 @@ export function EndModal({
             guessCount={guesses.length}
           />
         </div>
-        <DrawerFooter className="text-center font-light text-slate-600 text-sm">
+        <DrawerFooter className="text-center font-sans text-gray-500 text-sm">
           <Timer isModalActive={open} />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
+
+
   );
 }

@@ -9,7 +9,7 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/app/components/ui/dialog";
-import { CircleHelp } from "lucide-react";
+import { CircleHelp, Check, ChevronUp, ChevronDown, ChevronsUp, ChevronsDown, Lightbulb } from "lucide-react";
 
 export default function RulesModal() {
   return (
@@ -19,57 +19,82 @@ export default function RulesModal() {
           <CircleHelp className="h-6 w-6" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
-        <DialogHeader>
-          <DialogTitle>How to Play</DialogTitle>
-          <DialogDescription>Learn the basics of Hexcodle</DialogDescription>
+      <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%] bg-cream-50 border-gray-200">
+        <DialogHeader className="space-y-0">
+          <DialogTitle className="font-serif text-2xl font-bold">How to Play</DialogTitle>
+          <DialogDescription className="font-sans">Learn the basics of Hexcodle</DialogDescription>
         </DialogHeader>
-        <p>
-          You will have 5 tries to correctly guess the hex code of the colour
-          displayed on screen in the <i>target</i> box. After each guess, your
-          last guess will be displayed in the <i>your guess</i> box.
-          <br /> <br />
-          There will be symbols that pop up in the <i>guesses</i> section that
-          indicate the closeness of your guess. Use these to gauge your next
-          guess!
-          <br /> <br />
-          Symbols that are displayed in the <i>guesses</i> section depend on
-          which game setting/difficulty you choose. Head over to the{" "}
-          <i>settings</i> icon on the top right corner to choose your preferred
-          game mode!
-        </p>
-        <p>
-          If you are playing <b>Hexcodle Mini</b>, you only need to guess 3
-          values instead of 6. Normal hex codes are structred as follows:
-          RRGGBB, but the Mini only makes you guess: RGB (the second digits in
-          each RGB pairing are omitted in this version).
-        </p>
-        <p>
-          New to hex codes? Click{" "}
-          <a
-            target="_blank"
-            href="https://www.freecodecamp.org/news/how-hex-code-colors-work-how-to-choose-colors-without-a-color-picker/"
-            className="text-blue-500 hover:text-blue-300"
-          >
-            here
-          </a>{" "}
-          to learn more! <br></br>
-          Want to improve your hex guessing skills? Click{" "}
-          <a
-            target="_blank"
-            href="https://youtube.com/shorts/nRogtTo5cxQ?si=wmjYfK79ZQbFAU5S"
-            className="text-blue-500 hover:text-blue-300"
-          >
-            here
-          </a>
-          !
-        </p>
+
+        <div className="font-sans text-gray-700 space-y-4">
+          <div className="flex justify-center">
+            <div className="w-2/3 rounded-lg overflow-hidden border border-gray-200 shadow-sm mb-2">
+              <img
+                src="/demo.gif"
+                alt="How to play Hexcodle demo"
+                className="w-full h-auto scale-[1.02]"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <section>
+              <h4 className="font-serif font-bold text-gray-900 text-lg">The Objective</h4>
+              <p>
+                Guess the 6-digit hex code that matches the target colour in 5 tries. Hex codes are split into three pairs: <span className="text-red-600 font-bold">RR</span><span className="text-green-600 font-bold">GG</span><span className="text-blue-600 font-bold">BB</span>, where each pair controls the intensity of Red, Green, and Blue.
+              </p>
+            </section>
+
+            <section>
+              <h4 className="font-serif font-bold text-gray-900 text-lg">How to Guess</h4>
+              <p>
+                Type a valid hex code (0–9, A–F). A good strategy is to start with a colour you're familiar with—for example, <code className="bg-gray-100 px-1 rounded">0000FF</code> is bright blue, <code className="bg-gray-100 px-1 rounded">008800</code> is a darkish green, and <code className="bg-gray-100 px-1 rounded">FFFF00</code> is bright yellow. You'll learn more of these naturally as you play!
+              </p>
+            </section>
+
+            <section>
+              <h4 className="font-serif font-bold text-gray-900 text-lg">Understanding Feedback</h4>
+              <ul className="list-none space-y-2">
+                <li><span className="font-bold">Checkmark:</span> Exact match.</li>
+                <li><span className="font-bold text-blue-700">Single Arrow:</span> You are very close! The target value is within 1 or 2 steps.</li>
+                <li><span className="font-bold text-blue-900">Double Arrow:</span> The target value is 3 or more steps away.</li>
+              </ul>
+              <p className="mt-2 text-sm italic">
+                Note: The arrows always point toward the target value (higher or lower).
+              </p>
+            </section>
+
+            <section>
+              <h4 className="font-serif font-bold text-gray-900 text-lg">Game Modes</h4>
+              <p>
+                Switch to <b>RGB mode</b> or change difficulty in <b>Settings</b>. In RGB mode, hex pairs are converted to 0–255 values, and single arrows represent a distance of 10 or less.
+              </p>
+            </section>
+          </div>
+
+
+
+          <p className="text-sm border-t border-gray-100 pt-4">
+            New to hex codes? Learn more{" "}
+            <a
+              target="_blank"
+              href="https://www.freecodecamp.org/news/how-hex-code-colors-work-how-to-choose-colors-without-a-color-picker/"
+              className="text-blue-500 hover:underline"
+            >
+              here
+            </a>.
+          </p>
+        </div>
+
         <DialogFooter>
           <DialogClose asChild>
-            <Button type="button">Close</Button>
+            <Button type="button" className="bg-blue-900 hover:bg-blue-800 text-white font-serif font-bold transition-colors">Close</Button>
           </DialogClose>
         </DialogFooter>
+
       </DialogContent>
+
+
+
     </Dialog>
   );
 }

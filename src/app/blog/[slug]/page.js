@@ -61,7 +61,7 @@ export default async function Post(props) {
                     </header>
 
                     <div
-                        className="prose prose-lg mx-auto prose-headings:font-serif prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-md"
+                        className="prose mx-auto prose-headings:font-serif prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-md"
                         dangerouslySetInnerHTML={{ __html: content }}
                     />
                 </article>
