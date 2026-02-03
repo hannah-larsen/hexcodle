@@ -51,7 +51,7 @@ export default function SettingsModal({ mode = "mini" }) {
 
         <div className="font-sans space-y-4">
           <div>
-            <h4 className="font-serif font-bold">Emoji Legend</h4>
+            <h4 className="font-sans font-bold text-lg pb-1">Emoji Legend</h4>
             <p>✅ Correct</p>
             {settings.difficulty === "expert" && (
               <>
@@ -77,7 +77,7 @@ export default function SettingsModal({ mode = "mini" }) {
             )}
           </div>
           <div>
-            <h4 className="font-serif pb-1 font-bold text-lg">Difficulty</h4>
+            <h4 className="font-sans pb-1 font-bold text-lg">Difficulty</h4>
             <RadioGroup
               defaultValue={settings.difficulty}
               onValueChange={(val) => {
@@ -100,7 +100,7 @@ export default function SettingsModal({ mode = "mini" }) {
           </div>
           {mode === "hexcodle" && (
             <div>
-              <h4 className="font-serif pb-1 font-bold text-lg">Color Mode</h4>
+              <h4 className="font-sans pb-1 font-bold text-lg">Color Mode</h4>
               <RadioGroup
                 defaultValue={settings.colorMode}
                 onValueChange={(val) => {
@@ -119,6 +119,7 @@ export default function SettingsModal({ mode = "mini" }) {
             </div>
           )}
         </div>
+
         <DialogFooter>
           <DialogClose asChild>
             <Button type="button" className="bg-blue-900 hover:bg-blue-800 text-white font-serif font-bold transition-colors">Close</Button>

@@ -38,22 +38,22 @@ export default function RulesModal() {
 
           <div className="space-y-4">
             <section>
-              <h4 className="font-serif font-bold text-gray-900 text-lg">The Objective</h4>
+              <h4 className="font-sans font-bold text-gray-900 text-lg">The Objective</h4>
               <p>
-                Guess the 6-digit hex code that matches the target colour in 5 tries. Hex codes are split into three pairs: <span className="text-red-600 font-bold">RR</span><span className="text-green-600 font-bold">GG</span><span className="text-blue-600 font-bold">BB</span>, where each pair controls the intensity of Red, Green, and Blue.
+                Guess the 6-digit hex code that matches the target colour in 5 tries. Hex codes are split into three pairs: RRGGBB, where each pair controls the intensity of Red, Green, and Blue.
               </p>
             </section>
 
             <section>
-              <h4 className="font-serif font-bold text-gray-900 text-lg">How to Guess</h4>
+              <h4 className="font-sans font-bold text-gray-900 text-lg">How to Guess</h4>
               <p>
                 Type a valid hex code (0–9, A–F). A good strategy is to start with a colour you're familiar with—for example, <code className="bg-gray-100 px-1 rounded">0000FF</code> is bright blue, <code className="bg-gray-100 px-1 rounded">008800</code> is a darkish green, and <code className="bg-gray-100 px-1 rounded">FFFF00</code> is bright yellow. You'll learn more of these naturally as you play!
               </p>
             </section>
 
             <section>
-              <h4 className="font-serif font-bold text-gray-900 text-lg">Understanding Feedback</h4>
-              <ul className="list-none space-y-2">
+              <h4 className="font-sans font-bold text-gray-900 text-lg">Understanding Feedback</h4>
+              <ul className="list-disc list-outside ml-5 space-y-1">
                 <li><span className="font-bold">Checkmark:</span> Exact match.</li>
                 <li><span className="font-bold text-blue-700">Single Arrow:</span> You are very close! The target value is within 1 or 2 steps.</li>
                 <li><span className="font-bold text-blue-900">Double Arrow:</span> The target value is 3 or more steps away.</li>
@@ -63,13 +63,15 @@ export default function RulesModal() {
               </p>
             </section>
 
+
             <section>
-              <h4 className="font-serif font-bold text-gray-900 text-lg">Game Modes</h4>
+              <h4 className="font-sans font-bold text-gray-900 text-lg">Game Modes</h4>
               <p>
                 Switch to <b>RGB mode</b> or change difficulty in <b>Settings</b>. In RGB mode, hex pairs are converted to 0–255 values, and single arrows represent a distance of 10 or less.
               </p>
             </section>
           </div>
+
 
 
 
