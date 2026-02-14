@@ -181,7 +181,7 @@ export default function MiniHexcodle({
             />
           </div>
 
-          <div className="flex flex-col w-full max-w-[600px] gap-1.5 md:gap-2">
+          <div className="flex flex-col w-full max-w-[600px]">
             {Array.from({ length: MAX_GUESSES }).map((_, index) => {
               if (!isComplete && !loading && index === 0) {
                 return (
