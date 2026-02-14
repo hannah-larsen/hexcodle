@@ -6,7 +6,6 @@ import { Menu, X, BookHeart, Coffee, MessageCircleDashed, ChevronRight, ArrowRig
 import { Button } from "@/app/components/ui/button";
 import NavbarCenter from "./NavbarCenter";
 import NavbarRight from "./NavbarRight";
-import Announcement from "./Annoucement.js";
 
 export default function NavbarClient({ hexcodleNumber, miniNumber }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -50,26 +49,17 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
         },
     ];
 
-    const squiggleMask = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='64'%3E%3Cpath d='M0 10 Q 4 5, 8 10 T 16 10 L 16 54 Q 12 59, 8 54 T 0 54 Z' fill='black'/%3E%3C/svg%3E")`;
     const noiseTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.20' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.20'/%3E%3C/svg%3E")`;
 
     return (
         <header className="fixed top-0 w-full z-50 drop-shadow-xl">
             {/* Top Section */}
             <div
-                className="bg-blue-900 w-full relative z-20 pb-4"
+                className="bg-blue-900 w-full relative z-20"
                 style={{
-                    maskImage: `linear-gradient(to bottom, black 0%, black calc(100% - 12px)), ${squiggleMask}`,
-                    WebkitMaskImage: `linear-gradient(to bottom, black 0%, black calc(100% - 12px)), ${squiggleMask}`,
-                    maskRepeat: "no-repeat, repeat-x",
-                    WebkitMaskRepeat: "no-repeat, repeat-x",
-                    maskPosition: "top left, bottom left",
-                    WebkitMaskPosition: "top left, bottom left",
-                    maskSize: "100% calc(100% - 12px), 16px 64px",
-                    WebkitMaskSize: "100% calc(100% - 12px), 16px 64px",
                     backgroundImage: noiseTexture,
                     backgroundSize: "75px 75px",
-                    filter: "drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white)"
+                    borderBottom: "1px solid rgba(255, 255, 255, 0.1)"
                 }}
             >
                 <div className="flex flex-row items-center justify-between p-2 min-h-[60px] max-w-7xl mx-auto w-full">
@@ -104,10 +94,22 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
 
             {/* Middle Section (Expanded Menu) */}
             <div
-                className={`grid overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] bg-cream-50 -mt-3 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                className={`grid overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] bg-cream-50 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     }`}
             >
                 <div className="min-h-0 border-t border-gray-200">
+                    <Link href="/blog/new-design" onClick={() => setIsOpen(false)}>
+                        <div
+                            className="bg-blue-50 py-2 border-b border-blue-100 hover:bg-blue-100 transition-colors duration-300 group/announcement"
+                        >
+                            <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-2">
+                                <span className="text-blue-900 text-xs font-serif font-bold tracking-tight flex items-center gap-2">
+                                    Update: Feb 13 2026 - New UI Improvements!
+                                    <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover/announcement:translate-x-1" />
+                                </span>
+                            </div>
+                        </div>
+                    </Link>
                     <div className="max-w-7xl mx-auto px-4 py-4 md:py-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                             {menuItems.map((item, idx) => (
@@ -169,37 +171,6 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                 </div>
             </div>
 
-            {/* Bottom Section (Interactive Squiggly Ribbon) */}
-            <div
-                className="absolute top-[calc(100%-12px)] left-0 w-full z-30 pointer-events-none"
-                style={{
-                    filter: "drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white)"
-                }}
-            >
-                <Link href="/blog/new-design">
-                    <button
-                        className="block w-full bg-blue-900 hover:bg-blue-800 transition-colors duration-300 group/ribbon pointer-events-auto"
-                        style={{
-                            maskImage: squiggleMask,
-                            WebkitMaskImage: squiggleMask,
-                            maskRepeat: "repeat-x",
-                            WebkitMaskRepeat: "repeat-x",
-                            height: "64px",
-                            backgroundImage: noiseTexture,
-                            backgroundSize: "75px 75px",
-                        }}
-                    >
-                        <div className="flex items-center justify-center h-full pt-2">
-                            <span className="text-white text-sm md:text-xs font-mono font-bold tracking-wider uppercase opacity-90 flex items-center gap-2 -mt-1.5">
-                                Update: Feb 13 2026 - New UI!
-                                <ArrowRight className="h-3 w-3 md:h-4 md:w-4 transition-transform duration-300 group-hover/ribbon:translate-x-1.5" />
-                            </span>
-                        </div>
-                    </button>
-                </Link>
-            </div>
         </header>
     );
-
-
 }
