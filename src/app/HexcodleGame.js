@@ -210,7 +210,7 @@ export default function HexcodleGame({
             })}
           </div>
 
-          <div className="mt-1 w-full flex justify-center">
+          <div className="mt-2 w-full flex justify-center">
             <button
               onClick={isComplete ? () => setEndModalVisible(true) : undefined}
               disabled={!isComplete}
