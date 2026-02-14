@@ -41,8 +41,8 @@ export default function Guess({
                 key={index}
                 className="flex-1 flex flex-col items-center justify-center p-1.5 md:p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-14 md:h-[72px]"
               >
-                <div className="mb-0.5 md:mb-1">{getIcon(result)}</div>
                 <p className="font-mono text-lg md:text-xl font-bold text-gray-800">{character}</p>
+                <div className="mb-0.5 md:mb-1">{getIcon(result)}</div>
               </div>
             );
           })}
@@ -77,8 +77,8 @@ export default function Guess({
                 key={index}
                 className="flex-1 flex flex-col items-center justify-center p-1.5 md:p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-14 md:h-[72px]"
               >
-                <div className="mb-0.5 md:mb-1">{getIcon(result)}</div>
                 <p className="font-mono text-lg md:text-xl font-bold text-gray-800">{guessRGB[rgbMap[color]]}</p>
+                <div className="mb-0.5 md:mb-1">{getIcon(result)}</div>
               </div>
             );
           })}

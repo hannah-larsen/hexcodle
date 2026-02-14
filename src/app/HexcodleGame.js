@@ -179,7 +179,7 @@ export default function HexcodleGame({
             />
           </div>
 
-          <div className="flex flex-col w-full max-w-[600px] gap-1.5 md:gap-2">
+          <div className="flex flex-col w-full max-w-[600px] gap-0.5 md:gap-2">
             {Array.from({ length: MAX_GUESSES }).map((_, index) => {
               if (!isComplete && !loading && index === 0) {
                 return (
@@ -210,11 +210,11 @@ export default function HexcodleGame({
             })}
           </div>
 
-          <div className="my-2 mt-4 w-full flex justify-center">
+          <div className="mt-1 w-full flex justify-center">
             <button
               onClick={isComplete ? () => setEndModalVisible(true) : undefined}
               disabled={!isComplete}
-              className={`bg-white border border-gray-200 px-6 py-3 rounded-full shadow-sm text-center transition-all group ${isComplete
+              className={`bg-white border border-gray-200 px-3 py-1.5 rounded-full shadow-sm text-center transition-all group ${isComplete
                 ? "cursor-pointer hover:bg-gray-50 active:scale-95 hover:border-gray-300"
                 : "cursor-default"
                 }`}
