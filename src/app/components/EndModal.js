@@ -27,7 +27,8 @@ import Timer from "./Timer";
 import ShareButton from "./ShareButton";
 
 function processHexGuesses(guesses, color, settings) {
-  const resultLines = guesses.map((guess) => {
+  const reversed = [...guesses].reverse();
+  const resultLines = reversed.map((guess) => {
     const line = guess
       .substring(1)
       .split("")
@@ -44,7 +45,8 @@ function processHexGuesses(guesses, color, settings) {
 function processRGBGuesses(guesses, color, settings) {
   let resultString = "";
   const targetRGB = hexToRGB(color);
-  for (let guess of guesses) {
+  const reversed = [...guesses].reverse();
+  for (let guess of reversed) {
     const guessRGB = hexToRGB(guess);
     const redComparison = compareRGB(
       guessRGB.red,

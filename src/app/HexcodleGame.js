@@ -76,7 +76,7 @@ export default function HexcodleGame({
     }
 
     const newGuesses = [...guesses];
-    newGuesses.push(newGuess);
+    newGuesses.unshift(newGuess);
 
     if (newGuesses.includes(targetColor)) {
       play();
@@ -192,34 +192,37 @@ export default function HexcodleGame({
           </div>
 
           <div className="flex flex-col w-full max-w-[600px]">
-            {Array.from({ length: MAX_GUESSES }).map((_, index) => {
-              if (!isComplete && !loading && index === guesses.length) {
-                return (
-                  <HexInput
-                    key={index}
-                    ref={inputRef}
-                    userInput={userInput}
-                    isCurrentRow={true}
-                  />
-                );
-              }
+            {(() => {
+              const reversedGuesses = [...guesses].reverse();
+              return Array.from({ length: MAX_GUESSES }).map((_, index) => {
+                if (!isComplete && !loading && index === guesses.length) {
+                  return (
+                    <HexInput
+                      key={index}
+                      ref={inputRef}
+                      userInput={userInput}
+                      isCurrentRow={true}
+                    />
+                  );
+                }
 
-              if (index < guesses.length) {
-                return (
-                  <Guess
-                    key={index}
-                    guess={guesses[index]}
-                    type={settings.colorMode}
-                    target={targetColor}
-                    hardMode={settings.difficulty}
-                  />
-                );
-              } else {
-                return (
-                  <HexInput key={index} userInput="#" isCurrentRow={false} />
-                );
-              }
-            })}
+                if (index < guesses.length) {
+                  return (
+                    <Guess
+                      key={index}
+                      guess={reversedGuesses[index]}
+                      type={settings.colorMode}
+                      target={targetColor}
+                      hardMode={settings.difficulty}
+                    />
+                  );
+                } else {
+                  return (
+                    <HexInput key={index} userInput="#" isCurrentRow={false} />
+                  );
+                }
+              });
+            })()}
           </div>
 
           <div className="mt-2 w-full flex justify-center">
