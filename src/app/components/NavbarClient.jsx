@@ -176,7 +176,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                     filter: "drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white)"
                 }}
             >
-                <Announcement>
+                <Link href="/blog/new-design">
                     <button
                         className="block w-full bg-blue-900 hover:bg-blue-800 transition-colors duration-300 group/ribbon pointer-events-auto"
                         style={{
@@ -191,12 +191,12 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                     >
                         <div className="flex items-center justify-center h-full pt-2">
                             <span className="text-white text-sm md:text-xs font-mono font-bold tracking-wider uppercase opacity-90 flex items-center gap-2 -mt-1.5">
-                                Update: Jan 23 2026
+                                Update: Feb 13 2026 - New UI!
                                 <ArrowRight className="h-3 w-3 md:h-4 md:w-4 transition-transform duration-300 group-hover/ribbon:translate-x-1.5" />
                             </span>
                         </div>
                     </button>
-                </Announcement>
+                </Link>
             </div>
         </header>
     );
