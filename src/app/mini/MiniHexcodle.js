@@ -80,7 +80,7 @@ export default function MiniHexcodle({
     }
 
     const newGuesses = [...guesses];
-    newGuesses.unshift(newGuess);
+    newGuesses.push(newGuess);
 
     if (newGuesses.includes(targetColor)) {
       play();
@@ -163,7 +163,6 @@ export default function MiniHexcodle({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKey]);
 
-  const displayGuesses = guesses;
 
   return (
     <>
@@ -171,19 +170,32 @@ export default function MiniHexcodle({
         <section className="relative px-2 sm:px-8 pt-0 pb-4 md:py-4 text-center items-center flex flex-col w-full max-w-[600px]">
           <div className="flex flex-row justify-between items-center w-full mb-3 md:mb-6 p-3 md:p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
             <h2 className="text-xl md:text-2xl font-serif font-bold text-gray-800">
-              Target Color:
+              Target : Last Guess
             </h2>
-            <div
-              className="w-12 h-12 md:h-14 ml-4 rounded-lg shadow-inner border border-gray-100"
-              style={{
-                backgroundColor: targetColor,
-              }}
-            />
+            <div className="flex flex-col items-center">
+              <div className="flex h-12 md:h-14 w-24 md:w-28 rounded-xl overflow-hidden shadow-inner border border-gray-100 relative">
+                <div
+                  className="flex-1"
+                  style={{
+                    backgroundColor: targetColor,
+                  }}
+                />
+                <div
+                  className="flex-1 transition-colors duration-500"
+                  style={{
+                    backgroundColor:
+                      guesses.length > 0
+                        ? guesses[guesses.length - 1]
+                        : "#f3f4f6", // gray-100 placeholder
+                  }}
+                />
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-col w-full max-w-[600px]">
             {Array.from({ length: MAX_GUESSES }).map((_, index) => {
-              if (!isComplete && !loading && index === 0) {
+              if (!isComplete && !loading && index === guesses.length) {
                 return (
                   <HexInput
                     key={index}
@@ -195,20 +207,25 @@ export default function MiniHexcodle({
                 );
               }
 
-              const guessIndex = isComplete ? index : index - 1;
-
-              if (guessIndex >= 0 && guessIndex < displayGuesses.length) {
+              if (index < guesses.length) {
                 return (
                   <Guess
                     key={index}
-                    guess={displayGuesses[guessIndex]}
+                    guess={guesses[index]}
                     type="hex"
                     target={targetColor}
                     hardMode={settings.difficulty}
                   />
                 );
               } else {
-                return <HexInput key={index} userInput="#" isCurrentRow={false} numDigits={3} />;
+                return (
+                  <HexInput
+                    key={index}
+                    userInput="#"
+                    isCurrentRow={false}
+                    numDigits={3}
+                  />
+                );
               }
             })}
           </div>
