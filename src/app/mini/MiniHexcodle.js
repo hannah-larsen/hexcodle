@@ -80,7 +80,7 @@ export default function MiniHexcodle({
     }
 
     const newGuesses = [...guesses];
-    newGuesses.unshift(newGuess);
+    newGuesses.push(newGuess);
 
     if (newGuesses.includes(targetColor)) {
       play();
@@ -185,7 +185,7 @@ export default function MiniHexcodle({
                   style={{
                     backgroundColor:
                       guesses.length > 0
-                        ? guesses[0]
+                        ? guesses[guesses.length - 1]
                         : "#f3f4f6", // gray-100 placeholder
                   }}
                 />
@@ -194,43 +194,40 @@ export default function MiniHexcodle({
           </div>
 
           <div className="flex flex-col w-full max-w-[600px]">
-            {(() => {
-              const reversedGuesses = [...guesses].reverse();
-              return Array.from({ length: MAX_GUESSES }).map((_, index) => {
-                if (!isComplete && !loading && index === guesses.length) {
-                  return (
-                    <HexInput
-                      key={index}
-                      ref={inputRef}
-                      userInput={userInput}
-                      isCurrentRow={true}
-                      numDigits={3}
-                    />
-                  );
-                }
+            {Array.from({ length: MAX_GUESSES }).map((_, index) => {
+              if (!isComplete && !loading && index === guesses.length) {
+                return (
+                  <HexInput
+                    key={index}
+                    ref={inputRef}
+                    userInput={userInput}
+                    isCurrentRow={true}
+                    numDigits={3}
+                  />
+                );
+              }
 
-                if (index < guesses.length) {
-                  return (
-                    <Guess
-                      key={index}
-                      guess={reversedGuesses[index]}
-                      type="hex"
-                      target={targetColor}
-                      hardMode={settings.difficulty}
-                    />
-                  );
-                } else {
-                  return (
-                    <HexInput
-                      key={index}
-                      userInput="#"
-                      isCurrentRow={false}
-                      numDigits={3}
-                    />
-                  );
-                }
-              });
-            })()}
+              if (index < guesses.length) {
+                return (
+                  <Guess
+                    key={index}
+                    guess={guesses[index]}
+                    type="hex"
+                    target={targetColor}
+                    hardMode={settings.difficulty}
+                  />
+                );
+              } else {
+                return (
+                  <HexInput
+                    key={index}
+                    userInput="#"
+                    isCurrentRow={false}
+                    numDigits={3}
+                  />
+                );
+              }
+            })}
           </div>
 
           <div className="mt-2 w-full flex justify-center">
