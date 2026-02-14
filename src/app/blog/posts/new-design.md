@@ -6,6 +6,10 @@ author: 'Hannah Larsen'
 date: 'February 7, 2026'
 ---
 
+**Update 1:** We're going to be pushing a lot of updates in the next couple of days as we hone the design in! We're reading all the feedback and responding as quickly as we can. Thanks for being with us as always. <3
+
+---
+
 Long time no talk, Hexcodlers!
 
 As you may know, we have a [feedback form](https://docs.google.com/forms/d/e/1FAIpQLSe_EMsc0Gf00wNMl4xZ1t2VcGSY4k7NvqVAnnpoXCi16YgVxw/viewform) linked at the bottom of our site. We may not respond to your feedback as quickly as we like, but rest assured, every submission gets reviewed. Being a small web game, we take pride in listening to our players' feedback and ultimately want to make sure you have the *best* playing experience.
