@@ -183,7 +183,7 @@ export default function HexcodleGame({
                   style={{
                     backgroundColor:
                       guesses.length > 0
-                        ? guesses[guesses.length - 1]
+                        ? guesses[0]
                         : "#f3f4f6", // gray-100 placeholder
                   }}
                 />
