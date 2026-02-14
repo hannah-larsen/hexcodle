@@ -25,11 +25,11 @@ export default async function Post(props) {
     const { frontMatter, content } = await loadPost(slug);
 
     return (
-        <div className="bg-cream-50 min-h-screen py-8 md:py-12">
+        <div className="bg-cream-50 min-h-screen md:py-4">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link
                     href="/blog"
-                    className="inline-flex items-center text-gray-500 hover:text-blue-900 mb-8 transition-colors group"
+                    className="inline-flex items-center text-gray-500 hover:text-blue-900 mb-4 transition-colors group"
                 >
                     <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" />
                     <span className="font-serif font-bold text-sm">Back to Blog</span>
@@ -39,12 +39,12 @@ export default async function Post(props) {
                     <header className="text-center mb-10 border-b border-gray-100 pb-8">
                         <div className="flex items-center justify-center gap-4 text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">
                             <span className="flex items-center gap-1.5">
-                                <Calendar className="w-3 h-3" />
+                                <Calendar className="w-3 h-3 max-md:hidden" />
                                 {frontMatter.date}
                             </span>
                             <span className="w-1 h-1 bg-gray-300 rounded-full" />
                             <span className="flex items-center gap-1.5">
-                                <User className="w-3 h-3" />
+                                <User className="w-3 h-3 max-md:hidden" />
                                 {frontMatter.author}
                             </span>
                         </div>
