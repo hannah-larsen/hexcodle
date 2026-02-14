@@ -4,11 +4,11 @@ const Keyboard = ({ onKey }) => {
     const keys = [
         ["1", "2", "3", "4", "5", "6"],
         ["7", "8", "9", "0", "A", "B"],
-        ["C", "D", "E", "F", "⌫", "↵"],
+        ["C", "D", "E", "F", "DEL", "↵"],
     ];
 
     const handleKeyClick = (key) => {
-        if (key === "⌫") {
+        if (key === "DEL") {
             onKey("BACKSPACE");
         } else if (key === "↵") {
             onKey("ENTER");
@@ -22,7 +22,7 @@ const Keyboard = ({ onKey }) => {
             {keys.map((row, rowIndex) => (
                 <div key={rowIndex} className="flex justify-center gap-1.5">
                     {row.map((key) => {
-                        const isBig = key === "↵" || key === "⌫";
+                        const isBig = key === "↵" || key === "DEL";
                         return (
                             <button
                                 key={key}

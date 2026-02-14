@@ -160,7 +160,7 @@ export default function HexcodleGame({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKey]);
 
-  const reversedGuesses = [...guesses].reverse();
+  const displayGuesses = guesses;
 
   return (
     <>
@@ -181,23 +181,27 @@ export default function HexcodleGame({
 
           <div className="flex flex-col w-full max-w-[600px] gap-1.5 md:gap-2">
             {Array.from({ length: MAX_GUESSES }).map((_, index) => {
-              if (index < reversedGuesses.length) {
-                return (
-                  <Guess
-                    key={index}
-                    guess={reversedGuesses[index]}
-                    type={settings.colorMode}
-                    target={targetColor}
-                    hardMode={settings.difficulty}
-                  />
-                );
-              } else if (index === reversedGuesses.length && !isComplete && !loading) {
+              if (!isComplete && !loading && index === 0) {
                 return (
                   <HexInput
                     key={index}
                     ref={inputRef}
                     userInput={userInput}
                     isCurrentRow={true}
+                  />
+                );
+              }
+
+              const guessIndex = isComplete ? index : index - 1;
+
+              if (guessIndex >= 0 && guessIndex < displayGuesses.length) {
+                return (
+                  <Guess
+                    key={index}
+                    guess={displayGuesses[guessIndex]}
+                    type={settings.colorMode}
+                    target={targetColor}
+                    hardMode={settings.difficulty}
                   />
                 );
               } else {

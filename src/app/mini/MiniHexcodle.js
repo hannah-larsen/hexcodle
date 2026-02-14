@@ -163,7 +163,7 @@ export default function MiniHexcodle({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKey]);
 
-  const reversedGuesses = [...guesses].reverse();
+  const displayGuesses = guesses;
 
   return (
     <>
@@ -183,17 +183,7 @@ export default function MiniHexcodle({
 
           <div className="flex flex-col w-full max-w-[600px] gap-1.5 md:gap-2">
             {Array.from({ length: MAX_GUESSES }).map((_, index) => {
-              if (index < reversedGuesses.length) {
-                return (
-                  <Guess
-                    key={index}
-                    guess={reversedGuesses[index]}
-                    type="hex"
-                    target={targetColor}
-                    hardMode={settings.difficulty}
-                  />
-                );
-              } else if (index === reversedGuesses.length && !isComplete && !loading) {
+              if (!isComplete && !loading && index === 0) {
                 return (
                   <HexInput
                     key={index}
@@ -201,6 +191,20 @@ export default function MiniHexcodle({
                     userInput={userInput}
                     isCurrentRow={true}
                     numDigits={3}
+                  />
+                );
+              }
+
+              const guessIndex = isComplete ? index : index - 1;
+
+              if (guessIndex >= 0 && guessIndex < displayGuesses.length) {
+                return (
+                  <Guess
+                    key={index}
+                    guess={displayGuesses[guessIndex]}
+                    type="hex"
+                    target={targetColor}
+                    hardMode={settings.difficulty}
                   />
                 );
               } else {
