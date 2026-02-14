@@ -39,30 +39,36 @@ const Wrapper = styled.button`
   }
 `;
 
-export default function Announcement() {
+export default function Announcement({ children }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Wrapper>Hexcodle Color Name Error</Wrapper>
+        {children}
       </DialogTrigger>
-      <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%]">
-        <DialogHeader>
-          <DialogTitle>Sorry for the Error!</DialogTitle>
+      <DialogContent className="max-sm:max-w-[425px] max-w-xl overflow-auto max-h-[90%] bg-cream-50 border-gray-200">
+        <DialogHeader className="space-y-0">
+          <DialogTitle className="font-serif text-2xl font-bold">Sorry for the Error!</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
-        <p>
-          Hey Hexcodlers,
-        </p>
-        <p>
-        We are aware of the issue where the color name is displaying <i>Error</i>. We are actively working on resolving this issue. Thank you for your patience!
-        </p>
-        <p>-E&amp;H 💗</p>
+
+        <div className="font-sans space-y-4 text-gray-700">
+          <p>
+            Hey Hexcodlers,
+          </p>
+          <p>
+            We are aware of the issue where the color name is displaying <i>Error</i>. We are actively working on resolving this issue. Thank you for your patience!
+          </p>
+          <p>-E&amp;H 💗</p>
+        </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button type="button">Close</Button>
+            <Button type="button" className="bg-blue-900 hover:bg-blue-800 text-white font-serif font-bold">Close</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
+
+
+
     </Dialog>
   );
 }

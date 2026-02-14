@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync-colors": "node scripts/sync-colors.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

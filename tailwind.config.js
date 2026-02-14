@@ -17,6 +17,16 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        serif: ["var(--font-lora)", "serif"],
+        sans: ["var(--font-inter)", "sans-serif"],
+      },
+      colors: {
+        cream: {
+          50: "#FAF7F2",
+          100: "#EAE6DF",
+        },
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

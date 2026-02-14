@@ -1,12 +1,21 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Lora } from "next/font/google";
 import StyledComponentsRegistry from "./lib/registry";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
 const GTM_ID = "G-1J0E738QRV";
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-lora",
+  display: "swap",
+});
 
 export const metadata = {
   title: "Hexcodle - The Daily Hexcode Guessing Game!",
@@ -65,12 +74,14 @@ export default async function RootLayout(props) {
   const pathname = params?.slug ? `/${params.slug.join("/")}` : "/";
 
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={`${inter.variable} ${lora.variable}`}>
+      <body className={`${inter.className} bg-cream-50`}>
         <StyledComponentsRegistry>
           <GoogleAnalytics gaId={GTM_ID} />
           <Navbar pathname={pathname} />
-          {children}
+          <main className="pt-32">
+            {children}
+          </main>
           <Footer />
         </StyledComponentsRegistry>
       </body>

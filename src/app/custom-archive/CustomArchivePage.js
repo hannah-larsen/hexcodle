@@ -2,23 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import styled from "styled-components";
 import ArchivePanel from "../components/ArchivePanel";
 import Stats from "../components/Stats";
-
-const Wrapper = styled.div`
-  display: grid;
-  gap: 16px;
-  padding: 0px 16px;
-  width: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-`;
-
-const StatsWrapper = styled.div`
-  max-width: min(600px, 100%);
-  padding: 0px 16px;
-  width: 100%;
-`;
 
 const CustomArchivePage = ({ panelsData }) => {
   const [completedGames, setCompletedGames] = useState([]);
@@ -45,21 +30,18 @@ const CustomArchivePage = ({ panelsData }) => {
 
   return (
     <>
-      <main
-        className="everything"
-        style={{ paddingLeft: 0, paddingRight: 0, gap: 16 }}
-      >
-        <StatsWrapper>
+      <main className="flex flex-col items-center gap-4 py-4 px-0 bg-cream-50">
+        <div className="max-w-[600px] w-full px-4">
           <Stats games={completedGames} totalCount={panelsData.length} />
-        </StatsWrapper>
-        <Wrapper>
+        </div>
+        <div className="grid gap-4 px-4 w-full grid-cols-[repeat(auto-fill,minmax(250px,1fr))]">
           {panelsData.map(({ id, colorName, hexcode, urlEndpoint, date }) => {
             const isComplete = completedGames.map(([key]) => key).includes(id);
             return (
               <Link
                 key={id}
                 href={`/archive/${urlEndpoint}`}
-                style={{ textDecoration: "none" }}
+                className="no-underline"
               >
                 <ArchivePanel
                   hidden={!isComplete}
@@ -71,7 +53,7 @@ const CustomArchivePage = ({ panelsData }) => {
               </Link>
             );
           })}
-        </Wrapper>
+        </div>
       </main>
     </>
   );

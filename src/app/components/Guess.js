@@ -1,40 +1,5 @@
-import React from "react";
-import styled from "styled-components";
 import { compareCharacters, compareRGB, hexToRGB } from "../utils";
-
-const GuessContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  max-width: 600px;
-  margin: 4px 16px; // top and bottom margin set to 4px, left and right to 16px
-  gap: 6px;
-`;
-
-const GuessCharacter = styled.div`
-  text-align: center;
-  font-weight: bold;
-  flex: 1;
-  border-radius: 8px;
-  border: 4px solid ${(props) => props.borderColor}; // combined border properties
-  padding: 6px;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const GuessText = styled.p`
-  font-family: "Roboto Mono", monospace;
-  font-size: 1.4rem;
-  margin: 0;
-  padding: 0;
-
-  @media screen and (max-width: 650px) {
-    font-size: 4vw;
-  }
-`;
+import { ChevronUp, ChevronDown, ChevronsUp, ChevronsDown, Check, X } from "lucide-react";
 
 export default function Guess({
   guess,
@@ -42,39 +7,91 @@ export default function Guess({
   hardMode = false,
   type = "hex",
 }) {
+  const getIcon = (result) => {
+    switch (result) {
+      case "✅":
+        return <Check className="w-5 h-5 text-green-600" />;
+      case "🔼":
+        return <ChevronUp className="w-5 h-5 text-gray-600" />;
+      case "🔽":
+        return <ChevronDown className="w-5 h-5 text-gray-600" />;
+      case "⏫":
+        return <ChevronsUp className="w-5 h-5 text-gray-600" />;
+      case "⏬":
+        return <ChevronsDown className="w-5 h-5 text-gray-600" />;
+      case "❌":
+        return <X className="w-5 h-5 text-red-500" />;
+      default:
+        return null;
+    }
+  };
+
   if (type === "hex") {
     return (
-      <GuessContainer>
-        {[...guess.substring(1)].map((character, index) => (
-          <GuessCharacter key={index} borderColor={guess}>
-            <GuessText>{character}</GuessText>
-            <GuessText>
-              {compareCharacters(
-                character,
-                target.substring(1).charAt(index),
-                hardMode
-              )}
-            </GuessText>
-          </GuessCharacter>
-        ))}
-      </GuessContainer>
+      <div className="flex flex-row justify-between w-full max-w-[600px] gap-2 mb-2">
+        <div className="flex gap-2 w-full justify-between">
+          {[...guess.substring(1)].map((character, index) => {
+            const result = compareCharacters(
+              character,
+              target.substring(1).charAt(index),
+              hardMode
+            );
+            return (
+              <div
+                key={index}
+                className="flex-1 flex flex-col items-center justify-center p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-[72px]"
+              >
+                <div className="mb-1">{getIcon(result)}</div>
+                <p className="font-mono text-xl font-bold text-gray-800">{character}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div
+          className="w-16 self-stretch h-[72px] rounded-lg shadow-inner border border-gray-200 shrink-0"
+          style={{
+            backgroundColor: guess,
+          }}
+        />
+      </div>
     );
   }
 
   if (type === "rgb") {
     const guessRGB = hexToRGB(guess);
     const targetRGB = hexToRGB(target);
+
+    const rgbMap = {
+      r: "red",
+      g: "green",
+      b: "blue"
+    };
+
     return (
-      <GuessContainer>
-        {Object.keys(guessRGB).map((color, index) => (
-          <GuessCharacter key={index} borderColor={guess}>
-            <GuessText>{guessRGB[color]}</GuessText>
-            <GuessText>
-              {compareRGB(guessRGB[color], targetRGB[color], hardMode)}
-            </GuessText>
-          </GuessCharacter>
-        ))}
-      </GuessContainer>
+      <div className="flex flex-row justify-between w-full max-w-[600px] gap-2 mb-2">
+        <div className="flex gap-2 w-full justify-between">
+          {["r", "g", "b"].map((color, index) => {
+            const result = compareRGB(guessRGB[rgbMap[color]], targetRGB[rgbMap[color]], hardMode);
+            return (
+              <div
+                key={index}
+                className="flex-1 flex flex-col items-center justify-center p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-[72px]"
+              >
+                <div className="mb-1">{getIcon(result)}</div>
+                <p className="font-mono text-xl font-bold text-gray-800">{guessRGB[rgbMap[color]]}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div
+          className="w-16 self-stretch h-[72px] rounded-lg shadow-inner border border-gray-200 shrink-0"
+          style={{
+            backgroundColor: guess,
+          }}
+        />
+      </div>
     );
   }
+
+
 }
