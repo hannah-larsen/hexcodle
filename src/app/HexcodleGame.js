@@ -226,7 +226,7 @@ export default function HexcodleGame({
             <button
               onClick={isComplete ? () => setEndModalVisible(true) : undefined}
               disabled={!isComplete}
-              className={`bg-white border border-gray-200 px-3 py-1.5 rounded-full shadow-sm text-center transition-all group ${isComplete
+              className={`bg-white border border-gray-200 px-5 py-1.5 rounded-full shadow-sm text-center transition-all group ${isComplete
                 ? "cursor-pointer hover:bg-gray-50 active:scale-95 hover:border-gray-300"
                 : "cursor-default"
                 }`}
