@@ -99,6 +99,14 @@ export default function HexcodleGame({
     setLoading(false);
   }, [setLoading]);
 
+  // Fix for old reversed save states
+  useEffect(() => {
+    if (guesses.length > 1 && guesses[0] === targetColor) {
+      setGuesses([...guesses].reverse());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     if (!isComplete && !loading && inputRef.current) {
       inputRef.current.focus();
