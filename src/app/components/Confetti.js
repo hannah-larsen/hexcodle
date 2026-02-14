@@ -18,7 +18,9 @@ export default function Confetti() {
       });
   }, []);
 
-  useEffect(() => fire(), []);
+  useEffect(() => {
+    fire();
+  }, [fire]);
 
   const fire = useCallback(() => {
     makeShot(0.25, {

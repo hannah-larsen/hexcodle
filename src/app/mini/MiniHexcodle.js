@@ -101,7 +101,7 @@ export default function MiniHexcodle({
 
   useEffect(() => {
     setLoading(false);
-  }, []);
+  }, [setLoading]);
 
   useEffect(() => {
     if (!isComplete && !loading && inputRef.current) {
@@ -109,36 +109,39 @@ export default function MiniHexcodle({
     }
   }, [guesses.length, isComplete, loading]);
 
-  const handleKey = (key) => {
-    if (loading || isComplete) return;
+  const handleKey = React.useCallback(
+    (key) => {
+      if (loading || isComplete) return;
 
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
 
-    if (key === "ENTER") {
-      if (userInput.length !== 4) {
-        setStatusText("Error: Hex code must be exactly 3 digits.");
-        return;
+      if (key === "ENTER") {
+        if (userInput.length !== 4) {
+          setStatusText("Error: Hex code must be exactly 3 digits.");
+          return;
+        }
+        if (guesses.includes(userInput)) {
+          setStatusText(
+            "Already guessed this one! Please try a different guess."
+          );
+          return;
+        }
+        submitGuess(userInput);
+        setUserInput("#");
+      } else if (key === "BACKSPACE") {
+        if (userInput.length > 1) {
+          setUserInput(userInput.slice(0, -1));
+        }
+      } else {
+        if (userInput.length < 4) {
+          setUserInput(userInput + key);
+        }
       }
-      if (guesses.includes(userInput)) {
-        setStatusText(
-          "Already guessed this one! Please try a different guess."
-        );
-        return;
-      }
-      submitGuess(userInput);
-      setUserInput("#");
-    } else if (key === "BACKSPACE") {
-      if (userInput.length > 1) {
-        setUserInput(userInput.slice(0, -1));
-      }
-    } else {
-      if (userInput.length < 4) {
-        setUserInput(userInput + key);
-      }
-    }
-  };
+    },
+    [loading, isComplete, userInput, guesses, submitGuess]
+  );
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -158,7 +161,7 @@ export default function MiniHexcodle({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [userInput, isComplete, loading, guesses, settings]);
+  }, [handleKey]);
 
   const reversedGuesses = [...guesses].reverse();
 

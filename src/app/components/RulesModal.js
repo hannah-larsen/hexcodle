@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "@/app/components/ui/button";
 import {
   Dialog,
@@ -27,10 +28,12 @@ export default function RulesModal() {
 
         <div className="font-sans text-gray-700 space-y-4">
           <div className="flex justify-center">
-            <div className="w-2/3 rounded-lg overflow-hidden border border-gray-200 shadow-sm mb-2">
-              <img
+            <div className="w-2/3 rounded-lg overflow-hidden border border-gray-200 shadow-sm mb-2 relative aspect-[1.33]">
+              <Image
                 src="/demo.gif"
                 alt="How to play Hexcodle demo"
+                width={300}
+                height={500}
                 className="w-full h-auto scale-[1.02]"
               />
             </div>
@@ -47,7 +50,7 @@ export default function RulesModal() {
             <section>
               <h4 className="font-sans font-bold text-gray-900 text-lg">How to Guess</h4>
               <p>
-                Type a valid hex code (0–9, A–F). A good strategy is to start with a colour you're familiar with—for example, <code className="bg-gray-100 px-1 rounded">0000FF</code> is bright blue, <code className="bg-gray-100 px-1 rounded">008800</code> is a darkish green, and <code className="bg-gray-100 px-1 rounded">FFFF00</code> is bright yellow. You'll learn more of these naturally as you play!
+                Type a valid hex code (0–9, A–F). A good strategy is to start with a colour you&apos;re familiar with—for example, <code className="bg-gray-100 px-1 rounded">0000FF</code> is bright blue, <code className="bg-gray-100 px-1 rounded">008800</code> is a darkish green, and <code className="bg-gray-100 px-1 rounded">FFFF00</code> is bright yellow. You&apos;ll learn more of these naturally as you play!
               </p>
             </section>
 
