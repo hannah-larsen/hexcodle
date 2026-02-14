@@ -96,7 +96,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
     const currentDay = hexcodleNumber;
     return (
       <>
-        <ChevronLeft style={{ color: "var(--gray-300)" }} />
+        <ChevronLeft style={{ color: "var(--gray-600)" }} />
         <Link href={"/"} prefetch={false}>
           <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
             Hexcodle #{currentDay}
@@ -149,7 +149,7 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
     const currentDay = miniNumber;
     return (
       <>
-        <ChevronLeft style={{ color: "var(--gray-300)" }} />
+        <ChevronLeft style={{ color: "var(--gray-600)" }} />
         <Link href={"/mini"} prefetch={false}>
           <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
             Mini #{currentDay}
