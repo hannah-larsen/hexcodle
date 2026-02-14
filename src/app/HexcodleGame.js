@@ -164,10 +164,10 @@ export default function HexcodleGame({
 
   return (
     <>
-      <main className="flex flex-col items-center gap-4 py-0 px-2 bg-cream-50">
+      <main className="flex flex-col items-center gap-2 md:gap-4 py-0 px-2 bg-cream-50">
         {/*<Announcement onClick={() => setIsLaunchModalVisible(true)} />*/}
-        <section className="relative px-2 sm:px-8 py-4 text-center items-center flex flex-col w-full max-w-[600px]">
-          <div className="flex flex-row justify-between items-center w-full mb-6 p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
+        <section className="relative px-2 sm:px-8 pt-0 pb-4 md:py-4 text-center items-center flex flex-col w-full max-w-[600px]">
+          <div className="flex flex-row justify-between items-center w-full mb-3 md:mb-6 p-3 md:p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
             <h2 className="text-xl md:text-2xl font-serif font-bold text-gray-800">
               Target Color:
             </h2>
@@ -179,7 +179,7 @@ export default function HexcodleGame({
             />
           </div>
 
-          <div className="flex flex-col w-full max-w-[600px] gap-2">
+          <div className="flex flex-col w-full max-w-[600px] gap-1.5 md:gap-2">
             {Array.from({ length: MAX_GUESSES }).map((_, index) => {
               if (index < reversedGuesses.length) {
                 return (
