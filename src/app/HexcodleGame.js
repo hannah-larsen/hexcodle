@@ -40,7 +40,8 @@ export default function HexcodleGame({
     key: "loading",
     defaultValue: true,
   });
-  const [userInput, setUserInput] = useState("#");
+  const [userInput, setUserInput] = useState(["", "", "", "", "", ""]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [statusText, setStatusText] = useState(
     "Start by typing your guess!"
   );
@@ -122,29 +123,42 @@ export default function HexcodleGame({
       }
 
       if (key === "ENTER") {
-        if (userInput.length !== 7) {
+        const fullGuess = "#" + userInput.join("");
+        if (fullGuess.length !== 7 || userInput.includes("")) {
           setStatusText("Error: Hex code must be exactly 6 digits.");
           return;
         }
-        if (guesses.includes(userInput)) {
+        if (guesses.includes(fullGuess)) {
           setStatusText(
             "Already guessed this one! Please try a different guess."
           );
           return;
         }
-        submitGuess(userInput);
-        setUserInput("#");
+        submitGuess(fullGuess);
+        setUserInput(["", "", "", "", "", ""]);
+        setSelectedIndex(0);
       } else if (key === "BACKSPACE") {
-        if (userInput.length > 1) {
-          setUserInput(userInput.slice(0, -1));
+        const newUserInput = [...userInput];
+        if (newUserInput[selectedIndex] !== "") {
+          newUserInput[selectedIndex] = "";
+          setUserInput(newUserInput);
+        } else if (selectedIndex > 0) {
+          newUserInput[selectedIndex - 1] = "";
+          setUserInput(newUserInput);
+          setSelectedIndex(selectedIndex - 1);
         }
       } else {
-        if (userInput.length < 7) {
-          setUserInput(userInput + key);
+        if (selectedIndex < 6) {
+          const newUserInput = [...userInput];
+          newUserInput[selectedIndex] = key;
+          setUserInput(newUserInput);
+          if (selectedIndex < 5) {
+            setSelectedIndex(selectedIndex + 1);
+          }
         }
       }
     },
-    [loading, isComplete, userInput, guesses, submitGuess]
+    [loading, isComplete, userInput, selectedIndex, guesses, submitGuess]
   );
 
   useEffect(() => {
@@ -217,6 +231,8 @@ export default function HexcodleGame({
                     ref={inputRef}
                     userInput={userInput}
                     isCurrentRow={true}
+                    selectedIndex={selectedIndex}
+                    onSelect={setSelectedIndex}
                   />
                 );
               }

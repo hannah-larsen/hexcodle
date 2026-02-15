@@ -42,7 +42,8 @@ export default function MiniHexcodle({
     key: "loading",
     defaultValue: true,
   });
-  const [userInput, setUserInput] = useState("#");
+  const [userInput, setUserInput] = useState(["", "", ""]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [statusText, setStatusText] = useState(
     "Start by typing your guess above!"
   );
@@ -126,29 +127,42 @@ export default function MiniHexcodle({
       }
 
       if (key === "ENTER") {
-        if (userInput.length !== 4) {
+        const fullGuess = "#" + userInput.join("");
+        if (fullGuess.length !== 4 || userInput.includes("")) {
           setStatusText("Error: Hex code must be exactly 3 digits.");
           return;
         }
-        if (guesses.includes(userInput)) {
+        if (guesses.includes(fullGuess)) {
           setStatusText(
             "Already guessed this one! Please try a different guess."
           );
           return;
         }
-        submitGuess(userInput);
-        setUserInput("#");
+        submitGuess(fullGuess);
+        setUserInput(["", "", ""]);
+        setSelectedIndex(0);
       } else if (key === "BACKSPACE") {
-        if (userInput.length > 1) {
-          setUserInput(userInput.slice(0, -1));
+        const newUserInput = [...userInput];
+        if (newUserInput[selectedIndex] !== "") {
+          newUserInput[selectedIndex] = "";
+          setUserInput(newUserInput);
+        } else if (selectedIndex > 0) {
+          newUserInput[selectedIndex - 1] = "";
+          setUserInput(newUserInput);
+          setSelectedIndex(selectedIndex - 1);
         }
       } else {
-        if (userInput.length < 4) {
-          setUserInput(userInput + key);
+        if (selectedIndex < 3) {
+          const newUserInput = [...userInput];
+          newUserInput[selectedIndex] = key;
+          setUserInput(newUserInput);
+          if (selectedIndex < 2) {
+            setSelectedIndex(selectedIndex + 1);
+          }
         }
       }
     },
-    [loading, isComplete, userInput, guesses, submitGuess]
+    [loading, isComplete, userInput, selectedIndex, guesses, submitGuess]
   );
 
   useEffect(() => {
@@ -220,6 +234,8 @@ export default function MiniHexcodle({
                     userInput={userInput}
                     isCurrentRow={true}
                     numDigits={3}
+                    selectedIndex={selectedIndex}
+                    onSelect={setSelectedIndex}
                   />
                 );
               }
