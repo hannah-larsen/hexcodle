@@ -39,9 +39,12 @@ const HexInput = React.forwardRef(({ userInput, isCurrentRow = true, numDigits =
       {/* Placeholder for the color preview box to keep alignment */}
       <div
         className={`w-12 md:w-16 self-stretch h-12 md:h-[72px] rounded-lg border shrink-0 transition-colors duration-500
-          ${isCurrentRow ? "border-dashed border-gray-300 bg-gray-50/50" : "border-gray-200 bg-white"}
+          ${isCurrentRow || userInput === "#" || (Array.isArray(userInput) && userInput.every(c => c === "" || c === " "))
+            ? "border-dashed border-gray-300 bg-gray-50/50"
+            : "border-gray-200 bg-white"
+          }
         `}
-        style={!isCurrentRow && userInput.startsWith("#") ? { backgroundColor: userInput } : {}}
+        style={!isCurrentRow && typeof userInput === "string" && userInput.length > 1 && userInput.startsWith("#") ? { backgroundColor: userInput } : {}}
       />
     </div>
   );
