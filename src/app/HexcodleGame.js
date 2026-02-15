@@ -10,7 +10,7 @@ import { EndModal } from "./components/EndModal.js";
 import Announcement from "./components/Annoucement.js";
 import HexInput from "./components/HexInput.js";
 import Keyboard from "./components/Keyboard.js";
-import { getScore } from "./utils.js";
+import { getScore, getContrastColor } from "./utils.js";
 
 const MAX_GUESSES = 5;
 
@@ -171,31 +171,40 @@ export default function HexcodleGame({
 
   return (
     <>
-      <main className="flex flex-col items-center gap-2 md:gap-4 py-0 px-2 bg-cream-50">
+      <main className="flex flex-col items-center gap-1 md:gap-4 py-0 px-2 bg-cream-50">
         {/*<Announcement onClick={() => setIsLaunchModalVisible(true)} />*/}
-        <section className="relative px-2 sm:px-8 pt-0 pb-4 md:py-4 text-center items-center flex flex-col w-full max-w-[600px]">
-          <div className="flex flex-row justify-between items-center w-full mb-3 md:mb-6 p-3 md:p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
-            <h2 className="text-xl md:text-2xl font-serif font-bold text-gray-800">
-              Target : Last Guess
-            </h2>
-            <div className="flex flex-col items-center">
-              <div className="flex h-12 md:h-14 w-24 md:w-28 rounded-xl overflow-hidden shadow-inner border border-gray-200 relative">
-                <div
-                  className="flex-1"
-                  style={{
-                    backgroundColor: targetColor,
-                  }}
-                />
-                <div
-                  className="flex-1 transition-colors duration-500"
-                  style={{
-                    backgroundColor:
-                      guesses.length > 0
-                        ? guesses[guesses.length - 1]
-                        : "#f3f4f6", // gray-100 placeholder
-                  }}
-                />
-              </div>
+        <section className="relative px-2 sm:px-8 pt-0 pb-2 md:py-4 text-center items-center flex flex-col w-full max-w-[600px]">
+          <div className="flex flex-row w-full gap-1 mb-3 md:mb-6 h-16 md:h-24">
+            <div
+              className="flex-1 flex items-center justify-center p-4 rounded-xl border border-gray-200 shadow-sm transition-colors duration-500"
+              style={{
+                backgroundColor: targetColor,
+                color: getContrastColor(targetColor),
+              }}
+            >
+              <h2 className="text-xl md:text-2xl font-serif font-bold">
+                Target
+              </h2>
+            </div>
+            <div
+              className={`flex-1 flex items-center justify-center p-4 rounded-xl border transition-all duration-500 shadow-sm ${guesses.length > 0
+                ? "border-gray-200"
+                : "border-dashed border-gray-300"
+                }`}
+              style={{
+                backgroundColor:
+                  guesses.length > 0
+                    ? guesses[guesses.length - 1]
+                    : "#f9fafb", // gray-50
+                color:
+                  guesses.length > 0
+                    ? getContrastColor(guesses[guesses.length - 1])
+                    : "#9ca3af", // gray-400
+              }}
+            >
+              <h2 className="text-xl md:text-2xl font-serif font-bold">
+                Last Guess
+              </h2>
             </div>
           </div>
 
@@ -230,7 +239,7 @@ export default function HexcodleGame({
             })}
           </div>
 
-          <div className="mt-2 w-full flex justify-center">
+          <div className="mt-1 w-full flex justify-center">
             <button
               onClick={isComplete ? () => setEndModalVisible(true) : undefined}
               disabled={!isComplete}

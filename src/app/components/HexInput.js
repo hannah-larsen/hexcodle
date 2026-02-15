@@ -10,9 +10,9 @@ const HexInput = React.forwardRef(({ userInput, isCurrentRow = true, numDigits =
     <div
       ref={ref}
       tabIndex={isCurrentRow ? 0 : -1}
-      className="group flex flex-row justify-between w-full max-w-[600px] gap-2 mb-2 rounded-xl outline-none"
+      className="group flex flex-row justify-between w-full max-w-[600px] gap-1 mb-1 rounded-xl outline-none"
     >
-      <div className="flex gap-2 w-full justify-between">
+      <div className="flex gap-1 w-full justify-between">
         {chars.map((char, index) => {
           const isNextChar = char === " " && userInput.length - 1 === index;
           const isActive = isCurrentRow && isNextChar;
@@ -21,8 +21,8 @@ const HexInput = React.forwardRef(({ userInput, isCurrentRow = true, numDigits =
             <div
               key={index}
               className={`
-                flex-1 flex justify-center items-center text-xl md:text-2xl font-mono font-bold 
-                text-gray-800 bg-white rounded-lg shadow-sm border h-14 md:h-[72px] transition-all duration-200
+                flex-1 flex justify-center items-center text-lg md:text-2xl font-mono font-bold 
+                text-gray-800 bg-white rounded-lg shadow-sm border h-12 md:h-[72px] transition-all duration-200
                 ${isActive ? "group-focus:ring-2 group-focus:ring-blue-400 group-focus:border-blue-400 border-gray-200" : "border-gray-200"}
               `}
             >
@@ -32,7 +32,7 @@ const HexInput = React.forwardRef(({ userInput, isCurrentRow = true, numDigits =
         })}
       </div>
       {/* Placeholder for the color preview box to keep alignment */}
-      <div className="w-12 md:w-16 self-stretch h-14 md:h-[72px] rounded-lg border border-dashed border-gray-300 shrink-0 bg-gray-50/50" />
+      <div className="w-12 md:w-16 self-stretch h-12 md:h-[72px] rounded-lg border border-dashed border-gray-300 shrink-0 bg-gray-50/50" />
     </div>
 
   );

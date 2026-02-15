@@ -18,9 +18,9 @@ const Keyboard = ({ onKey }) => {
     };
 
     return (
-        <div className="flex flex-col gap-2 mt-4 w-full max-w-[500px]">
+        <div className="flex flex-col gap-1 mt-2 w-full max-w-[500px]">
             {keys.map((row, rowIndex) => (
-                <div key={rowIndex} className="flex justify-center gap-1.5">
+                <div key={rowIndex} className="flex justify-center gap-1">
                     {row.map((key) => {
                         const isBig = key === "↵" || key === "DEL";
                         return (
@@ -28,7 +28,7 @@ const Keyboard = ({ onKey }) => {
                                 key={key}
                                 onClick={() => handleKeyClick(key)}
                                 className={`
-                  h-[50px] rounded-[4px] border-none bg-slate-300 text-slate-900 font-bold 
+                  h-11 rounded-[4px] border-none bg-slate-300 text-slate-900 font-bold 
                   cursor-pointer flex justify-center items-center uppercase select-none touch-manipulation
                   transition-transform duration-100 hover:bg-slate-400 active:bg-slate-500 active:scale-95
                   ${isBig ? "flex-[1.5] text-base" : "flex-1 text-xl"}

@@ -28,8 +28,8 @@ export default function Guess({
 
   if (type === "hex") {
     return (
-      <div className="flex flex-row justify-between w-full max-w-[600px] gap-2 mb-2">
-        <div className="flex gap-2 w-full justify-between">
+      <div className="flex flex-row justify-between w-full max-w-[600px] gap-1 mb-1">
+        <div className="flex gap-1 w-full justify-between">
           {[...guess.substring(1)].map((character, index) => {
             const result = compareCharacters(
               character,
@@ -39,16 +39,16 @@ export default function Guess({
             return (
               <div
                 key={index}
-                className="flex-1 flex flex-col items-center justify-center p-1.5 md:p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-14 md:h-[72px]"
+                className="flex-1 flex flex-col items-center justify-center p-1 md:p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-12 md:h-[72px]"
               >
-                <p className="font-mono text-lg md:text-xl font-bold text-gray-800">{character}</p>
+                <p className="font-mono text-base md:text-xl font-bold text-gray-800">{character}</p>
                 <div className="mb-0.5 md:mb-1">{getIcon(result)}</div>
               </div>
             );
           })}
         </div>
         <div
-          className="w-12 md:w-16 self-stretch h-14 md:h-[72px] rounded-lg shadow-inner border border-gray-200 shrink-0"
+          className="w-12 md:w-16 self-stretch h-12 md:h-[72px] rounded-lg shadow-inner border border-gray-200 shrink-0"
           style={{
             backgroundColor: guess,
           }}
@@ -68,23 +68,23 @@ export default function Guess({
     };
 
     return (
-      <div className="flex flex-row justify-between w-full max-w-[600px] gap-2 mb-2">
-        <div className="flex gap-2 w-full justify-between">
+      <div className="flex flex-row justify-between w-full max-w-[600px] gap-1 mb-1">
+        <div className="flex gap-1 w-full justify-between">
           {["r", "g", "b"].map((color, index) => {
             const result = compareRGB(guessRGB[rgbMap[color]], targetRGB[rgbMap[color]], hardMode);
             return (
               <div
                 key={index}
-                className="flex-1 flex flex-col items-center justify-center p-1.5 md:p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-14 md:h-[72px]"
+                className="flex-1 flex flex-col items-center justify-center p-1 md:p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-12 md:h-[72px]"
               >
-                <p className="font-mono text-lg md:text-xl font-bold text-gray-800">{guessRGB[rgbMap[color]]}</p>
+                <p className="font-mono text-base md:text-xl font-bold text-gray-800">{guessRGB[rgbMap[color]]}</p>
                 <div className="mb-0.5 md:mb-1">{getIcon(result)}</div>
               </div>
             );
           })}
         </div>
         <div
-          className="w-12 md:w-16 self-stretch h-14 md:h-[72px] rounded-lg shadow-inner border border-gray-200 shrink-0"
+          className="w-12 md:w-16 self-stretch h-12 md:h-[72px] rounded-lg shadow-inner border border-gray-200 shrink-0"
           style={{
             backgroundColor: guess,
           }}
