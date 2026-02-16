@@ -263,16 +263,23 @@ export default function MiniHexcodle({
             })}
           </div>
 
-          <div className="mt-1 w-full flex justify-center">
+          <div className="mt-2 mb-1 w-full flex items-center gap-2 md:gap-4">
+            <div
+              className="flex-1 h-4"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 6 Q 6 0, 12 6 T 24 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                backgroundRepeat: "repeat-x",
+                backgroundPosition: "center",
+              }}
+            />
             <button
               onClick={isComplete ? () => setEndModalVisible(true) : undefined}
-              disabled={!isComplete}
-              className={`bg-white border border-gray-200 px-5 py-1.5 rounded-full shadow-sm text-center transition-all group ${isComplete
-                ? "cursor-pointer hover:bg-gray-50 active:scale-95 hover:border-gray-300"
+              className={`flex-none group transition-all ${isComplete
+                ? "cursor-pointer hover:scale-105 active:scale-95"
                 : "cursor-default"
                 }`}
             >
-              <p className="text-sm md:text-base font-serif font-medium text-gray-700 flex items-center justify-center gap-2">
+              <p className="text-sm md:text-base font-serif font-medium text-black flex items-center justify-center gap-2">
                 {statusText}{" "}
                 {isComplete && (
                   <span className="font-bold text-blue-600 flex items-center gap-1">
@@ -282,6 +289,14 @@ export default function MiniHexcodle({
                 )}
               </p>
             </button>
+            <div
+              className="flex-1 h-4"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 6 Q 6 0, 12 6 T 24 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                backgroundRepeat: "repeat-x",
+                backgroundPosition: "center",
+              }}
+            />
           </div>
 
 
