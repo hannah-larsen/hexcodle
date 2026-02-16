@@ -52,7 +52,7 @@ const MiniArchivePage = ({ panelsData: initialPanels, totalCount }) => {
 
   return (
     <>
-      <main className="flex flex-col items-center gap-4 py-4 px-0 bg-cream-50">
+      <main className="flex flex-col items-center gap-4 py-0 px-0 bg-cream-50">
         <div className="max-w-[600px] w-full px-4">
           <Stats games={completedGames} totalCount={totalCount} />
         </div>

@@ -15,7 +15,7 @@ export default async function Page() {
 
   return (
     <div className="bg-cream-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-4">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 pt-0 pb-4">
         <div className="flex flex-col gap-4 items-center">
           {posts
             .sort((post1, post2) => {

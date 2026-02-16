@@ -25,7 +25,7 @@ export default async function Post(props) {
     const { frontMatter, content } = await loadPost(slug);
 
     return (
-        <div className="bg-cream-50 min-h-screen md:py-4">
+        <div className="bg-cream-50 min-h-screen py-0">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link
                     href="/blog"
@@ -35,8 +35,8 @@ export default async function Post(props) {
                     <span className="font-serif font-bold text-sm">Back to Blog</span>
                 </Link>
 
-                <article className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 md:p-10 lg:p-12">
-                    <header className="text-center mb-10 border-b border-gray-100 pb-8">
+                <article className="p-2 md:p-6">
+                    <header className="text-center mb-10">
                         <div className="flex items-center justify-center gap-4 text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">
                             <span className="flex items-center gap-1.5">
                                 <Calendar className="w-3 h-3 max-md:hidden" />
