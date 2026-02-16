@@ -267,7 +267,7 @@ export default function MiniHexcodle({
             <div
               className="flex-1 h-4"
               style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 6 Q 6 0, 12 6 T 24 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 6 Q 6 0, 12 6 T 24 6' fill='none' stroke='%231e3a8a' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
                 backgroundRepeat: "repeat-x",
                 backgroundPosition: "center",
               }}
@@ -279,10 +279,10 @@ export default function MiniHexcodle({
                 : "cursor-default"
                 }`}
             >
-              <p className="text-sm md:text-base font-serif font-medium text-black flex items-center justify-center gap-2">
+              <p className="text-sm md:text-base font-serif font-medium text-blue-900 flex items-center justify-center gap-2">
                 {statusText}{" "}
                 {isComplete && (
-                  <span className="font-bold text-blue-600 flex items-center gap-1">
+                  <span className="font-bold text-blue-900 flex items-center gap-1">
                     Score: {getScore(targetColor, guesses)}
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
@@ -292,7 +292,7 @@ export default function MiniHexcodle({
             <div
               className="flex-1 h-4"
               style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 6 Q 6 0, 12 6 T 24 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 6 Q 6 0, 12 6 T 24 6' fill='none' stroke='%231e3a8a' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
                 backgroundRepeat: "repeat-x",
                 backgroundPosition: "center",
               }}
