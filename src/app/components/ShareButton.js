@@ -28,46 +28,42 @@ export default function ShareButton({
 
   const [copied, setCopied] = useState(false);
 
-  const handleShare = async (e) => {
+  const handleShare = async () => {
     const shareText = generateShareableString(win);
 
-    if (navigator.share) {
+    const performCopy = async () => {
       try {
-        await navigator.share({
-          title: 'Hexcodle',
-          text: shareText,
-        });
-        return;
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          console.error("Error sharing:", err);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(shareText);
+          return true;
         }
-        // If native share fails or is cancelled, we can fallback to clipboard
+      } catch (err) {
+        console.warn("Clipboard API failed, falling back", err);
       }
-    }
 
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(shareText);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      } else {
-        // Fallback for browsers without clipboard API
+      // Fallback
+      try {
         const textArea = document.createElement("textarea");
         textArea.value = shareText;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        textArea.setAttribute("readonly", "");
         document.body.appendChild(textArea);
         textArea.select();
-        try {
-          document.execCommand("copy");
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
-          console.error("Fallback copy failed", err);
-        }
+        const successful = document.execCommand("copy");
         document.body.removeChild(textArea);
+        return successful;
+      } catch (err) {
+        console.error("Fallback copy failed", err);
+        return false;
       }
-    } catch (err) {
-      console.error("Could not copy text: ", err);
+    };
+
+    const success = await performCopy();
+    if (success) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     }
   };
 
@@ -75,9 +71,12 @@ export default function ShareButton({
     <Popover open={copied} onOpenChange={setCopied}>
       <PopoverTrigger asChild>
         <Button
-          className="bg-blue-900 hover:bg-blue-800 text-white font-serif font-bold transition-all"
+          className="bg-blue-900 hover:bg-blue-800 text-white font-sans font-bold transition-all"
           disabled={win === undefined}
-          onClick={handleShare}
+          onClick={(e) => {
+            e.preventDefault();
+            handleShare();
+          }}
         >
           {copied ? (
             <Check className="mr-2 h-4 w-4 text-green-400" />
