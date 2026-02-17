@@ -78,12 +78,8 @@ export default function ShareButton({
             handleShare();
           }}
         >
-          {copied ? (
-            <Check className="mr-2 h-4 w-4 text-green-400" />
-          ) : (
-            <Share2 className="mr-2 h-4 w-4" />
-          )}
-          {copied ? "Copied!" : "Share my results"}
+          <Share2 className="mr-2 h-4 w-4" />
+          Share my results
         </Button>
       </PopoverTrigger>
 
