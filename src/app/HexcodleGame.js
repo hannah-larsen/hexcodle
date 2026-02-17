@@ -288,7 +288,7 @@ export default function HexcodleGame({
           )}
 
           {isComplete && (
-            <div className="flex flex-col w-full gap-3 mt-4">
+            <div className="flex flex-col w-full gap-3 mt-2">
               <button
                 onClick={() => setEndModalVisible(true)}
                 className="w-full py-3 md:py-4 px-4 md:px-6 bg-white border border-gray-200 text-gray-700 rounded-xl font-sans font-bold text-base md:text-lg hover:bg-gray-100 hover:border-gray-300 transition-all shadow-sm flex items-center justify-center gap-2"
