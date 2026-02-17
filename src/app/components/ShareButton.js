@@ -86,7 +86,7 @@ export default function ShareButton({
       <PopoverContent
         side="top"
         align="center"
-        className="text-xs p-2 w-auto mb-2 bg-gray-800 text-white border-none"
+        className="z-[100] text-xs p-2 w-auto mb-2 bg-gray-800 text-white border-none"
       >
         Copied to clipboard!
       </PopoverContent>
