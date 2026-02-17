@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Share2, Check } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 export default function ShareButton({
   mini,
@@ -68,28 +67,22 @@ export default function ShareButton({
   };
 
   return (
-    <Popover open={copied} onOpenChange={setCopied}>
-      <PopoverTrigger asChild>
-        <Button
-          className="bg-blue-900 hover:bg-blue-800 text-white font-sans font-bold transition-all flex items-center gap-2"
-          disabled={win === undefined}
-          onClick={(e) => {
-            e.preventDefault();
-            handleShare();
-          }}
-        >
+    <Button
+      className={`${copied ? "bg-green-500 hover:bg-green-500" : "bg-blue-900 hover:bg-blue-800"
+        } text-white font-sans font-bold transition-all flex items-center gap-2 min-w-[160px] justify-center`}
+      disabled={win === undefined}
+      onClick={() => {
+        handleShare();
+      }}
+    >
+      {copied ? (
+        "Copied to clipboard!"
+      ) : (
+        <>
           Share my results
           <Share2 className="h-4 w-4" />
-        </Button>
-      </PopoverTrigger>
-
-      <PopoverContent
-        side="top"
-        align="center"
-        className="z-[100] text-xs p-2 w-auto mb-2 bg-gray-800 text-white border-none"
-      >
-        Copied to clipboard!
-      </PopoverContent>
-    </Popover>
+        </>
+      )}
+    </Button>
   );
 }
