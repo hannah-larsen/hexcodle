@@ -170,8 +170,8 @@ export default function MiniHexcodle({
     const handleKeyDown = (e) => {
       if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
 
-      // Only process keys if the game input is focused
-      if (document.activeElement !== inputRef.current) return;
+      // Only process keys if the game input or its children are focused
+      if (!inputRef.current?.contains(document.activeElement)) return;
 
       if (e.key === "Enter") {
         handleKey("ENTER");

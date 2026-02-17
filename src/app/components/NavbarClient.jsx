@@ -97,7 +97,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                     }`}
             >
                 <div className="min-h-0 border-t border-gray-200">
-                    <Link href="/blog/new-design" onClick={() => setIsOpen(false)}>
+                    <Link href="/blog/new-design" onClick={() => setIsOpen(false)} tabIndex={isOpen ? 0 : -1}>
                         <div
                             className="bg-blue-50 py-2 border-b border-blue-100 hover:bg-blue-100 transition-colors duration-300 group/announcement"
                         >
@@ -124,6 +124,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                                         <Link
                                             href={item.href}
                                             onClick={() => setIsOpen(false)}
+                                            tabIndex={isOpen ? 0 : -1}
                                             className="bg-white border border-gray-200 text-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-100 hover:border-gray-300 transition-all flex items-center gap-1.5 text-xs font-serif font-bold shadow-sm group/item"
                                         >
                                             <span>Play Today</span>
@@ -134,6 +135,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                                                 key={sIdx}
                                                 href={sub.href}
                                                 onClick={() => setIsOpen(false)}
+                                                tabIndex={isOpen ? 0 : -1}
                                                 className="bg-white border border-gray-200 text-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-100 hover:border-gray-300 transition-all flex items-center gap-1.5 text-xs font-serif font-bold shadow-sm group/item"
                                             >
                                                 <span>{sub.title}</span>
@@ -154,6 +156,7 @@ export default function NavbarClient({ hexcodleNumber, miniNumber }) {
                                     key={idx}
                                     href={link.href}
                                     onClick={() => setIsOpen(false)}
+                                    tabIndex={isOpen ? 0 : -1}
                                     className="flex items-center gap-2 text-gray-500 hover:text-blue-900 transition-colors group"
                                     target={link.external ? "_blank" : undefined}
                                 >
