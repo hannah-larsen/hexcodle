@@ -68,7 +68,7 @@ export default function ShareButton({
 
   return (
     <Button
-      className={`${copied ? "bg-green-500 hover:bg-green-500" : "bg-blue-900 hover:bg-blue-800"
+      className={`${copied ? "bg-blue-600 hover:bg-blue-600" : "bg-blue-900 hover:bg-blue-800"
         } text-white font-sans font-bold transition-all flex items-center gap-2 min-w-[160px] justify-center`}
       disabled={win === undefined}
       onClick={() => {
