@@ -47,7 +47,7 @@ export default function NextUnsolvedButton({ maxDay, isMini = false, currentNumb
                 onClick={handleNavigate}
                 className="w-full py-3 md:py-4 px-4 md:px-6 bg-blue-900 text-white rounded-xl font-sans font-bold text-base md:text-lg flex items-center justify-center gap-2 md:gap-3 hover:bg-blue-800 transition-all shadow-md group"
             >
-                Next unsolved {isMini ? "Mini " : ""}<span className="text-blue-200/60 font-medium">#{nextUnsolved}</span>
+                Next Unsolved {isMini ? "Mini " : "Hexcodle"}<span className="text-blue-200/60 font-medium">#{nextUnsolved}</span>
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 ml-1" />
             </button>
         </div>
