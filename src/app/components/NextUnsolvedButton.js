@@ -42,14 +42,13 @@ export default function NextUnsolvedButton({ maxDay, isMini = false, currentNumb
     };
 
     return (
-        <div className="w-full max-w-2xl mt-4 px-2">
+        <div className="w-full">
             <button
                 onClick={handleNavigate}
-                className="w-full py-4 px-6 bg-blue-900 text-white rounded-xl font-serif font-bold text-lg flex items-center justify-center gap-3 hover:bg-blue-800 transition-all shadow-lg group"
+                className="w-full py-3 md:py-4 px-4 md:px-6 bg-blue-900 text-white rounded-xl font-sans font-bold text-base md:text-lg flex items-center justify-center gap-2 md:gap-3 hover:bg-blue-800 transition-all shadow-md group"
             >
-                Go to next unsolved Hexcodle{isMini ? " Mini" : ""}
-                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                <span className="text-blue-200 text-sm ml-1 font-sans">#{nextUnsolved}</span>
+                Next unsolved {isMini ? "Mini " : ""}<span className="text-blue-200/60 font-medium">#{nextUnsolved}</span>
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 ml-1" />
             </button>
         </div>
     );

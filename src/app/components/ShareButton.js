@@ -71,15 +71,15 @@ export default function ShareButton({
     <Popover open={copied} onOpenChange={setCopied}>
       <PopoverTrigger asChild>
         <Button
-          className="bg-blue-900 hover:bg-blue-800 text-white font-sans font-bold transition-all"
+          className="bg-blue-900 hover:bg-blue-800 text-white font-sans font-bold transition-all flex items-center gap-2"
           disabled={win === undefined}
           onClick={(e) => {
             e.preventDefault();
             handleShare();
           }}
         >
-          <Share2 className="mr-2 h-4 w-4" />
           Share my results
+          <Share2 className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
 

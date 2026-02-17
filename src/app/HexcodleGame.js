@@ -3,7 +3,7 @@
 import React, { useState, useEffect, use, useRef } from "react";
 import useSound from "use-sound";
 import { useLocalStorage } from "@mantine/hooks";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Share2 } from "lucide-react";
 import useSavestate from "./hooks/useSavestate.js";
 import Guess from "./components/Guess.js";
 import { EndModal } from "./components/EndModal.js";
@@ -265,23 +265,14 @@ export default function HexcodleGame({
                 backgroundPosition: "center",
               }}
             />
-            <button
-              onClick={isComplete ? () => setEndModalVisible(true) : undefined}
-              className={`flex-none group transition-all px-4 ${isComplete
-                ? "cursor-pointer"
-                : "cursor-default"
-                }`}
-            >
-              <p className="text-sm md:text-base font-serif font-medium text-blue-900 flex items-center justify-center gap-2">
-                {statusText}{" "}
-                {isComplete && (
-                  <span className="font-bold text-blue-900 flex items-center gap-1">
-                    Score: {getScore(targetColor, guesses)}
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                )}
-              </p>
-            </button>
+            <div className="text-sm md:text-base font-serif font-medium text-blue-900 flex items-center justify-center gap-2">
+              <span>{statusText}</span>
+              {isComplete && (
+                <span className="font-bold">
+                  Score: {getScore(targetColor, guesses)}
+                </span>
+              )}
+            </div>
             <div
               className="flex-1 h-4"
               style={{
@@ -297,7 +288,15 @@ export default function HexcodleGame({
           )}
 
           {isComplete && (
-            <NextUnsolvedButton maxDay={maxDay} currentNumber={number} />
+            <div className="flex flex-col w-full gap-3 mt-4">
+              <button
+                onClick={() => setEndModalVisible(true)}
+                className="w-full py-3 md:py-4 px-4 md:px-6 bg-white border border-gray-200 text-gray-700 rounded-xl font-sans font-bold text-base md:text-lg hover:bg-gray-100 hover:border-gray-300 transition-all shadow-sm flex items-center justify-center gap-2"
+              >
+                View & Share Results <Share2 className="h-5 w-5" />
+              </button>
+              <NextUnsolvedButton maxDay={maxDay} currentNumber={number} />
+            </div>
           )}
 
           {isComplete && (
