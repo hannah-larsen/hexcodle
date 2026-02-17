@@ -9,6 +9,7 @@ import Guess from "@/app/components/Guess.js";
 import Announcement from "@/app/components/Annoucement.js";
 import HexInput from "@/app/components/HexInput.js";
 import Keyboard from "@/app/components/Keyboard.js";
+import NextUnsolvedButton from "@/app/components/NextUnsolvedButton.js";
 import { getScore, getContrastColor } from "@/app/utils.js";
 import { EndModal } from "../components/EndModal";
 
@@ -274,8 +275,8 @@ export default function MiniHexcodle({
             />
             <button
               onClick={isComplete ? () => setEndModalVisible(true) : undefined}
-              className={`flex-none group transition-all ${isComplete
-                ? "cursor-pointer hover:scale-105 active:scale-95"
+              className={`flex-none group transition-all px-4 ${isComplete
+                ? "cursor-pointer"
                 : "cursor-default"
                 }`}
             >
@@ -303,6 +304,10 @@ export default function MiniHexcodle({
 
           {!isComplete && (
             <Keyboard onKey={handleKey} />
+          )}
+
+          {isComplete && (
+            <NextUnsolvedButton maxDay={maxDay} isMini={true} currentNumber={number} />
           )}
 
           {isComplete && (

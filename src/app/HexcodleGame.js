@@ -10,6 +10,7 @@ import { EndModal } from "./components/EndModal.js";
 import Announcement from "./components/Annoucement.js";
 import HexInput from "./components/HexInput.js";
 import Keyboard from "./components/Keyboard.js";
+import NextUnsolvedButton from "./components/NextUnsolvedButton.js";
 import { getScore, getContrastColor } from "./utils.js";
 
 const MAX_GUESSES = 5;
@@ -266,8 +267,8 @@ export default function HexcodleGame({
             />
             <button
               onClick={isComplete ? () => setEndModalVisible(true) : undefined}
-              className={`flex-none group transition-all ${isComplete
-                ? "cursor-pointer hover:scale-105 active:scale-95"
+              className={`flex-none group transition-all px-4 ${isComplete
+                ? "cursor-pointer"
                 : "cursor-default"
                 }`}
             >
@@ -293,6 +294,10 @@ export default function HexcodleGame({
 
           {settings.colorMode === "hex" && !isComplete && (
             <Keyboard onKey={handleKey} />
+          )}
+
+          {isComplete && (
+            <NextUnsolvedButton maxDay={maxDay} currentNumber={number} />
           )}
 
           {isComplete && (
