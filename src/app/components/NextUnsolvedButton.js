@@ -13,13 +13,16 @@ export default function NextUnsolvedButton({ maxDay, isMini = false, currentNumb
         try {
             const saves = JSON.parse(localStorage.getItem("hexcodleSaves")) || {};
 
+            const targetMaxDay = Number(maxDay);
+            const targetCurrentNumber = Number(currentNumber);
+
             // Look for the highest unsolved game from maxDay downwards
-            for (let i = maxDay; i >= 1; i--) {
+            for (let i = targetMaxDay; i >= 1; i--) {
                 const key = isMini ? `hexcodle-mini-${i}` : i;
                 const saveData = saves[key];
 
                 // If no save data or not complete, and it's not the current game they just finished
-                if ((!saveData || !saveData.isComplete) && i !== currentNumber) {
+                if ((!saveData || !saveData.isComplete) && i !== targetCurrentNumber) {
                     setNextUnsolved(i);
                     return;
                 }
