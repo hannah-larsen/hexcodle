@@ -1,11 +1,19 @@
 import React from "react";
 
-const Keyboard = ({ onKey }) => {
-    const keys = [
+const Keyboard = ({ onKey, colorMode = "hex" }) => {
+    const hexKeys = [
         ["0", "1", "2", "3", "4", "5", "6"],
         ["7", "8", "9", "A", "B", "C"],
         ["DEL", "D", "E", "F", "↵"],
     ];
+
+    const rgbKeys = [
+        ["1", "2", "3", "4", "5"],
+        ["6", "7", "8", "9", "0"],
+        ["DEL", "↵"],
+    ];
+
+    const keys = colorMode === "rgb" ? rgbKeys : hexKeys;
 
     const handleKeyClick = (key) => {
         if (key === "DEL") {

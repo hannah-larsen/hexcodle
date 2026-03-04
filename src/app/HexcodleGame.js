@@ -50,6 +50,11 @@ export default function HexcodleGame({
   const [isLaunchModalVisible, setIsLaunchModalVisible] = useState(false);
   const inputRef = useRef(null);
 
+  useEffect(() => {
+    setUserInput(settings.colorMode === "rgb" ? ["", "", ""] : ["", "", "", "", "", ""]);
+    setSelectedIndex(0);
+  }, [settings.colorMode]);
+
   const hasWon = guesses.includes(targetColor);
 
   const [play] = useSound("/sounds/hexcodle4.wav", { volume: 0.4 });
@@ -123,50 +128,102 @@ export default function HexcodleGame({
         inputRef.current.focus();
       }
 
+      const isRgb = settings.colorMode === "rgb";
+
       if (key === "ENTER") {
-        const fullGuess = "#" + userInput.join("");
-        if (fullGuess.length !== 7 || userInput.includes("")) {
-          setStatusText("Error: Hex code must be exactly 6 digits.");
-          return;
+        if (isRgb) {
+          if (userInput.includes("")) {
+            setStatusText("Error: Please fill in all RGB values.");
+            return;
+          }
+          for (let i = 0; i < 3; i++) {
+            const val = parseInt(userInput[i], 10);
+            if (val > 255 || val < 0) {
+              setStatusText("Error: Values must be between 0 and 255.");
+              return;
+            }
+          }
+          const r = parseInt(userInput[0], 10).toString(16).padStart(2, "0");
+          const g = parseInt(userInput[1], 10).toString(16).padStart(2, "0");
+          const b = parseInt(userInput[2], 10).toString(16).padStart(2, "0");
+          const fullGuess = ("#" + r + g + b).toUpperCase();
+          if (guesses.includes(fullGuess)) {
+            setStatusText("Already guessed this one! Please try a different guess.");
+            return;
+          }
+          submitGuess(fullGuess);
+          setUserInput(["", "", ""]);
+          setSelectedIndex(0);
+        } else {
+          const fullGuess = "#" + userInput.join("");
+          if (fullGuess.length !== 7 || userInput.includes("")) {
+            setStatusText("Error: Hex code must be exactly 6 digits.");
+            return;
+          }
+          if (guesses.includes(fullGuess)) {
+            setStatusText(
+              "Already guessed this one! Please try a different guess."
+            );
+            return;
+          }
+          submitGuess(fullGuess);
+          setUserInput(["", "", "", "", "", ""]);
+          setSelectedIndex(0);
         }
-        if (guesses.includes(fullGuess)) {
-          setStatusText(
-            "Already guessed this one! Please try a different guess."
-          );
-          return;
-        }
-        submitGuess(fullGuess);
-        setUserInput(["", "", "", "", "", ""]);
-        setSelectedIndex(0);
       } else if (key === "BACKSPACE") {
         const newUserInput = [...userInput];
-        if (newUserInput[selectedIndex] !== "") {
-          newUserInput[selectedIndex] = "";
-          setUserInput(newUserInput);
-        } else if (selectedIndex > 0) {
-          newUserInput[selectedIndex - 1] = "";
-          setUserInput(newUserInput);
-          setSelectedIndex(selectedIndex - 1);
+        if (isRgb) {
+          if (newUserInput[selectedIndex] !== "") {
+            newUserInput[selectedIndex] = newUserInput[selectedIndex].slice(0, -1);
+            setUserInput(newUserInput);
+          } else if (selectedIndex > 0) {
+            setSelectedIndex(selectedIndex - 1);
+          }
+        } else {
+          if (newUserInput[selectedIndex] !== "") {
+            newUserInput[selectedIndex] = "";
+            setUserInput(newUserInput);
+          } else if (selectedIndex > 0) {
+            newUserInput[selectedIndex - 1] = "";
+            setUserInput(newUserInput);
+            setSelectedIndex(selectedIndex - 1);
+          }
         }
       } else {
-        if (selectedIndex < 6) {
-          const newUserInput = [...userInput];
-          newUserInput[selectedIndex] = key;
-          setUserInput(newUserInput);
-          if (selectedIndex < 5) {
-            setSelectedIndex(selectedIndex + 1);
+        if (isRgb) {
+          if (/^[0-9]$/.test(key)) {
+            const currentVal = userInput[selectedIndex];
+            if (currentVal.length < 3) {
+              const newUserVal = currentVal + key;
+              if (parseInt(newUserVal, 10) <= 255) {
+                const newUserInput = [...userInput];
+                newUserInput[selectedIndex] = newUserVal;
+                setUserInput(newUserInput);
+                if (newUserVal.length === 3 && selectedIndex < 2) {
+                  setSelectedIndex(selectedIndex + 1);
+                }
+              }
+            }
+          }
+        } else {
+          if (selectedIndex < 6 && /^[0-9A-F]$/.test(key)) {
+            const newUserInput = [...userInput];
+            newUserInput[selectedIndex] = key;
+            setUserInput(newUserInput);
+            if (selectedIndex < 5) {
+              setSelectedIndex(selectedIndex + 1);
+            }
           }
         }
       }
     },
-    [loading, isComplete, userInput, selectedIndex, guesses, submitGuess]
+    [loading, isComplete, userInput, selectedIndex, guesses, submitGuess, settings.colorMode]
   );
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
 
-      // Only process keys if the game input is focused
       // Only process keys if the game input or its children are focused
       if (!inputRef.current?.contains(document.activeElement)) return;
 
@@ -174,15 +231,24 @@ export default function HexcodleGame({
         handleKey("ENTER");
       } else if (e.key === "Backspace") {
         handleKey("BACKSPACE");
+      } else if (settings.colorMode === "rgb") {
+        if (/^[0-9]$/.test(e.key)) {
+          handleKey(e.key);
+        } else if (e.key === " " || e.key === "ArrowRight") {
+          e.preventDefault();
+          setSelectedIndex(prev => Math.min(prev + 1, 2));
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          setSelectedIndex(prev => Math.max(prev - 1, 0));
+        }
       } else if (/^[0-9a-fA-F]$/.test(e.key)) {
         handleKey(e.key.toUpperCase());
       }
     };
 
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleKey]);
+  }, [handleKey, settings.colorMode]);
 
 
   return (
@@ -234,6 +300,7 @@ export default function HexcodleGame({
                     userInput={userInput}
                     isCurrentRow={true}
                     selectedIndex={selectedIndex}
+                    numDigits={settings.colorMode === "rgb" ? 3 : 6}
                     onSelect={setSelectedIndex}
                   />
                 );
@@ -251,7 +318,7 @@ export default function HexcodleGame({
                 );
               } else {
                 return (
-                  <HexInput key={index} userInput="#" isCurrentRow={false} />
+                  <HexInput key={index} userInput="#" isCurrentRow={false} numDigits={settings.colorMode === "rgb" ? 3 : 6} />
                 );
               }
             })}
@@ -284,8 +351,8 @@ export default function HexcodleGame({
             />
           </div>
 
-          {settings.colorMode === "hex" && !isComplete && (
-            <Keyboard onKey={handleKey} />
+          {!isComplete && (
+            <Keyboard onKey={handleKey} colorMode={settings.colorMode} />
           )}
 
           {isComplete && (
