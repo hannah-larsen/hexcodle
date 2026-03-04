@@ -120,6 +120,99 @@ export default function HexcodleGame({
     }
   }, [guesses.length, isComplete, loading]);
 
+  // ==========================================
+  // DEPRECATED RGB MODE (DO NOT UPDATE)
+  // This mode is left for backwards compatibility 
+  // but won't receive future game logic updates.
+  // ==========================================
+  const handleRgbKey = React.useCallback((key) => {
+    if (key === "ENTER") {
+      if (userInput.includes("")) {
+        setStatusText("Error: Please fill in all RGB values.");
+        return;
+      }
+      for (let i = 0; i < 3; i++) {
+        const val = parseInt(userInput[i], 10);
+        if (val > 255 || val < 0) {
+          setStatusText("Error: Values must be between 0 and 255.");
+          return;
+        }
+      }
+      const r = parseInt(userInput[0], 10).toString(16).padStart(2, "0");
+      const g = parseInt(userInput[1], 10).toString(16).padStart(2, "0");
+      const b = parseInt(userInput[2], 10).toString(16).padStart(2, "0");
+      const fullGuess = ("#" + r + g + b).toUpperCase();
+      if (guesses.includes(fullGuess)) {
+        setStatusText("Already guessed this one! Please try a different guess.");
+        return;
+      }
+      submitGuess(fullGuess);
+      setUserInput(["", "", ""]);
+      setSelectedIndex(0);
+    } else if (key === "BACKSPACE") {
+      const newUserInput = [...userInput];
+      if (newUserInput[selectedIndex] !== "") {
+        newUserInput[selectedIndex] = newUserInput[selectedIndex].slice(0, -1);
+        setUserInput(newUserInput);
+      } else if (selectedIndex > 0) {
+        setSelectedIndex(selectedIndex - 1);
+      }
+    } else {
+      if (/^[0-9]$/.test(key)) {
+        const currentVal = userInput[selectedIndex];
+        if (currentVal.length < 3) {
+          const newUserVal = currentVal + key;
+          if (parseInt(newUserVal, 10) <= 255) {
+            const newUserInput = [...userInput];
+            newUserInput[selectedIndex] = newUserVal;
+            setUserInput(newUserInput);
+            if (newUserVal.length === 3 && selectedIndex < 2) {
+              setSelectedIndex(selectedIndex + 1);
+            }
+          }
+        }
+      }
+    }
+  }, [userInput, selectedIndex, guesses]);
+
+  const handleHexKey = React.useCallback((key) => {
+    if (key === "ENTER") {
+      const fullGuess = "#" + userInput.join("");
+      if (fullGuess.length !== 7 || userInput.includes("")) {
+        setStatusText("Error: Hex code must be exactly 6 digits.");
+        return;
+      }
+      if (guesses.includes(fullGuess)) {
+        setStatusText(
+          "Already guessed this one! Please try a different guess."
+        );
+        return;
+      }
+      submitGuess(fullGuess);
+      setUserInput(["", "", "", "", "", ""]);
+      setSelectedIndex(0);
+    } else if (key === "BACKSPACE") {
+      const newUserInput = [...userInput];
+      if (newUserInput[selectedIndex] !== "") {
+        newUserInput[selectedIndex] = "";
+        setUserInput(newUserInput);
+      } else if (selectedIndex > 0) {
+        newUserInput[selectedIndex - 1] = "";
+        setUserInput(newUserInput);
+        setSelectedIndex(selectedIndex - 1);
+      }
+    } else {
+      if (selectedIndex < 6 && /^[0-9A-F]$/.test(key)) {
+        const newUserInput = [...userInput];
+        newUserInput[selectedIndex] = key;
+        setUserInput(newUserInput);
+        if (selectedIndex < 5) {
+          setSelectedIndex(selectedIndex + 1);
+        }
+      }
+    }
+  }, [userInput, selectedIndex, guesses]);
+
   const handleKey = React.useCallback(
     (key) => {
       if (loading || isComplete) return;
@@ -128,96 +221,13 @@ export default function HexcodleGame({
         inputRef.current.focus();
       }
 
-      const isRgb = settings.colorMode === "rgb";
-
-      if (key === "ENTER") {
-        if (isRgb) {
-          if (userInput.includes("")) {
-            setStatusText("Error: Please fill in all RGB values.");
-            return;
-          }
-          for (let i = 0; i < 3; i++) {
-            const val = parseInt(userInput[i], 10);
-            if (val > 255 || val < 0) {
-              setStatusText("Error: Values must be between 0 and 255.");
-              return;
-            }
-          }
-          const r = parseInt(userInput[0], 10).toString(16).padStart(2, "0");
-          const g = parseInt(userInput[1], 10).toString(16).padStart(2, "0");
-          const b = parseInt(userInput[2], 10).toString(16).padStart(2, "0");
-          const fullGuess = ("#" + r + g + b).toUpperCase();
-          if (guesses.includes(fullGuess)) {
-            setStatusText("Already guessed this one! Please try a different guess.");
-            return;
-          }
-          submitGuess(fullGuess);
-          setUserInput(["", "", ""]);
-          setSelectedIndex(0);
-        } else {
-          const fullGuess = "#" + userInput.join("");
-          if (fullGuess.length !== 7 || userInput.includes("")) {
-            setStatusText("Error: Hex code must be exactly 6 digits.");
-            return;
-          }
-          if (guesses.includes(fullGuess)) {
-            setStatusText(
-              "Already guessed this one! Please try a different guess."
-            );
-            return;
-          }
-          submitGuess(fullGuess);
-          setUserInput(["", "", "", "", "", ""]);
-          setSelectedIndex(0);
-        }
-      } else if (key === "BACKSPACE") {
-        const newUserInput = [...userInput];
-        if (isRgb) {
-          if (newUserInput[selectedIndex] !== "") {
-            newUserInput[selectedIndex] = newUserInput[selectedIndex].slice(0, -1);
-            setUserInput(newUserInput);
-          } else if (selectedIndex > 0) {
-            setSelectedIndex(selectedIndex - 1);
-          }
-        } else {
-          if (newUserInput[selectedIndex] !== "") {
-            newUserInput[selectedIndex] = "";
-            setUserInput(newUserInput);
-          } else if (selectedIndex > 0) {
-            newUserInput[selectedIndex - 1] = "";
-            setUserInput(newUserInput);
-            setSelectedIndex(selectedIndex - 1);
-          }
-        }
+      if (settings.colorMode === "rgb") {
+        handleRgbKey(key);
       } else {
-        if (isRgb) {
-          if (/^[0-9]$/.test(key)) {
-            const currentVal = userInput[selectedIndex];
-            if (currentVal.length < 3) {
-              const newUserVal = currentVal + key;
-              if (parseInt(newUserVal, 10) <= 255) {
-                const newUserInput = [...userInput];
-                newUserInput[selectedIndex] = newUserVal;
-                setUserInput(newUserInput);
-                if (newUserVal.length === 3 && selectedIndex < 2) {
-                  setSelectedIndex(selectedIndex + 1);
-                }
-              }
-            }
-          }
-        } else {
-          if (selectedIndex < 6 && /^[0-9A-F]$/.test(key)) {
-            const newUserInput = [...userInput];
-            newUserInput[selectedIndex] = key;
-            setUserInput(newUserInput);
-            if (selectedIndex < 5) {
-              setSelectedIndex(selectedIndex + 1);
-            }
-          }
-        }
+        handleHexKey(key);
       }
     },
-    [loading, isComplete, userInput, selectedIndex, guesses, submitGuess, settings.colorMode]
+    [loading, isComplete, handleRgbKey, handleHexKey, settings.colorMode]
   );
 
   useEffect(() => {
