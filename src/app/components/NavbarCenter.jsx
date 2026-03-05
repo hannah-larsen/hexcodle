@@ -4,8 +4,13 @@ import { usePathname } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
+import { getHexcodleNumber, getMiniNumber } from "../timeUtils";
+
 // TODO: fix date issue
 export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
+  const currentMaxHexcodle = getHexcodleNumber();
+  const currentMaxMini = getMiniNumber();
+
   const pathname = usePathname();
   const pathComponents = pathname.split("/").filter(Boolean);
   // Archive Home
@@ -89,14 +94,27 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
     );
   }
 
-  if (
-    pathname === "/" ||
-    (pathComponents[0] === "archive" && pathComponents[1] == hexcodleNumber)
-  ) {
+  // Determine if we are on the "latest" game according to the server build
+  const isLatestHexcodle = pathname === "/" || (pathComponents[0] === "archive" && pathComponents[1] == hexcodleNumber);
+  const isLatestMini = pathname === "/mini" || (pathComponents[0] === "mini" && pathComponents[1] === "archive" && pathComponents[2] == miniNumber);
+
+  if (isLatestHexcodle) {
     const currentDay = hexcodleNumber;
+    const canGoForward = currentMaxHexcodle > currentDay;
+
     return (
       <>
-        <ChevronLeft style={{ color: "var(--gray-600)" }} />
+        {canGoForward ? (
+          <Link
+            style={{ textDecoration: "none" }}
+            className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
+            href={`/archive/${parseInt(currentDay, 10) + 1}`}
+          >
+            <ChevronLeft />
+          </Link>
+        ) : (
+          <ChevronLeft style={{ color: "var(--gray-600)", opacity: 0.5 }} />
+        )}
         <Link href={"/"} prefetch={false}>
           <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
             Hexcodle #{currentDay}
@@ -115,15 +133,21 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
 
   if (pathComponents[0] === "archive" && pathComponents[1]) {
     const currentDay = pathComponents[1];
+    const canGoForward = currentMaxHexcodle > currentDay;
+
     return (
       <>
-        <Link
-          style={{ textDecoration: "none" }}
-          className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
-          href={`/archive/${parseInt(currentDay, 10) + 1}`}
-        >
-          <ChevronLeft />
-        </Link>
+        {canGoForward ? (
+          <Link
+            style={{ textDecoration: "none" }}
+            className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
+            href={`/archive/${parseInt(currentDay, 10) + 1}`}
+          >
+            <ChevronLeft />
+          </Link>
+        ) : (
+          <ChevronLeft style={{ color: "var(--gray-600)", opacity: 0.5 }} />
+        )}
         <Link href={"/"} prefetch={false}>
           <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
             Hexcodle #{currentDay}
@@ -140,16 +164,23 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
     );
   }
 
-  if (
-    pathname === "/mini" ||
-    (pathComponents[0] === "mini" &&
-      pathComponents[1] === "archive" &&
-      pathComponents[2] == miniNumber)
-  ) {
+  if (isLatestMini) {
     const currentDay = miniNumber;
+    const canGoForward = currentMaxMini > currentDay;
+
     return (
       <>
-        <ChevronLeft style={{ color: "var(--gray-600)" }} />
+        {canGoForward ? (
+          <Link
+            style={{ textDecoration: "none" }}
+            className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
+            href={`/mini/archive/${parseInt(currentDay, 10) + 1}`}
+          >
+            <ChevronLeft />
+          </Link>
+        ) : (
+          <ChevronLeft style={{ color: "var(--gray-600)", opacity: 0.5 }} />
+        )}
         <Link href={"/mini"} prefetch={false}>
           <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
             Mini #{currentDay}
@@ -172,15 +203,21 @@ export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
     pathComponents[2]
   ) {
     const currentDay = pathComponents[2];
+    const canGoForward = currentMaxMini > currentDay;
+
     return (
       <>
-        <Link
-          style={{ textDecoration: "none" }}
-          className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
-          href={`/mini/archive/${parseInt(currentDay, 10) + 1}`}
-        >
-          <ChevronLeft />
-        </Link>
+        {canGoForward ? (
+          <Link
+            style={{ textDecoration: "none" }}
+            className="flex items-center justify-center hover:text-blue-200 active:text-blue-300"
+            href={`/mini/archive/${parseInt(currentDay, 10) + 1}`}
+          >
+            <ChevronLeft />
+          </Link>
+        ) : (
+          <ChevronLeft style={{ color: "var(--gray-600)", opacity: 0.5 }} />
+        )}
         <Link href={"/mini"} prefetch={false}>
           <p className="font-serif font-semibold tracking-tight text-xl hover:text-blue-200 active:text-blue-300">
             Mini #{currentDay}

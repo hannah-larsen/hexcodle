@@ -1,16 +1,13 @@
-"use server";
 import moment from "moment-timezone";
 import { generateUniqueNumber, decimalToHex } from "./utils";
-import { headers } from "next/headers"; // Import headers
 
-export async function getCurrentDate() {
-    // headers();
+export function getCurrentDate() {
     const datetime = moment().tz("America/New_York");
     return datetime;
 }
 
-export async function generateHexcode(num) {
-    const date = await getDateFromHexcodleNumber(num);
+export function generateHexcode(num) {
+    const date = getDateFromHexcodleNumber(num);
 
     // Really fucked fix
     const r = Math.min(generateUniqueNumber(256, 0, date), 255);
@@ -27,8 +24,8 @@ export async function generateHexcode(num) {
     )}`.toUpperCase();
 }
 
-export async function generateMiniHexcode(num) {
-    const date = await getDateFromHexcodleNumber(num);
+export function generateMiniHexcode(num) {
+    const date = getDateFromHexcodleNumber(num);
 
     const r = generateUniqueNumber(15, 15, date);
     const g = generateUniqueNumber(15, 16, date);
@@ -39,39 +36,38 @@ export async function generateMiniHexcode(num) {
     )}`.toUpperCase();
 }
 
-export async function getHexcodleNumber() {
-    // headers();
+export function getHexcodleNumber() {
     // August 10th, 2023 - start day of deployment
     const startDate = moment
         .tz("2023-08-10", "America/New_York")
         .startOf("day");
-    const currentDate = await getCurrentDate();
+    const currentDate = getCurrentDate();
     const daysPassed = currentDate.diff(startDate, "days");
     return daysPassed;
 }
 
-export async function getMiniNumber() {
+export function getMiniNumber() {
     // March 27th, 2024 - start day of deployment
     const startDate = moment
         .tz("2024-03-27", "America/New_York")
         .startOf("day");
-    const currentDate = await getCurrentDate();
+    const currentDate = getCurrentDate();
     const daysPassed = currentDate.diff(startDate, "days");
     return daysPassed;
 }
 
-export async function getDateFromHexcodleNumber(hexcodleNumber) {
+export function getDateFromHexcodleNumber(hexcodleNumber) {
     const startDate = moment
         .tz("2023-08-10", "America/New_York")
         .startOf("day");
-    const targetDate = startDate.add(hexcodleNumber, "days");
+    const targetDate = startDate.clone().add(hexcodleNumber, "days");
     return targetDate.format("DD-MM-YYYY");
 }
 
-export async function getDateFromMiniNumber(miniNumber) {
+export function getDateFromMiniNumber(miniNumber) {
     const startDate = moment
         .tz("2024-03-27", "America/New_York")
         .startOf("day");
-    const targetDate = startDate.add(miniNumber, "days");
+    const targetDate = startDate.clone().add(miniNumber, "days");
     return targetDate.format("DD-MM-YYYY");
 }

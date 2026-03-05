@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
+import { getHexcodleNumber, getMiniNumber } from "../timeUtils";
+
 export default function NextUnsolvedButton({ maxDay, isMini = false, currentNumber }) {
     const router = useRouter();
 
@@ -13,10 +15,16 @@ export default function NextUnsolvedButton({ maxDay, isMini = false, currentNumb
         try {
             const saves = JSON.parse(localStorage.getItem("hexcodleSaves")) || {};
 
-            const targetMaxDay = Number(maxDay);
+            // Calculate the absolute latest game based on current time
+            const serverMaxDay = Number(maxDay);
+            const clientMaxDay = isMini ? getMiniNumber() : getHexcodleNumber();
+
+            // We use the greater of the two, but clamp it to maybe build status?
+            // Actually, if it's past midnight, the client should know about the new game.
+            const targetMaxDay = Math.max(serverMaxDay, clientMaxDay);
             const targetCurrentNumber = Number(currentNumber);
 
-            // Look for the highest unsolved game from maxDay downwards
+            // Look for the highest unsolved game from targetMaxDay downwards
             for (let i = targetMaxDay; i >= 1; i--) {
                 const key = isMini ? `hexcodle-mini-${i}` : i;
                 const saveData = saves[key];
