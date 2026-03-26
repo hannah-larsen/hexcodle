@@ -6,7 +6,6 @@ import Link from "next/link";
 
 import { getHexcodleNumber, getMiniNumber } from "../timeUtils";
 
-// TODO: fix date issue
 export default function NavbarCenter({ hexcodleNumber, miniNumber }) {
   const currentMaxHexcodle = getHexcodleNumber();
   const currentMaxMini = getMiniNumber();

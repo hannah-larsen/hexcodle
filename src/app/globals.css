@@ -240,3 +240,60 @@ h4 {
 .emoji {
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
+
+@keyframes victoryColorReveal {
+  to {
+    background-color: var(--reveal-color);
+    border-color: var(--reveal-color);
+  }
+}
+
+@keyframes victoryJump {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.victory-square {
+  animation:
+    victoryColorReveal 0.55s ease forwards var(--reveal-delay, 0s),
+    victoryJump 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards var(--jump-delay, 0s);
+}
+
+.victory-square p,
+.victory-square div {
+  animation: fadeOut 0.55s ease forwards var(--reveal-delay, 0s);
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+
+@keyframes rippleEffect {
+  0% {
+    filter: brightness(1);
+  }
+
+  40% {
+    filter: brightness(1.15);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.victory-ripple {
+  animation: rippleEffect 0.8s ease-in-out forwards;
+}

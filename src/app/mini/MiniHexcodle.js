@@ -76,6 +76,8 @@ export default function MiniHexcodle({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guesses, targetColor]);
 
+  const [isVictoryAnimationActive, setIsVictoryAnimationActive] = useState(false);
+
   const submitGuess = (newGuess) => {
     if (guesses.length >= MAX_GUESSES) {
       return;
@@ -84,18 +86,21 @@ export default function MiniHexcodle({
     const newGuesses = [...guesses];
     newGuesses.push(newGuess);
 
-    if (newGuesses.includes(targetColor)) {
+    if (newGuess === targetColor) {
       play();
-      setEndModalVisible(true);
+      setIsVictoryAnimationActive(true);
+      // Wait for reveal + jump sequence to complete
+      setTimeout(() => {
+        setEndModalVisible(true);
+        setIsVictoryAnimationActive(false);
+      }, 2500);
       if (streak.lastDate === maxDay - 1) {
         setStreak({ lastDate: maxDay, days: streak.days + 1 });
       } else if (number === maxDay) {
         setStreak({ lastDate: maxDay, days: 1 });
       }
-    }
-
-    // If user loses
-    if (newGuesses.length >= MAX_GUESSES) {
+    } else if (newGuesses.length >= MAX_GUESSES) {
+      // If user loses
       setEndModalVisible(true);
     }
     setGuesses(newGuesses);
@@ -189,7 +194,7 @@ export default function MiniHexcodle({
 
   return (
     <>
-      <main className="flex flex-col items-center gap-1 md:gap-4 py-0 px-2 bg-cream-50">
+      <main className="flex flex-col items-center gap-1 md:gap-4 py-0 px-2 bg-cream-50 overflow-hidden">
         <section className="relative px-2 sm:px-8 pt-0 pb-2 md:py-4 text-center items-center flex flex-col w-full max-w-[600px]">
           <div className="flex flex-row w-full gap-3 sm:gap-6 mb-3 md:mb-6 h-16 md:h-24">
             <div
@@ -225,7 +230,7 @@ export default function MiniHexcodle({
             </div>
           </div>
 
-          <div className="flex flex-col w-full max-w-[600px]">
+          <div className={`flex flex-col w-full max-w-[600px] ${isVictoryAnimationActive ? "victory-ripple" : ""}`}>
             {Array.from({ length: MAX_GUESSES }).map((_, index) => {
               if (!isComplete && !loading && index === guesses.length) {
                 return (
@@ -249,6 +254,8 @@ export default function MiniHexcodle({
                     type="hex"
                     target={targetColor}
                     hardMode={settings.difficulty}
+                    isVictory={isVictoryAnimationActive}
+                    rowIndex={index}
                   />
                 );
               } else {
