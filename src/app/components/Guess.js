@@ -52,15 +52,15 @@ export default function Guess({
             return (
               <div
                 key={index}
-                className={`flex-1 flex flex-col items-center justify-center p-1 md:p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-12 md:h-[72px] ${isVictory ? "victory-square" : ""}`}
+                className={`transition-colors duration-1000 ease-in-out flex-1 flex flex-col items-center justify-center p-1 md:p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-12 md:h-[72px] ${isVictory ? "victory-square" : ""}`}
                 style={{
                   "--reveal-color": guess,
                   "--reveal-delay": isVictory ? `${revealDelay}s` : "0s",
                   "--jump-delay": isVictory ? `${jumpDelay}s` : "0s",
                 }}
               >
-                <p className="font-mono text-base md:text-xl font-bold text-gray-800">{character}</p>
-                <div className="mb-0.5 md:mb-1">{getIcon(result)}</div>
+                <p className="transition-opacity duration-1000 ease-in-out font-mono text-base md:text-xl font-bold text-gray-800">{character}</p>
+                <div className="transition-opacity duration-1000 ease-in-out mb-0.5 md:mb-1">{getIcon(result)}</div>
               </div>
             );
           })}
@@ -97,15 +97,15 @@ export default function Guess({
             return (
               <div
                 key={index}
-                className={`flex-1 flex flex-col items-center justify-center p-1 md:p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-12 md:h-[72px] ${isVictory ? "victory-square" : ""}`}
+                className={`transition-colors duration-1000 ease-in-out flex-1 flex flex-col items-center justify-center p-1 md:p-2 bg-white rounded-lg shadow-sm border border-gray-200 h-12 md:h-[72px] ${isVictory ? "victory-square" : ""}`}
                 style={{
                   "--reveal-color": guess,
                   "--reveal-delay": isVictory ? `${revealDelay}s` : "0s",
                   "--jump-delay": isVictory ? `${jumpDelay}s` : "0s",
                 }}
               >
-                <p className="font-mono text-base md:text-xl font-bold text-gray-800">{guessRGB[rgbMap[color]]}</p>
-                <div className="mb-0.5 md:mb-1">{getIcon(result)}</div>
+                <p className="transition-opacity duration-1000 ease-in-out font-mono text-base md:text-xl font-bold text-gray-800">{guessRGB[rgbMap[color]]}</p>
+                <div className="transition-opacity duration-1000 ease-in-out mb-0.5 md:mb-1">{getIcon(result)}</div>
               </div>
             );
           })}
