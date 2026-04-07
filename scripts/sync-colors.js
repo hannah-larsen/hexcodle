@@ -68,6 +68,9 @@ async function fetchColorName(hex, label) {
     return null;
 }
 
+const args = process.argv.slice(2);
+const BUFFER = args.length > 0 && !isNaN(parseInt(args[0], 10)) ? parseInt(args[0], 10) : 50;
+
 async function sync() {
     let colors = {};
     let miniColors = {};
@@ -112,11 +115,11 @@ async function sync() {
     const currentMini = today.diff(startMini, "days");
 
     // 1. Regular Game Sync
-    console.log("\nChecking Regular Colors (Today + 50 buffer)...");
+    console.log(`\nChecking Regular Colors (Today + ${BUFFER} buffer)...`);
     let regularNewCount = 0;
     let regularSkipStart = -1;
 
-    for (let i = 0; i <= currentRegular + 50; i++) {
+    for (let i = 0; i <= currentRegular + BUFFER; i++) {
         const hex = generateHexcode(i);
         if (colors[hex] && colors[hex] !== "Error" && colors[hex] !== "Unknown Color") {
             if (regularSkipStart === -1) regularSkipStart = i;
@@ -138,15 +141,15 @@ async function sync() {
         }
     }
     if (regularSkipStart !== -1) {
-        console.log(`[Regular Day ${regularSkipStart} - ${currentRegular + 50}] Already fetched, skipping...`);
+        console.log(`[Regular Day ${regularSkipStart} - ${currentRegular + BUFFER}] Already fetched, skipping...`);
     }
 
     // 2. Mini Game Sync
-    console.log("\nChecking Mini Colors (Today + 50 buffer)...");
+    console.log(`\nChecking Mini Colors (Today + ${BUFFER} buffer)...`);
     let miniNewCount = 0;
     let miniSkipStart = -1;
 
-    for (let i = 0; i <= currentMini + 50; i++) {
+    for (let i = 0; i <= currentMini + BUFFER; i++) {
         const hex = generateMiniHexcode(i);
         if (miniColors[hex] && miniColors[hex] !== "Error" && miniColors[hex] !== "Unknown Color") {
             if (miniSkipStart === -1) miniSkipStart = i;
@@ -168,7 +171,7 @@ async function sync() {
         }
     }
     if (miniSkipStart !== -1) {
-        console.log(`[Mini Day ${miniSkipStart} - ${currentMini + 50}] Already fetched, skipping...`);
+        console.log(`[Mini Day ${miniSkipStart} - ${currentMini + BUFFER}] Already fetched, skipping...`);
     }
 
 
