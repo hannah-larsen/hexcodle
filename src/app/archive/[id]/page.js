@@ -1,4 +1,3 @@
-// export const dynamic = "force-dynamic";
 
 import HexcodleGame from "../../HexcodleGame";
 import { getColorName } from "../../serverUtils";
@@ -7,6 +6,15 @@ import {
     generateHexcode,
     getCurrentDate,
 } from "../../timeUtils";
+
+export async function generateStaticParams() {
+    const currentHexcodle = getHexcodleNumber();
+    const params = [];
+    for (let i = 1; i <= currentHexcodle; i++) {
+        params.push({ id: i.toString() });
+    }
+    return params;
+}
 
 export default async function Page(props) {
     const params = await props.params;

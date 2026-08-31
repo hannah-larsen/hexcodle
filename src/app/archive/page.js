@@ -1,4 +1,3 @@
-// export const dynamic = "force-dynamic";
 
 import ArchivePage from "./ArchivePage";
 import { getHexcodleNumber } from "../timeUtils";

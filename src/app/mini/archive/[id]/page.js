@@ -1,4 +1,3 @@
-// export const dynamic = "force-dynamic";
 
 import MiniHexcodle from "../../MiniHexcodle";
 import { headers } from "next/headers";
@@ -8,6 +7,15 @@ import {
     generateMiniHexcode,
     getCurrentDate,
 } from "@/app/timeUtils";
+
+export async function generateStaticParams() {
+    const currentHexcodle = getMiniNumber();
+    const params = [];
+    for (let i = 1; i <= currentHexcodle; i++) {
+        params.push({ id: i.toString() });
+    }
+    return params;
+}
 
 export default async function Page(props) {
     const params = await props.params;

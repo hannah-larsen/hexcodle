@@ -1,7 +1,14 @@
-import { loadPost } from "../loadPosts";
+import { loadPost, loadAllPosts } from "../loadPosts";
 import Link from "next/link";
 import { ChevronLeft, Calendar, User } from "lucide-react";
 // export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+    const posts = await loadAllPosts();
+    return posts.map((post) => ({
+        slug: post.slug,
+    }));
+}
 
 export async function generateMetadata(props) {
     const params = await props.params;

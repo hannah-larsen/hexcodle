@@ -1,4 +1,3 @@
-// export const dynamic = "force-dynamic";
 
 import MiniArchivePage from "./MiniArchivePage";
 import { unstable_cache } from "next/cache";

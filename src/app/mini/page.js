@@ -1,4 +1,3 @@
-// export const dynamic = "force-dynamic";
 
 import MiniHexcodle from "./MiniHexcodle";
 import { getColorName } from "@/app/serverUtils";
