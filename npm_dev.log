@@ -1,0 +1,39 @@
+
+> hexcodle@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.7 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.2:3000
+
+ ✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+ ✓ Ready in 1848ms
+ ⚠ Webpack is configured while Turbopack is not, which may cause problems.
+ ⚠ See instructions if you need to configure Turbopack:
+  https://nextjs.org/docs/app/api-reference/next-config-js/turbopack
+
+ ○ Compiling / ...
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+warn - The class `ease-[cubic-bezier(0.4,0,0.2,1)]` is ambiguous and matches multiple utilities.
+warn - If this is content and not a class, replace it with `ease-&lsqb;cubic-bezier(0.4,0,0.2,1)&rsqb;` to silence this warning.
+ ✓ Compiled / in 9.3s
+ GET / 200 in 11171ms
+ GET / 200 in 407ms
+ GET / 200 in 373ms
+ GET / 200 in 379ms
+ GET / 200 in 342ms
+ GET / 200 in 352ms
+ GET / 200 in 390ms
+ GET / 200 in 303ms
+ GET / 200 in 322ms
+ GET / 200 in 3042ms
+ GET / 200 in 372ms
+ GET / 200 in 343ms

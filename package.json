@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^2.1.4",
-    "daisyui": "^3.5.1"
+    "daisyui": "^3.5.1",
+    "playwright": "^1.61.0"
   }
 }

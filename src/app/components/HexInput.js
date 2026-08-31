@@ -42,9 +42,11 @@ const HexInput = React.forwardRef(({ userInput, isCurrentRow = true, numDigits =
             onFocus={isCurrentRow ? () => onSelect(index) : undefined}
             className={`
               flex-1 flex justify-center items-center text-lg md:text-2xl font-mono font-bold 
-              rounded-lg shadow-sm border h-12 md:h-[72px] transition-all duration-200
-              outline-none border-gray-200 bg-white text-gray-800
-              ${isCurrentRow ? "hover:border-blue-300 cursor-pointer focus:border-blue-500 focus:ring-2 focus:ring-blue-400 focus:bg-blue-50 focus:text-blue-900 focus:z-10" : ""}
+              rounded-lg h-12 md:h-[72px] transition-all duration-200
+              outline-none text-gray-800
+              ${isCurrentRow
+                ? "border border-gray-200 bg-white shadow-sm hover:border-blue-300 cursor-pointer focus:border-blue-500 focus:ring-2 focus:ring-blue-400 focus:bg-blue-50 focus:text-blue-900 focus:z-10"
+                : "border border-dashed border-gray-300 bg-gray-50/50"}
             `}
           >
             {char && char !== " " ? char : ""}
